@@ -1,0 +1,111 @@
+// components/layout/footer.tsx - SEO-optimized footer with comprehensive internal linking
+
+import Link from 'next/link';
+import { SITE_NAME, SITE_URL, COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-slate-900 text-slate-100 border-t border-slate-800">
+      {/* Main Footer Content */}
+      <div className="container py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Brand Section */}
+          <div className="lg:col-span-1">
+            <h3 className="text-white font-bold text-lg mb-4">{SITE_NAME}</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              Elite screen testing and display tools for professionals and enthusiasts. Screenglow.eu
+            </p>
+            
+          </div>
+
+          {/* Color Tools Section */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Color Tools</h4>
+            <ul className="space-y-2">
+              {COLOR_TOOLS.slice(0, 5).map((tool) => (
+                <li key={tool.id}>
+                  <Link href={tool.path} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                    {tool.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Test Tools Section */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Test Tools</h4>
+            <ul className="space-y-2">
+              {TEST_TOOLS.slice(0, 5).map((tool) => (
+                <li key={tool.id}>
+                  <Link href={tool.path} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                    {tool.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources Section */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/faq" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  About
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal Section */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Legal</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/privacy" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-slate-800"></div>
+
+      {/* Bottom Footer */}
+      <div className="container py-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-slate-400 text-sm">
+          <p>
+            © {currentYear} {SITE_NAME}. All rights reserved. • Built for performance & accessibility.
+          </p>
+          <div className="flex gap-6">
+            <Link href="/sitemap.xml" className="hover:text-cyan-400 transition-colors">
+              Sitemap
+            </Link>
+            <Link href="/robots.txt" className="hover:text-cyan-400 transition-colors">
+              Robots
+            </Link>
+            <a href={SITE_URL} className="hover:text-cyan-400 transition-colors">
+              {SITE_URL}
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
