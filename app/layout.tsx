@@ -22,14 +22,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     template: `%s | ${SITE_NAME}`,
-    default: SITE_NAME,
+    default: `${SITE_NAME}`,
   },
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
   },
   manifest: '/site.webmanifest',
-  // Do NOT add description, keywords, or openGraph here - let page-level generateMetadata() handle it
 };
 
 interface RootLayoutProps {
