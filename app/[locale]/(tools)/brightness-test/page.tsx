@@ -37,7 +37,6 @@ export default async function BrightnessTestPage({ params }: { params: Promise<{
   );
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
       <BrightnessTest />
     </>
   );

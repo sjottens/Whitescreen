@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { SITE_NAME } from '@/lib/constants';
+import { getLocalizedPath } from '@/lib/link-utils';
 import Navigation from './navigation';
 import Logo from '@/components/ui/logo';
 import type { Locale } from '@/lib/i18n';
@@ -16,7 +17,7 @@ export default function Header({ locale }: HeaderProps) {
       <div className="container py-4 md:py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 focus-ring">
+          <Link href={getLocalizedPath(locale, '/')} className="flex items-center gap-2 focus-ring">
             <Logo />
             <span className="text-xl md:text-2xl font-bold text-slate-900">{SITE_NAME}</span>
           </Link>

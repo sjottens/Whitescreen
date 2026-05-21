@@ -92,69 +92,41 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  // JSON-LD structured data
   const organizationSchemaData = organizationSchema();
   const softwareSchemaData = softwareApplicationSchema();
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
-        {/* Structured Data - JSON-LD */}
-        <script
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="theme-color" content="#ffffff" />
+
+        {/* Preconnect to external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Explicit manifest link to prevent locale-relative fetching */}
+        <link rel="manifest" href="/site.webmanifest" />
+
+        {/* JSON-LD Structured Data */}
+        <Script
+          id="organization-schema"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchemaData) }}
           suppressHydrationWarning
         />
-        <script
+        <Script
+          id="software-schema"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchemaData) }}
           suppressHydrationWarning
         />
-
-        {/* Google Analytics (if needed) */}
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || ''}`}
-        />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              ${process.env.NEXT_PUBLIC_GA_ID ? `gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');` : ''}
-            `,
-          }}
-        />
-
-        {/* Preconnect to external fonts */}
-        <link rel="preconnect" href="https://rsms.me" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="bg-white text-slate-900" suppressHydrationWarning>
-        {/* Skip to main content link for accessibility */}
-        <a href="#main-content" className="skip-to-main">
-          Skip to main content
-        </a>
-
-        {/* Main content - Header and Footer are rendered in [locale]/layout.tsx */}
-        <main id="main-content" className="min-h-screen">
-          {children}
-        </main>
-
-        {/* Web Vitals monitoring (development only) */}
-        {process.env.NODE_ENV === 'development' && (
-          <Script id="web-vitals" strategy="afterInteractive">
-            {`
-              window.addEventListener('web-vital', (vitals) => {
-                console.log('Web Vital:', vitals);
-              });
-            `}
-          </Script>
-        )}
+      <body className={inter.variable}>
+        {children}
       </body>
     </html>
   );

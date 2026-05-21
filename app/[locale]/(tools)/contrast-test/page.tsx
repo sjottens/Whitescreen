@@ -37,7 +37,6 @@ export default async function ContrastTestPage({ params }: { params: Promise<{ l
   );
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
       <ContrastTest />
     </>
   );

@@ -37,7 +37,6 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
   );
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
       <DeadPixelTest />
     </>
   );

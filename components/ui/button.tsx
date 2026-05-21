@@ -19,6 +19,7 @@ interface ButtonProps {
 
 interface LinkButtonProps extends Omit<ButtonProps, 'onClick' | 'type'> {
   href: string;
+  scroll?: boolean;
   target?: string;
   rel?: string;
 }
@@ -67,6 +68,7 @@ export function LinkButton({
   variant = 'primary',
   size = 'md',
   href,
+  scroll = false,
   children,
   className = '',
   ...props
@@ -74,6 +76,7 @@ export function LinkButton({
   return (
     <Link
       href={href}
+      scroll={scroll}
       className={`
         inline-flex items-center justify-center rounded-lg font-medium
         transition-all duration-150 whitespace-nowrap

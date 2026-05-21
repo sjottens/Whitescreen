@@ -42,31 +42,31 @@ export default async function BlackScreenPage({ params }: PageProps) {
 
   const translatedUseCases = TOOL.useCases.map((key) => translate(key as any));
 
-  const features = [
-    'Pure black full-screen display with no distractions',
-    'Fullscreen mode with keyboard shortcuts (F, Space)',
-    'Works on all devices - phones, tablets, desktops',
-    'Download as high-quality PNG in any resolution',
-    'Free - no registration or subscriptions required',
+  const translatedFeatures = [
+    translate('feature_fullscreen_pure'),
+    translate('feature_keyboard_shortcuts'),
+    translate('feature_all_devices'),
+    translate('feature_download_png'),
+    translate('feature_free_no_registration'),
   ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'black-screen').slice(0, 2).map((t) => ({
-    name: t.name,
+    name: translate(t.id.replace(/-/g, '_') as any),
     path: t.path,
     color: t.color,
   }));
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
       <ToolLayout
         title={TOOL.name}
         description={TOOL.description}
-        features={features}
+        features={translatedFeatures}
         useCases={translatedUseCases}
         relatedTools={relatedTools}
+        locale={locale}
       >
-        <ScreenDisplay color="#000000" title={TOOL.name} />
+        <ScreenDisplay color="#000000" title={TOOL.name} locale={locale} />
       </ToolLayout>
     </>
   );

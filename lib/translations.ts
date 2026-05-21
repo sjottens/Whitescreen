@@ -27,6 +27,25 @@ export const translations = {
     feature_professional: 'Professional Grade',
     feature_professional_desc: 'Used by photographers, videographers, gamers, and IT professionals worldwide',
     
+    // Use Cases Section
+    use_cases_title: 'Use Cases',
+    display_testing_title: 'Display Testing',
+    display_testing_desc: 'Check for dead pixels, uniformity, and color accuracy on any monitor or TV.',
+    photography_lighting_title: 'Photography Lighting',
+    photography_lighting_desc: 'Use your monitor as a professional fill light for product and studio photography.',
+    video_production_title: 'Video Production',
+    video_production_desc: 'Green and blue screens for chroma key effects in your productions.',
+    gaming_streaming_title: 'Gaming & Streaming',
+    gaming_streaming_desc: 'Optimize display settings and test performance metrics.',
+    color_accuracy_test: 'Color Accuracy Test',
+    screen_uniformity_test: 'Screen Uniformity Test',
+    color_test: 'Color Test',
+    
+    // CTA Section
+    cta_ready_title: 'Ready to Test Your Display?',
+    cta_ready_desc: 'Choose from our collection of professional-grade tools. No sign-up required.',
+    cta_start_testing: 'Start Testing Now',
+    
     // Tools Section
     color_screens: 'Color Screens',
     testing_tools: 'Testing Tools',
@@ -188,7 +207,45 @@ export const translations = {
     gamma_verification: 'Gamma Verification',
     accessibility_testing: 'Accessibility Testing',
     wcag_compliance: 'WCAG Compliance',
-    color_vision_deficiency: 'Color Vision Deficiency'
+    color_vision_deficiency: 'Color Vision Deficiency',
+    
+    // Tool Layout
+    back_to_tools: 'Back to Tools',
+    how_to_use: 'How to Use',
+    features: 'Features',
+    related_tools: 'Related Tools',
+    keyboard_shortcuts: 'Keyboard Shortcuts',
+    step_1: 'Click the tool above or press the fullscreen button',
+    step_2: 'Press F, Space, or click the fullscreen icon',
+    step_3: 'Press ESC to exit fullscreen and return to this page',
+    step_4: 'Click Download to save as PNG or customize resolution',
+    fullscreen_mode: 'Fullscreen Mode',
+    exit_fullscreen: 'Exit Fullscreen',
+    download_shortcut: 'Download',
+    
+    // Feature Descriptions
+    feature_fullscreen_pure: 'Pure color full-screen display with no distractions',
+    feature_keyboard_shortcuts: 'Fullscreen mode with keyboard shortcuts (F, Space)',
+    feature_all_devices: 'Works on all devices - phones, tablets, desktops',
+    feature_download_png: 'Download as high-quality PNG in any resolution',
+    feature_free_no_registration: 'Free - no registration or subscriptions required',
+    
+    // Screen Display
+    screen_display_title: 'Resolution Settings',
+    screen_display_presets: 'Presets',
+    screen_display_width_label: 'Width (px)',
+    screen_display_height_label: 'Height (px)',
+    screen_display_click_to_fullscreen: 'Click to fullscreen or press F/Space',
+    screen_display_exit_fullscreen_hint: 'Exit Fullscreen (ESC)',
+    screen_display_fullscreen_btn: 'Fullscreen',
+    screen_display_download_btn: 'Download',
+    screen_display_copied_hint: 'Copied!',
+    screen_display_keyboard_hint: 'Press F or Space for fullscreen, ESC to exit',
+    
+    // Footer Common
+    common: 'Common',
+    all_rights_reserved: 'All rights reserved',
+    built_for: 'Built for performance & accessibility',
   },
   
   nl: {
@@ -215,6 +272,25 @@ export const translations = {
     feature_comprehensive_desc: 'Detectie van dode pixels, kleurnauwkeurigheid, contrast, helderheid en meer',
     feature_professional: 'Professionele Kwaliteit',
     feature_professional_desc: 'Gebruikt door fotografen, videomakers, gamers en IT-professionals wereldwijd',
+    
+    // Use Cases Section
+    use_cases_title: 'Gebruiksscenario\'s',
+    display_testing_title: 'Schermtest',
+    display_testing_desc: 'Controleer op dode pixels, uniformiteit en kleurnauwkeurigheid op elk scherm of televisie.',
+    photography_lighting_title: 'Fotografieverlichting',
+    photography_lighting_desc: 'Gebruik je monitor als professionele voorvullicht voor product- en studiofotografie.',
+    video_production_title: 'Videoproductie',
+    video_production_desc: 'Groene en blauwe schermen voor chroma key-effecten in je productie.',
+    gaming_streaming_title: 'Gamen & Streamen',
+    gaming_streaming_desc: 'Optimaliseer scherminstelling en test prestatiesmetrieken.',
+    color_accuracy_test: 'Kleurnauwkeurigheidtest',
+    screen_uniformity_test: 'Schermuniformiteitstest',
+    color_test: 'Kleurentest',
+    
+    // CTA Section
+    cta_ready_title: 'Klaar om je scherm te testen?',
+    cta_ready_desc: 'Kies uit onze collectie professionele hulpmiddelen. Geen registratie vereist.',
+    cta_start_testing: 'Begin nu met testen',
     
     // Tools Section
     color_screens: 'Kleurenschermen',
@@ -367,6 +443,44 @@ export const translations = {
     wcag_compliance: 'WCAG-Naleving',
     color_vision_deficiency: 'Kleurblindheid',
     
+    // Tool Layout
+    back_to_tools: 'Terug naar Gereedschappen',
+    how_to_use: 'Hoe te Gebruiken',
+    features: 'Functies',
+    related_tools: 'Gerelateerde Gereedschappen',
+    keyboard_shortcuts: 'Toetsenbordsnelkoppelingen',
+    step_1: 'Klik op het gereedschap hierboven of druk op de fullscreen-knop',
+    step_2: 'Druk op F, Spatie of klik op het fullscreen-pictogram',
+    step_3: 'Druk op ESC om fullscreen af te sluiten en naar deze pagina terug te keren',
+    step_4: 'Klik op Download om als PNG op te slaan of de resolutie aan te passen',
+    fullscreen_mode: 'Fullscreen-Modus',
+    exit_fullscreen: 'Fullscreen Afsluiten',
+    download_shortcut: 'Download',
+    
+    // Feature Descriptions
+    feature_fullscreen_pure: 'Zuiver kleurenscherm in fullscreen zonder afleiding',
+    feature_keyboard_shortcuts: 'Fullscreen-modus met toetsenbordsnelkoppelingen (F, Spatie)',
+    feature_all_devices: 'Werkt op alle apparaten - telefoons, tablets, desktops',
+    feature_download_png: 'Download als hoogwaardige PNG in elke resolutie',
+    feature_free_no_registration: 'Gratis - geen registratie of abonnementen vereist',
+    
+    // Screen Display
+    screen_display_title: 'Resolutie-instellingen',
+    screen_display_presets: 'Voorinstellingen',
+    screen_display_width_label: 'Breedte (px)',
+    screen_display_height_label: 'Hoogte (px)',
+    screen_display_click_to_fullscreen: 'Klik voor fullscreen of druk op F/Spatie',
+    screen_display_exit_fullscreen_hint: 'Fullscreen afsluiten (ESC)',
+    screen_display_fullscreen_btn: 'Fullscreen',
+    screen_display_download_btn: 'Download',
+    screen_display_copied_hint: 'Gekopieerd!',
+    screen_display_keyboard_hint: 'Druk op F of Spatie voor fullscreen, ESC om af te sluiten',
+    
+    // Footer Common
+    common: 'Algemeen',
+    all_rights_reserved: 'Alle rechten voorbehouden',
+    built_for: 'Gebouwd voor prestaties en toegankelijkheid',
+    
     // Common
     home: 'Startpagina',
     tools: 'Gereedschappen',
@@ -404,6 +518,25 @@ export const translations = {
     feature_comprehensive_desc: 'Detección de píxeles muertos, precisión de color, contraste, brillo y más',
     feature_professional: 'Calidad Profesional',
     feature_professional_desc: 'Utilizado por fotógrafos, videógrafos, jugadores y profesionales de TI en todo el mundo',
+    
+    // Use Cases Section
+    use_cases_title: 'Casos de Uso',
+    display_testing_title: 'Prueba de Pantalla',
+    display_testing_desc: 'Verifica píxeles muertos, uniformidad y precisión de color en cualquier monitor o televisión.',
+    photography_lighting_title: 'Iluminación Fotográfica',
+    photography_lighting_desc: 'Usa tu monitor como luz de relleno profesional para fotografía de producto y estudio.',
+    video_production_title: 'Producción de Vídeo',
+    video_production_desc: 'Pantallas verdes y azules para efectos de clave de croma en tus producciones.',
+    gaming_streaming_title: 'Juegos y Transmisión',
+    gaming_streaming_desc: 'Optimiza la configuración de pantalla y prueba métricas de rendimiento.',
+    color_accuracy_test: 'Prueba de Precisión de Color',
+    screen_uniformity_test: 'Prueba de Uniformidad de Pantalla',
+    color_test: 'Prueba de Color',
+    
+    // CTA Section
+    cta_ready_title: '¿Listo para probar tu pantalla?',
+    cta_ready_desc: 'Elige de nuestra colección de herramientas de nivel profesional. Sin registro requerido.',
+    cta_start_testing: 'Comenzar a Probar Ahora',
     
     // Tools Section
     color_screens: 'Pantallas de Color',
@@ -555,6 +688,44 @@ export const translations = {
     accessibility_testing: 'Pruebas de Accesibilidad',
     wcag_compliance: 'Cumplimiento WCAG',
     color_vision_deficiency: 'Deficiencia de Visión del Color',
+    
+    // Tool Layout
+    back_to_tools: 'Volver a Herramientas',
+    how_to_use: 'Cómo Usar',
+    features: 'Características',
+    related_tools: 'Herramientas Relacionadas',
+    keyboard_shortcuts: 'Atajos de Teclado',
+    step_1: 'Haz clic en la herramienta anterior o presiona el botón de pantalla completa',
+    step_2: 'Presiona F, Espacio o haz clic en el icono de pantalla completa',
+    step_3: 'Presiona ESC para salir de pantalla completa y volver a esta página',
+    step_4: 'Haz clic en Descargar para guardar como PNG o personalizar la resolución',
+    fullscreen_mode: 'Modo de Pantalla Completa',
+    exit_fullscreen: 'Salir de Pantalla Completa',
+    download_shortcut: 'Descargar',
+    
+    // Feature Descriptions
+    feature_fullscreen_pure: 'Pantalla de color puro en modo pantalla completa sin distracciones',
+    feature_keyboard_shortcuts: 'Modo de pantalla completa con atajos de teclado (F, Espacio)',
+    feature_all_devices: 'Funciona en todos los dispositivos: teléfonos, tablets, escritorios',
+    feature_download_png: 'Descargue como PNG de alta calidad en cualquier resolución',
+    feature_free_no_registration: 'Gratis: sin registro o suscripciones requeridas',
+    
+    // Screen Display
+    screen_display_title: 'Configuración de Resolución',
+    screen_display_presets: 'Preajustes',
+    screen_display_width_label: 'Ancho (px)',
+    screen_display_height_label: 'Alto (px)',
+    screen_display_click_to_fullscreen: 'Haz clic para pantalla completa o presiona F/Espacio',
+    screen_display_exit_fullscreen_hint: 'Salir de Pantalla Completa (ESC)',
+    screen_display_fullscreen_btn: 'Pantalla Completa',
+    screen_display_download_btn: 'Descargar',
+    screen_display_copied_hint: '¡Copiado!',
+    screen_display_keyboard_hint: 'Presiona F o Espacio para pantalla completa, ESC para salir',
+    
+    // Footer Common
+    common: 'Común',
+    all_rights_reserved: 'Todos los derechos reservados',
+    built_for: 'Creado para rendimiento y accesibilidad',
     
     // Common
     home: 'Inicio',

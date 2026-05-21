@@ -19,47 +19,28 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Root path should use default locale (en) without prefix
-  if (pathname === '/') {
-    return NextResponse.next();
-  }
-
-  // For all other paths (like /about, /tools, etc.), check if they start with supported locale
-  // If not, prepend the default locale to the path
-  // This creates the effect that English pages are at the root level
-  
-  // Actually, we want to be careful here. If someone visits /about, 
-  // we should still serve them the English version but internally route it as /en/about
-  // However, the URL should stay as /about (rewrite, not redirect)
-  
-  // For SEO purposes:
-  // - English pages: served at root (/, /about, /tools, etc.)
-  // - Dutch pages: served under /nl (/nl/, /nl/about, /nl/tools, etc.)
-  
-  // Check if this is a Dutch or Spanish request by checking Accept-Language header
-  // BUT: Don't force this for crawlers - let them crawl what they want
+  // Check Accept-Language header to determine user's preferred locale
   const acceptLanguage = request.headers.get('accept-language') ?? '';
   const isCrawler = /bot|crawl|spider|googlebot|bingbot/i.test(request.headers.get('user-agent') ?? '');
   
+  let targetLocale = DEFAULT_LOCALE;
+
   // Only check Accept-Language for non-crawlers
   if (!isCrawler) {
     if (acceptLanguage.startsWith('nl')) {
-      // User prefers Dutch, redirect to /nl equivalent
-      return NextResponse.redirect(new URL(`/nl${pathname}`, request.url));
-    }
-    if (acceptLanguage.startsWith('es')) {
-      // User prefers Spanish, redirect to /es equivalent
-      return NextResponse.redirect(new URL(`/es${pathname}`, request.url));
+      targetLocale = 'nl';
+    } else if (acceptLanguage.startsWith('es')) {
+      targetLocale = 'es';
     }
   }
 
-  // For all other cases, serve with default locale (English at root level)
-  return NextResponse.next();
+  // Redirect to the locale-prefixed path
+  return NextResponse.redirect(new URL(`/${targetLocale}${pathname === '/' ? '' : pathname}`, request.url));
 }
 
 export const config = {
   matcher: [
     // Match all paths except those that should skip middleware
-    '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|og-image.png).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|favicon.svg|robots.txt|sitemap.xml|site.webmanifest|og-image.png).*)',
   ],
 };

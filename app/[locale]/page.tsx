@@ -183,29 +183,29 @@ export default async function HomePage({ params }: HomePageProps) {
       {/* Use Cases Section */}
       <section className="section">
         <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">Use Cases</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">{translate('use_cases_title')}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: 'Display Testing',
-                description: 'Check for dead pixels, uniformity, and color accuracy on any monitor or TV.',
-                tools: ['Dead Pixel Test', 'Color Accuracy Test', 'Screen Uniformity Test'],
+                title: translate('display_testing_title'),
+                description: translate('display_testing_desc'),
+                tools: [translate('dead_pixel_test'), translate('color_accuracy_test'), translate('screen_uniformity_test')],
               },
               {
-                title: 'Photography Lighting',
-                description: 'Use your monitor as a professional fill light for product and studio photography.',
-                tools: ['White Screen', 'Color Screen Tools', 'Zoom Lighting'],
+                title: translate('photography_lighting_title'),
+                description: translate('photography_lighting_desc'),
+                tools: [translate('white_screen'), translate('color_screens'), translate('zoom_lighting')],
               },
               {
-                title: 'Video Production',
-                description: 'Green and blue screens for chroma key effects in your productions.',
-                tools: ['Green Screen', 'Blue Screen', 'Brightness Test'],
+                title: translate('video_production_title'),
+                description: translate('video_production_desc'),
+                tools: [translate('green_screen'), translate('blue_screen'), translate('brightness_test')],
               },
               {
-                title: 'Gaming & Streaming',
-                description: 'Optimize display settings and test performance metrics.',
-                tools: ['Color Test', 'Brightness Test', 'Contrast Test'],
+                title: translate('gaming_streaming_title'),
+                description: translate('gaming_streaming_desc'),
+                tools: [translate('color_test'), translate('brightness_test'), translate('contrast_test')],
               },
             ].map((useCase, index) => (
               <div key={index} className="card">
@@ -228,12 +228,12 @@ export default async function HomePage({ params }: HomePageProps) {
       <section className="section-alt">
         <div className="container max-w-3xl">
           <div className="text-center">
-            <h2 className="text-4xl font-bold mb-4">Ready to Test Your Display?</h2>
+            <h2 className="text-4xl font-bold mb-4">{translate('cta_ready_title')}</h2>
             <p className="text-lg text-slate-600 mb-8">
-              Choose from our collection of professional-grade tools. No sign-up required.
+              {translate('cta_ready_desc')}
             </p>
             <LinkButton href={`/${locale !== 'en' ? locale : ''}${locale !== 'en' ? '/' : ''}white-screen`.replace(/\/+/g, '/')} size="lg" variant="primary">
-              Start Testing Now
+              {translate('cta_start_testing')}
             </LinkButton>
           </div>
         </div>

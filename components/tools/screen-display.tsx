@@ -6,14 +6,16 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, Download, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ColorCustomizer } from '@/components/ui/color-customizer';
+import { t, type Locale } from '@/lib/translations';
 
 interface ScreenDisplayProps {
   color: string;
   colorId?: string;
   title?: string;
+  locale?: Locale;
 }
 
-export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayProps) {
+export default function ScreenDisplay({ color, colorId, title, locale = 'en' }: ScreenDisplayProps) {
   const [displayColor, setDisplayColor] = useState(color);
   const [resolution, setResolution] = useState<'native' | 'custom'>('native');
   const [customWidth, setCustomWidth] = useState('1920');
@@ -21,6 +23,8 @@ export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayPr
   const [copied, setCopied] = useState(false);
   const [isFullscreenActive, setIsFullscreenActive] = useState(false);
   const screenRef = useRef<HTMLDivElement>(null);
+
+  const translate = t(locale);
 
   // Presets for common resolutions
   const resolutionPresets = [
@@ -151,7 +155,7 @@ export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayPr
                   }
                 }}
               >
-                Exit Fullscreen (ESC)
+                {translate('screen_display_exit_fullscreen_hint')}
               </Button>
             </div>
           )}
@@ -160,7 +164,7 @@ export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayPr
           {!isFullscreenActive && (
             <div className="text-center text-slate-400 pointer-events-none">
               <Maximize2 className="w-12 h-12 mx-auto mb-3 opacity-30" />
-              <p className="text-sm font-medium">Click to fullscreen or press F/Space</p>
+              <p className="text-sm font-medium">{translate('screen_display_click_to_fullscreen')}</p>
             </div>
           )}
         </div>
@@ -172,15 +176,15 @@ export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayPr
         <div className="flex flex-wrap gap-3">
           <Button onClick={handleFullscreen} variant="primary" size="lg">
             <Maximize2 className="w-5 h-5 mr-2" />
-            Fullscreen
+            {translate('screen_display_fullscreen_btn')}
           </Button>
           <Button onClick={handleDownload} variant="secondary" size="lg">
             <Download className="w-5 h-5 mr-2" />
-            Download
+            {translate('screen_display_download_btn')}
           </Button>
           <Button onClick={handleCopyColor} variant="outline" size="lg">
             <Copy className="w-5 h-5 mr-2" />
-            {copied ? 'Copied!' : displayColor}
+            {copied ? translate('screen_display_copied_hint') : displayColor}
           </Button>
         </div>
 
@@ -195,11 +199,11 @@ export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayPr
 
         {/* Resolution Settings */}
         <div className="bg-white rounded-lg p-6 border border-slate-200">
-          <h3 className="font-semibold text-slate-900 mb-4">Resolution Settings</h3>
+          <h3 className="font-semibold text-slate-900 mb-4">{translate('screen_display_title')}</h3>
 
           {/* Preset Buttons */}
           <div className="mb-6">
-            <p className="text-sm text-slate-600 mb-3">Presets</p>
+            <p className="text-sm text-slate-600 mb-3">{translate('screen_display_presets')}</p>
             <div className="flex flex-wrap gap-2">
               {resolutionPresets.map((preset) => (
                 <Button
@@ -221,7 +225,7 @@ export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayPr
           {/* Custom Resolution */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Width (px)</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{translate('screen_display_width_label')}</label>
               <input
                 type="number"
                 min="320"
@@ -235,7 +239,7 @@ export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayPr
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Height (px)</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{translate('screen_display_height_label')}</label>
               <input
                 type="number"
                 min="240"
@@ -254,8 +258,7 @@ export default function ScreenDisplay({ color, colorId, title }: ScreenDisplayPr
         {/* Keyboard Shortcuts */}
         <div className="bg-cyan-50 rounded-lg p-4 border border-cyan-200">
           <p className="text-sm text-slate-700">
-            <strong>Keyboard Shortcuts:</strong> Press <kbd className="bg-white px-2 py-1 rounded">F</kbd> or{' '}
-            <kbd className="bg-white px-2 py-1 rounded">Space</kbd> for fullscreen, <kbd className="bg-white px-2 py-1 rounded">ESC</kbd> to exit
+            <strong>{translate('keyboard_shortcuts')}:</strong> {translate('screen_display_keyboard_hint')}
           </p>
         </div>
       </div>

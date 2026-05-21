@@ -34,21 +34,37 @@ export function getLocalizedPath(locale: Locale, path: string): string {
  * 
  * Examples:
  * - '/about' → ['en', '/about']
+ * - '/en/about' → ['en', '/about']
  * - '/nl/about' → ['nl', '/about']
+ * - '/es/about' → ['es', '/about']
  * - '/' → ['en', '/']
+ * - '/en/' → ['en', '/']
  * - '/nl/' → ['nl', '/']
+ * - '/es/' → ['es', '/']
  */
 export function parseLocalePath(pathname: string): [Locale, string] {
   // Remove trailing slash for comparison (but preserve for root)
   const cleanPath = pathname === '/' ? '/' : pathname.replace(/\/$/, '');
 
-  // Check if path starts with a locale prefix
+  // Check if path starts with English locale prefix
+  if (cleanPath.startsWith('/en/') || cleanPath === '/en') {
+    const path = cleanPath === '/en' ? '/' : cleanPath.replace(/^\/en/, '');
+    return ['en', path];
+  }
+
+  // Check if path starts with Dutch locale prefix
   if (cleanPath.startsWith('/nl/') || cleanPath === '/nl') {
     const path = cleanPath === '/nl' ? '/' : cleanPath.replace(/^\/nl/, '');
     return ['nl', path];
   }
 
-  // Default to English
+  // Check if path starts with Spanish locale prefix
+  if (cleanPath.startsWith('/es/') || cleanPath === '/es') {
+    const path = cleanPath === '/es' ? '/' : cleanPath.replace(/^\/es/, '');
+    return ['es', path];
+  }
+
+  // Default to English (for paths like /about, /tools, etc without locale prefix)
   return [DEFAULT_LOCALE, cleanPath];
 }
 

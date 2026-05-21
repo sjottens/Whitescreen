@@ -58,7 +58,7 @@ export default function Footer({ locale }: FooterProps) {
 
           {/* Resources Section */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <h4 className="text-white font-semibold mb-4">{translate('tools')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link href={getLocalizedPath(locale, '/faq')} className="text-white hover:text-slate-100 transition-colors text-sm">
@@ -75,7 +75,7 @@ export default function Footer({ locale }: FooterProps) {
 
           {/* Legal Section */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Legal</h4>
+            <h4 className="text-white font-semibold mb-4">{translate('privacy')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link href={getLocalizedPath(locale, '/privacy')} className="text-white hover:text-slate-100 transition-colors text-sm">
@@ -99,7 +99,7 @@ export default function Footer({ locale }: FooterProps) {
       <div className="container py-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-white text-sm">
           <p className="text-white">
-            © {currentYear} {SITE_NAME}. All rights reserved. • Built for performance & accessibility.
+            © {currentYear} {SITE_NAME}. {translate('all_rights_reserved')} • {translate('built_for')}
           </p>
           <div className="flex gap-6">
             <Link href="/sitemap.xml" className="text-white hover:text-slate-100 transition-colors">

@@ -36,22 +36,21 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
 
   const translatedUseCases = TOOL.useCases.map((key) => translate(key as any));
 
-  const features = [
-    'Adjustable brightness for professional lighting',
-    'Perfect for video calls and streaming',
-    'Works on all devices - phones, tablets, desktops',
-    'Free - no registration or subscriptions required',
+  const translatedFeatures = [
+    translate('feature_fullscreen_pure'),
+    translate('feature_keyboard_shortcuts'),
+    translate('feature_all_devices'),
+    translate('feature_free_no_registration'),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      
       <ToolLayout
         title={TOOL.name}
         description={TOOL.description}
-        features={features}
+        features={translatedFeatures}
         useCases={translatedUseCases}
+        locale={locale}
       >
         <section className="section">
           <div className="container">

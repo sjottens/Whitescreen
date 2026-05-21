@@ -54,39 +54,31 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
   // Translate use cases from translation keys
   const translatedUseCases = TOOL.useCases.map((key) => translate(key as any));
 
-  const features = [
-    'Pure white full-screen display with no distractions',
-    'Fullscreen mode with keyboard shortcuts (F, Space)',
-    'Works on all devices - phones, tablets, desktops',
-    'Download as high-quality PNG in any resolution',
-    'Free - no registration or subscriptions required',
+  // Translate features using translation keys
+  const translatedFeatures = [
+    translate('feature_fullscreen_pure'),
+    translate('feature_keyboard_shortcuts'),
+    translate('feature_all_devices'),
+    translate('feature_download_png'),
+    translate('feature_free_no_registration'),
   ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'white-screen').slice(0, 2).map((t) => ({
-    name: t.name,
+    name: translate(t.id.replace(/-/g, '_') as any),
     path: t.path,
     color: t.color,
   }));
 
   return (
-    <>
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-
-      {/* Tool Content */}
-      <ToolLayout
-        title={translate('white_screen') || 'White Screen'}
-        description={TOOL.description}
-        features={features}
-        useCases={translatedUseCases}
-        relatedTools={relatedTools}
-      >
-        <ScreenDisplay color="#FFFFFF" title="White Screen" />
-      </ToolLayout>
-    </>
+    <ToolLayout
+      title={translate('white_screen') || 'White Screen'}
+      description={TOOL.description}
+      features={translatedFeatures}
+      useCases={translatedUseCases}
+      relatedTools={relatedTools}
+      locale={locale}
+    >
+      <ScreenDisplay color="#FFFFFF" title="White Screen" locale={locale} />
+    </ToolLayout>
   );
 }

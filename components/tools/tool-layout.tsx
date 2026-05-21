@@ -1,14 +1,18 @@
-// components/tools/tool-layout.tsx - Reusable tool page layout component
+// components/tools/tool-layout.tsx - Reusable tool page layout component with multilingual support
 
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { LinkButton } from '@/components/ui/button';
+import { t } from '@/lib/translations';
+import { getLocalizedPath } from '@/lib/link-utils';
+import type { Locale } from '@/lib/i18n';
 
 interface ToolLayoutProps {
   title: string;
   description: string;
   children: ReactNode;
+  locale: Locale;
   relatedTools?: Array<{ name: string; path: string; color?: string }>;
   features?: string[];
   useCases?: string[];
@@ -18,19 +22,22 @@ export default function ToolLayout({
   title,
   description,
   children,
+  locale,
   relatedTools = [],
   features = [],
   useCases = [],
 }: ToolLayoutProps) {
+  const translate = t(locale);
+
   return (
     <>
       {/* Header Bar */}
       <div className="sticky top-20 z-30 bg-white border-b border-slate-200 backdrop-blur-sm bg-opacity-95">
         <div className="container py-3">
           <div className="flex items-center justify-between">
-            <Link href="/tools" className="btn btn-ghost btn-sm">
+            <Link href={getLocalizedPath(locale, '/tools')} className="btn btn-ghost btn-sm">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Tools
+              {translate('back_to_tools')}
             </Link>
           </div>
         </div>
@@ -56,31 +63,31 @@ export default function ToolLayout({
 
             {/* How to Use */}
             <div>
-              <h2 className="text-3xl font-bold mb-6">How to Use</h2>
+              <h2 className="text-3xl font-bold mb-6">{translate('how_to_use')}</h2>
               <ol className="space-y-4 text-lg text-slate-700">
                 <li className="flex gap-4">
                   <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
                     1
                   </span>
-                  <span>Click the tool above or press the fullscreen button</span>
+                  <span>{translate('step_1')}</span>
                 </li>
                 <li className="flex gap-4">
                   <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
                     2
                   </span>
-                  <span>Press F, Space, or click the fullscreen icon</span>
+                  <span>{translate('step_2')}</span>
                 </li>
                 <li className="flex gap-4">
                   <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
                     3
                   </span>
-                  <span>Press ESC to exit fullscreen and return to this page</span>
+                  <span>{translate('step_3')}</span>
                 </li>
                 <li className="flex gap-4">
                   <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
                     4
                   </span>
-                  <span>Click Download to save as PNG or customize resolution</span>
+                  <span>{translate('step_4')}</span>
                 </li>
               </ol>
             </div>
@@ -88,7 +95,7 @@ export default function ToolLayout({
             {/* Features */}
             {features.length > 0 && (
               <div>
-                <h2 className="text-3xl font-bold mb-6">Features</h2>
+                <h2 className="text-3xl font-bold mb-6">{translate('features')}</h2>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -105,7 +112,7 @@ export default function ToolLayout({
             {/* Use Cases */}
             {useCases.length > 0 && (
               <div>
-                <h2 className="text-3xl font-bold mb-6">Use Cases</h2>
+                <h2 className="text-3xl font-bold mb-6">{translate('use_cases')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {useCases.map((useCase, index) => (
                     <div key={index} className="card">
@@ -118,20 +125,20 @@ export default function ToolLayout({
 
             {/* Keyboard Shortcuts */}
             <div>
-              <h2 className="text-3xl font-bold mb-6">Keyboard Shortcuts</h2>
+              <h2 className="text-3xl font-bold mb-6">{translate('keyboard_shortcuts')}</h2>
               <div className="bg-slate-50 rounded-lg p-6">
                 <div className="space-y-3 font-mono text-sm">
                   <div className="flex justify-between">
-                    <span className="text-slate-600">Fullscreen Mode:</span>
+                    <span className="text-slate-600">{translate('fullscreen_mode')}:</span>
                     <kbd className="bg-white border border-slate-200 rounded px-2 py-1">F</kbd>
                     <kbd className="bg-white border border-slate-200 rounded px-2 py-1">Space</kbd>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-600">Exit Fullscreen:</span>
+                    <span className="text-slate-600">{translate('exit_fullscreen')}:</span>
                     <kbd className="bg-white border border-slate-200 rounded px-2 py-1">ESC</kbd>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-600">Download:</span>
+                    <span className="text-slate-600">{translate('download_shortcut')}:</span>
                     <kbd className="bg-white border border-slate-200 rounded px-2 py-1">Ctrl + S</kbd>
                   </div>
                 </div>
@@ -141,12 +148,12 @@ export default function ToolLayout({
             {/* Related Tools */}
             {relatedTools.length > 0 && (
               <div>
-                <h2 className="text-3xl font-bold mb-6">Related Tools</h2>
+                <h2 className="text-3xl font-bold mb-6">{translate('related_tools')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {relatedTools.map((tool, index) => (
                     <Link
                       key={index}
-                      href={tool.path}
+                      href={getLocalizedPath(locale, tool.path)}
                       className="card hover:shadow-lg transition-shadow group"
                     >
                       <div className="flex items-center justify-between">
