@@ -1,6 +1,7 @@
 // app/(website)/faq/page.tsx - Comprehensive FAQ page with structured data
 
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { generateMetadata as generateSEOMetadata, faqSchema, breadcrumbSchema } from '@/lib/seo';
 import { FAQ_ITEMS } from '@/lib/constants';
 import { ChevronDown } from 'lucide-react';
@@ -111,9 +112,9 @@ export default function FAQPage() {
             <p className="text-lg text-slate-600 mb-8">
               Get in touch with our support team. We're here to help!
             </p>
-            <a href="/contact" className="btn btn-primary btn-lg">
+            <Link href="/contact" className="btn btn-primary btn-lg">
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       </section>

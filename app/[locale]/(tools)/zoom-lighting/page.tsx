@@ -4,7 +4,6 @@ import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 
-const TOOL_ID = 'zoom-lighting';
 const TOOL_NAME = 'Zoom Lighting';
 const TOOL_DESCRIPTION = 'Advanced zoom lighting tool for professional photography and video production with adjustable brightness and color.';
 const TOOL_PATH = '/zoom-lighting';

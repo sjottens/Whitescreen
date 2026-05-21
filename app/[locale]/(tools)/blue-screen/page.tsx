@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_ID = 'blue-screen';
 const TOOL_NAME = 'Blue Screen';
 const TOOL_DESCRIPTION = 'Blue screen display for professional chroma key effects, video editing, and content production.';
 const TOOL_PATH = '/blue-screen';
@@ -37,7 +36,7 @@ export default async function BlueScreenPage({ params }: { params: Promise<{ loc
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#0000FF" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#0000FF" title={TOOL_NAME} />
     </>
   );
 }

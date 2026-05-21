@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ContrastTest from '@/components/tools/contrast-test';
 
-const TOOL_ID = 'contrast-test';
 const TOOL_NAME = 'Contrast Test';
 const TOOL_DESCRIPTION = 'Professional WCAG-compliant contrast testing tool. Test color pairs, color vision deficiency simulation, and accessibility compliance.';
 const TOOL_PATH = '/contrast-test';

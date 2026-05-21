@@ -3,23 +3,8 @@
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
-import { WHITE_SCREEN_TOOL } from '@/lib/constants';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-// Tool configuration
-const TOOL_ID = 'white-screen';
-const TOOL_NAME = 'White Screen';
-const TOOL_DESCRIPTION = 'Pure white full screen for display testing, screen cleaning, and photography lighting. Test monitor uniformity and calibration instantly.';
-const TOOL_PATH = '/white-screen';
-const KEYWORDS = [
-  'white screen',
-  'white screen tool',
-  'display test white',
-  'monitor test',
-  'screen cleaning',
-  'photography lighting',
-  'display uniformity',
-];
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -28,10 +13,18 @@ export async function generateMetadata(props: {
 
   return generateMultilingualMetadata({
     locale,
-    title: TOOL_NAME,
-    description: TOOL_DESCRIPTION,
-    path: TOOL_PATH,
-    keywords: KEYWORDS,
+    title: 'White Screen',
+    description: 'Pure white full screen for display testing, screen cleaning, and photography lighting. Test monitor uniformity and calibration instantly.',
+    path: '/white-screen',
+    keywords: [
+      'white screen',
+      'white screen tool',
+      'display test white',
+      'monitor test',
+      'screen cleaning',
+      'photography lighting',
+      'display uniformity',
+    ],
   });
 }
 
@@ -47,7 +40,7 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
     [
       { name: 'Home', path: '/' },
       { name: 'Tools', path: '/tools' },
-      { name: TOOL_NAME, path: TOOL_PATH },
+      { name: 'White Screen', path: '/white-screen' },
     ],
     locale
   );
@@ -62,7 +55,7 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
       />
 
       {/* Tool Content */}
-      <ScreenDisplay color="#FFFFFF" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#FFFFFF" title="White Screen" />
     </>
   );
 }

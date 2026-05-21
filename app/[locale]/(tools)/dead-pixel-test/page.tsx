@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import DeadPixelTest from '@/components/tools/dead-pixel-test';
 
-const TOOL_ID = 'dead-pixel-test';
 const TOOL_NAME = 'Dead Pixel Test';
 const TOOL_DESCRIPTION = 'Professional dead pixel detection tool. Test your monitor for stuck, hot, or dead pixels with full-color testing.';
 const TOOL_PATH = '/dead-pixel-test';

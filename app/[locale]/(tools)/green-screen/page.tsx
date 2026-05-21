@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_ID = 'green-screen';
 const TOOL_NAME = 'Green Screen';
 const TOOL_DESCRIPTION = 'Professional green screen for chroma key video production, streaming, and content creation.';
 const TOOL_PATH = '/green-screen';
@@ -37,7 +36,7 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#00FF00" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#00FF00" title={TOOL_NAME} />
     </>
   );
 }

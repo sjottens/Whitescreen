@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import BrightnessTest from '@/components/tools/brightness-test';
 
-const TOOL_ID = 'brightness-test';
 const TOOL_NAME = 'Brightness Test';
 const TOOL_DESCRIPTION = 'Advanced brightness and gradient testing tool. Test monitor brightness levels, flicker detection, and gray uniformity.';
 const TOOL_PATH = '/brightness-test';

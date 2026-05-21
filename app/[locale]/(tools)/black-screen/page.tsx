@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_ID = 'black-screen';
 const TOOL_NAME = 'Black Screen';
 const TOOL_DESCRIPTION = 'Pure black full screen for testing dark areas, dead pixel detection, and monitor contrast testing.';
 const TOOL_PATH = '/black-screen';
@@ -43,7 +42,7 @@ export default async function BlackScreenPage({ params }: PageProps) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#000000" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#000000" title={TOOL_NAME} />
     </>
   );
 }

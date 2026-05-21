@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_ID = 'red-screen';
 const TOOL_NAME = 'Red Screen';
 const TOOL_DESCRIPTION = 'Pure red display screen for color testing, color accuracy calibration, and photography lighting effects.';
 const TOOL_PATH = '/red-screen';
@@ -37,7 +36,7 @@ export default async function RedScreenPage({ params }: { params: Promise<{ loca
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#FF0000" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#FF0000" title={TOOL_NAME} />
     </>
   );
 }

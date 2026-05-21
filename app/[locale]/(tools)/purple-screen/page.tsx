@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_ID = 'purple-screen';
 const TOOL_NAME = 'Purple Screen';
 const TOOL_DESCRIPTION = 'Purple display screen for color testing, creative lighting, and visual effects production.';
 const TOOL_PATH = '/purple-screen';
@@ -37,7 +36,7 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#800080" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#800080" title={TOOL_NAME} />
     </>
   );
 }

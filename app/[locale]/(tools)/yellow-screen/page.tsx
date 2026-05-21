@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_ID = 'yellow-screen';
 const TOOL_NAME = 'Yellow Screen';
 const TOOL_DESCRIPTION = 'Yellow display screen for color accuracy testing and creative lighting effects.';
 const TOOL_PATH = '/yellow-screen';
@@ -37,7 +36,7 @@ export default async function YellowScreenPage({ params }: { params: Promise<{ l
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#FFFF00" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#FFFF00" title={TOOL_NAME} />
     </>
   );
 }

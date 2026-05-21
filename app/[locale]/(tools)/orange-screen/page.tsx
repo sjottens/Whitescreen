@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_ID = 'orange-screen';
 const TOOL_NAME = 'Orange Screen';
 const TOOL_DESCRIPTION = 'Orange display screen for color testing and creative lighting applications.';
 const TOOL_PATH = '/orange-screen';
@@ -37,7 +36,7 @@ export default async function OrangeScreenPage({ params }: { params: Promise<{ l
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#FFA500" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#FFA500" title={TOOL_NAME} />
     </>
   );
 }

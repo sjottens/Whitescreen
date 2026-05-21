@@ -5,7 +5,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams } from '@/lib/i18n';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_ID = 'pink-screen';
 const TOOL_NAME = 'Pink Screen';
 const TOOL_DESCRIPTION = 'Pink screen display for aesthetic lighting, creative photography, and content creation effects.';
 const TOOL_PATH = '/pink-screen';
@@ -37,7 +36,7 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#FF1493" toolId={TOOL_ID} toolName={TOOL_NAME} />
+      <ScreenDisplay color="#FF1493" title={TOOL_NAME} />
     </>
   );
 }
