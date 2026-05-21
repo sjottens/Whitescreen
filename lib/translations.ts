@@ -118,6 +118,10 @@ export const translations = {
     tools_title: 'All Screen Testing Tools',
     tools_description: 'Browse our complete collection of free screen testing and display calibration tools',
     
+    // Homepage
+    home_title: 'Screenglow - Free Screen Testing & Display Tools',
+    home_description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
+    
     // Common
     home: 'Home',
     tools: 'Tools',
@@ -364,6 +368,10 @@ export const translations = {
     tools_title: 'Alle Schermtest Gereedschappen',
     tools_description: 'Blader door onze volledige verzameling van gratis schermtest- en schermkalibratiegereedschappen',
     
+    // Homepage
+    home_title: 'Screenglow - Gratis Schermtest & Display Gereedschappen',
+    home_description: 'Professionele gratis schermtest- en displaygereedschappen voor fotografen, videomakers, gamers en professionals. Test dode pixels, monitorkleur en meer.',
+    
     // About Page
     about_mission_title: 'Onze Missie',
     about_mission_text: 'Screenglow is toegewijd aan het bieden van professionele schermtest- en schermkalibratiegereedschappen die voor iedereen toegankelijk zijn.',
@@ -609,6 +617,10 @@ export const translations = {
     faq_description: 'Encuentra respuestas a preguntas comunes sobre nuestras herramientas de prueba de pantalla',
     tools_title: 'Todas las Herramientas de Prueba de Pantalla',
     tools_description: 'Explora nuestra colección completa de herramientas gratuitas de prueba de pantalla y calibración de displays',
+    
+    // Homepage
+    home_title: 'Screenglow - Herramientas Gratuitas de Prueba de Pantalla y Display',
+    home_description: 'Herramientas profesionales gratuitas de prueba de pantalla y display para fotógrafos, videomakers, gamers y profesionales. Prueba pixels muertos, colores de monitor y más.',
     
     // About Page
     about_mission_title: 'Nuestra Misión',

@@ -13,12 +13,12 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
 
   return generateMultilingualMetadata({
     locale,
-    title: 'Screenglow - Free Screen Testing & Display Tools',
-    description:
-      'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
+    title: translate('home_title'),
+    description: translate('home_description'),
     path: '/',
     keywords: [
       'white screen',
