@@ -4,12 +4,11 @@ import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { t } from '@/lib/translations';
+import { COLOR_TOOLS } from '@/lib/constants';
+import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL_NAME = 'Pink Screen';
-const TOOL_DESCRIPTION = 'Pink screen display for aesthetic lighting, creative photography, and content creation effects.';
-const TOOL_PATH = '/pink-screen';
-const KEYWORDS = ['pink screen', 'aesthetic lighting', 'creative lighting', 'photography effects'];
+const TOOL = COLOR_TOOLS.find((t) => t.id === 'pink-screen')!;
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -17,10 +16,10 @@ export async function generateMetadata(props: {
   const locale = await getLocaleFromParams(props.params);
   return generateMultilingualMetadata({
     locale,
-    title: TOOL_NAME,
-    description: TOOL_DESCRIPTION,
-    path: TOOL_PATH,
-    keywords: KEYWORDS,
+    title: TOOL.name,
+    description: TOOL.description,
+    path: TOOL.path,
+    keywords: TOOL.keywords,
   });
 }
 
@@ -31,14 +30,39 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: TOOL_NAME, path: TOOL_PATH },
+      { name: TOOL.name, path: TOOL.path },
     ],
     locale
   );
+
+  const translatedUseCases = TOOL.useCases.map((key) => translate(key as any));
+
+  const features = [
+    'Pure pink full-screen display with no distractions',
+    'Fullscreen mode with keyboard shortcuts (F, Space)',
+    'Works on all devices - phones, tablets, desktops',
+    'Download as high-quality PNG in any resolution',
+    'Free - no registration or subscriptions required',
+  ];
+
+  const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'pink-screen').slice(0, 2).map((t) => ({
+    name: t.name,
+    path: t.path,
+    color: t.color,
+  }));
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
-      <ScreenDisplay color="#FF1493" title={TOOL_NAME} />
+      <ToolLayout
+        title={TOOL.name}
+        description={TOOL.description}
+        features={features}
+        useCases={translatedUseCases}
+        relatedTools={relatedTools}
+      >
+        <ScreenDisplay color="#FF1493" title={TOOL.name} />
+      </ToolLayout>
     </>
   );
 }

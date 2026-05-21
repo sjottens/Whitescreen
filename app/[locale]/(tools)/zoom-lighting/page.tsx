@@ -4,12 +4,10 @@ import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { t } from '@/lib/translations';
+import { SPECIAL_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 
-const TOOL_NAME = 'Zoom Lighting';
-const TOOL_DESCRIPTION = 'Advanced zoom lighting tool for professional photography and video production with adjustable brightness and color.';
-const TOOL_PATH = '/zoom-lighting';
-const KEYWORDS = ['zoom lighting', 'photography lighting', 'studio lighting', 'video production'];
+const TOOL = SPECIAL_TOOLS.find((t) => t.id === 'zoom-lighting')!;
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -17,10 +15,10 @@ export async function generateMetadata(props: {
   const locale = await getLocaleFromParams(props.params);
   return generateMultilingualMetadata({
     locale,
-    title: TOOL_NAME,
-    description: TOOL_DESCRIPTION,
-    path: TOOL_PATH,
-    keywords: KEYWORDS,
+    title: TOOL.name,
+    description: TOOL.description,
+    path: TOOL.path,
+    keywords: TOOL.keywords,
   });
 }
 
@@ -31,21 +29,37 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: TOOL_NAME, path: TOOL_PATH },
+      { name: TOOL.name, path: TOOL.path },
     ],
     locale
   );
+
+  const translatedUseCases = TOOL.useCases.map((key) => translate(key as any));
+
+  const features = [
+    'Adjustable brightness for professional lighting',
+    'Perfect for video calls and streaming',
+    'Works on all devices - phones, tablets, desktops',
+    'Free - no registration or subscriptions required',
+  ];
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} suppressHydrationWarning />
       
-      {/* Zoom lighting tool component would go here */}
-      <section className="section">
-        <div className="container">
-          <h1>Zoom Lighting Tool</h1>
-          <p>This tool provides adjustable lighting for photography and video production.</p>
-        </div>
-      </section>
+      <ToolLayout
+        title={TOOL.name}
+        description={TOOL.description}
+        features={features}
+        useCases={translatedUseCases}
+      >
+        <section className="section">
+          <div className="container">
+            <h2>Zoom Lighting Tool</h2>
+            <p>This tool provides adjustable lighting for photography and video production.</p>
+          </div>
+        </section>
+      </ToolLayout>
     </>
   );
 }

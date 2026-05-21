@@ -15,7 +15,7 @@ export const COLOR_TOOLS = [
     hex: 'FFFFFF',
     rgb: '255, 255, 255',
     keywords: ['white screen', 'white screen tool', 'display test white'],
-    useCases: ['Display Testing', 'Screen Cleaning', 'Photography Lighting'],
+    useCases: ['display_testing', 'screen_cleaning', 'photography_lighting'],
     searchVolume: 18100,
   },
   {
@@ -27,7 +27,7 @@ export const COLOR_TOOLS = [
     hex: '000000',
     rgb: '0, 0, 0',
     keywords: ['black screen', 'black screen tool', 'monitor test black'],
-    useCases: ['Dead Pixel Detection', 'Contrast Testing', 'Screen Uniformity'],
+    useCases: ['dead_pixel_detection', 'contrast_testing', 'screen_uniformity'],
     searchVolume: 12400,
   },
   {
@@ -39,7 +39,7 @@ export const COLOR_TOOLS = [
     hex: 'FF0000',
     rgb: '255, 0, 0',
     keywords: ['red screen', 'red light screen', 'color test red'],
-    useCases: ['Color Accuracy', 'Photography Lighting', 'Video Effects'],
+    useCases: ['color_accuracy', 'photography_lighting', 'video_effects'],
     searchVolume: 2800,
   },
   {
@@ -51,7 +51,7 @@ export const COLOR_TOOLS = [
     hex: '0000FF',
     rgb: '0, 0, 255',
     keywords: ['blue screen', 'chroma key blue', 'blue background'],
-    useCases: ['Chroma Key', 'Video Production', 'Photography'],
+    useCases: ['chroma_key', 'video_production', 'video_effects'],
     searchVolume: 4100,
   },
   {
@@ -63,7 +63,7 @@ export const COLOR_TOOLS = [
     hex: '00FF00',
     rgb: '0, 255, 0',
     keywords: ['green screen', 'chroma key', 'green screen online'],
-    useCases: ['Video Production', 'Streaming', 'Chroma Key'],
+    useCases: ['video_production', 'streaming', 'chroma_key'],
     searchVolume: 5200,
   },
   {
@@ -75,7 +75,7 @@ export const COLOR_TOOLS = [
     hex: 'FF1493',
     rgb: '255, 20, 147',
     keywords: ['pink screen', 'pink light screen', 'aesthetic lighting'],
-    useCases: ['Photography Lighting', 'Video Aesthetics', 'Creative Projects'],
+    useCases: ['photography_lighting', 'video_effects', 'creative_lighting'],
     searchVolume: 1800,
   },
   {
@@ -87,7 +87,7 @@ export const COLOR_TOOLS = [
     hex: '800080',
     rgb: '128, 0, 128',
     keywords: ['purple screen', 'purple light', 'purple background'],
-    useCases: ['Creative Lighting', 'Photography', 'Design Testing'],
+    useCases: ['creative_lighting', 'photography_lighting', 'contrast_testing'],
     searchVolume: 1600,
   },
   {
@@ -99,7 +99,7 @@ export const COLOR_TOOLS = [
     hex: 'FFA500',
     rgb: '255, 165, 0',
     keywords: ['orange screen', 'orange light', 'warm lighting'],
-    useCases: ['Warm Lighting', 'Photography', 'Video Production'],
+    useCases: ['photography_lighting', 'photography_lighting', 'video_production'],
     searchVolume: 1400,
   },
   {
@@ -111,7 +111,7 @@ export const COLOR_TOOLS = [
     hex: 'FFFF00',
     rgb: '255, 255, 0',
     keywords: ['yellow screen', 'bright screen', 'yellow light'],
-    useCases: ['Bright Lighting', 'Color Testing', 'Display Testing'],
+    useCases: ['photography_lighting', 'contrast_testing', 'display_testing'],
     searchVolume: 1200,
   },
 ];
@@ -124,7 +124,7 @@ export const SPECIAL_TOOLS = [
     path: '/zoom-lighting',
     description: 'Professional lighting solutions for video calls and streaming',
     keywords: ['zoom lighting', 'video call lighting', 'streaming lighting'],
-    useCases: ['Video Calls', 'Streaming', 'Professional Meetings'],
+    useCases: ['video_call_lighting', 'streaming', 'professional_meetings'],
     searchVolume: 3200,
   },
   {
@@ -173,7 +173,7 @@ export const TEST_TOOLS = [
     path: '/brightness-test',
     description: 'Test monitor brightness levels, gamma response, and display uniformity with precision tools',
     keywords: ['brightness test', 'monitor brightness test', 'gamma test', 'monitor calibration'],
-    useCases: ['Monitor Calibration', 'Brightness Testing', 'Gamma Verification'],
+    useCases: ['monitor_calibration', 'brightness_testing', 'gamma_verification'],
     searchVolume: 680,
     difficulty: 24,
   },
@@ -190,7 +190,7 @@ export const TEST_TOOLS = [
       'accessibility test',
       'color blindness simulator',
     ],
-    useCases: ['Accessibility Testing', 'WCAG Compliance', 'Color Vision Deficiency'],
+    useCases: ['accessibility_testing', 'wcag_compliance', 'color_vision_deficiency'],
     searchVolume: 540,
     difficulty: 26,
   },

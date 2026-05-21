@@ -5,8 +5,6 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import { Inter } from 'next/font/google';
 
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
 import { organizationSchema, softwareApplicationSchema } from '@/lib/seo';
 
@@ -142,16 +140,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           Skip to main content
         </a>
 
-        {/* Header */}
-        <Header locale="en" />
-
-        {/* Main content */}
+        {/* Main content - Header and Footer are rendered in [locale]/layout.tsx */}
         <main id="main-content" className="min-h-screen">
           {children}
         </main>
-
-        {/* Footer */}
-        <Footer locale="en" />
 
         {/* Web Vitals monitoring (development only) */}
         {process.env.NODE_ENV === 'development' && (
