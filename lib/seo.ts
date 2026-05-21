@@ -2,6 +2,7 @@
 
 import { Metadata } from 'next';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from './constants';
+import { Locale, generateHrefLangAlternates, getCanonicalUrl, getOpenGraphLocale } from './i18n';
 
 interface MetadataParams {
   title: string;
@@ -48,6 +49,56 @@ export function generateMetadata(params: MetadataParams): Metadata {
     robots: noindex ? 'noindex, nofollow' : 'index, follow',
     alternates: {
       canonical: canonical || url,
+    },
+  };
+}
+
+/**
+ * Generate multilingual metadata with hreflang support
+ * Use this for locale-aware pages
+ */
+interface MultilingualMetadataParams extends MetadataParams {
+  locale: Locale;
+}
+
+export function generateMultilingualMetadata(params: MultilingualMetadataParams): Metadata {
+  const { title, description, path, ogImage, noindex, keywords, locale } = params;
+  const canonicalUrl = getCanonicalUrl(locale, path);
+  const alternateLanguages = generateHrefLangAlternates(path);
+
+  return {
+    title: `${title} | ${SITE_NAME}`,
+    description: description.slice(0, 160),
+    keywords: keywords?.join(', '),
+    openGraph: {
+      title: `${title} | ${SITE_NAME}`,
+      description: description.slice(0, 160),
+      url: canonicalUrl,
+      type: 'website',
+      siteName: SITE_NAME,
+      locale: getOpenGraphLocale(locale),
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+              width: 1200,
+              height: 630,
+              alt: title,
+              type: 'image/png',
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | ${SITE_NAME}`,
+      description: description.slice(0, 160),
+      images: ogImage ? [ogImage] : undefined,
+    },
+    robots: noindex ? 'noindex, nofollow' : 'index, follow',
+    alternates: {
+      canonical: canonicalUrl,
+      languages: alternateLanguages,
     },
   };
 }
@@ -143,6 +194,25 @@ export function breadcrumbSchema(
       position: index + 1,
       name: item.name,
       item: `${SITE_URL}${item.path}`,
+    })),
+  };
+}
+
+/**
+ * Generate Breadcrumb Schema for multilingual pages
+ */
+export function breadcrumbSchemaMultilingual(
+  items: Array<{ name: string; path: string }>,
+  locale: Locale
+): SchemaConfig {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: getCanonicalUrl(locale, item.path),
     })),
   };
 }
@@ -264,6 +334,45 @@ export function webPageSchema(params: {
  */
 export function schemaToJsonLd(schema: SchemaConfig): string {
   return JSON.stringify(schema, null, 2);
+}
+
+/**
+ * Generate sitemap entry with multilingual hreflang support
+ */
+export interface MultilingualSitemapEntry {
+  path: string;
+  lastmod?: string;
+  changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: number;
+}
+
+/**
+ * Generate sitemap XML with multilingual hreflang support
+ * Each URL entry includes links to alternate language versions
+ */
+export function generateMultilingualSitemapXml(entries: MultilingualSitemapEntry[]): string {
+  const xmlEntries = entries
+    .map((entry) => {
+      const alternates = generateHrefLangAlternates(entry.path);
+      const locales = Object.keys(alternates);
+
+      return `  <url>
+    <loc>${alternates['en']}</loc>
+    ${entry.lastmod ? `<lastmod>${entry.lastmod}</lastmod>` : ''}
+    ${entry.changefreq ? `<changefreq>${entry.changefreq}</changefreq>` : ''}
+    ${entry.priority !== undefined ? `<priority>${entry.priority}</priority>` : ''}
+    ${locales.map((locale) => `<xhtml:link rel="alternate" hreflang="${locale}" href="${alternates[locale]}" />`).join('\n    ')}
+  </url>`;
+    })
+    .join('\n');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${xmlEntries}
+</urlset>`;
+
+  return xml;
 }
 
 /**
