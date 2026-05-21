@@ -1,9 +1,17 @@
-// components/layout/footer.tsx - SEO-optimized footer with comprehensive internal linking
+// components/layout/footer.tsx - SEO-optimized footer with comprehensive internal linking and multilingual support
 
 import Link from 'next/link';
 import { SITE_NAME, SITE_URL, COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
+import { getLocalizedPath } from '@/lib/link-utils';
+import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
-export default function Footer() {
+interface FooterProps {
+  locale: Locale;
+}
+
+export default function Footer({ locale }: FooterProps) {
+  const translate = t(locale);
   const currentYear = new Date().getFullYear();
 
   return (
@@ -22,11 +30,11 @@ export default function Footer() {
 
           {/* Color Tools Section */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Color Tools</h4>
+            <h4 className="text-white font-semibold mb-4">{translate('color_screens')}</h4>
             <ul className="space-y-2">
               {COLOR_TOOLS.slice(0, 5).map((tool) => (
                 <li key={tool.id}>
-                  <Link href={tool.path} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  <Link href={getLocalizedPath(locale, tool.path)} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
                     {tool.name}
                   </Link>
                 </li>
@@ -36,11 +44,11 @@ export default function Footer() {
 
           {/* Test Tools Section */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Test Tools</h4>
+            <h4 className="text-white font-semibold mb-4">{translate('testing_tools')}</h4>
             <ul className="space-y-2">
               {TEST_TOOLS.slice(0, 5).map((tool) => (
                 <li key={tool.id}>
-                  <Link href={tool.path} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  <Link href={getLocalizedPath(locale, tool.path)} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
                     {tool.name}
                   </Link>
                 </li>
@@ -53,13 +61,13 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/faq" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
-                  FAQ
+                <Link href={getLocalizedPath(locale, '/faq')} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  {translate('faq')}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
-                  About
+                <Link href={getLocalizedPath(locale, '/about')} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  {translate('about')}
                 </Link>
               </li>
             </ul>
@@ -70,13 +78,13 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/privacy" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
-                  Privacy Policy
+                <Link href={getLocalizedPath(locale, '/privacy')} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  {translate('privacy')}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
-                  Contact
+                <Link href={getLocalizedPath(locale, '/contact')} className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  {translate('contact')}
                 </Link>
               </li>
             </ul>

@@ -4,8 +4,13 @@ import Link from 'next/link';
 import { SITE_NAME } from '@/lib/constants';
 import Navigation from './navigation';
 import Logo from '@/components/ui/logo';
+import type { Locale } from '@/lib/i18n';
 
-export default function Header() {
+interface HeaderProps {
+  locale: Locale;
+}
+
+export default function Header({ locale }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 w-full bg-white border-b border-slate-200 backdrop-blur-sm bg-opacity-95">
       <div className="container py-4 md:py-3">
@@ -17,7 +22,7 @@ export default function Header() {
           </Link>
 
           {/* Navigation */}
-          <Navigation />
+          <Navigation locale={locale} />
         </div>
       </div>
     </header>

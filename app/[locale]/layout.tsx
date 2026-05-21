@@ -145,11 +145,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
       <body className={inter.variable}>
         <div className="flex flex-col min-h-screen bg-white">
-          <Header />
+          <Header locale={locale} />
           <main className="flex-1 w-full">
             {children}
           </main>
-          <Footer />
+          <Footer locale={locale} />
         </div>
       </body>
     </html>

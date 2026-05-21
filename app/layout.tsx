@@ -143,7 +143,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </a>
 
         {/* Header */}
-        <Header />
+        <Header locale="en" />
 
         {/* Main content */}
         <main id="main-content" className="min-h-screen">
@@ -151,7 +151,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </main>
 
         {/* Footer */}
-        <Footer />
+        <Footer locale="en" />
 
         {/* Web Vitals monitoring (development only) */}
         {process.env.NODE_ENV === 'development' && (
