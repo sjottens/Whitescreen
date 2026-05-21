@@ -22,69 +22,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     template: `%s | ${SITE_NAME}`,
-    default: `${SITE_NAME} - Free Screen Testing & Display Tools`,
-  },
-  description: SITE_DESCRIPTION,
-  keywords: [
-    'white screen',
-    'black screen',
-    'screen test',
-    'dead pixel test',
-    'monitor test',
-    'color screen',
-    'green screen',
-    'blue screen',
-    'screen testing tool',
-    'display test',
-    'free screen tools',
-  ],
-  robots: {
-    index: true,
-    follow: true,
-    'max-snippet': -1,
-    'max-image-preview': 'large',
-    'max-video-preview': -1,
-  },
-  authors: [{ name: SITE_NAME }],
-  creator: SITE_NAME,
-  publisher: SITE_NAME,
-  formatDetection: {
-    email: false,
-    telephone: false,
-    address: false,
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: SITE_URL,
-    siteName: SITE_NAME,
-    title: `${SITE_NAME} - Free Screen Testing & Display Tools`,
-    description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: `${SITE_URL}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: SITE_NAME,
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${SITE_NAME} - Free Screen Testing & Display Tools`,
-    description: SITE_DESCRIPTION,
-    images: [`${SITE_URL}/og-image.png`],
-    creator: '@screenglow_eu',
+    default: `${SITE_NAME}`,
   },
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
   },
   manifest: '/site.webmanifest',
-  alternates: {
-    canonical: SITE_URL,
-  },
 };
 
 interface RootLayoutProps {

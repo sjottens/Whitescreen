@@ -1,31 +1,14 @@
 // app/[locale]/layout.tsx - Locale-aware layout with Header/Footer
 
 import { ReactNode } from 'react';
-import { Metadata } from 'next';
 
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { getLocaleFromParams, isValidLocale, DEFAULT_LOCALE } from '@/lib/i18n';
-import { SITE_NAME } from '@/lib/constants';
+import { getLocaleFromParams } from '@/lib/i18n';
 
 interface LocaleLayoutProps {
   children: ReactNode;
   params: Promise<{ locale: string }>;
-}
-
-// Metadata for locale-specific layout
-// This enables proper metadata rendering for all locale-specific pages
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const locale = await getLocaleFromParams(props.params);
-  
-  return {
-    title: {
-      template: `%s | ${SITE_NAME}`,
-      default: `${SITE_NAME}`,
-    },
-  };
 }
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
