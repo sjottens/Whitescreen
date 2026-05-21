@@ -58,7 +58,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
       {/* Color Tools */}
       <section className="section">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-8">{translate('color_screens')}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('color_screens')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {COLOR_TOOLS.map((tool) => (
               <Link
@@ -81,7 +81,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
       {/* Test Tools */}
       <section className="section-alt">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-8">{translate('testing_tools')}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('testing_tools')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TEST_TOOLS.map((tool) => (
               <Link

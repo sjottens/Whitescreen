@@ -63,7 +63,7 @@ export default function ToolLayout({
 
             {/* How to Use */}
             <div>
-              <h2 className="text-3xl font-bold mb-6">{translate('how_to_use')}</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('how_to_use')}</h2>
               <ol className="space-y-4 text-lg text-slate-700">
                 <li className="flex gap-4">
                   <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
@@ -95,7 +95,7 @@ export default function ToolLayout({
             {/* Features */}
             {features.length > 0 && (
               <div>
-                <h2 className="text-3xl font-bold mb-6">{translate('features')}</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('features')}</h2>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -112,7 +112,7 @@ export default function ToolLayout({
             {/* Use Cases */}
             {useCases.length > 0 && (
               <div>
-                <h2 className="text-3xl font-bold mb-6">{translate('use_cases')}</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('use_cases')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {useCases.map((useCase, index) => (
                     <div key={index} className="card">
@@ -125,7 +125,7 @@ export default function ToolLayout({
 
             {/* Keyboard Shortcuts */}
             <div>
-              <h2 className="text-3xl font-bold mb-6">{translate('keyboard_shortcuts')}</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('keyboard_shortcuts')}</h2>
               <div className="bg-slate-50 rounded-lg p-6">
                 <div className="space-y-3 font-mono text-sm">
                   <div className="flex justify-between">
@@ -148,7 +148,7 @@ export default function ToolLayout({
             {/* Related Tools */}
             {relatedTools.length > 0 && (
               <div>
-                <h2 className="text-3xl font-bold mb-6">{translate('related_tools')}</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('related_tools')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {relatedTools.map((tool, index) => (
                     <Link
@@ -177,7 +177,7 @@ export default function ToolLayout({
 
             {/* FAQ Section */}
             <div>
-              <h2 className="text-3xl font-bold mb-6">FAQ</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">FAQ</h2>
               <div className="space-y-4">
                 <details className="group card cursor-pointer">
                   <summary className="flex items-center justify-between font-semibold">
