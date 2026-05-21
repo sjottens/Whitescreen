@@ -5,8 +5,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { getLocalizedPath } from '@/lib/link-utils';
+import { usePathname } from 'next/navigation';
+import { getLocalizedPath, parseLocalePath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
+import LanguageSelector from './language-selector';
 import type { Locale } from '@/lib/i18n';
 
 interface NavigationProps {
@@ -15,12 +17,16 @@ interface NavigationProps {
 
 export default function Navigation({ locale }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
   const translate = t(locale);
+  
+  // Extract the clean path without locale prefix
+  const [, cleanPath] = parseLocalePath(pathname);
 
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center gap-8">
+      <nav className="hidden md:flex items-center gap-6">
         {/* Links */}
         <Link href={getLocalizedPath(locale, '/about')} className="text-slate-700 hover:text-black font-medium focus-ring">
           {translate('about')}
@@ -28,6 +34,9 @@ export default function Navigation({ locale }: NavigationProps) {
         <Link href={getLocalizedPath(locale, '/contact')} className="text-slate-700 hover:text-black font-medium focus-ring">
           {translate('contact')}
         </Link>
+
+        {/* Language Selector */}
+        <LanguageSelector locale={locale} currentPath={cleanPath} />
 
         {/* CTA Button */}
         <Link href={getLocalizedPath(locale, '/white-screen')} className="btn btn-primary">
@@ -63,6 +72,11 @@ export default function Navigation({ locale }: NavigationProps) {
             >
               {translate('contact')}
             </Link>
+
+            {/* Language Selector - Mobile */}
+            <div className="px-4 py-2">
+              <LanguageSelector locale={locale} currentPath={cleanPath} />
+            </div>
 
             {/* CTA Button */}
             <Link
