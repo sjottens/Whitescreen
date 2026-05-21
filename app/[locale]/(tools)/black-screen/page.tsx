@@ -3,6 +3,7 @@
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { t } from '@/lib/translations';
 import ScreenDisplay from '@/components/tools/screen-display';
 
 const TOOL_NAME = 'Black Screen';
@@ -29,11 +30,12 @@ interface PageProps {
 
 export default async function BlackScreenPage({ params }: PageProps) {
   const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
-      { name: 'Home', path: '/' },
-      { name: 'Tools', path: '/tools' },
+      { name: translate('home'), path: '/' },
+      { name: translate('tools'), path: '/tools' },
       { name: TOOL_NAME, path: TOOL_PATH },
     ],
     locale

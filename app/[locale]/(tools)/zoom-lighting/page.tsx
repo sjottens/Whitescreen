@@ -3,6 +3,8 @@
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { t } from '@/lib/translations';
+import ToolLayout from '@/components/tools/tool-layout';
 
 const TOOL_NAME = 'Zoom Lighting';
 const TOOL_DESCRIPTION = 'Advanced zoom lighting tool for professional photography and video production with adjustable brightness and color.';
@@ -24,10 +26,11 @@ export async function generateMetadata(props: {
 
 export default async function ZoomLightingPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
-      { name: 'Home', path: '/' },
-      { name: 'Tools', path: '/tools' },
+      { name: translate('home'), path: '/' },
+      { name: translate('tools'), path: '/tools' },
       { name: TOOL_NAME, path: TOOL_PATH },
     ],
     locale

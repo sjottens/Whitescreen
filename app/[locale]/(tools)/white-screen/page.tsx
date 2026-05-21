@@ -3,6 +3,7 @@
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { t } from '@/lib/translations';
 import ScreenDisplay from '@/components/tools/screen-display';
 
 
@@ -35,12 +36,14 @@ interface WhiteScreenPageProps {
 export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) {
   const locale = await getLocaleFromParams(params);
 
+  const translate = t(locale);
+
   // Breadcrumb schema for structured data
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
-      { name: 'Home', path: '/' },
-      { name: 'Tools', path: '/tools' },
-      { name: 'White Screen', path: '/white-screen' },
+      { name: translate('home'), path: '/' },
+      { name: translate('tools'), path: '/tools' },
+      { name: translate('white_screen'), path: '/white-screen' },
     ],
     locale
   );

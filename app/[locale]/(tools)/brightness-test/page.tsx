@@ -3,6 +3,7 @@
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { t } from '@/lib/translations';
 import BrightnessTest from '@/components/tools/brightness-test';
 
 const TOOL_NAME = 'Brightness Test';
@@ -25,10 +26,11 @@ export async function generateMetadata(props: {
 
 export default async function BrightnessTestPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
-      { name: 'Home', path: '/' },
-      { name: 'Tools', path: '/tools' },
+      { name: translate('home'), path: '/' },
+      { name: translate('tools'), path: '/tools' },
       { name: TOOL_NAME, path: TOOL_PATH },
     ],
     locale
