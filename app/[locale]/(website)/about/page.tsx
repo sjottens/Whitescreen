@@ -3,6 +3,7 @@
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { t } from '@/lib/translations';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -24,14 +25,30 @@ interface AboutPageProps {
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
-      { name: 'Home', path: '/' },
-      { name: 'About', path: '/about' },
+      { name: translate('home'), path: '/' },
+      { name: translate('about'), path: '/about' },
     ],
     locale
   );
+
+  const values = [
+    {
+      title: translate('about_values_accessible'),
+      description: translate('about_values_accessible_text'),
+    },
+    {
+      title: translate('about_values_honest'),
+      description: translate('about_values_honest_text'),
+    },
+    {
+      title: translate('about_values_fast'),
+      description: translate('about_values_fast_text'),
+    },
+  ];
 
   return (
     <>
@@ -44,9 +61,9 @@ export default async function AboutPage({ params }: AboutPageProps) {
       {/* Hero Section */}
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">About Screenglow</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('about_title')}</h1>
           <p className="text-xl text-slate-700 mb-8">
-            Elite screen testing and display tools for professionals worldwide.
+            {translate('about_description')}
           </p>
         </div>
       </section>
@@ -55,28 +72,32 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <section className="section">
         <div className="container max-w-4xl">
           <div className="prose prose-lg max-w-none">
-            <h2>Our Mission</h2>
-            <p>
-              Screenglow is dedicated to providing professional-grade screen testing and display calibration tools that are accessible to everyone.
-            </p>
+            <h2>{translate('about_mission_title')}</h2>
+            <p>{translate('about_mission_text')}</p>
 
-            <h2>Why We Started</h2>
-            <p>
-              We recognized the need for simple, powerful tools that help users test their monitors and displays without complexity.
-            </p>
+            <h2>{translate('about_why_title')}</h2>
+            <p>{translate('about_why_text')}</p>
 
-            <h2>What We Offer</h2>
+            <h2>{translate('about_offer_title')}</h2>
             <ul>
-              <li>Free, open-source screen testing tools</li>
-              <li>Professional-grade features</li>
-              <li>Instant results, no installation required</li>
-              <li>Privacy-first approach</li>
+              <li>{translate('about_offer_1')}</li>
+              <li>{translate('about_offer_2')}</li>
+              <li>{translate('about_offer_3')}</li>
+              <li>{translate('about_offer_4')}</li>
             </ul>
 
-            <h2>Our Team</h2>
-            <p>
-              Screenglow is built by a passionate team of developers and designers committed to excellence.
-            </p>
+            <h2>{translate('about_team_title')}</h2>
+            <p>{translate('about_team_text')}</p>
+
+            <h2>{translate('about_values_title')}</h2>
+            <div className="not-prose grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+              {values.map((value) => (
+                <div key={value.title} className="card">
+                  <h3 className="text-lg font-semibold mb-3">{value.title}</h3>
+                  <p className="text-slate-600">{value.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

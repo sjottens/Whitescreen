@@ -3,6 +3,7 @@
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { t } from '@/lib/translations';
 import { FAQ_ITEMS } from '@/lib/constants';
 
 export async function generateMetadata(props: {
@@ -24,15 +25,25 @@ interface FAQPageProps {
 
 export default async function FAQPage({ params }: FAQPageProps) {
   const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
 
   const faqData = faqSchema(FAQ_ITEMS);
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
-      { name: 'Home', path: '/' },
-      { name: 'FAQ', path: '/faq' },
+      { name: translate('home'), path: '/' },
+      { name: translate('faq'), path: '/faq' },
     ],
     locale
   );
+
+  const localizedFaqItems = [
+    { question: translate('faq_item_1_q'), answer: translate('faq_item_1_a') },
+    { question: translate('faq_item_2_q'), answer: translate('faq_item_2_a') },
+    { question: translate('faq_item_3_q'), answer: translate('faq_item_3_a') },
+    { question: translate('faq_item_4_q'), answer: translate('faq_item_4_a') },
+    { question: translate('faq_item_5_q'), answer: translate('faq_item_5_a') },
+    { question: translate('faq_item_6_q'), answer: translate('faq_item_6_a') },
+  ];
 
   return (
     <>
@@ -41,9 +52,9 @@ export default async function FAQPage({ params }: FAQPageProps) {
 
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">Frequently Asked Questions</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('faq_title')}</h1>
           <p className="text-xl text-slate-700">
-            Find answers to common questions about our screen testing tools and features.
+            {translate('faq_description')}
           </p>
         </div>
       </section>
@@ -51,7 +62,7 @@ export default async function FAQPage({ params }: FAQPageProps) {
       <section className="section">
         <div className="container max-w-3xl">
           <div className="space-y-6">
-            {FAQ_ITEMS.map((item, index) => (
+            {localizedFaqItems.map((item, index) => (
               <details key={index} className="card cursor-pointer">
                 <summary className="text-lg font-semibold hover:text-cyan-600 transition-colors">
                   {item.question}

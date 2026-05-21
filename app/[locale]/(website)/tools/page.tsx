@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
+import { t } from '@/lib/translations';
 import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
 
 export async function generateMetadata(props: {
@@ -26,11 +27,12 @@ interface ToolsPageProps {
 
 export default async function ToolsPage({ params }: ToolsPageProps) {
   const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
-      { name: 'Home', path: '/' },
-      { name: 'Tools', path: '/tools' },
+      { name: translate('home'), path: '/' },
+      { name: translate('tools'), path: '/tools' },
     ],
     locale
   );
@@ -45,9 +47,9 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
 
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">All Screen Testing Tools</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('tools_title')}</h1>
           <p className="text-xl text-slate-700">
-            Professional-grade display testing tools, all free and instantly available.
+            {translate('tools_description')}
           </p>
         </div>
       </section>
@@ -55,7 +57,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
       {/* Color Tools */}
       <section className="section">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-8">Color Screens</h2>
+          <h2 className="text-3xl font-bold mb-8">{translate('color_screens')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {COLOR_TOOLS.map((tool) => (
               <Link
@@ -78,7 +80,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
       {/* Test Tools */}
       <section className="section-alt">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-8">Testing Tools</h2>
+          <h2 className="text-3xl font-bold mb-8">{translate('testing_tools')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TEST_TOOLS.map((tool) => (
               <Link
