@@ -3,15 +3,16 @@
 import { Metadata } from 'next';
 import { SITE_URL } from './constants';
 
-export type Locale = 'en' | 'nl';
+export type Locale = 'en' | 'nl' | 'es';
 
-export const LOCALES: Locale[] = ['en', 'nl'];
+export const LOCALES: Locale[] = ['en', 'nl', 'es'];
 export const DEFAULT_LOCALE: Locale = 'en';
 
 // Language metadata
 export const LOCALE_METADATA: Record<Locale, { name: string; nativeName: string; hreflang: string }> = {
   en: { name: 'English', nativeName: 'English', hreflang: 'en' },
   nl: { name: 'Dutch', nativeName: 'Nederlands', hreflang: 'nl' },
+  es: { name: 'Spanish', nativeName: 'Español', hreflang: 'es' },
 };
 
 /**
@@ -67,6 +68,7 @@ export function getOpenGraphLocale(locale: Locale): string {
   const ogLocaleMap: Record<Locale, string> = {
     en: 'en_US',
     nl: 'nl_NL',
+    es: 'es_ES',
   };
   return ogLocaleMap[locale];
 }

@@ -4,7 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 
-const SUPPORTED_LOCALES = ['en', 'nl'];
+const SUPPORTED_LOCALES = ['en', 'nl', 'es'];
 const DEFAULT_LOCALE = 'en';
 
 export function middleware(request: NextRequest) {
@@ -36,15 +36,21 @@ export function middleware(request: NextRequest) {
   // - English pages: served at root (/, /about, /tools, etc.)
   // - Dutch pages: served under /nl (/nl/, /nl/about, /nl/tools, etc.)
   
-  // Check if this is a Dutch request by checking Accept-Language header
+  // Check if this is a Dutch or Spanish request by checking Accept-Language header
   // BUT: Don't force this for crawlers - let them crawl what they want
   const acceptLanguage = request.headers.get('accept-language') ?? '';
   const isCrawler = /bot|crawl|spider|googlebot|bingbot/i.test(request.headers.get('user-agent') ?? '');
   
   // Only check Accept-Language for non-crawlers
-  if (!isCrawler && acceptLanguage.startsWith('nl')) {
-    // User prefers Dutch, redirect to /nl equivalent
-    return NextResponse.redirect(new URL(`/nl${pathname}`, request.url));
+  if (!isCrawler) {
+    if (acceptLanguage.startsWith('nl')) {
+      // User prefers Dutch, redirect to /nl equivalent
+      return NextResponse.redirect(new URL(`/nl${pathname}`, request.url));
+    }
+    if (acceptLanguage.startsWith('es')) {
+      // User prefers Spanish, redirect to /es equivalent
+      return NextResponse.redirect(new URL(`/es${pathname}`, request.url));
+    }
   }
 
   // For all other cases, serve with default locale (English at root level)

@@ -6,6 +6,7 @@ import { ArrowRight, Check, Zap, Smartphone, Shield, Cpu } from 'lucide-react';
 import { generateMultilingualMetadata, faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS } from '@/lib/constants';
+import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 
 export async function generateMetadata(props: {
@@ -36,6 +37,7 @@ interface HomePageProps {
 
 export default async function HomePage({ params }: HomePageProps) {
   const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
 
   // Schema data
   const faqData = faqSchema(FAQ_ITEMS);
@@ -62,19 +64,19 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-              Elite Screen Testing <span className="text-cyan-600">Tools</span>
+              {translate('hero_title')} <span className="text-cyan-600">Tools</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-700 mb-8 leading-relaxed">
-              Professional-grade display testing, dead pixel detection, and color calibration tools. Free, instant, and built for performance.
+              {translate('hero_subtitle')}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <LinkButton href={`/${locale !== 'en' ? locale : ''}${locale !== 'en' ? '/' : ''}white-screen`.replace(/\/+/g, '/')} size="lg" variant="primary" className="sm:w-auto">
-                Start Testing <ArrowRight className="w-5 h-5 ml-2" />
+                {translate('btn_start_testing')} <ArrowRight className="w-5 h-5 ml-2" />
               </LinkButton>
               <LinkButton href={`/${locale !== 'en' ? locale : ''}${locale !== 'en' ? '/' : ''}tools`.replace(/\/+/g, '/')} size="lg" variant="outline" className="sm:w-auto">
-                View All Tools
+                {translate('btn_view_tools')}
               </LinkButton>
             </div>
 
@@ -82,19 +84,19 @@ export default async function HomePage({ params }: HomePageProps) {
             <div className="flex flex-wrap gap-4 justify-center text-sm text-slate-600">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-600" />
-                <span>100% Free</span>
+                <span>{translate('trust_free')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-600" />
-                <span>No Registration</span>
+                <span>{translate('trust_no_registration')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-600" />
-                <span>Open Source</span>
+                <span>{translate('trust_open_source')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-600" />
-                <span>30M+ Users</span>
+                <span>{translate('trust_users')}</span>
               </div>
             </div>
           </div>
@@ -105,9 +107,9 @@ export default async function HomePage({ params }: HomePageProps) {
       <section className="section">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Popular Tools</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">{translate('color_screens')}</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Start with our most-used tools for display testing and color calibration
+              {translate('features_subtitle')}
             </p>
           </div>
 
@@ -145,39 +147,24 @@ export default async function HomePage({ params }: HomePageProps) {
       {/* Features Section */}
       <section className="section-alt">
         <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">Why Choose Screenglow</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">{translate('features_title')}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: Zap,
-                title: 'Lightning Fast',
-                description: 'Optimized for speed. Lighthouse score 98+. Load in under 1 second.',
+                title: translate('feature_instant'),
+                description: translate('feature_instant_desc'),
               },
               {
                 icon: Smartphone,
-                title: 'Mobile Perfect',
-                description: 'Responsive design works flawlessly on phones, tablets, and desktops.',
+                title: translate('feature_comprehensive'),
+                description: translate('feature_comprehensive_desc'),
               },
               {
                 icon: Shield,
-                title: 'Privacy First',
-                description: 'No tracking, no registration, no cookies. Your data stays private.',
-              },
-              {
-                icon: Cpu,
-                title: 'Professional Grade',
-                description: 'Used by photographers, video producers, and tech enthusiasts worldwide.',
-              },
-              {
-                icon: Check,
-                title: '100% Free',
-                description: 'No hidden fees, no premium plans. Access all tools completely free.',
-              },
-              {
-                icon: ArrowRight,
-                title: 'Always Updated',
-                description: 'Regular updates, new tools, and continuous improvements.',
+                title: translate('feature_professional'),
+                description: translate('feature_professional_desc'),
               },
             ].map((feature, index) => {
               const Icon = feature.icon;
