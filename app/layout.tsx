@@ -24,6 +24,8 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
     default: `${SITE_NAME}`,
   },
+  description: SITE_DESCRIPTION,
+  keywords: ['screen test', 'dead pixel test', 'monitor test', 'display tools'],
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
