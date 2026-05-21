@@ -31,7 +31,7 @@ export default function DeadPixelTestPage() {
   const breadcrumbs = breadcrumbSchema([
     { name: 'Home', path: '/' },
     { name: 'Tools', path: '/tools' },
-    { name: 'Test Tools', path: '/tools/tests' },
+    { name: 'Test Tools', path: '/tools' },
     { name: DEAD_PIXEL_TOOL.name, path: DEAD_PIXEL_TOOL.path },
   ]);
 

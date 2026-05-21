@@ -41,7 +41,7 @@ export default function ContrastTestPage() {
   const breadcrumbs = breadcrumbSchema([
     { name: 'Home', path: '/' },
     { name: 'Tools', path: '/tools' },
-    { name: 'Test Tools', path: '/tools/tests' },
+    { name: 'Test Tools', path: '/tools' },
     { name: CONTRAST_TOOL.name, path: CONTRAST_TOOL.path },
   ]);
 

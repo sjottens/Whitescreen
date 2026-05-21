@@ -59,7 +59,7 @@ export default function HomePage() {
               <LinkButton href="/white-screen" size="lg" variant="primary" className="sm:w-auto">
                 Start Testing <ArrowRight className="w-5 h-5 ml-2" />
               </LinkButton>
-              <LinkButton href="/tools/tests" size="lg" variant="outline" className="sm:w-auto">
+              <LinkButton href="/tools" size="lg" variant="outline" className="sm:w-auto">
                 View All Tools
               </LinkButton>
             </div>

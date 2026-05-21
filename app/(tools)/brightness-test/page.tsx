@@ -33,7 +33,7 @@ export default function BrightnessTestPage() {
   const breadcrumbs = breadcrumbSchema([
     { name: 'Home', path: '/' },
     { name: 'Tools', path: '/tools' },
-    { name: 'Test Tools', path: '/tools/tests' },
+    { name: 'Test Tools', path: '/tools' },
     { name: BRIGHTNESS_TOOL.name, path: BRIGHTNESS_TOOL.path },
   ]);
 
