@@ -311,7 +311,7 @@ export default function HomePage() {
               />
               <button
                 type="submit"
-                className="btn btn-primary bg-white text-cyan-600 hover:bg-slate-100 hover:text-cyan-800 font-semibold px-6 py-3 rounded-lg transition-all"
+                className="btn btn-primary bg-white text-cyan-700 hover:bg-slate-100 hover:text-cyan-900 font-semibold px-6 py-3 rounded-lg transition-all"
               >
                 Subscribe
               </button>

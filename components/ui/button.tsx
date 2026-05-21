@@ -26,8 +26,8 @@ interface LinkButtonProps extends Omit<ButtonProps, 'onClick' | 'type'> {
 const variantClasses = {
   primary: 'bg-cyan-600 text-white hover:text-white hover:bg-cyan-700 active:bg-cyan-800',
   secondary: 'bg-slate-200 text-slate-900 hover:bg-slate-300 active:bg-slate-400',
-  outline: 'border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-50 active:bg-cyan-100',
-  ghost: 'text-slate-700 hover:bg-slate-100 hover:text-black active:bg-slate-200',
+  outline: 'border-2 border-cyan-700 text-cyan-700 hover:bg-cyan-50 active:bg-cyan-100',
+  ghost: 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 active:bg-slate-200',
 };
 
 const sizeClasses = {

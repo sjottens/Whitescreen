@@ -54,7 +54,7 @@
   }
 
   a {
-    @apply text-cyan-600 hover:text-cyan-700 underline transition-colors duration-150;
+    @apply text-cyan-700 hover:text-cyan-800 underline transition-colors duration-150;
   }
 
   button {
