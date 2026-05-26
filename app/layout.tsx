@@ -44,7 +44,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
-        {/* Google Analytics */}
+        {/* Preconnect to external resources - FIRST for performance optimization */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+
+        {/* Google Analytics - Early tracking with non-blocking strategy */}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
@@ -62,14 +68,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
             `,
           }}
         />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+        {/* Meta tags */}
         <meta name="theme-color" content="#ffffff" />
         <meta name="google-site-verification" content="qGiskLnJK1JGwDlUffGkfsP4z0cBTsoaeFyq8c11dYA" />
-
-        {/* Preconnect to external resources */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
