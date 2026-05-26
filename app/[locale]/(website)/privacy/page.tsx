@@ -50,10 +50,10 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
       </section>
 
       <section className="section">
-        <div className="container max-w-3xl prose prose-lg">
+        <div className="container max-w-3xl prose prose-lg max-w-none">
           <h2>1. {translate('privacy_intro')}</h2>
           <p>
-            {translate('privacy_intro')}
+            {translate('privacy_intro_full')}
           </p>
 
           <h2>2. {translate('privacy_data_collection')}</h2>
@@ -65,15 +65,80 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
           <p>
             {translate('privacy_how_it_works_text')}
           </p>
+          <ul>
+            <li>{translate('privacy_how_item_1')}</li>
+            <li>{translate('privacy_how_item_2')}</li>
+            <li>{translate('privacy_how_item_3')}</li>
+          </ul>
 
           <h2>4. {translate('privacy_cookies')}</h2>
           <p>
             {translate('privacy_cookies_text')}
           </p>
 
-          <h2>5. {translate('privacy_contact')}</h2>
+          <h2>5. {translate('privacy_external_services')}</h2>
           <p>
-            {translate('privacy_contact_text')}
+            {translate('privacy_external_services_text')}
+          </p>
+
+          <h2>6. {translate('privacy_gdpr_rights')}</h2>
+          <p>
+            {translate('privacy_gdpr_rights_text')}
+          </p>
+          <ul>
+            <li><strong>{translate('privacy_right_access')}:</strong> {translate('privacy_right_access_desc')}</li>
+            <li><strong>{translate('privacy_right_rectification')}:</strong> {translate('privacy_right_rectification_desc')}</li>
+            <li><strong>{translate('privacy_right_erasure')}:</strong> {translate('privacy_right_erasure_desc')}</li>
+            <li><strong>{translate('privacy_right_portability')}:</strong> {translate('privacy_right_portability_desc')}</li>
+            <li><strong>{translate('privacy_right_restrict')}:</strong> {translate('privacy_right_restrict_desc')}</li>
+            <li><strong>{translate('privacy_right_object')}:</strong> {translate('privacy_right_object_desc')}</li>
+          </ul>
+
+          <h2>7. {translate('privacy_data_retention')}</h2>
+          <p>
+            {translate('privacy_data_retention_text')}
+          </p>
+
+          <h2>8. {translate('privacy_security')}</h2>
+          <p>
+            {translate('privacy_security_text')}
+          </p>
+
+          <h2>9. {translate('privacy_third_parties')}</h2>
+          <p>
+            {translate('privacy_third_parties_text')}
+          </p>
+
+          <h2>10. {translate('privacy_policy_changes')}</h2>
+          <p>
+            {translate('privacy_policy_changes_text')}
+          </p>
+
+          <h2>11. {translate('privacy_dpa')}</h2>
+          <p>
+            {translate('privacy_dpa_text')}
+          </p>
+          <p>
+            <strong>{translate('privacy_dpa_contact')}:</strong>
+            <br />
+            {translate('privacy_dpa_company_name')}
+            <br />
+            Email: legal@screenglow.eu
+          </p>
+
+          <h2>12. {translate('privacy_contact')}</h2>
+          <p>
+            {translate('privacy_contact_full_text')}
+            <br />
+            <strong>Email:</strong> privacy@screenglow.eu
+            <br />
+            <strong>Data Protection Officer:</strong> dpo@screenglow.eu
+          </p>
+
+          <hr className="my-8" />
+
+          <p className="text-sm text-slate-600 italic">
+            {translate('privacy_disclaimer')}
           </p>
         </div>
       </section>

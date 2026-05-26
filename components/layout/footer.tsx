@@ -78,6 +78,11 @@ export default function Footer({ locale }: FooterProps) {
             <h4 className="text-white font-semibold mb-4">{translate('privacy')}</h4>
             <ul className="space-y-2">
               <li>
+                <Link href={getLocalizedPath(locale, '/terms')} className="text-white hover:text-slate-100 transition-colors text-sm">
+                  {translate('terms')}
+                </Link>
+              </li>
+              <li>
                 <Link href={getLocalizedPath(locale, '/privacy')} className="text-white hover:text-slate-100 transition-colors text-sm">
                   {translate('privacy')}
                 </Link>
