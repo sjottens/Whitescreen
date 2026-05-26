@@ -14,7 +14,7 @@ export async function generateMetadata(props: {
   return generateMultilingualMetadata({
     locale,
     title: 'Terms & Conditions',
-    description: 'Terms and Conditions for Screenglow. Please read these terms carefully before using our services.',
+    description: 'Terms and Conditions for TestaScreen. Please read these terms carefully before using our services.',
     path: '/terms',
   });
 }
@@ -90,7 +90,7 @@ export default async function TermsPage({ params }: TermsPageProps) {
           <p>
             {translate('terms_contact_text')}
             <br />
-            <strong>Email:</strong> legal@screenglow.eu
+            <strong>Email:</strong> legal@testascreen.eu
           </p>
 
           <hr className="my-12" />

@@ -4,7 +4,7 @@
 export const translations = {
   en: {
     // Navigation & Branding
-    site_name: 'Screenglow',
+    site_name: 'TestaScreen',
     site_description: 'Elite screen testing and display tools for photographers, videographers, gamers, and professionals',
     
     // Homepage
@@ -108,7 +108,7 @@ export const translations = {
     
     // Pages
     about_title: 'About Us',
-    about_description: 'Learn more about Screenglow and our mission to provide professional screen testing tools',
+    about_description: 'Learn more about TestaScreen and our mission to provide professional screen testing tools',
     contact_title: 'Contact Us',
     contact_description: 'Get in touch with our team for support and feedback',
     privacy_title: 'Privacy Policy',
@@ -119,7 +119,7 @@ export const translations = {
     tools_description: 'Browse our complete collection of free screen testing and display calibration tools',
     
     // Homepage
-    home_title: 'Screenglow - Free Screen Testing & Display Tools',
+    home_title: 'TestaScreen - Free Screen Testing & Display Tools',
     home_description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
     
     // Common
@@ -136,7 +136,7 @@ export const translations = {
     
     // About Page
     about_mission_title: 'Our Mission',
-    about_mission_text: 'Screenglow is dedicated to providing professional-grade screen testing and display calibration tools that are accessible to everyone.',
+    about_mission_text: 'TestaScreen is dedicated to providing professional-grade screen testing and display calibration tools that are accessible to everyone.',
     about_why_title: 'Why We Started',
     about_why_text: 'We recognized the need for simple, powerful tools that help users test their monitors and displays without complexity.',
     about_offer_title: 'What We Offer',
@@ -145,7 +145,7 @@ export const translations = {
     about_offer_3: 'Instant results, no installation required',
     about_offer_4: 'Privacy-first approach',
     about_team_title: 'Our Team',
-    about_team_text: 'Screenglow is built by a passionate team of developers and designers committed to excellence.',
+    about_team_text: 'TestaScreen is built by a passionate team of developers and designers committed to excellence.',
     about_values_title: 'Our Values',
     about_values_accessible: 'Accessible',
     about_values_accessible_text: 'Tools everyone can use, regardless of technical skill',
@@ -162,14 +162,14 @@ export const translations = {
     contact_message_placeholder: 'How can we help?',
     contact_send_button: 'Send Message',
     contact_email_direct: 'Direct Email',
-    contact_email_address: 'support@screenglow.eu',
+    contact_email_address: 'support@TestaScreen.eu',
     contact_response_time: 'We respond within 24 hours',
     
     // FAQ Page
-    faq_item_1_q: 'What is Screenglow?',
-    faq_item_1_a: 'Screenglow provides free, professional-grade screen testing and display calibration tools. Our tools help you detect dead pixels, test color accuracy, check brightness and contrast, and more.',
+    faq_item_1_q: 'What is TestaScreen?',
+    faq_item_1_a: 'TestaScreen provides free, professional-grade screen testing and display calibration tools. Our tools help you detect dead pixels, test color accuracy, check brightness and contrast, and more.',
     faq_item_2_q: 'Do I need to install anything?',
-    faq_item_2_a: 'No! All Screenglow tools run directly in your web browser. Just visit our website and start testing instantly.',
+    faq_item_2_a: 'No! All TestaScreen tools run directly in your web browser. Just visit our website and start testing instantly.',
     faq_item_3_q: 'Is it really free?',
     faq_item_3_a: 'Yes, completely free. We believe professional tools should be accessible to everyone. No registration, no premium plans, no hidden fees.',
     faq_item_4_q: 'Are my results private?',
@@ -181,7 +181,7 @@ export const translations = {
     
     // Privacy Page - EXPANDED GDPR
     privacy_intro: 'Your privacy is important to us. This page explains how we handle your data.',
-    privacy_intro_full: 'At Screenglow, we are committed to protecting your privacy and ensuring you have a positive experience on our website. This privacy policy explains our data practices, your rights, and how we comply with applicable regulations including the GDPR.',
+    privacy_intro_full: 'At TestaScreen, we are committed to protecting your privacy and ensuring you have a positive experience on our website. This privacy policy explains our data practices, your rights, and how we comply with applicable regulations including the GDPR.',
     privacy_data_collection: 'Data Collection',
     privacy_data_collection_text: 'We do not collect personal data. We do not use cookies, trackers, or analytics services that identify you.',
     privacy_how_it_works: 'How It Works',
@@ -218,41 +218,41 @@ export const translations = {
     privacy_dpa: 'Data Protection Authority Contact',
     privacy_dpa_text: 'If you believe we have violated your privacy rights or if you have concerns about how we handle your data, you have the right to lodge a complaint with your local data protection authority.',
     privacy_dpa_contact: 'Data Protection Officer',
-    privacy_dpa_company_name: 'Screenglow',
+    privacy_dpa_company_name: 'TestaScreen',
     privacy_contact_full_text: 'For privacy inquiries, data access requests, or to exercise your rights under GDPR, please contact us:',
-    privacy_disclaimer: 'This privacy policy is effective as of the date listed above. Screenglow reserves the right to modify this policy at any time. Your continued use of the website constitutes acceptance of any changes.',
+    privacy_disclaimer: 'This privacy policy is effective as of the date listed above. TestaScreen reserves the right to modify this policy at any time. Your continued use of the website constitutes acceptance of any changes.',
     privacy_contact: 'Contact Us',
     
     // Terms & Conditions
     terms: 'Terms & Conditions',
     terms_title: 'Terms & Conditions',
     terms_acceptance: '1. Acceptance of Terms',
-    terms_acceptance_text: 'By accessing and using Screenglow, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.',
+    terms_acceptance_text: 'By accessing and using TestaScreen, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.',
     terms_use_license: '2. Use License',
-    terms_use_license_text: 'Permission is granted to temporarily download one copy of the materials (information or software) on Screenglow for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:',
+    terms_use_license_text: 'Permission is granted to temporarily download one copy of the materials (information or software) on TestaScreen for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:',
     terms_license_item_1: 'Modify or copy the materials',
     terms_license_item_2: 'Use the materials for any commercial purpose or for any public display',
-    terms_license_item_3: 'Attempt to decompile or reverse engineer any software contained on Screenglow',
+    terms_license_item_3: 'Attempt to decompile or reverse engineer any software contained on TestaScreen',
     terms_license_item_4: 'Remove any copyright or other proprietary notations from the materials',
     terms_license_item_5: 'Transfer the materials to another person or "mirror" the materials on any other server',
     terms_disclaimer: '3. Disclaimer',
-    terms_disclaimer_text: 'The materials on Screenglow are provided on an \'as is\' basis. Screenglow makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.',
+    terms_disclaimer_text: 'The materials on TestaScreen are provided on an \'as is\' basis. TestaScreen makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.',
     terms_limitations: '4. Limitations',
-    terms_limitations_text: 'In no event shall Screenglow or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Screenglow, even if Screenglow or an authorized representative has been notified orally or in writing of the possibility of such damage.',
+    terms_limitations_text: 'In no event shall TestaScreen or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on TestaScreen, even if TestaScreen or an authorized representative has been notified orally or in writing of the possibility of such damage.',
     terms_accuracy: '5. Accuracy of Materials',
-    terms_accuracy_text: 'The materials appearing on Screenglow could include technical, typographical, or photographic errors. Screenglow does not warrant that any of the materials on our website are accurate, complete, or current. Screenglow may make changes to the materials contained on our website at any time without notice.',
+    terms_accuracy_text: 'The materials appearing on TestaScreen could include technical, typographical, or photographic errors. TestaScreen does not warrant that any of the materials on our website are accurate, complete, or current. TestaScreen may make changes to the materials contained on our website at any time without notice.',
     terms_materials: '6. Materials and Content',
-    terms_materials_text: 'The materials on Screenglow are provided for educational and informational purposes only. Screenglow does not assume responsibility for errors or omissions in the content. Your use of the materials is at your own risk.',
+    terms_materials_text: 'The materials on TestaScreen are provided for educational and informational purposes only. TestaScreen does not assume responsibility for errors or omissions in the content. Your use of the materials is at your own risk.',
     terms_links: '7. Links',
-    terms_links_text: 'Screenglow has not reviewed all of the sites linked to our website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Screenglow of the site. Use of any such linked website is at the user\'s own risk.',
+    terms_links_text: 'TestaScreen has not reviewed all of the sites linked to our website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by TestaScreen of the site. Use of any such linked website is at the user\'s own risk.',
     terms_modifications: '8. Modifications',
-    terms_modifications_text: 'Screenglow may revise these terms of service for our website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.',
+    terms_modifications_text: 'TestaScreen may revise these terms of service for our website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.',
     terms_governing_law: '9. Governing Law',
     terms_governing_law_text: 'These terms and conditions are governed by and construed in accordance with the laws of the European Union and applicable international laws, and you irrevocably submit to the exclusive jurisdiction of the courts located in that region.',
     terms_contact: '10. Contact Information',
     terms_contact_text: 'If you have any questions about these Terms and Conditions, please contact us at:',
     terms_compliance: 'Compliance Notice',
-    terms_compliance_text: 'Screenglow complies with the General Data Protection Regulation (GDPR), applicable EU privacy laws, and strives to maintain the highest standards of user privacy and data protection. These Terms & Conditions work in conjunction with our Privacy Policy to provide comprehensive protection of your rights.',
+    terms_compliance_text: 'TestaScreen complies with the General Data Protection Regulation (GDPR), applicable EU privacy laws, and strives to maintain the highest standards of user privacy and data protection. These Terms & Conditions work in conjunction with our Privacy Policy to provide comprehensive protection of your rights.',
     
     // Use Cases & Labels
     use_cases: 'Use Cases',
@@ -318,7 +318,7 @@ export const translations = {
   
   nl: {
     // Navigation & Branding
-    site_name: 'Screenglow',
+    site_name: 'TestaScreen',
     site_description: 'Professionele schermtest en displayhulpmiddelen voor fotografen, videomakers, gamers en professionals',
     
     // Homepage
@@ -422,7 +422,7 @@ export const translations = {
     
     // Pages
     about_title: 'Over Ons',
-    about_description: 'Meer informatie over Screenglow en onze missie om professionele schermtestgereedschappen aan te bieden',
+    about_description: 'Meer informatie over TestaScreen en onze missie om professionele schermtestgereedschappen aan te bieden',
     contact_title: 'Neem Contact Op',
     contact_description: 'Neem contact op met ons team voor ondersteuning en feedback',
     privacy_title: 'Privacybeleid',
@@ -433,12 +433,12 @@ export const translations = {
     tools_description: 'Blader door onze volledige verzameling van gratis schermtest- en schermkalibratiegereedschappen',
     
     // Homepage
-    home_title: 'Screenglow - Gratis Schermtest & Display Gereedschappen',
+    home_title: 'TestaScreen - Gratis Schermtest & Display Gereedschappen',
     home_description: 'Professionele gratis schermtest- en displaygereedschappen voor fotografen, videomakers, gamers en professionals. Test dode pixels, monitorkleur en meer.',
     
     // About Page
     about_mission_title: 'Onze Missie',
-    about_mission_text: 'Screenglow is toegewijd aan het bieden van professionele schermtest- en schermkalibratiegereedschappen die voor iedereen toegankelijk zijn.',
+    about_mission_text: 'TestaScreen is toegewijd aan het bieden van professionele schermtest- en schermkalibratiegereedschappen die voor iedereen toegankelijk zijn.',
     about_why_title: 'Waarom We Begonnen',
     about_why_text: 'We zagen de behoefte aan eenvoudige maar krachtige hulpmiddelen waarmee gebruikers hun monitoren en schermen zonder complexiteit kunnen testen.',
     about_offer_title: 'Wat We Bieden',
@@ -447,7 +447,7 @@ export const translations = {
     about_offer_3: 'Instant resultaten, geen installatie nodig',
     about_offer_4: 'Privacy-first aanpak',
     about_team_title: 'Ons Team',
-    about_team_text: 'Screenglow is gebouwd door een gepassioneerd team van ontwikkelaars en ontwerpers die zich inzetten voor uitstekendheid.',
+    about_team_text: 'TestaScreen is gebouwd door een gepassioneerd team van ontwikkelaars en ontwerpers die zich inzetten voor uitstekendheid.',
     about_values_title: 'Onze Waarden',
     about_values_accessible: 'Toegankelijk',
     about_values_accessible_text: 'Hulpmiddelen die iedereen kan gebruiken, ongeacht technische vaardigheden',
@@ -464,14 +464,14 @@ export const translations = {
     contact_message_placeholder: 'Hoe kunnen we je helpen?',
     contact_send_button: 'Bericht Verzenden',
     contact_email_direct: 'Direct E-mail',
-    contact_email_address: 'support@screenglow.eu',
+    contact_email_address: 'support@TestaScreen.eu',
     contact_response_time: 'We reageren binnen 24 uur',
     
     // FAQ Page
-    faq_item_1_q: 'Wat is Screenglow?',
-    faq_item_1_a: 'Screenglow biedt gratis, professionele schermtest- en schermkalibratiegereedschappen. Onze hulpmiddelen helpen je dode pixels te detecteren, kleurnauwkeurigheid te testen, helderheid en contrast te controleren, en meer.',
+    faq_item_1_q: 'Wat is TestaScreen?',
+    faq_item_1_a: 'TestaScreen biedt gratis, professionele schermtest- en schermkalibratiegereedschappen. Onze hulpmiddelen helpen je dode pixels te detecteren, kleurnauwkeurigheid te testen, helderheid en contrast te controleren, en meer.',
     faq_item_2_q: 'Moet ik iets installeren?',
-    faq_item_2_a: 'Nee! Alle Screenglow-hulpmiddelen werken direct in je webbrowser. Bezoek onze website en begin direct met testen.',
+    faq_item_2_a: 'Nee! Alle TestaScreen-hulpmiddelen werken direct in je webbrowser. Bezoek onze website en begin direct met testen.',
     faq_item_3_q: 'Is het echt gratis?',
     faq_item_3_a: 'Ja, volledig gratis. We geloven dat professionele hulpmiddelen voor iedereen toegankelijk moeten zijn. Geen registratie, geen premiumplannen, geen verborgen kosten.',
     faq_item_4_q: 'Zijn mijn resultaten privé?',
@@ -483,7 +483,7 @@ export const translations = {
     
     // Privacy Page - EXPANDED GDPR
     privacy_intro: 'Je privacy is belangrijk voor ons. Deze pagina legt uit hoe we je gegevens behandelen.',
-    privacy_intro_full: 'Bij Screenglow zijn we eraan toegewijd om je privacy te beschermen en je een positieve ervaring op onze website te garanderen. Dit privacybeleid legt onze gegevenspraktijken, je rechten en hoe we voldoen aan van toepassing zijnde regelgeving, inclusief de GDPR, uit.',
+    privacy_intro_full: 'Bij TestaScreen zijn we eraan toegewijd om je privacy te beschermen en je een positieve ervaring op onze website te garanderen. Dit privacybeleid legt onze gegevenspraktijken, je rechten en hoe we voldoen aan van toepassing zijnde regelgeving, inclusief de GDPR, uit.',
     privacy_data_collection: 'Gegevensverzameling',
     privacy_data_collection_text: 'We verzamelen geen persoonlijke gegevens. We gebruiken geen cookies, trackers of analyseservices die je identificeren.',
     privacy_how_it_works: 'Hoe het Werkt',
@@ -520,41 +520,41 @@ export const translations = {
     privacy_dpa: 'Contact Autoriteit Gegevensbescherming',
     privacy_dpa_text: 'Als je denkt dat we je privacyrechten hebben geschonden of als je vragen hebt over hoe we je gegevens behandelen, heb je het recht om een klacht in te dienen bij je lokale autoriteit voor gegevensbescherming.',
     privacy_dpa_contact: 'Functionaris Gegevensbescherming',
-    privacy_dpa_company_name: 'Screenglow',
+    privacy_dpa_company_name: 'TestaScreen',
     privacy_contact_full_text: 'Voor privacyvragen, verzoeken om gegevenstoegang of om je rechten onder GDPR uit te oefenen, neem alsjeblieft contact op:',
-    privacy_disclaimer: 'Dit privacybeleid is van kracht met ingang van de bovengenoemde datum. Screenglow behoudt zich het recht voor om dit beleid op elk moment te wijzigen. Je voortgezette gebruik van de website betekent aanvaarding van eventuele wijzigingen.',
+    privacy_disclaimer: 'Dit privacybeleid is van kracht met ingang van de bovengenoemde datum. TestaScreen behoudt zich het recht voor om dit beleid op elk moment te wijzigen. Je voortgezette gebruik van de website betekent aanvaarding van eventuele wijzigingen.',
     privacy_contact: 'Neem Contact Op',
     
     // Terms & Conditions
     terms: 'Voorwaarden & Bepalingen',
     terms_title: 'Voorwaarden & Bepalingen',
     terms_acceptance: '1. Aanvaarding van Voorwaarden',
-    terms_acceptance_text: 'Door Screenglow te openen en te gebruiken, aanvaard je en stem je in met de voorwaarden van deze overeenkomst. Als je niet akkoord gaat met het bovenstaande, gebruik alsjeblieft deze service niet.',
+    terms_acceptance_text: 'Door TestaScreen te openen en te gebruiken, aanvaard je en stem je in met de voorwaarden van deze overeenkomst. Als je niet akkoord gaat met het bovenstaande, gebruik alsjeblieft deze service niet.',
     terms_use_license: '2. Gebruikslicentie',
-    terms_use_license_text: 'Toestemming wordt verleend om één kopie van de materialen (informatie of software) op Screenglow tijdelijk te downloaden voor persoonlijk, niet-commercieel doorbladerings gebruik. Dit is de verlening van een licentie, geen overdracht van titel, en onder deze licentie mag je niet:',
+    terms_use_license_text: 'Toestemming wordt verleend om één kopie van de materialen (informatie of software) op TestaScreen tijdelijk te downloaden voor persoonlijk, niet-commercieel doorbladerings gebruik. Dit is de verlening van een licentie, geen overdracht van titel, en onder deze licentie mag je niet:',
     terms_license_item_1: 'De materialen wijzigen of kopiëren',
     terms_license_item_2: 'De materialen voor commercieel doel of openbare weergave gebruiken',
-    terms_license_item_3: 'Proberen om software op Screenglow gedecompileerd of reverse engineered',
+    terms_license_item_3: 'Proberen om software op TestaScreen gedecompileerd of reverse engineered',
     terms_license_item_4: 'Copyright of ander eigendomskennisgeving uit de materialen verwijderen',
     terms_license_item_5: 'De materialen aan een ander persoon overdragen of de materialen op een ander ther server "spiegelen"',
     terms_disclaimer: '3. Disclaimer',
-    terms_disclaimer_text: 'De materialen op Screenglow worden op "as-is" basis verstrekt. Screenglow geeft geen garanties, uitdrukkelijk of impliciet, en verwerpt en nietig verklaart alle andere garanties inclusief, zonder beperking, impliciete garanties of voorwaarden van verkoopbaarheid, geschiktheid voor een bepaald doel of niet-schending van intellectuele eigendomsrechten of ander inbreuk.',
+    terms_disclaimer_text: 'De materialen op TestaScreen worden op "as-is" basis verstrekt. TestaScreen geeft geen garanties, uitdrukkelijk of impliciet, en verwerpt en nietig verklaart alle andere garanties inclusief, zonder beperking, impliciete garanties of voorwaarden van verkoopbaarheid, geschiktheid voor een bepaald doel of niet-schending van intellectuele eigendomsrechten of ander inbreuk.',
     terms_limitations: '4. Beperkingen',
-    terms_limitations_text: 'Screenglow of zijn leveranciers zijn in geen geval aansprakelijk voor schade (inclusief, zonder beperking, schadevergoeding voor gegevensverlies of winstverlies, of door bedrijfsonderbreking) voortvloeiend uit het gebruik of onvermogen tot gebruik van de materialen op Screenglow, zelfs als Screenglow of een geautoriseerde vertegenwoordiger mondeling of schriftelijk is geïnformeerd over de mogelijkheid van dergelijke schade.',
+    terms_limitations_text: 'TestaScreen of zijn leveranciers zijn in geen geval aansprakelijk voor schade (inclusief, zonder beperking, schadevergoeding voor gegevensverlies of winstverlies, of door bedrijfsonderbreking) voortvloeiend uit het gebruik of onvermogen tot gebruik van de materialen op TestaScreen, zelfs als TestaScreen of een geautoriseerde vertegenwoordiger mondeling of schriftelijk is geïnformeerd over de mogelijkheid van dergelijke schade.',
     terms_accuracy: '5. Nauwkeurigheid van Materialen',
-    terms_accuracy_text: 'De materialen die op Screenglow verschijnen, kunnen technische, typografische of fotografische fouten bevatten. Screenglow garandeert niet dat materialen op onze website nauwkeurig, volledig of actueel zijn. Screenglow kan materialen op onze website op elk moment zonder kennisgeving wijzigen.',
+    terms_accuracy_text: 'De materialen die op TestaScreen verschijnen, kunnen technische, typografische of fotografische fouten bevatten. TestaScreen garandeert niet dat materialen op onze website nauwkeurig, volledig of actueel zijn. TestaScreen kan materialen op onze website op elk moment zonder kennisgeving wijzigen.',
     terms_materials: '6. Materialen en Inhoud',
-    terms_materials_text: 'De materialen op Screenglow worden uitsluitend voor onderwijs- en informatiedoeleinden verstrekt. Screenglow aanvaardt niet de verantwoordelijkheid voor fouten of weglatingen in de inhoud. Je gebruik van de materialen is op eigen risico.',
+    terms_materials_text: 'De materialen op TestaScreen worden uitsluitend voor onderwijs- en informatiedoeleinden verstrekt. TestaScreen aanvaardt niet de verantwoordelijkheid voor fouten of weglatingen in de inhoud. Je gebruik van de materialen is op eigen risico.',
     terms_links: '7. Links',
-    terms_links_text: 'Screenglow heeft niet alle websites gereviewd die aan onze website zijn gekoppeld en is niet verantwoordelijk voor de inhoud van dergelijke gekoppelde websites. De opname van een link betekent niet dat Screenglow de site onderschrijft. Gebruik van dergelijke gekoppelde website\'s is op eigen risico van de gebruiker.',
+    terms_links_text: 'TestaScreen heeft niet alle websites gereviewd die aan onze website zijn gekoppeld en is niet verantwoordelijk voor de inhoud van dergelijke gekoppelde websites. De opname van een link betekent niet dat TestaScreen de site onderschrijft. Gebruik van dergelijke gekoppelde website\'s is op eigen risico van de gebruiker.',
     terms_modifications: '8. Wijzigingen',
-    terms_modifications_text: 'Screenglow kan deze servicevoorwaarden voor onze website op elk moment zonder kennisgeving herzien. Door deze website te gebruiken, stem je in met het bindend zijn van de toenmalige versie van deze servicevoorwaarden.',
+    terms_modifications_text: 'TestaScreen kan deze servicevoorwaarden voor onze website op elk moment zonder kennisgeving herzien. Door deze website te gebruiken, stem je in met het bindend zijn van de toenmalige versie van deze servicevoorwaarden.',
     terms_governing_law: '9. Toepasselijk Recht',
     terms_governing_law_text: 'Deze voorwaarden worden beheerst door en uitgevoerd in overeenstemming met de wetten van de Europese Unie en van toepassing zijnde internationale wetten, en je onderwerpt jezelf onherroepelijk aan de exclusieve jurisdictie van de rechterbanken in die regio.',
     terms_contact: '10. Contactgegevens',
     terms_contact_text: 'Als je vragen hebt over deze Voorwaarden & Bepalingen, neem alsjeblieft contact op:',
     terms_compliance: 'Nalevingsopmerking',
-    terms_compliance_text: 'Screenglow voldoet aan de Algemene Verordening Gegevensbescherming (GDPR), van toepassing zijnde EU-privacywetten en streeft ernaar om de hoogste normen van gebruikersprivacy en gegevensbescherming te handhaven. Deze Voorwaarden & Bepalingen werken samen met ons Privacybeleid om alomvattende bescherming van je rechten te bieden.',
+    terms_compliance_text: 'TestaScreen voldoet aan de Algemene Verordening Gegevensbescherming (GDPR), van toepassing zijnde EU-privacywetten en streeft ernaar om de hoogste normen van gebruikersprivacy en gegevensbescherming te handhaven. Deze Voorwaarden & Bepalingen werken samen met ons Privacybeleid om alomvattende bescherming van je rechten te bieden.',
     
     // Common
     home: 'Startpagina',
@@ -571,7 +571,7 @@ export const translations = {
   
   es: {
     // Navigation & Branding
-    site_name: 'Screenglow',
+    site_name: 'TestaScreen',
     site_description: 'Herramientas profesionales de prueba de pantalla y calibración de displays para fotógrafos, videógrafos, jugadores y profesionales',
     
     // Homepage
@@ -675,7 +675,7 @@ export const translations = {
     
     // Pages
     about_title: 'Acerca de Nosotros',
-    about_description: 'Conoce más sobre Screenglow y nuestra misión de proporcionar herramientas profesionales de prueba de pantalla',
+    about_description: 'Conoce más sobre TestaScreen y nuestra misión de proporcionar herramientas profesionales de prueba de pantalla',
     contact_title: 'Contáctanos',
     contact_description: 'Ponte en contacto con nuestro equipo para soporte y comentarios',
     privacy_title: 'Política de Privacidad',
@@ -686,12 +686,12 @@ export const translations = {
     tools_description: 'Explora nuestra colección completa de herramientas gratuitas de prueba de pantalla y calibración de displays',
     
     // Homepage
-    home_title: 'Screenglow - Herramientas Gratuitas de Prueba de Pantalla y Display',
+    home_title: 'TestaScreen - Herramientas Gratuitas de Prueba de Pantalla y Display',
     home_description: 'Herramientas profesionales gratuitas de prueba de pantalla y display para fotógrafos, videomakers, gamers y profesionales. Prueba pixels muertos, colores de monitor y más.',
     
     // About Page
     about_mission_title: 'Nuestra Misión',
-    about_mission_text: 'Screenglow está dedicado a proporcionar herramientas profesionales de prueba de pantalla y calibración que sean accesibles para todos.',
+    about_mission_text: 'TestaScreen está dedicado a proporcionar herramientas profesionales de prueba de pantalla y calibración que sean accesibles para todos.',
     about_why_title: 'Por Qué Comenzamos',
     about_why_text: 'Reconocimos la necesidad de herramientas simples pero potentes que ayuden a los usuarios a probar sus monitores y pantallas sin complejidad.',
     about_offer_title: 'Qué Ofrecemos',
@@ -700,7 +700,7 @@ export const translations = {
     about_offer_3: 'Resultados instantáneos, sin instalación requerida',
     about_offer_4: 'Enfoque centrado en la privacidad',
     about_team_title: 'Nuestro Equipo',
-    about_team_text: 'Screenglow está construido por un equipo apasionado de desarrolladores y diseñadores comprometidos con la excelencia.',
+    about_team_text: 'TestaScreen está construido por un equipo apasionado de desarrolladores y diseñadores comprometidos con la excelencia.',
     about_values_title: 'Nuestros Valores',
     about_values_accessible: 'Accesible',
     about_values_accessible_text: 'Herramientas que todos pueden usar, independientemente de sus habilidades técnicas',
@@ -717,14 +717,14 @@ export const translations = {
     contact_message_placeholder: '¿Cómo podemos ayudarte?',
     contact_send_button: 'Enviar Mensaje',
     contact_email_direct: 'Correo Directo',
-    contact_email_address: 'support@screenglow.eu',
+    contact_email_address: 'support@TestaScreen.eu',
     contact_response_time: 'Respondemos en 24 horas',
     
     // FAQ Page
-    faq_item_1_q: '¿Qué es Screenglow?',
-    faq_item_1_a: 'Screenglow proporciona herramientas gratuitas de nivel profesional para prueba de pantalla y calibración de displays. Nuestras herramientas te ayudan a detectar píxeles muertos, probar precisión de color, verificar brillo y contraste, y más.',
+    faq_item_1_q: '¿Qué es TestaScreen?',
+    faq_item_1_a: 'TestaScreen proporciona herramientas gratuitas de nivel profesional para prueba de pantalla y calibración de displays. Nuestras herramientas te ayudan a detectar píxeles muertos, probar precisión de color, verificar brillo y contraste, y más.',
     faq_item_2_q: '¿Necesito instalar algo?',
-    faq_item_2_a: '¡No! Todas las herramientas de Screenglow se ejecutan directamente en tu navegador. Solo visita nuestro sitio web y comienza a probar instantáneamente.',
+    faq_item_2_a: '¡No! Todas las herramientas de TestaScreen se ejecutan directamente en tu navegador. Solo visita nuestro sitio web y comienza a probar instantáneamente.',
     faq_item_3_q: '¿Es realmente gratis?',
     faq_item_3_a: 'Sí, completamente gratis. Creemos que las herramientas profesionales deben ser accesibles para todos. Sin registro, sin planes premium, sin cuotas ocultas.',
     faq_item_4_q: '¿Son mis resultados privados?',
@@ -736,7 +736,7 @@ export const translations = {
     
     // Privacy Page - EXPANDED GDPR
     privacy_intro: 'Tu privacidad es importante para nosotros. Esta página explica cómo manejamos tus datos.',
-    privacy_intro_full: 'En Screenglow, estamos comprometidos a proteger tu privacidad y garantizar que tengas una experiencia positiva en nuestro sitio web. Esta política de privacidad explica nuestras prácticas de datos, tus derechos y cómo cumplimos con las regulaciones aplicables, incluido el GDPR.',
+    privacy_intro_full: 'En TestaScreen, estamos comprometidos a proteger tu privacidad y garantizar que tengas una experiencia positiva en nuestro sitio web. Esta política de privacidad explica nuestras prácticas de datos, tus derechos y cómo cumplimos con las regulaciones aplicables, incluido el GDPR.',
     privacy_data_collection: 'Recopilación de Datos',
     privacy_data_collection_text: 'No recopilamos datos personales. No usamos cookies, rastreadores ni servicios de análisis que te identifiquen.',
     privacy_how_it_works: 'Cómo Funciona',
@@ -773,41 +773,41 @@ export const translations = {
     privacy_dpa: 'Contacto de la Autoridad de Protección de Datos',
     privacy_dpa_text: 'Si crees que hemos violado tus derechos de privacidad o si tienes preocupaciones sobre cómo manejamos tus datos, tienes derecho a presentar una queja ante tu autoridad de protección de datos local.',
     privacy_dpa_contact: 'Funcionario de Protección de Datos',
-    privacy_dpa_company_name: 'Screenglow',
+    privacy_dpa_company_name: 'TestaScreen',
     privacy_contact_full_text: 'Para consultas de privacidad, solicitudes de acceso a datos o para ejercer tus derechos bajo GDPR, contáctanos:',
-    privacy_disclaimer: 'Esta política de privacidad es efectiva a partir de la fecha indicada arriba. Screenglow se reserva el derecho de modificar esta política en cualquier momento. Tu uso continuado del sitio web constituye la aceptación de cualquier cambio.',
+    privacy_disclaimer: 'Esta política de privacidad es efectiva a partir de la fecha indicada arriba. TestaScreen se reserva el derecho de modificar esta política en cualquier momento. Tu uso continuado del sitio web constituye la aceptación de cualquier cambio.',
     privacy_contact: 'Contáctanos',
     
     // Terms & Conditions
     terms: 'Términos & Condiciones',
     terms_title: 'Términos & Condiciones',
     terms_acceptance: '1. Aceptación de Términos',
-    terms_acceptance_text: 'Al acceder y usar Screenglow, aceptas y estás de acuerdo con los términos y disposiciones de este acuerdo. Si no estás de acuerdo con lo anterior, no uses este servicio.',
+    terms_acceptance_text: 'Al acceder y usar TestaScreen, aceptas y estás de acuerdo con los términos y disposiciones de este acuerdo. Si no estás de acuerdo con lo anterior, no uses este servicio.',
     terms_use_license: '2. Licencia de Uso',
-    terms_use_license_text: 'Se otorga permiso para descargar temporalmente una copia de los materiales (información o software) en Screenglow solo para visualización personal, no comercial y transitoria. Esta es la concesión de una licencia, no una transferencia de título, y bajo esta licencia no puedes:',
+    terms_use_license_text: 'Se otorga permiso para descargar temporalmente una copia de los materiales (información o software) en TestaScreen solo para visualización personal, no comercial y transitoria. Esta es la concesión de una licencia, no una transferencia de título, y bajo esta licencia no puedes:',
     terms_license_item_1: 'Modificar o copiar los materiales',
     terms_license_item_2: 'Usar los materiales para ningún propósito comercial o para ninguna pantalla pública',
-    terms_license_item_3: 'Intentar descompilar o hacer ingeniería inversa de ningún software contenido en Screenglow',
+    terms_license_item_3: 'Intentar descompilar o hacer ingeniería inversa de ningún software contenido en TestaScreen',
     terms_license_item_4: 'Remover ningún aviso de copyright u otro notificación de propiedad de los materiales',
     terms_license_item_5: 'Transferir los materiales a otra persona o "espejado" los materiales en ningún otro servidor',
     terms_disclaimer: '3. Renuncia de Responsabilidad',
-    terms_disclaimer_text: 'Los materiales en Screenglow se proporcionan en base "tal cual". Screenglow no proporciona garantías, expresas o implícitas, y por este medio renuncia y anula todas las demás garantías incluyendo, sin limitación, garantías implícitas o condiciones de comerciabilidad, idoneidad para un propósito particular, o no infracción de derechos de propiedad intelectual u otra violación de derechos.',
+    terms_disclaimer_text: 'Los materiales en TestaScreen se proporcionan en base "tal cual". TestaScreen no proporciona garantías, expresas o implícitas, y por este medio renuncia y anula todas las demás garantías incluyendo, sin limitación, garantías implícitas o condiciones de comerciabilidad, idoneidad para un propósito particular, o no infracción de derechos de propiedad intelectual u otra violación de derechos.',
     terms_limitations: '4. Limitaciones',
-    terms_limitations_text: 'En ningún caso Screenglow o sus proveedores serán responsables por ningún daño (incluyendo, sin limitación, daños por pérdida de datos o ganancias, o debido a interrupción comercial) que surja del uso o incapacidad para usar los materiales en Screenglow, incluso si Screenglow o un representante autorizado fue notificado oralmente o por escrito sobre la posibilidad de tal daño.',
+    terms_limitations_text: 'En ningún caso TestaScreen o sus proveedores serán responsables por ningún daño (incluyendo, sin limitación, daños por pérdida de datos o ganancias, o debido a interrupción comercial) que surja del uso o incapacidad para usar los materiales en TestaScreen, incluso si TestaScreen o un representante autorizado fue notificado oralmente o por escrito sobre la posibilidad de tal daño.',
     terms_accuracy: '5. Precisión de los Materiales',
-    terms_accuracy_text: 'Los materiales que aparecen en Screenglow podrían incluir errores técnicos, tipográficos o fotográficos. Screenglow no garantiza que ninguno de los materiales en nuestro sitio web sean precisos, completos o actuales. Screenglow puede hacer cambios a los materiales contenidos en nuestro sitio web en cualquier momento sin previo aviso.',
+    terms_accuracy_text: 'Los materiales que aparecen en TestaScreen podrían incluir errores técnicos, tipográficos o fotográficos. TestaScreen no garantiza que ninguno de los materiales en nuestro sitio web sean precisos, completos o actuales. TestaScreen puede hacer cambios a los materiales contenidos en nuestro sitio web en cualquier momento sin previo aviso.',
     terms_materials: '6. Materiales y Contenido',
-    terms_materials_text: 'Los materiales en Screenglow se proporcionan únicamente para propósitos educativos e informativos. Screenglow no asume responsabilidad por errores u omisiones en el contenido. Tu uso de los materiales es bajo tu propio riesgo.',
+    terms_materials_text: 'Los materiales en TestaScreen se proporcionan únicamente para propósitos educativos e informativos. TestaScreen no asume responsabilidad por errores u omisiones en el contenido. Tu uso de los materiales es bajo tu propio riesgo.',
     terms_links: '7. Enlaces',
-    terms_links_text: 'Screenglow no ha revisado todos los sitios vinculados a nuestro sitio web y no es responsable por el contenido de ningún sitio vinculado. La inclusión de un enlace no implica respaldo por parte de Screenglow del sitio. El uso de cualquier sitio web vinculado es bajo el riesgo del usuario.',
+    terms_links_text: 'TestaScreen no ha revisado todos los sitios vinculados a nuestro sitio web y no es responsable por el contenido de ningún sitio vinculado. La inclusión de un enlace no implica respaldo por parte de TestaScreen del sitio. El uso de cualquier sitio web vinculado es bajo el riesgo del usuario.',
     terms_modifications: '8. Modificaciones',
-    terms_modifications_text: 'Screenglow puede revisar estos términos de servicio para nuestro sitio web en cualquier momento sin previo aviso. Al usar este sitio web, aceptas estar obligado por la versión actual de estos términos de servicio.',
+    terms_modifications_text: 'TestaScreen puede revisar estos términos de servicio para nuestro sitio web en cualquier momento sin previo aviso. Al usar este sitio web, aceptas estar obligado por la versión actual de estos términos de servicio.',
     terms_governing_law: '9. Ley Aplicable',
     terms_governing_law_text: 'Estos términos y condiciones se rigen por y se interpretan de conformidad con las leyes de la Unión Europea y las leyes internacionales aplicables, y te sometes irrevocablemente a la jurisdicción exclusiva de los tribunales ubicados en esa región.',
     terms_contact: '10. Información de Contacto',
     terms_contact_text: 'Si tienes preguntas sobre estos Términos y Condiciones, contáctanos:',
     terms_compliance: 'Noticia de Cumplimiento',
-    terms_compliance_text: 'Screenglow cumple con el Reglamento General de Protección de Datos (GDPR), leyes de privacidad de la UE aplicables, y se esfuerza por mantener los más altos estándares de privacidad del usuario y protección de datos. Estos Términos y Condiciones funcionan en conjunto con nuestra Política de Privacidad para proporcionar protección integral de tus derechos.',
+    terms_compliance_text: 'TestaScreen cumple con el Reglamento General de Protección de Datos (GDPR), leyes de privacidad de la UE aplicables, y se esfuerza por mantener los más altos estándares de privacidad del usuario y protección de datos. Estos Términos y Condiciones funcionan en conjunto con nuestra Política de Privacidad para proporcionar protección integral de tus derechos.',
     
     // Common
     home: 'Inicio',
@@ -833,3 +833,4 @@ export function getTranslation(locale: Locale, key: TranslationKey): string {
 export function t(locale: Locale) {
   return (key: TranslationKey): string => getTranslation(locale, key);
 }
+

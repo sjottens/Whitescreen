@@ -14,7 +14,7 @@ export async function generateMetadata(props: {
   return generateMultilingualMetadata({
     locale,
     title: 'Frequently Asked Questions',
-    description: 'Get answers to common questions about Screenglow tools and how to use our screen testing features.',
+    description: 'Get answers to common questions about TestaScreen tools and how to use our screen testing features.',
     path: '/faq',
   });
 }

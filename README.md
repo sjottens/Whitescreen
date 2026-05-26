@@ -1,4 +1,4 @@
-# Screenglow - Elite Frontend Project
+# TestaScreen - Elite Frontend Project
 
 **Version:** 1.0.0  
 **Status:** Production Ready  
@@ -22,7 +22,7 @@
 
 ## 🎯 Project Overview
 
-**Screenglow** is an elite, production-ready screen testing and display tools platform built with a focus on:
+**TestaScreen** is an elite, production-ready screen testing and display tools platform built with a focus on:
 
 - **SEO Excellence**: 100+ pages targeting high-intent keywords
 - **Performance Obsession**: Lighthouse 98-100, Core Web Vitals perfect
@@ -427,13 +427,13 @@ Create `.env.local`:
 
 ```env
 # Site Configuration
-NEXT_PUBLIC_SITE_URL=https://screenglow.eu
+NEXT_PUBLIC_SITE_URL=https://TestaScreen.eu
 
 # Analytics (optional)
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
 # API Keys (if needed)
-NEXT_PUBLIC_API_URL=https://api.screenglow.eu
+NEXT_PUBLIC_API_URL=https://api.TestaScreen.eu
 ```
 
 ---
@@ -541,8 +541,8 @@ This project is proprietary. All rights reserved.
 
 ## 📞 Support
 
-- **Email**: support@screenglow.eu
-- **Website**: https://screenglow.eu
+- **Email**: support@TestaScreen.eu
+- **Website**: https://TestaScreen.eu
 - **Issues**: GitHub Issues
 
 ---
@@ -560,3 +560,4 @@ This project is proprietary. All rights reserved.
 **Built with ❤️ by a Senior Frontend Engineer**
 
 *Last updated: May 2026*
+

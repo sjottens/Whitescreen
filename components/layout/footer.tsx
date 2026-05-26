@@ -23,7 +23,7 @@ export default function Footer({ locale }: FooterProps) {
           <div className="lg:col-span-1">
             <h3 className="text-white font-bold text-lg mb-4">{SITE_NAME}</h3>
             <p className="text-white text-sm mb-4">
-              Elite screen testing and display tools for professionals and enthusiasts. Screenglow.eu
+              Elite screen testing and display tools for professionals and enthusiasts. TestaScreen.eu
             </p>
             
           </div>
@@ -122,3 +122,4 @@ export default function Footer({ locale }: FooterProps) {
     </footer>
   );
 }
+

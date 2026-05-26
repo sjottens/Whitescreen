@@ -13,7 +13,7 @@ export async function generateMetadata(props: {
   return generateMultilingualMetadata({
     locale,
     title: 'Privacy Policy',
-    description: 'Privacy policy for Screenglow. We explain how we handle and protect user data.',
+    description: 'Privacy policy for TestaScreen. We explain how we handle and protect user data.',
     path: '/privacy',
   });
 }
@@ -123,16 +123,16 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             <br />
             {translate('privacy_dpa_company_name')}
             <br />
-            Email: legal@screenglow.eu
+            Email: legal@testascreen.eu
           </p>
 
           <h2>12. {translate('privacy_contact')}</h2>
           <p>
             {translate('privacy_contact_full_text')}
             <br />
-            <strong>Email:</strong> privacy@screenglow.eu
+            <strong>Email:</strong> privacy@testascreen.eu
             <br />
-            <strong>Data Protection Officer:</strong> dpo@screenglow.eu
+            <strong>Data Protection Officer:</strong> dpo@testascreen.eu
           </p>
 
           <hr className="my-8" />

@@ -12,9 +12,9 @@ export async function generateMetadata(props: {
 
   return generateMultilingualMetadata({
     locale,
-    title: 'About Screenglow',
+    title: 'About TestaScreen',
     description:
-      'Learn about Screenglow, our mission to provide elite screen testing tools, and how we\'re helping millions of users worldwide.',
+      'Learn about TestaScreen, our mission to provide elite screen testing tools, and how we\'re helping millions of users worldwide.',
     path: '/about',
   });
 }

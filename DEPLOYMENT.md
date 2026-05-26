@@ -1,4 +1,4 @@
-# Deployment Guide - Screenglow
+# Deployment Guide - TestaScreen
 
 ## 🚀 Quick Start Deployment Options
 
@@ -36,7 +36,7 @@ Vercel is the official Next.js hosting platform. It provides:
 
 4. **Custom Domain**
    - Settings → Domains
-   - Add your domain (e.g., screenglow.eu)
+   - Add your domain (e.g., TestaScreen.eu)
    - Configure DNS (CNAME or A record)
 
 #### Performance Optimization on Vercel
@@ -117,7 +117,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - NEXT_PUBLIC_SITE_URL=https://screenglow.eu
+      - NEXT_PUBLIC_SITE_URL=https://TestaScreen.eu
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
@@ -147,7 +147,7 @@ services:
 docker build -t whitescreen:latest .
 
 # Run container
-docker run -p 3000:3000 -e NEXT_PUBLIC_SITE_URL=https://screenglow.eu screenglow:latest
+docker run -p 3000:3000 -e NEXT_PUBLIC_SITE_URL=https://TestaScreen.eu TestaScreen:latest
 
 # Using Docker Compose
 docker-compose up -d
@@ -221,7 +221,7 @@ gcloud run deploy whitescreen \
 ```env
 # Site Configuration
 NODE_ENV=production
-NEXT_PUBLIC_SITE_URL=https://screenglow.eu
+NEXT_PUBLIC_SITE_URL=https://TestaScreen.eu
 
 # Analytics
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
@@ -230,7 +230,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 NEXT_PUBLIC_ENABLE_DEBUG=false
 
 # Security
-ALLOWED_DOMAINS=screenglow.eu,www.screenglow.eu
+ALLOWED_DOMAINS=TestaScreen.eu,www.TestaScreen.eu
 ```
 
 ### Performance Optimization
@@ -261,10 +261,10 @@ ALLOWED_DOMAINS=screenglow.eu,www.screenglow.eu
 
 ```bash
 # Check service health
-curl https://screenglow.eu/health
+curl https://TestaScreen.eu/health
 
 # Monitor performance
-curl https://screenglow.eu/api/health
+curl https://TestaScreen.eu/api/health
 ```
 
 ### Logging Strategy
@@ -310,7 +310,7 @@ export default logger;
 ```bash
 # Using Let's Encrypt with Certbot
 sudo apt-get install certbot python3-certbot-nginx
-sudo certbot certonly --standalone -d screenglow.eu -d www.screenglow.eu
+sudo certbot certonly --standalone -d TestaScreen.eu -d www.TestaScreen.eu
 
 # Auto-renewal
 sudo certbot renew --dry-run
@@ -452,10 +452,11 @@ node --inspect app.js
 
 ## 📞 Support
 
-- **Documentation**: https://docs.screenglow.eu
+- **Documentation**: https://docs.TestaScreen.eu
 - **Issues**: Create GitHub issue
-- **Email**: deployment@screenglow.eu
+- **Email**: deployment@TestaScreen.eu
 
 ---
 
 **Last updated: May 2026**
+

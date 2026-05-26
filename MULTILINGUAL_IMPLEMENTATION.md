@@ -220,16 +220,16 @@ export function Navigation({ locale }: NavigationProps) {
 ### Final URLs
 
 **English (Default):**
-- `https://screenglow.eu/` - Home
-- `https://screenglow.eu/white-screen` - Tool
-- `https://screenglow.eu/about` - About page
-- `https://screenglow.eu/contact` - Contact page
+- `https://TestaScreen.eu/` - Home
+- `https://TestaScreen.eu/white-screen` - Tool
+- `https://TestaScreen.eu/about` - About page
+- `https://TestaScreen.eu/contact` - Contact page
 
 **Dutch:**
-- `https://screenglow.eu/nl/` - Home
-- `https://screenglow.eu/nl/white-screen` - Tool
-- `https://screenglow.eu/nl/about` - About page
-- `https://screenglow.eu/nl/contact` - Contact page
+- `https://TestaScreen.eu/nl/` - Home
+- `https://TestaScreen.eu/nl/white-screen` - Tool
+- `https://TestaScreen.eu/nl/about` - About page
+- `https://TestaScreen.eu/nl/contact` - Contact page
 
 ## ✅ SEO Verification Checklist
 
@@ -299,15 +299,15 @@ English pages are served from the root (`/about`) without an `/en/` prefix to:
 - Prevent duplicate content
 
 ### Canonical URLs
-- English page: `https://screenglow.eu/about`
-- Dutch page: `https://screenglow.eu/nl/about`
+- English page: `https://TestaScreen.eu/about`
+- Dutch page: `https://TestaScreen.eu/nl/about`
 
 ### Hreflang Implementation
 Every page includes language alternates:
 ```html
-<link rel="alternate" hreflang="en" href="https://screenglow.eu/about" />
-<link rel="alternate" hreflang="nl" href="https://screenglow.eu/nl/about" />
-<link rel="alternate" hreflang="x-default" href="https://screenglow.eu/about" />
+<link rel="alternate" hreflang="en" href="https://TestaScreen.eu/about" />
+<link rel="alternate" hreflang="nl" href="https://TestaScreen.eu/nl/about" />
+<link rel="alternate" hreflang="x-default" href="https://TestaScreen.eu/about" />
 ```
 
 ### Middleware Logic
@@ -339,4 +339,5 @@ Every page includes language alternates:
 ### Issue: Links not working correctly
 - Verify `getLocalizedPath()` is used consistently
 - Check that locale is being properly passed to components
+
 

@@ -12,8 +12,8 @@ export async function generateMetadata(props: {
 
   return generateMultilingualMetadata({
     locale,
-    title: 'Contact Screenglow',
-    description: 'Get in touch with Screenglow team. We\'re here to help with any questions about our screen testing tools.',
+    title: 'Contact TestaScreen',
+    description: 'Get in touch with TestaScreen team. We\'re here to help with any questions about our screen testing tools.',
     path: '/contact',
   });
 }

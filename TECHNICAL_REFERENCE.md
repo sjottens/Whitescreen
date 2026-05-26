@@ -46,10 +46,10 @@ This document provides a deep technical dive into the multilingual SEO architect
 │            METADATA GENERATION (SEO)                        │
 │                                                             │
 │  generateMultilingualMetadata() generates:                 │
-│  • Canonical URL: https://screenglow.eu/about              │
-│  • Hreflang en: https://screenglow.eu/about                │
-│  • Hreflang nl: https://screenglow.eu/nl/about             │
-│  • Hreflang x-default: https://screenglow.eu/about         │
+│  • Canonical URL: https://TestaScreen.eu/about              │
+│  • Hreflang en: https://TestaScreen.eu/about                │
+│  • Hreflang nl: https://TestaScreen.eu/nl/about             │
+│  • Hreflang x-default: https://TestaScreen.eu/about         │
 │  • OpenGraph locale: en_US or nl_NL                        │
 └────────────────────┬────────────────────────────────────────┘
                      │
@@ -76,7 +76,7 @@ This document provides a deep technical dive into the multilingual SEO architect
 ### Example 1: Visiting English About Page
 
 ```
-1. User visits: https://screenglow.eu/about
+1. User visits: https://TestaScreen.eu/about
    │
    ├─► Middleware checks: No locale prefix found
    │   → Let it through (default English)
@@ -91,11 +91,11 @@ This document provides a deep technical dive into the multilingual SEO architect
    │
    ├─► generateMultilingualMetadata() creates:
    │   {
-   │     canonical: "https://screenglow.eu/about",
+   │     canonical: "https://TestaScreen.eu/about",
    │     languages: {
-   │       "en": "https://screenglow.eu/about",
-   │       "nl": "https://screenglow.eu/nl/about",
-   │       "x-default": "https://screenglow.eu/about"
+   │       "en": "https://TestaScreen.eu/about",
+   │       "nl": "https://TestaScreen.eu/nl/about",
+   │       "x-default": "https://TestaScreen.eu/about"
    │     }
    │   }
    │
@@ -106,7 +106,7 @@ This document provides a deep technical dive into the multilingual SEO architect
 ### Example 2: Visiting Dutch About Page
 
 ```
-1. User visits: https://screenglow.eu/nl/about
+1. User visits: https://TestaScreen.eu/nl/about
    │
    ├─► Middleware checks: Dutch prefix detected
    │   → Let it through
@@ -121,11 +121,11 @@ This document provides a deep technical dive into the multilingual SEO architect
    │
    ├─► generateMultilingualMetadata() creates:
    │   {
-   │     canonical: "https://screenglow.eu/nl/about",
+   │     canonical: "https://TestaScreen.eu/nl/about",
    │     languages: {
-   │       "en": "https://screenglow.eu/about",
-   │       "nl": "https://screenglow.eu/nl/about",
-   │       "x-default": "https://screenglow.eu/about"
+   │       "en": "https://TestaScreen.eu/about",
+   │       "nl": "https://TestaScreen.eu/nl/about",
+   │       "x-default": "https://TestaScreen.eu/about"
    │     }
    │   }
    │
@@ -179,10 +179,10 @@ Generates canonical URL for a given locale and path.
 
 ```typescript
 getCanonicalUrl('en', '/about')
-// Returns: "https://screenglow.eu/about"
+// Returns: "https://TestaScreen.eu/about"
 
 getCanonicalUrl('nl', '/about')
-// Returns: "https://screenglow.eu/nl/about"
+// Returns: "https://TestaScreen.eu/nl/about"
 ```
 
 #### `generateHrefLangAlternates(path: string): Record<string, string>`
@@ -191,9 +191,9 @@ Creates hreflang alternates for all language versions.
 ```typescript
 generateHrefLangAlternates('/about')
 // Returns: {
-//   en: "https://screenglow.eu/about",
-//   nl: "https://screenglow.eu/nl/about",
-//   x-default: "https://screenglow.eu/about"
+//   en: "https://TestaScreen.eu/about",
+//   nl: "https://TestaScreen.eu/nl/about",
+//   x-default: "https://TestaScreen.eu/about"
 // }
 ```
 
@@ -314,9 +314,9 @@ export default async function Page({ params }: PageProps) {
 
 | Page | English | Dutch |
 |---|---|---|
-| Home | `https://screenglow.eu/` | `https://screenglow.eu/nl/` |
-| About | `https://screenglow.eu/about` | `https://screenglow.eu/nl/about` |
-| Tool | `https://screenglow.eu/white-screen` | `https://screenglow.eu/nl/white-screen` |
+| Home | `https://TestaScreen.eu/` | `https://TestaScreen.eu/nl/` |
+| About | `https://TestaScreen.eu/about` | `https://TestaScreen.eu/nl/about` |
+| Tool | `https://TestaScreen.eu/white-screen` | `https://TestaScreen.eu/nl/white-screen` |
 
 ---
 
@@ -326,23 +326,23 @@ The `sitemap.ts` generates multilingual entries:
 
 ```xml
 <url>
-  <loc>https://screenglow.eu/about</loc>
+  <loc>https://TestaScreen.eu/about</loc>
   <lastmod>2024-05-21</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
-  <xhtml:link rel="alternate" hreflang="en" href="https://screenglow.eu/about" />
-  <xhtml:link rel="alternate" hreflang="nl" href="https://screenglow.eu/nl/about" />
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://screenglow.eu/about" />
+  <xhtml:link rel="alternate" hreflang="en" href="https://TestaScreen.eu/about" />
+  <xhtml:link rel="alternate" hreflang="nl" href="https://TestaScreen.eu/nl/about" />
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://TestaScreen.eu/about" />
 </url>
 
 <url>
-  <loc>https://screenglow.eu/nl/about</loc>
+  <loc>https://TestaScreen.eu/nl/about</loc>
   <lastmod>2024-05-21</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
-  <xhtml:link rel="alternate" hreflang="en" href="https://screenglow.eu/about" />
-  <xhtml:link rel="alternate" hreflang="nl" href="https://screenglow.eu/nl/about" />
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://screenglow.eu/about" />
+  <xhtml:link rel="alternate" hreflang="en" href="https://TestaScreen.eu/about" />
+  <xhtml:link rel="alternate" hreflang="nl" href="https://TestaScreen.eu/nl/about" />
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://TestaScreen.eu/about" />
 </url>
 ```
 
@@ -535,4 +535,5 @@ export const LOCALE_METADATA = {
 - [ ] Verified OpenGraph locale
 - [ ] Cleaned up old folders
 - [ ] Deployed to production
+
 

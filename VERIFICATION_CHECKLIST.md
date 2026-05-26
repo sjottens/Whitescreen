@@ -77,13 +77,13 @@ For each page type (English and Dutch), open DevTools and verify:
 
 - [ ] `http://localhost:3000/sitemap.xml` loads
 - [ ] Contains English pages:
-  - [ ] `<loc>https://screenglow.eu/</loc>`
-  - [ ] `<loc>https://screenglow.eu/about</loc>`
-  - [ ] `<loc>https://screenglow.eu/white-screen</loc>`
+  - [ ] `<loc>https://TestaScreen.eu/</loc>`
+  - [ ] `<loc>https://TestaScreen.eu/about</loc>`
+  - [ ] `<loc>https://TestaScreen.eu/white-screen</loc>`
 - [ ] Contains Dutch pages:
-  - [ ] `<loc>https://screenglow.eu/nl/</loc>`
-  - [ ] `<loc>https://screenglow.eu/nl/about</loc>`
-  - [ ] `<loc>https://screenglow.eu/nl/white-screen</loc>`
+  - [ ] `<loc>https://TestaScreen.eu/nl/</loc>`
+  - [ ] `<loc>https://TestaScreen.eu/nl/about</loc>`
+  - [ ] `<loc>https://TestaScreen.eu/nl/white-screen</loc>`
 - [ ] Each URL has xhtml:link alternates:
   ```xml
   <xhtml:link rel="alternate" hreflang="en" href="..." />
@@ -142,8 +142,8 @@ After verifying all new pages work:
 - [ ] Check for "Alternate page with proper annotation"
 
 ### Google Mobile-Friendly Test
-- [ ] Test English pages: `https://screenglow.eu/`
-- [ ] Test Dutch pages: `https://screenglow.eu/nl/`
+- [ ] Test English pages: `https://TestaScreen.eu/`
+- [ ] Test Dutch pages: `https://TestaScreen.eu/nl/`
 - [ ] Both should be mobile-friendly
 
 ### SEO Analyzer (Lighthouse)
@@ -191,8 +191,8 @@ npm run build
 npm start
 
 # Verify key routes in production
-curl -I https://screenglow.eu/
-curl -I https://screenglow.eu/nl/
+curl -I https://TestaScreen.eu/
+curl -I https://TestaScreen.eu/nl/
 ```
 
 - [ ] Build size is acceptable
@@ -269,4 +269,5 @@ When all items are checked:
 
 **Last Updated:** 2024-05-21
 **Status:** Ready for Implementation
+
 

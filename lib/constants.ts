@@ -1,7 +1,7 @@
 // lib/constants.ts - Core data and keywords
 
-export const SITE_NAME = 'Screenglow';
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://screenglow.eu';
+export const SITE_NAME = 'TestaScreen';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://testascreen.eu';
 export const SITE_DESCRIPTION = 'Elite screen testing and display tools for photographers, videographers, gamers, and professionals';
 
 // All available tools - Color screens, special tools, and test tools

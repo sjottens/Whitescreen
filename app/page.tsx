@@ -7,14 +7,14 @@ import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants';
 import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `Screenglow - Free Screen Testing & Display Tools | ${SITE_NAME}`,
+  title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
   description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: `${SITE_URL}/en`,
   },
   openGraph: {
-    title: `Screenglow - Free Screen Testing & Display Tools | ${SITE_NAME}`,
+    title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
     description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
     url: `${SITE_URL}/en`,
     type: 'website',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Screenglow - Free Screen Testing & Display Tools | ${SITE_NAME}`,
+    title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
     description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
   },
 };
@@ -32,3 +32,4 @@ export const metadata: Metadata = {
 export default function RootPage() {
   return null;
 }
+

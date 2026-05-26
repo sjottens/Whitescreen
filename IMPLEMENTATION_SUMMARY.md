@@ -191,10 +191,10 @@ npm run dev
 Use this checklist to verify all SEO features are working:
 
 ### Canonical URLs
-- [ ] `/` has canonical: `https://screenglow.eu/`
-- [ ] `/about` has canonical: `https://screenglow.eu/about`
-- [ ] `/nl/` has canonical: `https://screenglow.eu/nl/`
-- [ ] `/nl/about` has canonical: `https://screenglow.eu/nl/about`
+- [ ] `/` has canonical: `https://TestaScreen.eu/`
+- [ ] `/about` has canonical: `https://TestaScreen.eu/about`
+- [ ] `/nl/` has canonical: `https://TestaScreen.eu/nl/`
+- [ ] `/nl/about` has canonical: `https://TestaScreen.eu/nl/about`
 
 ### Hreflang Tags
 Each page should have three hreflang tags:
@@ -204,9 +204,9 @@ Each page should have three hreflang tags:
 
 Example:
 ```html
-<link rel="alternate" hreflang="en" href="https://screenglow.eu/about" />
-<link rel="alternate" hreflang="nl" href="https://screenglow.eu/nl/about" />
-<link rel="alternate" hreflang="x-default" href="https://screenglow.eu/about" />
+<link rel="alternate" hreflang="en" href="https://TestaScreen.eu/about" />
+<link rel="alternate" hreflang="nl" href="https://TestaScreen.eu/nl/about" />
+<link rel="alternate" hreflang="x-default" href="https://TestaScreen.eu/about" />
 ```
 
 ### HTML Lang Attribute
@@ -344,22 +344,22 @@ middleware.ts ✅ (new)
 
 ### English (Default) - No Prefix
 ```
-https://screenglow.eu/
-https://screenglow.eu/white-screen
-https://screenglow.eu/black-screen
-https://screenglow.eu/about
-https://screenglow.eu/contact
-https://screenglow.eu/tools
+https://TestaScreen.eu/
+https://TestaScreen.eu/white-screen
+https://TestaScreen.eu/black-screen
+https://TestaScreen.eu/about
+https://TestaScreen.eu/contact
+https://TestaScreen.eu/tools
 ```
 
 ### Dutch - `/nl/` Prefix
 ```
-https://screenglow.eu/nl/
-https://screenglow.eu/nl/white-screen
-https://screenglow.eu/nl/black-screen
-https://screenglow.eu/nl/about
-https://screenglow.eu/nl/contact
-https://screenglow.eu/nl/tools
+https://TestaScreen.eu/nl/
+https://TestaScreen.eu/nl/white-screen
+https://TestaScreen.eu/nl/black-screen
+https://TestaScreen.eu/nl/about
+https://TestaScreen.eu/nl/contact
+https://TestaScreen.eu/nl/tools
 ```
 
 ---
@@ -393,4 +393,5 @@ For questions about implementation:
 
 **Status:** Ready for testing and old folder cleanup
 **Next Steps:** Test all URLs, verify SEO tags, delete old folders if successful
+
 
