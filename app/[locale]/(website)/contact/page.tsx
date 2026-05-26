@@ -59,12 +59,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
             <form className="space-y-6">
               <div>
                 <label className="block text-sm font-semibold mb-2">{translate('contact_email_label')}</label>
-                <input type="email" className="w-full px-4 py-2 border rounded-lg" placeholder={translate('contact_email_placeholder')} required />
+                <input type="email" className="w-full px-4 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent" placeholder={translate('contact_email_placeholder')} required />
               </div>
               
               <div>
                 <label className="block text-sm font-semibold mb-2">{translate('contact_message_label')}</label>
-                <textarea className="w-full px-4 py-2 border rounded-lg" placeholder={translate('contact_message_placeholder')} rows={5} required></textarea>
+                <textarea className="w-full px-4 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent" placeholder={translate('contact_message_placeholder')} rows={5} required></textarea>
               </div>
               
               <button type="submit" className="w-full bg-cyan-600 text-white py-2 rounded-lg font-semibold hover:bg-cyan-700">
