@@ -1,8 +1,10 @@
 // app/[locale]/(website)/privacy/page.tsx
 
 import { Metadata } from 'next';
+import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 
 export async function generateMetadata(props: {
@@ -40,6 +42,13 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
         suppressHydrationWarning
+      />
+
+      <Breadcrumbs
+        items={[
+          { name: translate('home'), path: getLocalizedPath(locale, '/') },
+          { name: translate('privacy') },
+        ]}
       />
 
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">

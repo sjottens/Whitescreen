@@ -4,23 +4,22 @@ import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { t } from '@/lib/translations';
+import { TEST_TOOLS } from '@/lib/constants';
 import BrightnessTest from '@/components/tools/brightness-test';
 
-const TOOL_NAME = 'Brightness Test';
-const TOOL_DESCRIPTION = 'Advanced brightness and gradient testing tool. Test monitor brightness levels, flicker detection, and gray uniformity.';
-const TOOL_PATH = '/brightness-test';
-const KEYWORDS = ['brightness test', 'monitor brightness', 'gradient test', 'flicker detection'];
+const TOOL = TEST_TOOLS.find((t) => t.id === 'brightness-test')!;
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
   return generateMultilingualMetadata({
     locale,
-    title: TOOL_NAME,
-    description: TOOL_DESCRIPTION,
-    path: TOOL_PATH,
-    keywords: KEYWORDS,
+    title: translate(TOOL.nameKey as any),
+    description: translate(TOOL.descriptionKey as any),
+    path: TOOL.path,
+    keywords: TOOL.keywords,
   });
 }
 
@@ -31,7 +30,7 @@ export default async function BrightnessTestPage({ params }: { params: Promise<{
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: TOOL_NAME, path: TOOL_PATH },
+      { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],
     locale
   );

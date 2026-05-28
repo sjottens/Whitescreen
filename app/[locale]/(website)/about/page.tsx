@@ -1,8 +1,10 @@
 // app/[locale]/(website)/about/page.tsx - About page with multilingual SEO
 
 import { Metadata } from 'next';
+import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 
 export async function generateMetadata(props: {
@@ -56,6 +58,13 @@ export default async function AboutPage({ params }: AboutPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
         suppressHydrationWarning
+      />
+
+      <Breadcrumbs
+        items={[
+          { name: translate('home'), path: getLocalizedPath(locale, '/') },
+          { name: translate('about') },
+        ]}
       />
 
       {/* Hero Section */}

@@ -63,6 +63,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'brightness-test',
     'contrast-test',
     'zoom-lighting',
+    // Device-specific tests (planned for expansion)
+    'iphone-screen-test',
+    'ipad-screen-test',
+    'macbook-screen-test',
+    'android-screen-test',
+    // Monitor brand tests (planned for expansion)
+    'monitor-test-asus',
+    'monitor-test-lg',
+    'monitor-test-samsung',
+    'monitor-test-dell',
+    // Resolution-specific tests (planned for expansion)
+    '1080p-screen-test',
+    '2k-screen-test',
+    '4k-screen-test',
+    '8k-screen-test',
   ];
 
   tools.forEach((toolId) => {

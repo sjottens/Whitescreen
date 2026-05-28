@@ -4,23 +4,22 @@ import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { t } from '@/lib/translations';
+import { TEST_TOOLS } from '@/lib/constants';
 import ContrastTest from '@/components/tools/contrast-test';
 
-const TOOL_NAME = 'Contrast Test';
-const TOOL_DESCRIPTION = 'Professional WCAG-compliant contrast testing tool. Test color pairs, color vision deficiency simulation, and accessibility compliance.';
-const TOOL_PATH = '/contrast-test';
-const KEYWORDS = ['contrast test', 'WCAG contrast', 'color vision deficiency', 'accessibility testing'];
+const TOOL = TEST_TOOLS.find((t) => t.id === 'contrast-test')!;
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
   return generateMultilingualMetadata({
     locale,
-    title: TOOL_NAME,
-    description: TOOL_DESCRIPTION,
-    path: TOOL_PATH,
-    keywords: KEYWORDS,
+    title: translate(TOOL.nameKey as any),
+    description: translate(TOOL.descriptionKey as any),
+    path: TOOL.path,
+    keywords: TOOL.keywords,
   });
 }
 
@@ -31,7 +30,7 @@ export default async function ContrastTestPage({ params }: { params: Promise<{ l
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: TOOL_NAME, path: TOOL_PATH },
+      { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],
     locale
   );

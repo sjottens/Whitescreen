@@ -4,11 +4,21 @@ import { ReactNode } from 'react';
 
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
 
 interface LocaleLayoutProps {
   children: ReactNode;
   params: Promise<{ locale: string }>;
+}
+
+/**
+ * Generate static params for all supported locales
+ * Tells Next.js to pre-render pages for en, nl, es, de, fr, it, pt, ja
+ */
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({
+    locale,
+  }));
 }
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {

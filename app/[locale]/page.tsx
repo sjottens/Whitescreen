@@ -2,12 +2,13 @@
 // Note: Using root layout metadata (no dynamic generateMetadata)
 
 import Link from 'next/link';
-import { ArrowRight, Check, Zap, Smartphone, Shield, Cpu } from 'lucide-react';
+import { ArrowRight, Check, Zap, Smartphone, Shield, Cpu, Monitor, Gamepad2 } from 'lucide-react';
 import { faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS } from '@/lib/constants';
 import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
+import { getLocalizedPath } from '@/lib/link-utils';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -104,8 +105,8 @@ export default async function HomePage({ params }: HomePageProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white font-bold text-lg">{tool.name}</h3>
-                  <p className="text-white/80 text-sm">{tool.description}</p>
+                  <h3 className="text-white font-bold text-lg">{translate(tool.nameKey as any)}</h3>
+                  <p className="text-white/80 text-sm">{translate(tool.descriptionKey as any)}</p>
                 </div>
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                   <ArrowRight className="w-5 h-5 text-white" />
@@ -116,13 +117,134 @@ export default async function HomePage({ params }: HomePageProps) {
 
           <div className="text-center mt-12">
             <LinkButton href={`/${locale !== 'en' ? locale : ''}${locale !== 'en' ? '/' : ''}tools`.replace(/\/+/g, '/')} variant="outline" size="lg">
-              Browse All {COLOR_TOOLS.length + TEST_TOOLS.length}+ Tools
+              {translate('browse_all_tools').replace('{count}', String(COLOR_TOOLS.length + TEST_TOOLS.length))}
             </LinkButton>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Monitor & Device Tests Section */}
+      <section className="section-alt">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">{translate('monitor_tests')}</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Test your display with monitor-specific and device-specific test pages designed for different screen types and use cases.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Monitor Brand Tests */}
+            <Link
+              href={getLocalizedPath(locale, '/monitor-test/asus')}
+              className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500"
+            >
+              <Monitor className="w-8 h-8 text-blue-600 mb-3" />
+              <h3 className="text-lg font-bold mb-2">{translate('monitor_asus')}</h3>
+              <p className="text-slate-600 text-sm mb-4">{translate('monitor_asus_description')}</p>
+              <div className="flex items-center text-blue-600 font-semibold text-sm">
+                {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
+              </div>
+            </Link>
+
+            <Link
+              href={getLocalizedPath(locale, '/monitor-test/lg')}
+              className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-red-500"
+            >
+              <Monitor className="w-8 h-8 text-red-600 mb-3" />
+              <h3 className="text-lg font-bold mb-2">{translate('monitor_lg')}</h3>
+              <p className="text-slate-600 text-sm mb-4">{translate('monitor_lg_description')}</p>
+              <div className="flex items-center text-red-600 font-semibold text-sm">
+                {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
+              </div>
+            </Link>
+
+            <Link
+              href={getLocalizedPath(locale, '/monitor-test/samsung')}
+              className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-cyan-500"
+            >
+              <Monitor className="w-8 h-8 text-cyan-600 mb-3" />
+              <h3 className="text-lg font-bold mb-2">{translate('monitor_samsung')}</h3>
+              <p className="text-slate-600 text-sm mb-4">{translate('monitor_samsung_description')}</p>
+              <div className="flex items-center text-cyan-600 font-semibold text-sm">
+                {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
+              </div>
+            </Link>
+
+            <Link
+              href={getLocalizedPath(locale, '/monitor-test/dell')}
+              className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-purple-500"
+            >
+              <Monitor className="w-8 h-8 text-purple-600 mb-3" />
+              <h3 className="text-lg font-bold mb-2">{translate('monitor_dell')}</h3>
+              <p className="text-slate-600 text-sm mb-4">{translate('monitor_dell_description')}</p>
+              <div className="flex items-center text-purple-600 font-semibold text-sm">
+                {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
+              </div>
+            </Link>
+          </div>
+
+          {/* Device Tests Grid */}
+          <div className="mt-12">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-bold mb-4">{translate('device_tests_title')}</h3>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                Specialized test pages for different devices and display types.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Link
+                href={getLocalizedPath(locale, '/iphone-screen-test')}
+                className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-gray-500"
+              >
+                <Smartphone className="w-8 h-8 text-gray-600 mb-3" />
+                <h3 className="text-lg font-bold mb-2">{translate('iphone_test')}</h3>
+                <p className="text-slate-600 text-sm mb-4">{translate('iphone_test_description')}</p>
+                <div className="flex items-center text-gray-600 font-semibold text-sm">
+                  {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
+              </Link>
+
+              <Link
+                href={getLocalizedPath(locale, '/macbook-screen-test')}
+                className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-slate-500"
+              >
+                <Smartphone className="w-8 h-8 text-slate-600 mb-3" />
+                <h3 className="text-lg font-bold mb-2">{translate('macbook_test')}</h3>
+                <p className="text-slate-600 text-sm mb-4">{translate('macbook_test_description')}</p>
+                <div className="flex items-center text-slate-600 font-semibold text-sm">
+                  {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
+              </Link>
+
+              <Link
+                href={getLocalizedPath(locale, '/gaming-monitor-test')}
+                className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-orange-500"
+              >
+                <Gamepad2 className="w-8 h-8 text-orange-600 mb-3" />
+                <h3 className="text-lg font-bold mb-2">{translate('gaming_monitor_test')}</h3>
+                <p className="text-slate-600 text-sm mb-4">{translate('gaming_monitor_test_description')}</p>
+                <div className="flex items-center text-orange-600 font-semibold text-sm">
+                  {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
+              </Link>
+
+              <Link
+                href={getLocalizedPath(locale, '/oled-tv-test')}
+                className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-indigo-500"
+              >
+                <Monitor className="w-8 h-8 text-indigo-600 mb-3" />
+                <h3 className="text-lg font-bold mb-2">{translate('oled_tv_test')}</h3>
+                <p className="text-slate-600 text-sm mb-4">{translate('oled_tv_test_description')}</p>
+                <div className="flex items-center text-indigo-600 font-semibold text-sm">
+                  {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="section-alt">
         <div className="container">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">{translate('features_title')}</h2>

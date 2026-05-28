@@ -1,8 +1,10 @@
 // app/[locale]/(website)/terms/page.tsx - Terms & Conditions page with EU compliance
 
 import { Metadata } from 'next';
+import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
 
@@ -10,11 +12,12 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
 
   return generateMultilingualMetadata({
     locale,
-    title: 'Terms & Conditions',
-    description: 'Terms and Conditions for TestaScreen. Please read these terms carefully before using our services.',
+    title: translate('terms_title'),
+    description: translate('terms_acceptance_text'),
     path: '/terms',
   });
 }
@@ -41,6 +44,13 @@ export default async function TermsPage({ params }: TermsPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
         suppressHydrationWarning
+      />
+
+      <Breadcrumbs
+        items={[
+          { name: translate('home'), path: getLocalizedPath(locale, '/') },
+          { name: translate('terms') },
+        ]}
       />
 
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">

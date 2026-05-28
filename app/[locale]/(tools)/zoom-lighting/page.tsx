@@ -13,10 +13,11 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
   return generateMultilingualMetadata({
     locale,
-    title: TOOL.name,
-    description: TOOL.description,
+    title: translate(TOOL.nameKey as any),
+    description: translate(TOOL.descriptionKey as any),
     path: TOOL.path,
     keywords: TOOL.keywords,
   });
@@ -29,7 +30,7 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: TOOL.name, path: TOOL.path },
+      { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],
     locale
   );
@@ -46,8 +47,8 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
   return (
     <>
       <ToolLayout
-        title={TOOL.name}
-        description={TOOL.description}
+        title={translate(TOOL.nameKey as any)}
+        description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
         locale={locale}

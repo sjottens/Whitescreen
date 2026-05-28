@@ -1,8 +1,10 @@
 // app/[locale]/(website)/faq/page.tsx
 
 import { Metadata } from 'next';
+import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { generateMultilingualMetadata, faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { FAQ_ITEMS } from '@/lib/constants';
 
@@ -47,6 +49,19 @@ export default async function FAQPage({ params }: FAQPageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+        suppressHydrationWarning
+      />
+
+      <Breadcrumbs
+        items={[
+          { name: translate('home'), path: getLocalizedPath(locale, '/') },
+          { name: translate('faq') },
+        ]}
+      />
+
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('faq_title')}</h1>

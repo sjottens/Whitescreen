@@ -14,10 +14,11 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
   return generateMultilingualMetadata({
     locale,
-    title: TOOL.name,
-    description: TOOL.description,
+    title: translate(TOOL.nameKey as any),
+    description: translate(TOOL.descriptionKey as any),
     path: TOOL.path,
     keywords: TOOL.keywords,
   });
@@ -35,7 +36,7 @@ export default async function BlackScreenPage({ params }: PageProps) {
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: TOOL.name, path: TOOL.path },
+      { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],
     locale
   );
@@ -50,6 +51,21 @@ export default async function BlackScreenPage({ params }: PageProps) {
     translate('feature_free_no_registration'),
   ];
 
+  const faqs = [
+    {
+      question: translate('tool_faq_1_q' as any),
+      answer: translate('tool_faq_1_a' as any),
+    },
+    {
+      question: translate('tool_faq_2_q' as any),
+      answer: translate('tool_faq_2_a' as any),
+    },
+    {
+      question: translate('tool_faq_3_q' as any),
+      answer: translate('tool_faq_3_a' as any),
+    },
+  ];
+
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'black-screen').slice(0, 2).map((t) => ({
     name: translate(t.id.replace(/-/g, '_') as any),
     path: t.path,
@@ -59,14 +75,15 @@ export default async function BlackScreenPage({ params }: PageProps) {
   return (
     <>
       <ToolLayout
-        title={TOOL.name}
-        description={TOOL.description}
+        title={translate(TOOL.nameKey as any)}
+        description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
+        faqs={faqs}
         relatedTools={relatedTools}
         locale={locale}
       >
-        <ScreenDisplay color="#000000" title={TOOL.name} locale={locale} />
+        <ScreenDisplay color="#000000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
     </>
   );

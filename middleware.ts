@@ -1,10 +1,10 @@
 // middleware.ts - Internationalized routing with hidden default locale
-// Routes: / (English) and /nl/ (Dutch)
+// Routes: / (English), /nl/, /es/, /de/, /fr/, /it/, /pt/, /ja/
 // Does NOT force-redirect crawlers based on IP/browser language
 
 import { NextRequest, NextResponse } from 'next/server';
 
-const SUPPORTED_LOCALES = ['en', 'nl', 'es'];
+const SUPPORTED_LOCALES = ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'ja'];
 const DEFAULT_LOCALE = 'en';
 
 export function middleware(request: NextRequest) {
@@ -31,6 +31,16 @@ export function middleware(request: NextRequest) {
       targetLocale = 'nl';
     } else if (acceptLanguage.startsWith('es')) {
       targetLocale = 'es';
+    } else if (acceptLanguage.startsWith('de')) {
+      targetLocale = 'de';
+    } else if (acceptLanguage.startsWith('fr')) {
+      targetLocale = 'fr';
+    } else if (acceptLanguage.startsWith('it')) {
+      targetLocale = 'it';
+    } else if (acceptLanguage.startsWith('pt')) {
+      targetLocale = 'pt';
+    } else if (acceptLanguage.startsWith('ja')) {
+      targetLocale = 'ja';
     }
   }
 

@@ -18,7 +18,7 @@ export default function Footer({ locale }: FooterProps) {
     <footer className="bg-slate-900 text-slate-100 border-t border-slate-800">
       {/* Main Footer Content */}
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <h3 className="text-white font-bold text-lg mb-4">{SITE_NAME}</h3>
@@ -35,7 +35,7 @@ export default function Footer({ locale }: FooterProps) {
               {COLOR_TOOLS.slice(0, 5).map((tool) => (
                 <li key={tool.id}>
                   <Link href={getLocalizedPath(locale, tool.path)} className="text-white hover:text-slate-100 transition-colors text-sm">
-                    {tool.name}
+                    {translate(tool.nameKey as any)}
                   </Link>
                 </li>
               ))}
@@ -49,10 +49,64 @@ export default function Footer({ locale }: FooterProps) {
               {TEST_TOOLS.slice(0, 5).map((tool) => (
                 <li key={tool.id}>
                   <Link href={getLocalizedPath(locale, tool.path)} className="text-white hover:text-slate-100 transition-colors text-sm">
-                    {tool.name}
+                    {translate(tool.nameKey as any)}
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Monitor Tests Section */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">{translate('monitor_tests')}</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href={getLocalizedPath(locale, '/monitor-test/asus')} className="text-white hover:text-blue-400 transition-colors text-sm">
+                  {translate('monitor_asus')}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/monitor-test/lg')} className="text-white hover:text-red-400 transition-colors text-sm">
+                  {translate('monitor_lg')}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/monitor-test/samsung')} className="text-white hover:text-cyan-400 transition-colors text-sm">
+                  {translate('monitor_samsung')}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/monitor-test/dell')} className="text-white hover:text-purple-400 transition-colors text-sm">
+                  {translate('monitor_dell')}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Device Tests Section */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">{translate('device_tests_title')}</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href={getLocalizedPath(locale, '/iphone-screen-test')} className="text-white hover:text-gray-400 transition-colors text-sm">
+                  {translate('iphone_test')}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/macbook-screen-test')} className="text-white hover:text-slate-400 transition-colors text-sm">
+                  {translate('macbook_test')}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/gaming-monitor-test')} className="text-white hover:text-orange-400 transition-colors text-sm">
+                  {translate('gaming_monitor_test')}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/oled-tv-test')} className="text-white hover:text-indigo-400 transition-colors text-sm">
+                  {translate('oled_tv_test')}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -70,13 +124,6 @@ export default function Footer({ locale }: FooterProps) {
                   {translate('about')}
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          {/* Legal Section */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">{translate('privacy')}</h4>
-            <ul className="space-y-2">
               <li>
                 <Link href={getLocalizedPath(locale, '/terms')} className="text-white hover:text-slate-100 transition-colors text-sm">
                   {translate('terms')}

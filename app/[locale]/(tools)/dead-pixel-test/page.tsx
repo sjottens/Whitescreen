@@ -4,23 +4,22 @@ import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { t } from '@/lib/translations';
+import { TEST_TOOLS } from '@/lib/constants';
 import DeadPixelTest from '@/components/tools/dead-pixel-test';
 
-const TOOL_NAME = 'Dead Pixel Test';
-const TOOL_DESCRIPTION = 'Professional dead pixel detection tool. Test your monitor for stuck, hot, or dead pixels with full-color testing.';
-const TOOL_PATH = '/dead-pixel-test';
-const KEYWORDS = ['dead pixel test', 'stuck pixel', 'monitor test', 'screen testing tool'];
+const TOOL = TEST_TOOLS.find((t) => t.id === 'dead-pixel-test')!;
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
   return generateMultilingualMetadata({
     locale,
-    title: TOOL_NAME,
-    description: TOOL_DESCRIPTION,
-    path: TOOL_PATH,
-    keywords: KEYWORDS,
+    title: translate(TOOL.nameKey as any),
+    description: translate(TOOL.descriptionKey as any),
+    path: TOOL.path,
+    keywords: TOOL.keywords,
   });
 }
 
@@ -31,7 +30,7 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: TOOL_NAME, path: TOOL_PATH },
+      { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],
     locale
   );

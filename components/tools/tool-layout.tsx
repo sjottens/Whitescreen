@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { LinkButton } from '@/components/ui/button';
 import { t } from '@/lib/translations';
 import { getLocalizedPath } from '@/lib/link-utils';
@@ -13,9 +14,11 @@ interface ToolLayoutProps {
   description: string;
   children: ReactNode;
   locale: Locale;
+  toolName?: string;
   relatedTools?: Array<{ name: string; path: string; color?: string }>;
   features?: string[];
   useCases?: string[];
+  faqs?: Array<{ question: string; answer: string }>;
 }
 
 export default function ToolLayout({
@@ -23,14 +26,25 @@ export default function ToolLayout({
   description,
   children,
   locale,
+  toolName,
   relatedTools = [],
   features = [],
   useCases = [],
+  faqs = [],
 }: ToolLayoutProps) {
   const translate = t(locale);
 
   return (
     <>
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { name: translate('home'), path: getLocalizedPath(locale, '/') },
+          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: toolName || title },
+        ]}
+      />
+
       {/* Header Bar */}
       <div className="sticky top-20 z-30 bg-white border-b border-slate-200 backdrop-blur-sm bg-opacity-95">
         <div className="container py-3">
@@ -176,38 +190,24 @@ export default function ToolLayout({
             )}
 
             {/* FAQ Section */}
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">FAQ</h2>
-              <div className="space-y-4">
-                <details className="group card cursor-pointer">
-                  <summary className="flex items-center justify-between font-semibold">
-                    Is this tool compatible with my device?
-                    <span className="group-open:rotate-180 transition-transform">↓</span>
-                  </summary>
-                  <p className="mt-3 text-slate-600">
-                    Yes! Our tool works on all modern devices including smartphones, tablets, and desktop computers. It works across all browsers.
-                  </p>
-                </details>
-                <details className="group card cursor-pointer">
-                  <summary className="flex items-center justify-between font-semibold">
-                    Can I use this offline?
-                    <span className="group-open:rotate-180 transition-transform">↓</span>
-                  </summary>
-                  <p className="mt-3 text-slate-600">
-                    Yes! Once the page loads, the tool works offline. We support PWA installation for a native app experience.
-                  </p>
-                </details>
-                <details className="group card cursor-pointer">
-                  <summary className="flex items-center justify-between font-semibold">
-                    How can I share this tool?
-                    <span className="group-open:rotate-180 transition-transform">↓</span>
-                  </summary>
-                  <p className="mt-3 text-slate-600">
-                    Click the share button at the top of the page to share directly to social media or copy the link to share manually.
-                  </p>
-                </details>
+            {faqs.length > 0 && (
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('faq')}</h2>
+                <div className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <details key={index} className="group card cursor-pointer">
+                      <summary className="flex items-center justify-between font-semibold">
+                        {faq.question}
+                        <span className="group-open:rotate-180 transition-transform">↓</span>
+                      </summary>
+                      <p className="mt-3 text-slate-600">
+                        {faq.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* CTA */}
             <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-8 text-center">

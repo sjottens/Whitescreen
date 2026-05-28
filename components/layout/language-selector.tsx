@@ -21,6 +21,11 @@ export default function LanguageSelector({ locale, currentPath }: LanguageSelect
     { locale: 'en', code: 'EN', name: 'English' },
     { locale: 'nl', code: 'NL', name: 'Nederlands' },
     { locale: 'es', code: 'ES', name: 'Español' },
+    { locale: 'de', code: 'DE', name: 'Deutsch' },
+    { locale: 'fr', code: 'FR', name: 'Français' },
+    { locale: 'it', code: 'IT', name: 'Italiano' },
+    { locale: 'pt', code: 'PT', name: 'Português' },
+    { locale: 'ja', code: 'JA', name: '日本語' },
   ];
 
   const currentLanguage = languages.find((lang) => lang.locale === locale) || languages[0];

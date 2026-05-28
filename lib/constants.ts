@@ -5,12 +5,13 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://testascreen
 export const SITE_DESCRIPTION = 'Elite screen testing and display tools for photographers, videographers, gamers, and professionals';
 
 // All available tools - Color screens, special tools, and test tools
+// Note: nameKey and descriptionKey reference translation keys in lib/translations.ts
 export const COLOR_TOOLS = [
   {
     id: 'white-screen',
-    name: 'White Screen',
+    nameKey: 'white_screen',
     path: '/white-screen',
-    description: 'Pure white full screen for display testing and screen cleaning',
+    descriptionKey: 'white_screen_desc',
     color: '#FFFFFF',
     hex: 'FFFFFF',
     rgb: '255, 255, 255',
@@ -20,9 +21,9 @@ export const COLOR_TOOLS = [
   },
   {
     id: 'black-screen',
-    name: 'Black Screen',
+    nameKey: 'black_screen',
     path: '/black-screen',
-    description: 'Pure black full screen for testing dark areas and contrast',
+    descriptionKey: 'black_screen_desc',
     color: '#000000',
     hex: '000000',
     rgb: '0, 0, 0',
@@ -32,9 +33,9 @@ export const COLOR_TOOLS = [
   },
   {
     id: 'red-screen',
-    name: 'Red Screen',
+    nameKey: 'red_screen',
     path: '/red-screen',
-    description: 'Pure red full screen for color accuracy testing and lighting effects',
+    descriptionKey: 'red_screen_desc',
     color: '#FF0000',
     hex: 'FF0000',
     rgb: '255, 0, 0',
@@ -44,9 +45,9 @@ export const COLOR_TOOLS = [
   },
   {
     id: 'blue-screen',
-    name: 'Blue Screen',
+    nameKey: 'blue_screen',
     path: '/blue-screen',
-    description: 'Blue screen for chroma key effects and professional video work',
+    descriptionKey: 'blue_screen_desc',
     color: '#0000FF',
     hex: '0000FF',
     rgb: '0, 0, 255',
@@ -56,9 +57,9 @@ export const COLOR_TOOLS = [
   },
   {
     id: 'green-screen',
-    name: 'Green Screen',
+    nameKey: 'green_screen',
     path: '/green-screen',
-    description: 'Green screen for chroma key video production and streaming',
+    descriptionKey: 'green_screen_desc',
     color: '#00FF00',
     hex: '00FF00',
     rgb: '0, 255, 0',
@@ -68,9 +69,9 @@ export const COLOR_TOOLS = [
   },
   {
     id: 'pink-screen',
-    name: 'Pink Screen',
+    nameKey: 'pink_screen',
     path: '/pink-screen',
-    description: 'Pink screen for aesthetic lighting and creative projects',
+    descriptionKey: 'pink_screen_desc',
     color: '#FF1493',
     hex: 'FF1493',
     rgb: '255, 20, 147',
@@ -80,9 +81,9 @@ export const COLOR_TOOLS = [
   },
   {
     id: 'purple-screen',
-    name: 'Purple Screen',
+    nameKey: 'purple_screen',
     path: '/purple-screen',
-    description: 'Purple screen for creative lighting and display testing',
+    descriptionKey: 'purple_screen_desc',
     color: '#800080',
     hex: '800080',
     rgb: '128, 0, 128',
@@ -92,9 +93,9 @@ export const COLOR_TOOLS = [
   },
   {
     id: 'orange-screen',
-    name: 'Orange Screen',
+    nameKey: 'orange_screen',
     path: '/orange-screen',
-    description: 'Orange screen for warm lighting effects and display testing',
+    descriptionKey: 'orange_screen_desc',
     color: '#FFA500',
     hex: 'FFA500',
     rgb: '255, 165, 0',
@@ -104,9 +105,9 @@ export const COLOR_TOOLS = [
   },
   {
     id: 'yellow-screen',
-    name: 'Yellow Screen',
+    nameKey: 'yellow_screen',
     path: '/yellow-screen',
-    description: 'Bright yellow screen for color testing and bright lighting effects',
+    descriptionKey: 'yellow_screen_desc',
     color: '#FFFF00',
     hex: 'FFFF00',
     rgb: '255, 255, 0',
@@ -120,36 +121,36 @@ export const COLOR_TOOLS = [
 export const SPECIAL_TOOLS = [
   {
     id: 'zoom-lighting',
-    name: 'Zoom Lighting',
+    nameKey: 'zoom_lighting',
     path: '/zoom-lighting',
-    description: 'Professional lighting solutions for video calls and streaming',
+    descriptionKey: 'zoom_lighting_desc',
     keywords: ['zoom lighting', 'video call lighting', 'streaming lighting'],
     useCases: ['video_call_lighting', 'streaming', 'professional_meetings'],
     searchVolume: 3200,
   },
   {
     id: 'tip-screen',
-    name: 'Tip Screen',
+    nameKey: 'tip_screen',
     path: '/tip-screen',
-    description: 'POS tipping screen for restaurants, cafes, and retail',
+    descriptionKey: 'tip_screen_desc',
     keywords: ['tip screen', 'tipping screen', 'pos screen'],
     useCases: ['Point of Sale', 'Retail', 'Restaurants'],
     searchVolume: 1500,
   },
   {
     id: 'dvd-screensaver',
-    name: 'DVD Screensaver',
+    nameKey: 'dvd_screensaver',
     path: '/dvd-screensaver',
-    description: 'Classic DVD screensaver animation nostalgic experience',
+    descriptionKey: 'dvd_screensaver_desc',
     keywords: ['dvd screensaver', 'dvd logo screensaver', 'nostalgia'],
     useCases: ['Fun', 'Nostalgia', 'Screensaver'],
     searchVolume: 2800,
   },
   {
     id: 'broken-screen',
-    name: 'Broken Screen',
+    nameKey: 'broken_screen',
     path: '/broken-screen',
-    description: 'Prank broken screen effect with sound and animation',
+    descriptionKey: 'broken_screen_desc',
     keywords: ['broken screen', 'broken screen prank', 'screen prank'],
     useCases: ['Prank', 'Entertainment', 'Fun'],
     searchVolume: 3500,
@@ -160,18 +161,18 @@ export const SPECIAL_TOOLS = [
 export const TEST_TOOLS = [
   {
     id: 'dead-pixel-test',
-    name: 'Dead Pixel Test',
+    nameKey: 'dead_pixel_test',
     path: '/dead-pixel-test',
-    description: 'Comprehensive dead pixel detection tool for monitors and displays',
+    descriptionKey: 'dead_pixel_test_desc',
     keywords: ['dead pixel test', 'how to check dead pixels', 'pixel test'],
     searchVolume: 6700,
     difficulty: 28,
   },
   {
     id: 'brightness-test',
-    name: 'Brightness Test',
+    nameKey: 'brightness_test',
     path: '/brightness-test',
-    description: 'Test monitor brightness levels, gamma response, and display uniformity with precision tools',
+    descriptionKey: 'brightness_test_desc',
     keywords: ['brightness test', 'monitor brightness test', 'gamma test', 'monitor calibration'],
     useCases: ['monitor_calibration', 'brightness_testing', 'gamma_verification'],
     searchVolume: 680,
@@ -179,9 +180,9 @@ export const TEST_TOOLS = [
   },
   {
     id: 'contrast-test',
-    name: 'Contrast Test',
+    nameKey: 'contrast_test',
     path: '/contrast-test',
-    description: 'Test monitor contrast ratio and WCAG accessibility compliance with color vision deficiency simulation',
+    descriptionKey: 'contrast_test_desc',
     keywords: [
       'contrast test',
       'monitor contrast test',
@@ -193,6 +194,135 @@ export const TEST_TOOLS = [
     useCases: ['accessibility_testing', 'wcag_compliance', 'color_vision_deficiency'],
     searchVolume: 540,
     difficulty: 26,
+  },
+];
+
+// Screen variants for programmatic SEO (Phase 1)
+// Each screen × 3 variants = 9 colors × 3 variants = 27 pages per language
+export const SCREEN_VARIANTS = {
+  '4k': {
+    id: '4k',
+    slug: '4k',
+    titleSuffix: '4K Resolution',
+    descSuffix: 'High-resolution 4K display testing',
+    keywords: ['4K screen', '4K test', '4K resolution display', '4K monitor test', 'UHD display'],
+    searchVolume: 12400,
+    difficulty: 32,
+  },
+  'oled': {
+    id: 'oled',
+    slug: 'oled',
+    titleSuffix: 'OLED Display',
+    descSuffix: 'OLED panel testing and color accuracy',
+    keywords: ['OLED screen', 'OLED test', 'OLED display', 'OLED monitor', 'organic LED test'],
+    searchVolume: 8200,
+    difficulty: 28,
+  },
+  'fullscreen': {
+    id: 'fullscreen',
+    slug: 'fullscreen',
+    titleSuffix: 'Full Screen Mode',
+    descSuffix: 'Full screen display without distractions',
+    keywords: ['fullscreen display', 'full screen test', 'fullscreen mode', 'no UI test'],
+    searchVolume: 5600,
+    difficulty: 22,
+  },
+};
+
+// Monitor brands and models for programmatic SEO (Phase 2)
+export const MONITOR_BRANDS = {
+  'asus': {
+    id: 'asus',
+    name: 'ASUS',
+    slug: 'asus',
+    models: [
+      { id: 'rog-swift-pg279qm', name: 'ROG Swift PG279QM', slug: 'rog-swift-pg279qm', specs: '27" 1440p 240Hz IPS' },
+      { id: 'rog-swift-pg32uqx', name: 'ROG Swift PG32UQX', slug: 'rog-swift-pg32uqx', specs: '32" 4K 144Hz Mini-LED' },
+      { id: 'asus-pa248qv', name: 'ASUS PA248QV', slug: 'asus-pa248qv', specs: '24" 1920x1200 24-bit color' },
+    ],
+    keywords: ['ASUS monitor test', 'ROG monitor test', 'gaming monitor test'],
+  },
+  'lg': {
+    id: 'lg',
+    name: 'LG',
+    slug: 'lg',
+    models: [
+      { id: 'lg-27gn950', name: 'LG 27GN950', slug: 'lg-27gn950', specs: '27" 1440p 240Hz Nano IPS' },
+      { id: 'lg-34gp83a', name: 'LG 34GP83A-B', slug: 'lg-34gp83a', specs: '34" Ultrawide 1440p 144Hz' },
+      { id: 'lg-27uk850', name: 'LG 27UK850', slug: 'lg-27uk850', specs: '27" 4K 60Hz IPS' },
+    ],
+    keywords: ['LG monitor test', 'LG display test', 'ultrawide monitor test'],
+  },
+  'samsung': {
+    id: 'samsung',
+    name: 'Samsung',
+    slug: 'samsung',
+    models: [
+      { id: 'samsung-odyssey-g7', name: 'Samsung Odyssey G7', slug: 'samsung-odyssey-g7', specs: '32" 1440p 240Hz VA Curved' },
+      { id: 'samsung-m7', name: 'Samsung M7', slug: 'samsung-m7', specs: '43" 4K Smart Monitor' },
+      { id: 'samsung-crf24', name: 'Samsung CRF24', slug: 'samsung-crf24', specs: '24" 1920x1080 Curved' },
+    ],
+    keywords: ['Samsung monitor test', 'Samsung gaming monitor', 'curved monitor test'],
+  },
+  'dell': {
+    id: 'dell',
+    name: 'Dell',
+    slug: 'dell',
+    models: [
+      { id: 'dell-s2721dqf', name: 'Dell S2721DQF', slug: 'dell-s2721dqf', specs: '27" 1440p 165Hz IPS' },
+      { id: 'dell-u2723de', name: 'Dell U2723DE', slug: 'dell-u2723de', specs: '27" 2560x1440 USB-C' },
+      { id: 'dell-u3821dw', name: 'Dell U3821DW', slug: 'dell-u3821dw', specs: '38" Ultrawide 3840x1600' },
+    ],
+    keywords: ['Dell monitor test', 'Dell productivity monitor', 'ultrawide monitor'],
+  },
+};
+
+// Device-specific screen tests (Phase 3)
+export const DEVICE_SCREEN_TESTS = [
+  {
+    id: 'iphone-screen-test',
+    slug: 'iphone-screen-test',
+    name: 'iPhone Screen Test',
+    description: 'Test iPhone display quality, colors, brightness, and pixel density',
+    keywords: ['iPhone screen test', 'Apple display test', 'smartphone screen test', 'iPhone display quality'],
+    searchVolume: 4200,
+    difficulty: 24,
+  },
+  {
+    id: 'macbook-screen-test',
+    slug: 'macbook-screen-test',
+    name: 'MacBook Screen Test',
+    description: 'Test MacBook Pro/Air Retina display for color accuracy and uniformity',
+    keywords: ['MacBook screen test', 'Retina display test', 'laptop display test', 'Mac monitor test'],
+    searchVolume: 3100,
+    difficulty: 22,
+  },
+  {
+    id: 'oled-tv-test',
+    slug: 'oled-tv-test',
+    name: 'OLED TV Test',
+    description: 'Test OLED TV panel quality, color accuracy, and pixel performance',
+    keywords: ['OLED TV test', 'television screen test', 'TV display test', 'LG OLED test'],
+    searchVolume: 5400,
+    difficulty: 26,
+  },
+  {
+    id: 'gaming-monitor-test',
+    slug: 'gaming-monitor-test',
+    name: 'Gaming Monitor Test',
+    description: 'Test gaming monitor performance, response time, and color accuracy',
+    keywords: ['gaming monitor test', '144Hz monitor test', 'gaming display test', '240Hz test'],
+    searchVolume: 6800,
+    difficulty: 28,
+  },
+  {
+    id: 'ipad-screen-test',
+    slug: 'ipad-screen-test',
+    name: 'iPad Screen Test',
+    description: 'Test iPad Pro and iPad Air display quality and color reproduction',
+    keywords: ['iPad screen test', 'iPad display test', 'tablet screen test', 'Retina display'],
+    searchVolume: 2800,
+    difficulty: 20,
   },
 ];
 
