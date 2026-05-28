@@ -1,4 +1,4 @@
-// lib/translations.ts - Multilingual translations (English, Dutch, Spanish)
+﻿// lib/translations.ts - Multilingual translations (English, Dutch, Spanish)
 // All translations are professionally localized with natural language
 
 export const translations = {
@@ -167,7 +167,7 @@ export const translations = {
     contact_message_placeholder: 'How can we help?',
     contact_send_button: 'Send Message',
     contact_email_direct: 'Direct Email',
-    contact_email_address: 'support@TestaScreen.eu',
+    contact_email_address: 'support@TestaScreen.com',
     contact_response_time: 'We respond within 24 hours',
     
     // FAQ Page
@@ -571,7 +571,7 @@ export const translations = {
     contact_message_placeholder: 'Hoe kunnen we je helpen?',
     contact_send_button: 'Bericht Verzenden',
     contact_email_direct: 'Direct E-mail',
-    contact_email_address: 'support@TestaScreen.eu',
+    contact_email_address: 'support@TestaScreen.com',
     contact_response_time: 'We reageren binnen 24 uur',
     
     // FAQ Page
@@ -1480,7 +1480,7 @@ export const translations = {
     contact_message_placeholder: 'Wie können wir helfen?',
     contact_send_button: 'Nachricht senden',
     contact_email_direct: 'Direkte E-Mail',
-    contact_email_address: 'support@TestaScreen.eu',
+    contact_email_address: 'support@TestaScreen.com',
     contact_response_time: 'Wir antworten innerhalb von 24 Stunden',
     
     // FAQ Page
@@ -1635,6 +1635,15 @@ export const translations = {
     about_description: 'En savoir plus sur TestaScreen et notre mission de fournir des outils professionnels de test d\'écran',
     contact_title: 'Nous Contacter',
     contact_description: 'Contactez notre équipe pour obtenir de l\'aide et des commentaires',
+    contact_hero_subtitle: 'Prenez contact avec notre équipe. Nous aimerions beaucoup vous entendre.',
+    contact_email_label: 'Adresse E-mail',
+    contact_email_placeholder: 'votre@email.com',
+    contact_message_label: 'Message',
+    contact_message_placeholder: 'Comment pouvons-nous vous aider?',
+    contact_send_button: 'Envoyer le Message',
+    contact_email_direct: 'E-mail Direct',
+    contact_email_address: 'support@TestaScreen.com',
+    contact_response_time: 'Nous répondons dans les 24 heures',
     privacy_title: 'Politique de Confidentialité',
     privacy_description: 'Comment nous protégeons et gérons vos données',
     faq_title: 'Questions Fréquemment Posées',
@@ -1993,6 +2002,15 @@ export const translations = {
     about_description: 'Scopri di più su TestaScreen e la nostra missione di fornire strumenti professionali di test dello schermo',
     contact_title: 'Contattaci',
     contact_description: 'Contatta il nostro team per supporto e feedback',
+    contact_hero_subtitle: 'Contatta il nostro team. Ci piacerebbe sentire da te.',
+    contact_email_label: 'Indirizzo E-mail',
+    contact_email_placeholder: 'tuo@email.com',
+    contact_message_label: 'Messaggio',
+    contact_message_placeholder: 'Come possiamo aiutarti?',
+    contact_send_button: 'Invia Messaggio',
+    contact_email_direct: 'E-mail Diretto',
+    contact_email_address: 'support@TestaScreen.com',
+    contact_response_time: 'Rispondiamo entro 24 ore',
     privacy_title: 'Informativa sulla Privacy',
     privacy_description: 'Come proteggiamo e gestiamo i tuoi dati',
     faq_title: 'Domande Frequenti',
@@ -2351,6 +2369,15 @@ export const translations = {
     about_description: 'Saiba mais sobre TestaScreen e nossa missão de fornecer ferramentas profissionais de teste de tela',
     contact_title: 'Contate-nos',
     contact_description: 'Entre em contato com nossa equipe para suporte e feedback',
+    contact_hero_subtitle: 'Entre em contato com nossa equipe. Adoraríamos ouvir você.',
+    contact_email_label: 'Endereço de E-mail',
+    contact_email_placeholder: 'seu@email.com',
+    contact_message_label: 'Mensagem',
+    contact_message_placeholder: 'Como podemos ajudá-lo?',
+    contact_send_button: 'Enviar Mensagem',
+    contact_email_direct: 'E-mail Direto',
+    contact_email_address: 'support@TestaScreen.com',
+    contact_response_time: 'Respondemos em 24 horas',
     privacy_title: 'Política de Privacidade',
     privacy_description: 'Como protegemos e gerenciamos seus dados',
     faq_title: 'Perguntas Frequentes',
@@ -2709,6 +2736,15 @@ export const translations = {
     about_description: 'TestaScreenとプロフェッショナルなスクリーンテストツール提供の使命について詳しく知る',
     contact_title: 'お問い合わせ',
     contact_description: 'サポートとフィードバックについてチームに連絡してください',
+    contact_hero_subtitle: 'チームにお問い合わせください。ご意見をお待ちしています。',
+    contact_email_label: 'メールアドレス',
+    contact_email_placeholder: 'your@email.com',
+    contact_message_label: 'メッセージ',
+    contact_message_placeholder: 'どのようにお役立てしましょうか?',
+    contact_send_button: 'メッセージを送信',
+    contact_email_direct: 'ダイレクトメール',
+    contact_email_address: 'support@TestaScreen.com',
+    contact_response_time: '24時間以内にお返事します',
     privacy_title: 'プライバシーポリシー',
     privacy_description: '私たちがあなたのデータをどのように保護・管理するかについて',
     faq_title: 'よくある質問',

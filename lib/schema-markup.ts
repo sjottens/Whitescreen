@@ -172,7 +172,7 @@ export function generateOrganizationSchema(locale: Locale) {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
-      email: 'support@testascreen.eu',
+      email: 'support@testascreen.com',
       availableLanguage: ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'ja']
     }
   };

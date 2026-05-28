@@ -11,11 +11,12 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
 
   return generateMultilingualMetadata({
     locale,
-    title: 'Contact TestaScreen',
-    description: 'Get in touch with TestaScreen team. We\'re here to help with any questions about our screen testing tools.',
+    title: translate('contact_title'),
+    description: translate('contact_description'),
     path: '/contact',
   });
 }
@@ -80,17 +81,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
                 {translate('contact_send_button')}
               </button>
             </form>
-          </div>
-
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <div className="card">
-              <h3 className="text-lg font-bold mb-2">{translate('contact_email_direct')}</h3>
-              <p className="text-slate-600">{translate('contact_email_address')}</p>
-            </div>
-            <div className="card">
-              <h3 className="text-lg font-bold mb-2">{translate('contact_response_time')}</h3>
-              <p className="text-slate-600">{translate('contact_response_time')}</p>
-            </div>
           </div>
         </div>
       </section>

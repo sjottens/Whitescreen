@@ -541,7 +541,7 @@ This project is proprietary. All rights reserved.
 
 ## 📞 Support
 
-- **Email**: support@TestaScreen.eu
+- **Email**: support@TestaScreen.com
 - **Website**: https://TestaScreen.eu
 - **Issues**: GitHub Issues
 

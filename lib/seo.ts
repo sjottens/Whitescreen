@@ -128,7 +128,7 @@ export function organizationSchema(): SchemaConfig {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
-      email: 'support@testascreen.eu',
+      email: 'support@testascreen.com',
       url: `${SITE_URL}/contact`,
     },
   };
