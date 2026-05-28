@@ -222,10 +222,10 @@ export default async function HomePage({ params }: HomePageProps) {
                 href={getLocalizedPath(locale, '/gaming-monitor-test')}
                 className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-orange-500"
               >
-                <Gamepad2 className="w-8 h-8 text-orange-600 mb-3" />
+                <Gamepad2 className="w-8 h-8 text-orange-700 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('gaming_monitor_test')}</h3>
                 <p className="text-slate-600 text-sm mb-4">{translate('gaming_monitor_test_description')}</p>
-                <div className="flex items-center text-orange-600 font-semibold text-sm">
+                <div className="flex items-center text-orange-700 font-semibold text-sm">
                   {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
                 </div>
               </Link>
