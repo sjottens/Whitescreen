@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 
 interface LocaleLayoutProps {
   children: ReactNode;
@@ -12,11 +12,13 @@ interface LocaleLayoutProps {
 }
 
 /**
- * Generate static params for all supported locales
- * Tells Next.js to pre-render pages for en, nl, es, de, fr, it, pt, ja
+ * Generate static params for all supported locales EXCEPT the default locale
+ * English pages are served at root (e.g., /about), not /en/about
+ * This prevents duplicate content issues: only /nl/about, /es/about, etc. are generated
+ * Tells Next.js to pre-render pages for nl, es, de, fr, it, pt, ja (NOT en)
  */
 export function generateStaticParams() {
-  return LOCALES.map((locale) => ({
+  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
     locale,
   }));
 }
