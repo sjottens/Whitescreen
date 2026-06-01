@@ -8,8 +8,8 @@ export const translations = {
     site_description: 'Elite screen testing and display tools for photographers, videographers, gamers, and professionals',
     
     // Homepage
-    hero_title: 'Elite Screen Testing Tools',
-    hero_subtitle: 'Professional-grade display testing, dead pixel detection, and color calibration tools. Free, instant, and built for performance.',
+    hero_title: 'Free Online Screen Test & Professional Display Testing Tools',
+    hero_subtitle: 'Test your monitor, laptop, TV, or mobile display with free online screen testing tools. Check for dead pixels, color accuracy, backlight bleed, brightness, contrast, and more.',
     btn_start_testing: 'Start Testing',
     btn_view_tools: 'View All Tools',
     trust_free: '100% Free',
@@ -119,8 +119,8 @@ export const translations = {
     tools_description: 'Browse our complete collection of free screen testing and display calibration tools',
     
     // Homepage
-    home_title: 'TestaScreen - Free Screen Testing & Display Tools',
-    home_description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
+    home_title: 'TestAScreen | Free Online Screen Test & Display Testing Tools',
+    home_description: 'Test your monitor, laptop, TV, or mobile display with free online screen testing tools. Check for dead pixels, color accuracy, backlight bleed, brightness, contrast, and more.',
     
     // Common
     home: 'Home',
@@ -429,8 +429,8 @@ export const translations = {
     site_description: 'Professionele schermtest en displayhulpmiddelen voor fotografen, videomakers, gamers en professionals',
     
     // Homepage
-    hero_title: 'Professionele Schermtest Gereedschappen',
-    hero_subtitle: 'Professionele displaytest, detectie van dode pixels en kleurkalibratie. Gratis, direct beschikbaar en zeer efficiënt.',
+    hero_title: 'Gratis Online Schermtest & Professionele Displaytest Gereedschappen',
+    hero_subtitle: 'Test je monitor, laptop, TV of mobiel scherm met gratis online schermatest gereedschappen. Controleer op dode pixels, kleurnauwkeurigheid, teruglichting, helderheid, contrast en meer.',
     btn_start_testing: 'Start Testen',
     btn_view_tools: 'Alle Gereedschappen',
     trust_free: '100% Gratis',
@@ -540,8 +540,8 @@ export const translations = {
     tools_description: 'Blader door onze volledige verzameling van gratis schermtest- en schermkalibratiegereedschappen',
     
     // Homepage
-    home_title: 'TestaScreen - Gratis Schermtest & Display Gereedschappen',
-    home_description: 'Professionele gratis schermtest- en displaygereedschappen voor fotografen, videomakers, gamers en professionals. Test dode pixels, monitorkleur en meer.',
+    home_title: 'TestAScreen | Gratis Online Schermtest & Display Testwerktuigen',
+    home_description: 'Test je monitor, laptop, TV of mobiel scherm met gratis online schermatest gereedschappen. Controleer op dode pixels, kleurnauwkeurigheid, teruglichting, helderheid, contrast en meer.',
     
     // About Page
     about_mission_title: 'Onze Missie',
@@ -829,8 +829,8 @@ export const translations = {
     site_description: 'Herramientas profesionales de prueba de pantalla y calibración de displays para fotógrafos, videógrafos, jugadores y profesionales',
     
     // Homepage
-    hero_title: 'Herramientas Profesionales de Prueba de Pantalla',
-    hero_subtitle: 'Pruebas profesionales de pantalla, detección de píxeles muertos y calibración de color. Gratis, instantáneo y altamente eficiente.',
+    hero_title: 'Prueba de Pantalla Online Gratuita y Herramientas Profesionales de Prueba',
+    hero_subtitle: 'Prueba tu monitor, laptop, TV o pantalla móvil con herramientas gratuitas de prueba de pantalla en línea. Comprueba píxeles muertos, precisión de color, iluminación de fondo, brillo, contraste y más.',
     btn_start_testing: 'Comenzar Prueba',
     btn_view_tools: 'Ver Todas las Herramientas',
     trust_free: '100% Gratis',
@@ -940,8 +940,8 @@ export const translations = {
     tools_description: 'Explora nuestra colección completa de herramientas gratuitas de prueba de pantalla y calibración de displays',
     
     // Homepage
-    home_title: 'TestaScreen - Herramientas Gratuitas de Prueba de Pantalla y Display',
-    home_description: 'Herramientas profesionales gratuitas de prueba de pantalla y display para fotógrafos, videomakers, gamers y profesionales. Prueba pixels muertos, colores de monitor y más.',
+    home_title: 'TestAScreen | Prueba de Pantalla Online Gratuita y Herramientas de Prueba',
+    home_description: 'Prueba tu monitor, laptop, TV o pantalla móvil con herramientas gratuitas de prueba de pantalla en línea. Comprueba píxeles muertos, precisión de color, iluminación de fondo, brillo, contraste y más.',
     
     // About Page
     about_mission_title: 'Nuestra Misión',
@@ -1246,8 +1246,8 @@ export const translations = {
     site_description: 'Professionelle Bildschirmtests und Display-Tools für Fotografen, Videografen, Gamer und Profis',
     
     // Homepage
-    hero_title: 'Professionelle Bildschirmtest-Tools',
-    hero_subtitle: 'Professionelle Display-Tests, Dead-Pixel-Erkennung und Farbkalibrierung. Kostenlos, sofort verfügbar und hochperformant.',
+    hero_title: 'Kostenlos Online Bildschirmtest & Professionelle Display-Test-Tools',
+    hero_subtitle: 'Testen Sie Ihren Monitor, Laptop, TV oder mobiles Display mit kostenlosen Online-Bildschirmtest-Tools. Überprüfen Sie Dead Pixels, Farbgenauigkeit, Hintergrundbeleuchtung, Helligkeit, Kontrast und mehr.',
     btn_start_testing: 'Testen starten',
     btn_view_tools: 'Alle Tools anzeigen',
     trust_free: '100% Kostenlos',
@@ -1355,8 +1355,8 @@ export const translations = {
     tools_description: 'Durchsuchen Sie unsere vollständige Sammlung von kostenlosen Bildschirmtest- und Bildschirmkalibrier-Tools',
     
     // Homepage
-    home_title: 'TestaScreen - Kostenlose Bildschirmtest & Display Tools',
-    home_description: 'Professionelle kostenlose Bildschirmtest- und Display-Tools für Fotografen, Videografen, Gamer und Profis. Testen Sie Dead Pixels, Monitorfarben und vieles mehr.',
+    home_title: 'TestAScreen | Kostenlos Online Bildschirmtest & Display-Test-Tools',
+    home_description: 'Testen Sie Ihren Monitor, Laptop, TV oder mobiles Display mit kostenlosen Online-Bildschirmtest-Tools. Überprüfen Sie Dead Pixels, Farbgenauigkeit, Hintergrundbeleuchtung, Helligkeit, Kontrast und mehr.',
     
     // About Page
     about_mission_title: 'Unsere Mission',
@@ -1534,8 +1534,8 @@ export const translations = {
     site_description: 'Outils professionnels de test d\'écran et d\'étalonnage d\'affichage pour photographes, vidéastes, gamers et professionnels',
     
     // Homepage
-    hero_title: 'Outils Professionnels de Test d\'Écran',
-    hero_subtitle: 'Tests d\'affichage professionnels, détection de pixels morts et étalonnage des couleurs. Gratuit, instantané et très performant.',
+    hero_title: 'Test d\'Écran Gratuit en Ligne et Outils Professionnels de Test',
+    hero_subtitle: 'Testez votre moniteur, ordinateur portable, TV ou écran mobile avec des outils de test d\'écran gratuits en ligne. Vérifiez les pixels morts, la précision des couleurs, le rétroéclairage, la luminosité, le contraste et bien d\'autres.',
     btn_start_testing: 'Commencer les tests',
     btn_view_tools: 'Voir tous les outils',
     trust_free: '100% Gratuit',
@@ -1652,8 +1652,8 @@ export const translations = {
     tools_description: 'Parcourez notre collection complète d\'outils de test d\'écran et d\'étalonnage d\'affichage gratuits',
     
     // Homepage
-    home_title: 'TestaScreen - Outils Gratuits de Test d\'Écran & Display',
-    home_description: 'Outils professionnels gratuits de test d\'écran et d\'affichage pour photographes, vidéastes, gamers et professionnels. Testez les pixels morts, les couleurs de moniteur et bien plus encore.',
+    home_title: 'TestAScreen | Test d\'Écran Gratuit en Ligne et Outils Professionnels de Test',
+    home_description: 'Testez votre moniteur, ordinateur portable, TV ou écran mobile avec des outils de test d\'écran gratuits en ligne. Vérifiez les pixels morts, la précision des couleurs, le rétroéclairage, la luminosité, le contraste et bien d\'autres.',
     
     // About Page
     about_mission_title: 'Notre Mission',
@@ -1901,8 +1901,8 @@ export const translations = {
     site_description: 'Strumenti professionali di test dello schermo e calibrazione del display per fotografi, videomaker, gamer e professionisti',
     
     // Homepage
-    hero_title: 'Strumenti Professionali per i Test dello Schermo',
-    hero_subtitle: 'Test display professionali, rilevamento di pixel morti e calibrazione del colore. Gratuito, istantaneo e altamente performante.',
+    hero_title: 'Test dello Schermo Online Gratuito e Strumenti Professionali di Test',
+    hero_subtitle: 'Testa il tuo monitor, laptop, TV o schermo mobile con strumenti gratuiti di test dello schermo online. Controlla pixel morti, precisione del colore, retroilluminazione, luminosità, contrasto e altro ancora.',
     btn_start_testing: 'Inizia i test',
     btn_view_tools: 'Visualizza tutti gli strumenti',
     trust_free: '100% Gratuito',
@@ -2019,8 +2019,8 @@ export const translations = {
     tools_description: 'Sfoglia la nostra collezione completa di strumenti gratuiti di test dello schermo e calibrazione del display',
     
     // Homepage
-    home_title: 'TestaScreen - Strumenti Gratuiti di Test dello Schermo & Display',
-    home_description: 'Strumenti professionali gratuiti di test dello schermo e display per fotografi, videomaker, gamer e professionisti. Prova pixel morti, colori del monitor e altro ancora.',
+    home_title: 'TestAScreen | Test dello Schermo Online Gratuito e Strumenti Professionali di Test',
+    home_description: 'Testa il tuo monitor, laptop, TV o schermo mobile con strumenti gratuiti di test dello schermo online. Controlla pixel morti, precisione del colore, retroilluminazione, luminosità, contrasto e altro ancora.',
     
     // About Page
     about_mission_title: 'La Nostra Missione',
@@ -2268,8 +2268,8 @@ export const translations = {
     site_description: 'Ferramentas profissionais de teste de tela e calibração de exibição para fotógrafos, videomakers, gamers e profissionais',
     
     // Homepage
-    hero_title: 'Ferramentas Profissionais de Teste de Tela',
-    hero_subtitle: 'Testes de exibição profissionais, detecção de pixels mortos e calibração de cores. Gratuito, instantâneo e altamente eficiente.',
+    hero_title: 'Teste de Tela Online Gratuito e Ferramentas Profissionais de Teste',
+    hero_subtitle: 'Teste seu monitor, laptop, TV ou tela móvel com ferramentas gratuitas de teste de tela online. Verifique pixels mortos, precisão de cor, iluminação de fundo, brilho, contraste e muito mais.',
     btn_start_testing: 'Iniciar testes',
     btn_view_tools: 'Ver todas as ferramentas',
     trust_free: '100% Gratuito',
@@ -2386,8 +2386,8 @@ export const translations = {
     tools_description: 'Navegue por nossa coleção completa de ferramentas de teste de tela e calibração de exibição gratuitas',
     
     // Homepage
-    home_title: 'TestaScreen - Ferramentas Gratuitas de Teste de Tela & Exibição',
-    home_description: 'Ferramentas profissionais gratuitas de teste de tela e exibição para fotógrafos, videomakers, gamers e profissionais. Teste pixels mortos, cores de monitores e muito mais.',
+    home_title: 'TestAScreen | Teste de Tela Online Gratuito e Ferramentas Profissionais de Teste',
+    home_description: 'Teste seu monitor, laptop, TV ou tela móvel com ferramentas gratuitas de teste de tela online. Verifique pixels mortos, precisão de cor, iluminação de fundo, brilho, contraste e muito mais.',
     
     // About Page
     about_mission_title: 'Nossa Missão',
@@ -2635,8 +2635,8 @@ export const translations = {
     site_description: '写真家、ビデオグラファー、ゲーマー、プロフェッショナル向けの専門的なスクリーンテストおよび表示ツール',
     
     // Homepage
-    hero_title: '専門的なスクリーンテスト ツール',
-    hero_subtitle: 'プロフェッショナルグレードのディスプレイテスト、デッドピクセル検出、カラーキャリブレーション。無料、即座、高性能。',
+    hero_title: '無料オンラインスクリーンテストとプロフェッショナルなディスプレイテストツール',
+    hero_subtitle: '無料のオンラインスクリーンテストツールでモニター、ノートパソコン、TV、モバイルディスプレイをテストします。デッドピクセル、色精度、バックライト漏れ、明るさ、コントラストなどをチェックしてください。',
     btn_start_testing: 'テスト開始',
     btn_view_tools: 'すべてのツールを表示',
     trust_free: '100%無料',
@@ -2753,8 +2753,8 @@ export const translations = {
     tools_description: '無料のスクリーンテストおよびディスプレイキャリブレーションツールの完全なコレクションを参照してください',
     
     // Homepage
-    home_title: 'TestaScreen - 無料のスクリーンテスト&ディスプレイツール',
-    home_description: '写真家、ビデオグラファー、ゲーマー、プロフェッショナル向けの無料のプロフェッショナルスクリーンテストおよびディスプレイツール。デッドピクセル、モニターカラーなどをテストしてください。',
+    home_title: 'TestAScreen | 無料オンラインスクリーンテストとディスプレイテストツール',
+    home_description: '無料のオンラインスクリーンテストツールでモニター、ノートパソコン、TV、モバイルディスプレイをテストします。デッドピクセル、色精度、バックライト漏れ、明るさ、コントラストなどをチェックしてください。',
     
     // About Page
     about_mission_title: '私たちのミッション',

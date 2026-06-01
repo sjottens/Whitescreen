@@ -12,23 +12,23 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
-  title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
-  description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
+  title: 'TestAScreen | Free Online Screen Test & Display Testing Tools',
+  description: 'Test your monitor, laptop, TV, or mobile display with free online screen testing tools. Check for dead pixels, color accuracy, backlight bleed, brightness, contrast, and more.',
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: `${SITE_URL}`,
   },
   openGraph: {
-    title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
-    description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
+    title: 'TestAScreen | Free Online Screen Test & Display Testing Tools',
+    description: 'Test your monitor, laptop, TV, or mobile display with free online screen testing tools. Check for dead pixels, color accuracy, backlight bleed, brightness, contrast, and more.',
     url: `${SITE_URL}`,
     type: 'website',
     siteName: SITE_NAME,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
-    description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
+    title: 'TestAScreen | Free Online Screen Test & Display Testing Tools',
+    description: 'Test your monitor, laptop, TV, or mobile display with free online screen testing tools. Check for dead pixels, color accuracy, backlight bleed, brightness, contrast, and more.',
   },
 };
 

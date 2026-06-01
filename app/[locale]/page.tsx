@@ -1,14 +1,28 @@
 // app/[locale]/page.tsx - Locale-aware homepage
-// Note: Using root layout metadata (no dynamic generateMetadata)
 
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Check, Zap, Smartphone, Shield, Cpu, Monitor, Gamepad2 } from 'lucide-react';
-import { faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
+import { generateMultilingualMetadata, faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS } from '@/lib/constants';
 import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import { getLocalizedPath } from '@/lib/link-utils';
+
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
+
+  return generateMultilingualMetadata({
+    locale,
+    title: translate('home_title'),
+    description: translate('home_description'),
+    path: '/',
+  });
+}
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
