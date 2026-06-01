@@ -1,6 +1,7 @@
 // middleware.ts - Internationalized routing with hidden default locale
 // Routes: / (English), /nl/, /es/, /de/, /fr/, /it/, /pt/, /ja/
-// Does NOT force-redirect crawlers based on IP/browser language
+// English is never prefixed with /en/ to avoid duplicate content
+// Crawlers get root content without redirect
 
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -10,16 +11,28 @@ const DEFAULT_LOCALE = 'en';
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Check if pathname already has a locale prefix
+  // Check if pathname already has a locale prefix (except /en/)
   const pathnameHasLocale = SUPPORTED_LOCALES.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    (locale) => 
+      locale !== DEFAULT_LOCALE && 
+      (pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
   );
 
+  // If it has a non-default locale prefix, proceed
   if (pathnameHasLocale) {
     return NextResponse.next();
   }
 
-  // Check Accept-Language header to determine user's preferred locale
+  // Check if trying to access /en/* - this should not exist
+  const isEnglishPrefix = pathname.startsWith('/en/') || pathname === '/en';
+  if (isEnglishPrefix) {
+    // Rewrite /en/... to / (don't redirect, just rewrite for internal handling)
+    // This prevents Google from seeing /en/... as separate URLs
+    const newPathname = pathname === '/en' ? '/' : pathname.replace(/^\/en/, '');
+    return NextResponse.rewrite(new URL(newPathname, request.url));
+  }
+
+  // Get user's preferred locale
   const acceptLanguage = request.headers.get('accept-language') ?? '';
   const isCrawler = /bot|crawl|spider|googlebot|bingbot/i.test(request.headers.get('user-agent') ?? '');
   
@@ -44,8 +57,13 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // Redirect to the locale-prefixed path
-  return NextResponse.redirect(new URL(`/${targetLocale}${pathname === '/' ? '' : pathname}`, request.url));
+  // Only redirect to other locales, NEVER to /en/
+  if (targetLocale !== DEFAULT_LOCALE) {
+    return NextResponse.redirect(new URL(`/${targetLocale}${pathname === '/' ? '' : pathname}`, request.url));
+  }
+
+  // English (default): serve on root without redirect
+  return NextResponse.next();
 }
 
 export const config = {

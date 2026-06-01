@@ -23,6 +23,13 @@ export function generateStaticParams() {
   }));
 }
 
+/**
+ * Disable dynamic params: ONLY serve the exact locales in generateStaticParams
+ * If someone requests /en/*, it will return 404 instead of dynamic rendering
+ * This prevents Google from indexing duplicate /en/... URLs
+ */
+export const dynamicParams = false;
+
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const locale = await getLocaleFromParams(params);
 
