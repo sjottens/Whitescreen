@@ -48,38 +48,29 @@ export default function PrivacyPage() {
       </section>
 
       <section className="section">
-        <div className="container max-w-3xl prose prose-lg max-w-none">
-          <h2>1. {translate('privacy_intro')}</h2>
-          <p>{translate('privacy_intro_full')}</p>
+        <div className="container max-w-3xl">
+          <div className="prose prose-lg max-w-none">
+            <h2>Privacy Notice</h2>
+            <p>
+              TestaScreen respects your privacy. Our screen testing tools are designed to work entirely in your browser without collecting or storing personal data on external servers.
+            </p>
 
-          <h2>2. {translate('privacy_data_collection')}</h2>
-          <p>{translate('privacy_data_collection_text')}</p>
+            <h2>Data Collection</h2>
+            <p>
+              We do not collect, store, or transmit any personal information. All testing is performed locally on your device. If you contact us, we may retain your email address to respond to your inquiry.
+            </p>
 
-          <h2>3. {translate('privacy_how_it_works')}</h2>
-          <p>{translate('privacy_how_it_works_text')}</p>
-          <ul>
-            <li>{translate('privacy_how_item_1')}</li>
-            <li>{translate('privacy_how_item_2')}</li>
-            <li>{translate('privacy_how_item_3')}</li>
-          </ul>
+            <h2>Cookies & Analytics</h2>
+            <p>
+              We use minimal analytics to understand how users interact with our tools. This data is anonymized and does not identify individuals.
+            </p>
 
-          <h2>4. {translate('privacy_cookies')}</h2>
-          <p>{translate('privacy_cookies_text')}</p>
-
-          <h2>5. {translate('privacy_external_services')}</h2>
-          <p>{translate('privacy_external_services_text')}</p>
-
-          <h2>6. {translate('privacy_gdpr_rights')}</h2>
-          <p>{translate('privacy_gdpr_rights_text')}</p>
-          <ul>
-            <li><strong>{translate('privacy_right_access')}:</strong> {translate('privacy_right_access_desc')}</li>
-            <li><strong>{translate('privacy_right_rectification')}:</strong> {translate('privacy_right_rectification_desc')}</li>
-            <li><strong>{translate('privacy_right_erasure')}:</strong> {translate('privacy_right_erasure_desc')}</li>
-            <li><strong>{translate('privacy_right_objection')}:</strong> {translate('privacy_right_objection_desc')}</li>
-          </ul>
-
-          <h2>7. {translate('privacy_contact')}</h2>
-          <p>{translate('privacy_contact_text')}</p>
+            <h2>Your Rights</h2>
+            <p>
+              For data access requests, corrections, or to exercise your GDPR rights, please contact us at{' '}
+              <strong>{translate('contact_email_address')}</strong>.
+            </p>
+          </div>
         </div>
       </section>
     </>

@@ -61,7 +61,7 @@ export default function FAQPage() {
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('faq_title')}</h1>
           <p className="text-xl text-slate-700">
-            {translate('faq_subtitle')}
+            {translate('faq_description')}
           </p>
         </div>
       </section>

@@ -68,13 +68,10 @@ export default function AboutPage() {
       <section className="section">
         <div className="container max-w-3xl">
           <div className="prose prose-lg max-w-none">
-            <h2>{translate('about_mission')}</h2>
+            <h2>{translate('about_mission_title')}</h2>
             <p>{translate('about_mission_text')}</p>
 
-            <h2>{translate('about_vision')}</h2>
-            <p>{translate('about_vision_text')}</p>
-
-            <h2>{translate('about_values')}</h2>
+            <h2>{translate('about_values_title')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 not-prose">
               {values.map((value, i) => (
                 <div key={i} className="card p-6">

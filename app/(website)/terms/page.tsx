@@ -51,31 +51,41 @@ export default function TermsPage() {
       </section>
 
       <section className="section">
-        <div className="container max-w-3xl prose prose-lg max-w-none">
-          <h2>{translate('terms_acceptance')}</h2>
-          <p>{translate('terms_acceptance_text')}</p>
+        <div className="container max-w-3xl">
+          <div className="prose prose-lg max-w-none">
+            <h2>Terms of Service</h2>
+            <p>
+              By using TestaScreen, you agree to these terms and conditions. These terms apply to all users and anyone accessing our services.
+            </p>
 
-          <h2>{translate('terms_use_license')}</h2>
-          <p>{translate('terms_use_license_text')}</p>
-          <ul>
-            <li>{translate('terms_license_item_1')}</li>
-            <li>{translate('terms_license_item_2')}</li>
-            <li>{translate('terms_license_item_3')}</li>
-            <li>{translate('terms_license_item_4')}</li>
-            <li>{translate('terms_license_item_5')}</li>
-          </ul>
+            <h2>Use License</h2>
+            <p>
+              Permission is granted to temporarily access TestaScreen for personal, non-commercial use only. You may not:
+            </p>
+            <ul>
+              <li>Reverse engineer or decompile our tools</li>
+              <li>Remove any proprietary notices or labels</li>
+              <li>Transfer the tools or your rights to another person</li>
+              <li>Use the tools in any way that violates laws or regulations</li>
+              <li>Attempt to gain unauthorized access to our services</li>
+            </ul>
 
-          <h2>{translate('terms_disclaimer')}</h2>
-          <p>{translate('terms_disclaimer_text')}</p>
+            <h2>Disclaimer</h2>
+            <p>
+              TestaScreen is provided "as is" without any warranties, expressed or implied. We do not warrant that the tools will be uninterrupted or error-free.
+            </p>
 
-          <h2>{translate('terms_limitation')}</h2>
-          <p>{translate('terms_limitation_text')}</p>
+            <h2>Limitations of Liability</h2>
+            <p>
+              In no event shall TestaScreen be liable for any indirect, incidental, special, or consequential damages arising from your use of our tools.
+            </p>
 
-          <h2>{translate('terms_modifications')}</h2>
-          <p>{translate('terms_modifications_text')}</p>
-
-          <h2>{translate('terms_contact')}</h2>
-          <p>{translate('terms_contact_text')}</p>
+            <h2>Contact</h2>
+            <p>
+              For questions about these terms, please contact us at{' '}
+              <strong>{translate('contact_email_address')}</strong>.
+            </p>
+          </div>
         </div>
       </section>
     </>

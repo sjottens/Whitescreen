@@ -1,4 +1,7 @@
 // app/layout.tsx - Root layout with SEO, fonts, and structure
+// NOTE: This layout provides ONLY HTML shell, styles, and scripts
+// Header/Footer are handled by app/[locale]/layout.tsx and app/(website) layouts
+// This prevents duplicate headers/footers
 
 import { ReactNode } from 'react';
 import { Metadata } from 'next';

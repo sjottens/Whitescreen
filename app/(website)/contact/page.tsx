@@ -54,18 +54,11 @@ export default function ContactPage() {
       <section className="section">
         <div className="container max-w-2xl">
           <div className="prose prose-lg max-w-none">
-            <h2>{translate('contact_info_title')}</h2>
-            <p>{translate('contact_info_text')}</p>
-
-            <h2>{translate('contact_channels')}</h2>
-            <ul>
-              <li>{translate('contact_channel_github')}</li>
-              <li>{translate('contact_channel_email')}</li>
-              <li>{translate('contact_channel_feedback')}</li>
-            </ul>
-
-            <h2>{translate('contact_response_time')}</h2>
-            <p>{translate('contact_response_time_text')}</p>
+            <h2>{translate('contact_email_direct')}</h2>
+            <p className="mb-6">
+              <strong>{translate('contact_email_address')}</strong>
+            </p>
+            <p>{translate('contact_response_time')}</p>
           </div>
         </div>
       </section>

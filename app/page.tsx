@@ -1,35 +1,23 @@
-// app/page.tsx - Root page served in English (default locale)
-// Middleware routes non-prefixed paths here for English users
-// Canonical points to root (/) to avoid /en/ duplicates
+// app/page.tsx - English homepage at root /
+// Wraps the homepage with Header/Footer layout
 
-import { Metadata } from 'next';
-import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants';
-import { SITE_URL } from '@/lib/constants';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
+export { metadata } from '@/app/(website)/page';
 
-export const metadata: Metadata = {
-  title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
-  description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
-  metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: `${SITE_URL}`,
-  },
-  openGraph: {
-    title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
-    description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
-    url: `${SITE_URL}`,
-    type: 'website',
-    siteName: SITE_NAME,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `TestaScreen - Free Screen Testing & Display Tools | ${SITE_NAME}`,
-    description: 'Elite free screen testing and display tools for photographers, videographers, gamers, and professionals. Test dead pixels, monitor colors, and more.',
-  },
-};
+// Import the actual homepage content component
+import HomePageContent from '@/app/(website)/page';
 
-// This page renders English content on root path
-// But Next.js needs this export for metadata
 export default function RootPage() {
-  return null;
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header locale="en" />
+      <main id="main-content" className="flex-1 w-full">
+        <HomePageContent />
+      </main>
+      <Footer locale="en" />
+    </div>
+  );
 }
+
 
