@@ -89,7 +89,7 @@ export default async function GamingMonitorTestPage({ params }: { params: Promis
 
           {/* Device-Specific FAQs */}
           <div className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Gaming Monitor-Specific Questions</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('gaming_monitor_faq_section_title')}</h2>
             <div className="space-y-4">
               <details className="group card cursor-pointer p-6">
                 <summary className="flex items-center justify-between font-semibold">
@@ -114,7 +114,7 @@ export default async function GamingMonitorTestPage({ params }: { params: Promis
 
           {/* Related Device Tests */}
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Test Other Devices</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('test_other_devices_title')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 { path: '/iphone-screen-test', title: 'iPhone Screen Test', icon: '📱' },

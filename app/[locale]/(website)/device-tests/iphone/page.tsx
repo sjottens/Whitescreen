@@ -89,7 +89,7 @@ export default async function IPhoneTestPage({ params }: { params: Promise<{ loc
 
           {/* Device-Specific FAQs */}
           <div className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">iPhone-Specific Questions</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('iphone_faq_section_title')}</h2>
             <div className="space-y-4">
               <details className="group card cursor-pointer p-6">
                 <summary className="flex items-center justify-between font-semibold">
@@ -114,7 +114,7 @@ export default async function IPhoneTestPage({ params }: { params: Promise<{ loc
 
           {/* Related Device Tests */}
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Test Other Devices</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('test_other_devices_title')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 { path: '/macbook-screen-test', title: 'MacBook Screen Test', icon: '💻' },

@@ -421,6 +421,13 @@ export const translations = {
     recommended_tests: 'Recommended Tests',
     device_tests_title: 'Device-Specific Tests',
     test_now: 'Test Now',
+    
+    // Device-specific FAQ section titles
+    iphone_faq_section_title: 'iPhone-Specific Questions',
+    macbook_faq_section_title: 'MacBook-Specific Questions',
+    oled_tv_faq_section_title: 'OLED TV-Specific Questions',
+    gaming_monitor_faq_section_title: 'Gaming Monitor-Specific Questions',
+    test_other_devices_title: 'Test Other Devices',
   },
   
   nl: {
@@ -821,6 +828,13 @@ export const translations = {
     recommended_tests: 'Aanbevolen Tests',
     device_tests_title: 'Apparaatspecifieke Tests',
     test_now: 'Nu Testen',
+    
+    // Device-specific FAQ section titles
+    iphone_faq_section_title: 'iPhone specifieke vragen',
+    macbook_faq_section_title: 'MacBook specifieke vragen',
+    oled_tv_faq_section_title: 'OLED TV specifieke vragen',
+    gaming_monitor_faq_section_title: 'Gaming Monitor specifieke vragen',
+    test_other_devices_title: 'Test andere apparaten',
   },
   
   es: {
