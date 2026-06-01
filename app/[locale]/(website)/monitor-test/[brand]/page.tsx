@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
-import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
@@ -36,11 +36,18 @@ const MONITOR_BRANDS = {
   },
 };
 
+/**
+ * Generate static params for all monitor brands across all non-default locales
+ * English pages are served at root (e.g., /monitor-test/samsung), not /en/monitor-test/samsung
+ * This prevents duplicate content issues with canonical tags
+ */
 export async function generateStaticParams() {
-  return Object.keys(MONITOR_BRANDS).map((brand) => ({
-    locale: 'en',
-    brand,
-  }));
+  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).flatMap((locale) =>
+    Object.keys(MONITOR_BRANDS).map((brand) => ({
+      locale,
+      brand,
+    }))
+  );
 }
 
 export async function generateMetadata(props: {

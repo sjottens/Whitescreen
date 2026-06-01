@@ -1,11 +1,11 @@
 // app/[locale]/screen/[color]/[variant]/page.tsx
 // Dynamic screen variant pages: /[locale]/screen/[color]/[variant]
-// Example: /en/screen/red/4k, /nl/screen/blue/oled, etc.
-// Generates 9 colors × 3 variants × 8 languages = 216 unique pages
+// Example: /nl/screen/red/4k, /es/screen/blue/oled, etc.
+// Generates 9 colors × 3 variants × 7 non-default languages = 189 unique pages
 
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS, SCREEN_VARIANTS } from '@/lib/constants';
 import { 
@@ -30,11 +30,15 @@ interface PageProps {
   params: Promise<PageParams>;
 }
 
-// Generate static params for all combinations
+/**
+ * Generate static params for all combinations across non-default locales
+ * English pages are served at root (e.g., /screen/red/4k), not /en/screen/red/4k
+ * This prevents duplicate content issues with canonical tags
+ */
 export async function generateStaticParams() {
   const colors = COLOR_TOOLS.map(t => t.id);
   const variants = Object.keys(SCREEN_VARIANTS);
-  const locales = ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'ja'];
+  const locales = LOCALES.filter((locale) => locale !== DEFAULT_LOCALE);
 
   const params: PageParams[] = [];
   for (const locale of locales) {
