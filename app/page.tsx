@@ -179,21 +179,25 @@ export default function RootPage() {
               <Link href="/iphone-screen-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-gray-500">
                 <Smartphone className="w-8 h-8 text-gray-600 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('iphone_test')}</h3>
+                <p className="text-slate-600 text-sm mb-4">{translate('iphone_test_description')}</p>
               </Link>
 
               <Link href="/macbook-screen-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-slate-500">
                 <Smartphone className="w-8 h-8 text-slate-600 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('macbook_test')}</h3>
+                <p className="text-slate-600 text-sm mb-4">{translate('macbook_test_description')}</p>
               </Link>
 
               <Link href="/gaming-monitor-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-orange-500">
                 <Gamepad2 className="w-8 h-8 text-orange-700 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('gaming_monitor_test')}</h3>
+                <p className="text-slate-600 text-sm mb-4">{translate('gaming_monitor_test_description')}</p>
               </Link>
 
               <Link href="/oled-tv-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-indigo-500">
                 <Monitor className="w-8 h-8 text-indigo-600 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('oled_tv_test')}</h3>
+                <p className="text-slate-600 text-sm mb-4">{translate('oled_tv_test_description')}</p>
               </Link>
             </div>
           </div>
@@ -219,6 +223,50 @@ export default function RootPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section className="section">
+        <div className="container">
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">{translate('use_cases_title')}</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                title: translate('display_testing_title'),
+                description: translate('display_testing_desc'),
+                tools: [translate('dead_pixel_test'), translate('color_accuracy_test'), translate('screen_uniformity_test')],
+              },
+              {
+                title: translate('photography_lighting_title'),
+                description: translate('photography_lighting_desc'),
+                tools: [translate('white_screen'), translate('color_screens'), translate('zoom_lighting')],
+              },
+              {
+                title: translate('video_production_title'),
+                description: translate('video_production_desc'),
+                tools: [translate('green_screen'), translate('blue_screen'), translate('brightness_test')],
+              },
+              {
+                title: translate('gaming_streaming_title'),
+                description: translate('gaming_streaming_desc'),
+                tools: [translate('color_test'), translate('brightness_test'), translate('contrast_test')],
+              },
+            ].map((useCase, index) => (
+              <div key={index} className="card">
+                <h3 className="text-2xl font-bold mb-3 text-cyan-600">{useCase.title}</h3>
+                <p className="text-slate-700 mb-4">{useCase.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {useCase.tools.map((tool) => (
+                    <span key={tool} className="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
