@@ -2,6 +2,7 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { Monitor, Smartphone, Gamepad2, ArrowRight } from 'lucide-react';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
@@ -55,6 +56,21 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
           { name: translate('tools') },
         ]}
       />
+
+      {/* Sticky Back to Home Bar */}
+      <div className="sticky top-0 z-40 bg-gradient-to-r from-blue-50 to-slate-50 border-b-2 border-blue-200 backdrop-blur-sm">
+        <div className="container px-4 py-4 flex items-center justify-between">
+          <LinkButton 
+            href={getLocalizedPath(locale, '/')} 
+            variant="secondary"
+            size="sm"
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </LinkButton>
+        </div>
+      </div>
 
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
