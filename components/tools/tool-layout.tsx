@@ -1,7 +1,6 @@
 // components/tools/tool-layout.tsx - Reusable tool page layout component with multilingual support
 
 import { ReactNode } from 'react';
-import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { LinkButton } from '@/components/ui/button';
@@ -45,15 +44,18 @@ export default function ToolLayout({
         ]}
       />
 
-      {/* Header Bar */}
-      <div className="sticky top-20 z-30 bg-white border-b border-slate-200 backdrop-blur-sm bg-opacity-95">
-        <div className="container py-3">
-          <div className="flex items-center justify-between">
-            <Link href={getLocalizedPath(locale, '/tools')} className="btn btn-ghost btn-sm">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              {translate('back_to_tools')}
-            </Link>
-          </div>
+      {/* Sticky Back to Tools Bar */}
+      <div className="sticky top-0 z-40 bg-gradient-to-r from-blue-50 to-slate-50 border-b-2 border-blue-200 backdrop-blur-sm">
+        <div className="container px-4 py-4 flex items-center justify-between">
+          <LinkButton 
+            href={getLocalizedPath(locale, '/tools')} 
+            variant="secondary"
+            size="sm"
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {translate('back_to_tools')}
+          </LinkButton>
         </div>
       </div>
 
