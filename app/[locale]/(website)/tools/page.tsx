@@ -77,7 +77,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
                 className="card group hover:shadow-lg transition-shadow"
               >
                 <div
-                  className="w-full h-32 rounded-lg mb-4"
+                  className="w-full h-32 rounded-lg mb-4 border border-slate-200"
                   style={{ backgroundColor: tool.color }}
                 />
                 <h3 className="text-xl font-bold mb-2">{translate(tool.nameKey as any)}</h3>
