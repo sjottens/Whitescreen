@@ -169,7 +169,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
             </p>
             <Link
               href={getLocalizedPath(locale, '/monitor-test/benq')}
-              className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow-md hover:shadow-lg hover:bg-blue-700 active:bg-blue-800 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
             >
               Browse More Brands →
             </Link>

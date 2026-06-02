@@ -315,11 +315,10 @@ export default async function ScreenVariantPage(props: PageProps) {
           </section>
         )}
 
-        {/* Back to Tools */}
         <div className="mt-16 text-center">
           <a
             href={getLocalizedPath(locale as any, '/tools')}
-            className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center justify-center px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow-md hover:shadow-lg hover:bg-blue-700 active:bg-blue-800 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
             {translate('back_to_tools') || 'Back to Tools'}
           </a>
