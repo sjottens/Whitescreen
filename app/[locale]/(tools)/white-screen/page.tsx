@@ -7,6 +7,7 @@ import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
+import GuideSection from '@/components/tools/guide-section';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'white-screen')!;
 
@@ -84,16 +85,19 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
   }));
 
   return (
-    <ToolLayout
-      title={translate(TOOL.nameKey as any)}
-      description={translate(TOOL.descriptionKey as any)}
-      features={translatedFeatures}
-      useCases={translatedUseCases}
-      faqs={faqs}
-      relatedTools={relatedTools}
-      locale={locale}
-    >
-        <ScreenDisplay color="#FFFFFF" title={translate(TOOL.nameKey as any)} locale={locale} />
-    </ToolLayout>
+    <>
+      <ToolLayout
+        title={translate(TOOL.nameKey as any)}
+        description={translate(TOOL.descriptionKey as any)}
+        features={translatedFeatures}
+        useCases={translatedUseCases}
+        faqs={faqs}
+        relatedTools={relatedTools}
+        locale={locale}
+      >
+          <ScreenDisplay color="#FFFFFF" title={translate(TOOL.nameKey as any)} locale={locale} />
+      </ToolLayout>
+      <GuideSection toolId="white-screen" />
+    </>
   );
 }

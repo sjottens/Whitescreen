@@ -7,6 +7,7 @@ import { t } from '@/lib/translations';
 import { TEST_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import DeadPixelTest from '@/components/tools/dead-pixel-test';
+import GuideSection from '@/components/tools/guide-section';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'dead-pixel-test')!;
 
@@ -44,6 +45,7 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
   return (
     <>
       <DeadPixelTest />
+      <GuideSection toolId="dead-pixel-test" />
     </>
   );
 }

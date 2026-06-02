@@ -7,6 +7,7 @@ import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
+import GuideSection from '@/components/tools/guide-section';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'pink-screen')!;
 
@@ -85,7 +86,6 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
         locale={locale}
       >
         <ScreenDisplay color="#FF1493" title={translate(TOOL.nameKey as any)} locale={locale} />
-      </ToolLayout>
-    </>
+      </ToolLayout>      <GuideSection toolId="pink-screen" />    </>
   );
 }

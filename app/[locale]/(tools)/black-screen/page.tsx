@@ -7,6 +7,7 @@ import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
+import GuideSection from '@/components/tools/guide-section';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'black-screen')!;
 
@@ -95,6 +96,7 @@ export default async function BlackScreenPage({ params }: PageProps) {
       >
         <ScreenDisplay color="#000000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
+      <GuideSection toolId="black-screen" />
     </>
   );
 }

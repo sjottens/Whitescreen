@@ -7,6 +7,7 @@ import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
+import GuideSection from '@/components/tools/guide-section';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'yellow-screen')!;
 
@@ -86,6 +87,7 @@ export default async function YellowScreenPage({ params }: { params: Promise<{ l
       >
         <ScreenDisplay color="#FFFF00" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
+      <GuideSection toolId="yellow-screen" />
     </>
   );
 }

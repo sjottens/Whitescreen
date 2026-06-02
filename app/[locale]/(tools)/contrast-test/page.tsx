@@ -7,6 +7,7 @@ import { t } from '@/lib/translations';
 import { TEST_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ContrastTest from '@/components/tools/contrast-test';
+import GuideSection from '@/components/tools/guide-section';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'contrast-test')!;
 
@@ -44,6 +45,7 @@ export default async function ContrastTestPage({ params }: { params: Promise<{ l
   return (
     <>
       <ContrastTest />
+      <GuideSection toolId="contrast-test" />
     </>
   );
 }

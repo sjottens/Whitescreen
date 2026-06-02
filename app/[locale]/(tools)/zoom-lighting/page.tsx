@@ -6,6 +6,7 @@ import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 import { t } from '@/lib/translations';
 import { SPECIAL_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
+import GuideSection from '@/components/tools/guide-section';
 
 const TOOL = SPECIAL_TOOLS.find((t) => t.id === 'zoom-lighting')!;
 
@@ -66,6 +67,7 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
           </div>
         </section>
       </ToolLayout>
+      <GuideSection toolId="zoom-lighting" />
     </>
   );
 }
