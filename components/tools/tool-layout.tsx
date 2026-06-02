@@ -1,6 +1,7 @@
 // components/tools/tool-layout.tsx - Reusable tool page layout component with multilingual support
 
 import { ReactNode } from 'react';
+import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { LinkButton } from '@/components/ui/button';
