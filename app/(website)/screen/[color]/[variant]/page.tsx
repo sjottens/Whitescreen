@@ -306,7 +306,7 @@ export default async function ScreenVariantPage(props: PageProps) {
         {/* Back to Tools */}
         <div className="mt-16 text-center">
           <Link
-            href="/tools"
+            href="/en/tools"
             className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
           >
             {translate('back_to_tools') || 'Back to Tools'}

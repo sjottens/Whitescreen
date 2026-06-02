@@ -69,10 +69,10 @@ export default function RootPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <LinkButton href="/white-screen" size="lg" variant="primary" className="sm:w-auto">
+              <LinkButton href="/en/white-screen" size="lg" variant="primary" className="sm:w-auto">
                 {translate('btn_start_testing')} <ArrowRight className="w-5 h-5 ml-2" />
               </LinkButton>
-              <LinkButton href="/tools" size="lg" variant="outline" className="sm:w-auto">
+              <LinkButton href="/en/tools" size="lg" variant="outline" className="sm:w-auto">
                 {translate('btn_view_tools')}
               </LinkButton>
             </div>
@@ -130,7 +130,7 @@ export default function RootPage() {
           </div>
 
           <div className="text-center mt-12">
-            <LinkButton href="/tools" variant="outline" size="lg">
+            <LinkButton href="/en/tools" variant="outline" size="lg">
               {translate('browse_all_tools').replace('{count}', String(COLOR_TOOLS.length + TEST_TOOLS.length))}
             </LinkButton>
           </div>
@@ -145,25 +145,25 @@ export default function RootPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/monitor-test/asus" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500">
+            <Link href="/en/monitor-test/asus" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500">
               <Monitor className="w-8 h-8 text-blue-600 mb-3" />
               <h3 className="text-lg font-bold mb-2">{translate('monitor_asus')}</h3>
               <p className="text-slate-600 text-sm mb-4">{translate('monitor_asus_description')}</p>
             </Link>
 
-            <Link href="/monitor-test/lg" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-red-500">
+            <Link href="/en/monitor-test/lg" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-red-500">
               <Monitor className="w-8 h-8 text-red-600 mb-3" />
               <h3 className="text-lg font-bold mb-2">{translate('monitor_lg')}</h3>
               <p className="text-slate-600 text-sm mb-4">{translate('monitor_lg_description')}</p>
             </Link>
 
-            <Link href="/monitor-test/samsung" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-cyan-500">
+            <Link href="/en/monitor-test/samsung" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-cyan-500">
               <Monitor className="w-8 h-8 text-cyan-600 mb-3" />
               <h3 className="text-lg font-bold mb-2">{translate('monitor_samsung')}</h3>
               <p className="text-slate-600 text-sm mb-4">{translate('monitor_samsung_description')}</p>
             </Link>
 
-            <Link href="/monitor-test/dell" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-purple-500">
+            <Link href="/en/monitor-test/dell" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-purple-500">
               <Monitor className="w-8 h-8 text-purple-600 mb-3" />
               <h3 className="text-lg font-bold mb-2">{translate('monitor_dell')}</h3>
               <p className="text-slate-600 text-sm mb-4">{translate('monitor_dell_description')}</p>
@@ -176,25 +176,25 @@ export default function RootPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Link href="/iphone-screen-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-gray-500">
+              <Link href="/en/iphone-screen-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-gray-500">
                 <Smartphone className="w-8 h-8 text-gray-600 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('iphone_test')}</h3>
                 <p className="text-slate-600 text-sm mb-4">{translate('iphone_test_description')}</p>
               </Link>
 
-              <Link href="/macbook-screen-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-slate-500">
+              <Link href="/en/macbook-screen-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-slate-500">
                 <Smartphone className="w-8 h-8 text-slate-600 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('macbook_test')}</h3>
                 <p className="text-slate-600 text-sm mb-4">{translate('macbook_test_description')}</p>
               </Link>
 
-              <Link href="/gaming-monitor-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-orange-500">
+              <Link href="/en/gaming-monitor-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-orange-500">
                 <Gamepad2 className="w-8 h-8 text-orange-700 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('gaming_monitor_test')}</h3>
                 <p className="text-slate-600 text-sm mb-4">{translate('gaming_monitor_test_description')}</p>
               </Link>
 
-              <Link href="/oled-tv-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-indigo-500">
+              <Link href="/en/oled-tv-test" className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-indigo-500">
                 <Monitor className="w-8 h-8 text-indigo-600 mb-3" />
                 <h3 className="text-lg font-bold mb-2">{translate('oled_tv_test')}</h3>
                 <p className="text-slate-600 text-sm mb-4">{translate('oled_tv_test_description')}</p>
@@ -277,7 +277,7 @@ export default function RootPage() {
           <div className="text-center">
             <h2 className="text-4xl font-bold mb-4">{translate('cta_ready_title')}</h2>
             <p className="text-lg text-slate-600 mb-8">{translate('cta_ready_desc')}</p>
-            <LinkButton href="/white-screen" size="lg" variant="primary">
+            <LinkButton href="/en/white-screen" size="lg" variant="primary">
               {translate('cta_start_testing')}
             </LinkButton>
           </div>

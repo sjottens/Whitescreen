@@ -212,7 +212,7 @@ export default function ToolLayout({
             {/* CTA */}
             <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-8 text-center">
               <h3 className="text-2xl font-bold mb-4">Explore More Tools</h3>
-              <LinkButton href="/tools" variant="primary" size="lg">
+              <LinkButton href={getLocalizedPath(locale, '/tools')} variant="primary" size="lg">
                 View All {relatedTools.length + 1}+ Tools
               </LinkButton>
             </div>

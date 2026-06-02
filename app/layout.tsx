@@ -56,10 +56,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         {/* Google AdSense - Advertisement display */}
         <Script
-          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
         />
 
         {/* Google Analytics - Early tracking with non-blocking strategy */}
