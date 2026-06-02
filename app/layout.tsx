@@ -58,7 +58,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"
           crossOrigin="anonymous"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
+          suppressHydrationWarning
         />
 
         {/* Google Analytics - Early tracking with non-blocking strategy */}
