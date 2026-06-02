@@ -358,6 +358,228 @@ export const translations = {
     monitor_dell_description: 'Professional Dell monitor testing tools. Verify color accuracy, dead pixels, and display quality for your Dell display.',
     monitor_dell_intro: 'Dell offers reliable monitors for professionals and everyday users alike. These comprehensive tests verify your Dell monitor is delivering accurate colors, consistent brightness, and zero dead pixels. Perfect for content creators and daily workers.',
     
+    // BenQ Monitors
+    monitor_benq: 'BenQ Monitor Test',
+    monitor_benq_title: 'BenQ Monitor Test - Professional Display Quality Check',
+    monitor_benq_description: 'Test your BenQ monitor with professional tools. Verify color accuracy, dead pixels, brightness, and display performance instantly.',
+    monitor_benq_intro: 'BenQ is renowned for high-quality displays across gaming, professional, and educational sectors. These tests help you verify your BenQ monitor is performing optimally. Check for dead pixels, color accuracy, and brightness uniformity to ensure you\'re getting the premium display you paid for.',
+    
+    // Alienware Monitors
+    monitor_alienware: 'Alienware Monitor Test',
+    monitor_alienware_title: 'Alienware Monitor Test - Premium Gaming Display Verification',
+    monitor_alienware_description: 'Complete Alienware gaming monitor testing. Check color accuracy, refresh rates, dead pixels, and overall performance quality.',
+    monitor_alienware_intro: 'Alienware monitors are built for serious gamers and professionals. Our testing suite verifies your Alienware display delivers the performance you expect. From the AW3423DW OLED to high-refresh models, these tests ensure your investment is delivering perfect pixels.',
+    
+    // MSI Monitors
+    monitor_msi: 'MSI Monitor Test',
+    monitor_msi_title: 'MSI Gaming Monitor Test - Display Quality Verification',
+    monitor_msi_description: 'Professional MSI monitor testing. Check for dead pixels, color accuracy, and gaming performance on your MSI display.',
+    monitor_msi_intro: 'MSI gaming monitors combine competitive refresh rates with vibrant colors. These tests verify your MSI monitor is delivering crisp pixels and consistent performance. Perfect for competitive gaming and creative work.',
+    
+    // Acer Monitors
+    monitor_acer: 'Acer Monitor Test',
+    monitor_acer_title: 'Acer Monitor Test - Display Performance Check',
+    monitor_acer_description: 'Test your Acer monitor with professional tools. Verify color accuracy, dead pixels, brightness, and overall display quality.',
+    monitor_acer_intro: 'Acer delivers affordable, quality displays for all user types. These tests help verify your Acer monitor is performing as specified. Check for dead pixels, color shifts, and brightness consistency across your display.',
+    
+    // Corsair Monitors
+    monitor_corsair: 'Corsair Monitor Test',
+    monitor_corsair_title: 'Corsair Gaming Monitor Test - RGB Performance Verification',
+    monitor_corsair_description: 'Complete Corsair gaming monitor testing. Check color accuracy, dead pixels, RGB lighting, and display performance.',
+    monitor_corsair_intro: 'Corsair monitors combine gaming performance with integrated RGB lighting. These professional tests verify your Corsair display is delivering perfect colors and smooth performance. Test for dead pixels, color accuracy, and brightness uniformity.',
+    
+    // EIZO Monitors
+    monitor_eizo: 'EIZO Monitor Test',
+    monitor_eizo_title: 'EIZO Professional Monitor Test - Color Accuracy Verification',
+    monitor_eizo_description: 'Professional EIZO monitor testing for color-critical work. Verify color accuracy, dead pixels, and professional display quality.',
+    monitor_eizo_intro: 'EIZO specializes in color-accurate professional monitors. These tests verify your EIZO display maintains the color precision your work demands. From the ColorNavigator to factory calibration, ensure your investment is performing perfectly.',
+    
+    // HP Monitors
+    monitor_hp: 'HP Monitor Test',
+    monitor_hp_title: 'HP Monitor Test - Display Quality Check',
+    monitor_hp_description: 'Test your HP monitor with professional tools. Verify color accuracy, dead pixels, brightness, and overall performance.',
+    monitor_hp_intro: 'HP monitors serve professionals and home users alike. These comprehensive tests verify your HP display is delivering consistent performance. Check for dead pixels, color accuracy, and brightness uniformity across your screen.',
+    
+    // IIYAMA Monitors
+    monitor_iiyama: 'IIYAMA Monitor Test',
+    monitor_iiyama_title: 'IIYAMA Professional Monitor Test - Display Verification',
+    monitor_iiyama_description: 'Professional IIYAMA monitor testing. Check color accuracy, dead pixels, and display quality for your IIYAMA display.',
+    monitor_iiyama_intro: 'IIYAMA is known for professional-grade monitors with exceptional reliability. These tests verify your IIYAMA display is performing at professional standards. Test for dead pixels, color shifts, and brightness consistency.',
+    
+    // Lenovo Monitors
+    monitor_lenovo: 'Lenovo Monitor Test',
+    monitor_lenovo_title: 'Lenovo Monitor Test - Display Quality Check',
+    monitor_lenovo_description: 'Test your Lenovo monitor with professional tools. Verify color accuracy, dead pixels, brightness, and overall performance.',
+    monitor_lenovo_intro: 'Lenovo monitors deliver reliable performance for office and gaming environments. These tests verify your Lenovo display is performing optimally. Check for dead pixels, color accuracy, and brightness uniformity.',
+    
+    // NEC Monitors
+    monitor_nec: 'NEC Monitor Test',
+    monitor_nec_title: 'NEC Professional Monitor Test - Color-Critical Verification',
+    monitor_nec_description: 'Professional NEC monitor testing for accurate color reproduction. Verify color accuracy, dead pixels, and display quality.',
+    monitor_nec_intro: 'NEC specializes in professional monitors for healthcare, design, and broadcast industries. These tests verify your NEC display maintains color accuracy and reliability. Perfect for content creators and professionals.',
+    
+    // ASUS ROG Monitors
+    monitor_rog_asus: 'ASUS ROG Monitor Test',
+    monitor_rog_asus_title: 'ASUS ROG Gaming Monitor Test - Performance Verification',
+    monitor_rog_asus_description: 'Complete ASUS ROG gaming monitor testing. Verify refresh rates, color accuracy, dead pixels, and competitive performance.',
+    monitor_rog_asus_intro: 'ASUS ROG monitors are engineered for esports and competitive gaming. These tests verify your ROG display delivers the pixel-perfect performance gamers demand. Check for dead pixels, color accuracy, and refresh rate performance.',
+    
+    // Acer Nitro Monitors
+    monitor_acer_nitro: 'Acer Nitro Monitor Test',
+    monitor_acer_nitro_title: 'Acer Nitro Gaming Monitor Test - Performance Check',
+    monitor_acer_nitro_description: 'Test your Acer Nitro gaming monitor. Verify color accuracy, dead pixels, refresh rates, and gaming performance.',
+    monitor_acer_nitro_intro: 'Acer Nitro monitors deliver competitive gaming performance at accessible prices. These tests verify your Nitro display is delivering smooth gameplay and accurate colors. Check for dead pixels and performance consistency.',
+    
+    // ViewSonic Monitors
+    monitor_viewsonic: 'ViewSonic Monitor Test',
+    monitor_viewsonic_title: 'ViewSonic Professional Monitor Test - Display Quality Verification',
+    monitor_viewsonic_description: 'Professional ViewSonic monitor testing. Check color accuracy, dead pixels, brightness, and overall display quality.',
+    monitor_viewsonic_intro: 'ViewSonic monitors are trusted by professionals worldwide for reliable performance. These tests verify your ViewSonic display maintains color accuracy and brightness consistency. Perfect for design, video editing, and professional work.',
+    
+    // Dell IPS Monitors
+    monitor_dell_ips: 'Dell IPS Monitor Test',
+    monitor_dell_ips_title: 'Dell IPS Professional Monitor Test - Color Accuracy Check',
+    monitor_dell_ips_description: 'Test Dell P-series IPS monitors. Verify color accuracy, dead pixels, and professional display performance.',
+    monitor_dell_ips_intro: 'Dell\'s P-series IPS monitors deliver professional-grade color accuracy. These tests verify your Dell IPS display is maintaining perfect color reproduction. Check for dead pixels, color shifts, and brightness uniformity.',
+    
+    // LG Ultrawide Monitors
+    monitor_lg_ultrawide: 'LG Ultrawide Monitor Test',
+    monitor_lg_ultrawide_title: 'LG Ultrawide Gaming Monitor Test - Immersive Display Check',
+    monitor_lg_ultrawide_description: 'Test LG ultrawide monitors. Verify color accuracy, dead pixels, and immersive gaming performance on your ultrawide display.',
+    monitor_lg_ultrawide_intro: 'LG ultrawide monitors provide immersive gaming and productivity experiences. These tests verify your ultrawide is delivering consistent performance across its entire curved surface. Check for dead pixels and color uniformity.',
+    
+    // Samsung Curved Monitors
+    monitor_samsung_curved: 'Samsung Curved Monitor Test',
+    monitor_samsung_curved_title: 'Samsung Curved Gaming Monitor Test - Display Quality Verification',
+    monitor_samsung_curved_description: 'Test Samsung curved gaming monitors. Verify color accuracy, dead pixels, and curved display performance.',
+    monitor_samsung_curved_intro: 'Samsung\'s curved gaming monitors offer immersive experiences with curved panels. These tests verify your Samsung curved display is delivering perfect colors and smooth performance. Check for dead pixels across the curved surface.',
+    
+    // ASUS TUF Monitors
+    monitor_asus_tuf: 'ASUS TUF Monitor Test',
+    monitor_asus_tuf_title: 'ASUS TUF Gaming Monitor Test - Competitive Performance Check',
+    monitor_asus_tuf_description: 'Complete ASUS TUF gaming monitor testing. Verify color accuracy, dead pixels, and competitive gaming performance.',
+    monitor_asus_tuf_intro: 'ASUS TUF monitors are built for competitive esports performance. These tests verify your TUF display delivers the responsiveness and accuracy competitive players demand. Check for dead pixels and color precision.',
+    
+    // LG Gaming Monitors
+    monitor_lg_gaming: 'LG Gaming Monitor Test',
+    monitor_lg_gaming_title: 'LG Gaming Monitor Test - Performance Verification',
+    monitor_lg_gaming_description: 'Test LG gaming monitors. Verify refresh rates, color accuracy, dead pixels, and gaming display performance.',
+    monitor_lg_gaming_intro: 'LG gaming monitors balance competitive refresh rates with excellent color accuracy. These tests verify your LG gaming display is performing optimally. Check for dead pixels and color consistency.',
+    
+    // Dell Gaming Monitors
+    monitor_dell_gaming: 'Dell Gaming Monitor Test',
+    monitor_dell_gaming_title: 'Dell Gaming Monitor Test - Alienware Performance Check',
+    monitor_dell_gaming_description: 'Test Dell gaming monitors including Alienware series. Verify color accuracy, dead pixels, and gaming performance.',
+    monitor_dell_gaming_intro: 'Dell\'s gaming line delivers professional-grade displays for competitive gamers. These tests verify your Dell gaming monitor is delivering pixel-perfect performance. Check for dead pixels and color accuracy.',
+    
+    // BenQ Gaming Monitors
+    monitor_benq_gaming: 'BenQ Gaming Monitor Test',
+    monitor_benq_gaming_title: 'BenQ Gaming Monitor Test - Esports Performance Verification',
+    monitor_benq_gaming_description: 'Complete BenQ gaming monitor testing. Verify color accuracy, dead pixels, and competitive gaming performance.',
+    monitor_benq_gaming_intro: 'BenQ gaming monitors are engineered for esports and competitive gaming. These tests verify your BenQ gaming display delivers the accuracy competitive players demand. Check for dead pixels and color precision.',
+    
+    // MSI Curved Monitors
+    monitor_msi_curved: 'MSI Curved Monitor Test',
+    monitor_msi_curved_title: 'MSI Curved Gaming Monitor Test - Immersive Display Check',
+    monitor_msi_curved_description: 'Test MSI curved gaming monitors. Verify color accuracy, dead pixels, and curved gaming performance.',
+    monitor_msi_curved_intro: 'MSI curved gaming monitors provide immersive gaming experiences. These tests verify your MSI curved display is delivering consistent performance across its curved panel. Check for dead pixels and color uniformity.',
+    
+    // Corsair Gaming Monitors
+    monitor_corsair_gaming: 'Corsair Gaming Monitor Test',
+    monitor_corsair_gaming_title: 'Corsair Gaming Monitor Test - XENEON Performance Check',
+    monitor_corsair_gaming_description: 'Complete Corsair gaming monitor testing. Verify color accuracy, dead pixels, and gaming performance.',
+    monitor_corsair_gaming_intro: 'Corsair\'s XENEON gaming monitors deliver high performance with integrated RGB ecosystem. These tests verify your Corsair gaming display is performing optimally. Check for dead pixels and color accuracy.',
+    
+    // ASUS 4K Monitors
+    monitor_asus_4k: 'ASUS 4K Monitor Test',
+    monitor_asus_4k_title: 'ASUS ProArt 4K Monitor Test - Color Accuracy Verification',
+    monitor_asus_4k_description: 'Test ASUS 4K professional monitors including ProArt series. Verify color accuracy, dead pixels, and 4K performance.',
+    monitor_asus_4k_intro: 'ASUS ProArt 4K monitors deliver professional-grade color accuracy for content creators. These tests verify your ASUS 4K display maintains color precision across all pixels. Check for dead pixels and color uniformity in 4K resolution.',
+    
+    // LG 4K Monitors
+    monitor_lg_4k: 'LG 4K Monitor Test',
+    monitor_lg_4k_title: 'LG 4K Gaming & Professional Monitor Test - Display Verification',
+    monitor_lg_4k_description: 'Complete LG 4K monitor testing including UltraFine series. Verify color accuracy, dead pixels, and 4K performance.',
+    monitor_lg_4k_intro: 'LG\'s 4K monitors deliver stunning resolution for gaming and professional work. These tests verify your LG 4K display is delivering perfect pixels across its entire 4K resolution. Check for dead pixels and color accuracy.',
+    
+    // Dell 4K Monitors
+    monitor_dell_4k: 'Dell 4K Monitor Test',
+    monitor_dell_4k_title: 'Dell U-Series 4K Professional Monitor Test - Color Accuracy Check',
+    monitor_dell_4k_description: 'Test Dell 4K professional monitors in the U-series. Verify color accuracy, dead pixels, and 4K performance.',
+    monitor_dell_4k_intro: 'Dell\'s U-series 4K monitors are built for professional color-critical work. These tests verify your Dell 4K display maintains color accuracy across all pixels. Perfect for photo and video editing professionals.',
+    
+    // BenQ 4K Monitors
+    monitor_benq_4k: 'BenQ 4K Monitor Test',
+    monitor_benq_4k_title: 'BenQ SW 4K Professional Monitor Test - Display Verification',
+    monitor_benq_4k_description: 'Complete BenQ 4K professional monitor testing. Verify color accuracy, dead pixels, and 4K performance.',
+    monitor_benq_4k_intro: 'BenQ SW series 4K monitors deliver professional-grade color accuracy. These tests verify your BenQ 4K display is performing at professional standards. Check for dead pixels and color uniformity in 4K.',
+    
+    // Samsung 4K Monitors
+    monitor_samsung_4k: 'Samsung 4K Monitor Test',
+    monitor_samsung_4k_title: 'Samsung 4K Gaming & Professional Monitor Test - Display Check',
+    monitor_samsung_4k_description: 'Test Samsung 4K monitors. Verify color accuracy, dead pixels, and 4K gaming or professional performance.',
+    monitor_samsung_4k_intro: 'Samsung 4K monitors deliver exceptional color and brightness for gaming and work. These tests verify your Samsung 4K display is performing optimally across all pixels. Check for dead pixels and color accuracy.',
+    
+    // Portable Monitors
+    monitor_portable: 'Portable Monitor Test',
+    monitor_portable_title: 'Portable Monitor Test - USB-C Display Quality Check',
+    monitor_portable_description: 'Test portable and mobile monitors. Verify color accuracy, dead pixels, and USB-C display performance.',
+    monitor_portable_intro: 'Portable monitors extend your workspace on-the-go. These tests verify your portable display is delivering consistent performance. Check for dead pixels and color accuracy on your USB-C connected monitor.',
+    
+    // Touchscreen Monitors
+    monitor_touchscreen: 'Touchscreen Monitor Test',
+    monitor_touchscreen_title: 'Touchscreen Monitor Test - Interactive Display Verification',
+    monitor_touchscreen_description: 'Complete touchscreen monitor testing. Verify color accuracy, dead pixels, and touch responsiveness.',
+    monitor_touchscreen_intro: 'Touchscreen monitors combine visual display with interactive functionality. These tests verify your touchscreen display is delivering color accuracy and responsiveness. Check for dead pixels and color uniformity.',
+    
+    // Curved Monitors
+    monitor_curved: 'Curved Monitor Test',
+    monitor_curved_title: 'Curved Monitor Test - Immersive Display Quality Check',
+    monitor_curved_description: 'Test curved monitors for gaming and productivity. Verify color accuracy, dead pixels, and curved display performance.',
+    monitor_curved_intro: 'Curved monitors provide immersive viewing experiences. These tests verify your curved display is delivering consistent performance across its curved surface. Check for dead pixels and color uniformity.',
+    
+    // Ultrawide Monitors
+    monitor_ultrawide: 'Ultrawide Monitor Test',
+    monitor_ultrawide_title: 'Ultrawide Monitor Test - Immersive Productivity Display Check',
+    monitor_ultrawide_description: 'Complete ultrawide monitor testing. Verify color accuracy, dead pixels, and 34-inch+ ultrawide performance.',
+    monitor_ultrawide_intro: 'Ultrawide monitors maximize productivity with expansive screen real estate. These tests verify your ultrawide display is delivering consistent performance across its full width. Check for dead pixels and color uniformity.',
+    
+    // Gaming 144Hz Monitors
+    monitor_gaming_144hz: 'Gaming 144Hz Monitor Test',
+    monitor_gaming_144hz_title: '144Hz Gaming Monitor Test - Competitive Performance Verification',
+    monitor_gaming_144hz_description: 'Test 144Hz gaming monitors. Verify color accuracy, dead pixels, and 144Hz gaming performance.',
+    monitor_gaming_144hz_intro: '144Hz monitors deliver smooth competitive gaming performance. These tests verify your 144Hz display is delivering pixel-perfect performance. Check for dead pixels and color accuracy for optimal gaming.',
+    
+    // Gaming 240Hz Monitors
+    monitor_gaming_240hz: 'Gaming 240Hz Monitor Test',
+    monitor_gaming_240hz_title: '240Hz Gaming Monitor Test - High Refresh Performance Check',
+    monitor_gaming_240hz_description: 'Complete 240Hz gaming monitor testing. Verify color accuracy, dead pixels, and ultra-high refresh performance.',
+    monitor_gaming_240hz_intro: '240Hz monitors are the choice of esports professionals. These tests verify your 240Hz display is delivering ultra-smooth competitive gameplay. Check for dead pixels and color precision.',
+    
+    // Gaming 360Hz Monitors
+    monitor_gaming_360hz: 'Gaming 360Hz Monitor Test',
+    monitor_gaming_360hz_title: '360Hz Gaming Monitor Test - Extreme Performance Verification',
+    monitor_gaming_360hz_description: 'Test extreme 360Hz gaming monitors. Verify color accuracy, dead pixels, and extreme refresh rate performance.',
+    monitor_gaming_360hz_intro: '360Hz monitors represent the pinnacle of competitive gaming displays. These tests verify your 360Hz display is performing at its peak. Check for dead pixels and color accuracy.',
+    
+    // Professional Monitors
+    monitor_professional: 'Professional Monitor Test',
+    monitor_professional_title: 'Professional Monitor Test - Color-Accurate Display Verification',
+    monitor_professional_description: 'Test professional-grade monitors for color-critical work. Verify color accuracy, dead pixels, and reference performance.',
+    monitor_professional_intro: 'Professional monitors are engineered for color accuracy and reliability. These tests verify your professional display is maintaining calibration and consistency. Perfect for designers, photographers, and video editors.',
+    
+    // Photo Editing Monitors
+    monitor_photo_editing: 'Photo Editing Monitor Test',
+    monitor_photo_editing_title: 'Photo Editing Monitor Test - Color Accuracy Verification',
+    monitor_photo_editing_description: 'Complete photo editing monitor testing. Verify color accuracy, dead pixels, and photography display performance.',
+    monitor_photo_editing_intro: 'Photo editing monitors are built for color-accurate image work. These tests verify your photo editing display is delivering the color precision photographers and editors demand. Check for dead pixels and color uniformity.',
+    
+    // Video Editing Monitors
+    monitor_video_editing: 'Video Editing Monitor Test',
+    monitor_video_editing_title: 'Video Editing Monitor Test - Color Grading Display Verification',
+    monitor_video_editing_description: 'Test video editing and color grading monitors. Verify color accuracy, dead pixels, and 4K editing performance.',
+    monitor_video_editing_intro: 'Video editing monitors deliver accurate color reproduction for grading and editing work. These tests verify your video editing display is delivering color precision and consistency. Ideal for colorists and video professionals.',
+    
     monitor_faq_1_q: 'How do I know if my monitor has dead pixels?',
     monitor_faq_1_a: 'Use our color screen tests (red, blue, green, white) to spot dead pixels. Dead pixels appear as small dots that don\'t match the color being displayed. They\'re easiest to see on solid color backgrounds.',
     
