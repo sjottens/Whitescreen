@@ -120,9 +120,9 @@ export default async function ComparePage({ params }: ComparePageProps) {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                        {comparison!.title}
+                        {translate(comparison!.titleKey as any)}
                       </h3>
-                      <p className="text-sm text-slate-600 mt-2">{comparison!.description}</p>
+                      <p className="text-sm text-slate-600 mt-2">{translate(comparison!.descriptionKey as any)}</p>
                     </div>
                     <div className="text-blue-400 group-hover:text-blue-600 transition-colors text-xl">→</div>
                   </div>
