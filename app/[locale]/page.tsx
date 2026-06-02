@@ -2,7 +2,7 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Check, Zap, Smartphone, Shield, Cpu, Monitor, Gamepad2 } from 'lucide-react';
+import { ArrowRight, Check, Zap, Smartphone, Shield, Monitor, Gamepad2 } from 'lucide-react';
 import { generateMultilingualMetadata, faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS } from '@/lib/constants';
@@ -65,10 +65,10 @@ export default async function HomePage({ params }: HomePageProps) {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <LinkButton href={`/${locale !== 'en' ? locale : ''}${locale !== 'en' ? '/' : ''}white-screen`.replace(/\/+/g, '/')} size="lg" variant="primary" className="sm:w-auto">
+              <LinkButton href={getLocalizedPath(locale, '/white-screen')} size="lg" variant="primary" className="sm:w-auto">
                 {translate('btn_start_testing')} <ArrowRight className="w-5 h-5 ml-2" />
               </LinkButton>
-              <LinkButton href={`/${locale !== 'en' ? locale : ''}${locale !== 'en' ? '/' : ''}tools`.replace(/\/+/g, '/')} size="lg" variant="outline" className="sm:w-auto">
+              <LinkButton href={getLocalizedPath(locale, '/tools')} size="lg" variant="outline" className="sm:w-auto">
                 {translate('btn_view_tools')}
               </LinkButton>
             </div>
@@ -110,7 +110,7 @@ export default async function HomePage({ params }: HomePageProps) {
             {COLOR_TOOLS.slice(0, 4).map((tool) => (
               <Link
                 key={tool.id}
-                href={`/${locale !== 'en' ? locale : ''}${locale !== 'en' ? '/' : ''}${tool.path}`.replace(/\/+/g, '/')}
+                href={getLocalizedPath(locale, tool.path)}
                 className="group relative h-48 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
               >
                 <div
@@ -130,7 +130,7 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
 
           <div className="text-center mt-12">
-            <LinkButton href={`/${locale !== 'en' ? locale : ''}${locale !== 'en' ? '/' : ''}tools`.replace(/\/+/g, '/')} variant="outline" size="lg">
+            <LinkButton href={getLocalizedPath(locale, '/tools')} variant="outline" size="lg">
               {translate('browse_all_tools').replace('{count}', String(COLOR_TOOLS.length + TEST_TOOLS.length))}
             </LinkButton>
           </div>
