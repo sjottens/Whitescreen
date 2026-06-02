@@ -86,11 +86,11 @@ export default function RefreshRateCalculator() {
   };
 
   const getColorClass = (hz: number): string => {
-    if (hz >= 360) return 'text-purple-600';
-    if (hz >= 240) return 'text-blue-600';
-    if (hz >= 144) return 'text-green-600';
-    if (hz >= 100) return 'text-yellow-600';
-    return 'text-slate-600';
+    if (hz >= 360) return 'text-purple-800';
+    if (hz >= 240) return 'text-blue-800';
+    if (hz >= 144) return 'text-green-800';
+    if (hz >= 100) return 'text-amber-700';
+    return 'text-slate-800';
   };
 
   return (
@@ -141,11 +141,11 @@ export default function RefreshRateCalculator() {
 
       {/* Recommendation */}
       <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-lg border-2 border-blue-200">
-        <p className="text-sm text-slate-600 mb-2">Recommended Refresh Rate</p>
+        <p className="text-sm font-semibold text-slate-800 mb-2">Recommended Refresh Rate</p>
         <p className={`text-6xl font-bold mb-4 ${getColorClass(recommendation)}`}>
           {recommendation}Hz
         </p>
-        <p className="text-lg text-slate-700">{getRecommendationText(recommendation)}</p>
+        <p className="text-lg font-medium text-slate-800">{getRecommendationText(recommendation)}</p>
 
         {/* Monitor Options */}
         <div className="mt-6 pt-6 border-t border-slate-200">
@@ -153,26 +153,26 @@ export default function RefreshRateCalculator() {
           <div className="space-y-2 text-sm">
             {recommendation >= 240 && (
               <div className="flex items-center gap-2">
-                <span className="text-blue-600 font-bold">✓</span>
-                <span>240Hz or 360Hz gaming monitor</span>
+                <span className="text-blue-800 font-bold">✓</span>
+                <span className="text-slate-800">240Hz or 360Hz gaming monitor</span>
               </div>
             )}
             {recommendation >= 144 && recommendation < 240 && (
               <div className="flex items-center gap-2">
-                <span className="text-green-600 font-bold">✓</span>
-                <span>144Hz gaming monitor (excellent choice)</span>
+                <span className="text-green-800 font-bold">✓</span>
+                <span className="text-slate-800">144Hz gaming monitor (excellent choice)</span>
               </div>
             )}
             {recommendation >= 100 && recommendation < 144 && (
               <div className="flex items-center gap-2">
-                <span className="text-yellow-600 font-bold">✓</span>
-                <span>120Hz or 144Hz monitor for smooth experience</span>
+                <span className="text-amber-700 font-bold">✓</span>
+                <span className="text-slate-800">120Hz or 144Hz monitor for smooth experience</span>
               </div>
             )}
             {recommendation < 100 && (
               <div className="flex items-center gap-2">
-                <span className="text-slate-600 font-bold">✓</span>
-                <span>60Hz or 75Hz monitor (standard)</span>
+                <span className="text-slate-800 font-bold">✓</span>
+                <span className="text-slate-800">60Hz or 75Hz monitor (standard)</span>
               </div>
             )}
           </div>
@@ -182,7 +182,7 @@ export default function RefreshRateCalculator() {
       {/* Tips */}
       <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
         <h3 className="font-semibold text-slate-900 mb-3">💡 Tips for Best Performance</h3>
-        <ul className="space-y-2 text-sm text-slate-700">
+        <ul className="space-y-2 text-sm text-slate-800 font-medium">
           <li>
             • Maintain FPS 10-20% above your refresh rate to avoid stuttering (e.g., 160 FPS for
             144Hz)
