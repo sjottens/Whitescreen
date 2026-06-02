@@ -3,12 +3,13 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { Monitor, Smartphone, Gamepad2 } from 'lucide-react';
+import { Monitor, Smartphone, Gamepad2, ArrowRight } from 'lucide-react';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
+import { LinkButton } from '@/components/ui/button';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -167,12 +168,13 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               Try typing your brand name in the URL: <code className="bg-white px-2 py-1 rounded">/monitor-test/benq</code>, 
               <code className="bg-white px-2 py-1 rounded ml-2">/monitor-test/alienware</code>, etc.
             </p>
-            <Link
+            <LinkButton
               href={getLocalizedPath(locale, '/monitor-test/benq')}
-              className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow-md hover:shadow-lg hover:bg-blue-700 active:bg-blue-800 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              variant="primary"
+              size="lg"
             >
-              Browse More Brands →
-            </Link>
+              Browse More Brands <ArrowRight className="w-5 h-5 ml-2" />
+            </LinkButton>
           </div>
         </div>
       </section>

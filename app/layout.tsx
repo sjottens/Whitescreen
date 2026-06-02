@@ -54,32 +54,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
 
-        {/* Google AdSense - Advertisement display */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"
-          crossOrigin="anonymous"
-        ></script>
-
-        {/* Google Analytics - Early tracking with non-blocking strategy */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-YP3G096BGK');
-            `,
-          }}
-        />
-
         {/* Meta tags */}
         <meta name="theme-color" content="#ffffff" />
         <meta name="google-site-verification" content="qGiskLnJK1JGwDlUffGkfsP4z0cBTsoaeFyq8c11dYA" />
@@ -106,6 +80,31 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body className={inter.variable}>
         {children}
+
+        {/* Google AdSense - Advertisement display */}
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
+
+        {/* Google Analytics - Tracking setup */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YP3G096BGK');
+            `,
+          }}
+        />
       </body>
     </html>
   );
