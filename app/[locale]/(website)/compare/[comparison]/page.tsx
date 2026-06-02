@@ -131,7 +131,7 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
               <thead>
                 <tr className="bg-slate-100 border-b border-slate-200">
                   <th className="px-6 py-3 text-left font-semibold text-slate-900">
-                    {translate('feature')}
+                    Feature
                   </th>
                   <th className="px-6 py-3 text-left font-semibold text-blue-600">
                     {comparisonData.item1.keywords[0]}
@@ -148,7 +148,7 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
               </thead>
               <tbody>
                 <tr className="border-b border-slate-200 hover:bg-slate-50">
-                  <td className="px-6 py-4 font-semibold text-slate-900">{translate('type')}</td>
+                  <td className="px-6 py-4 font-semibold text-slate-900">Type</td>
                   <td className="px-6 py-4 text-slate-700">{comparisonData.item1.type}</td>
                   <td className="px-6 py-4 text-slate-700">{comparisonData.item2.type}</td>
                   {comparisonData.item3 && (
@@ -157,7 +157,7 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
                 </tr>
                 <tr className="border-b border-slate-200 hover:bg-slate-50">
                   <td className="px-6 py-4 font-semibold text-slate-900">
-                    {translate('popularity')}
+                    Popularity
                   </td>
                   <td className="px-6 py-4 text-slate-700">
                     {comparisonData.item1.searchVolume} monthly searches
@@ -177,9 +177,9 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
 
           {/* Call to Action */}
           <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 rounded-lg mb-12">
-            <h2 className="text-2xl font-bold mb-4 text-slate-900">{translate('ready_to_test')}</h2>
+            <h2 className="text-2xl font-bold mb-4 text-slate-900">Ready to Test Your Display?</h2>
             <p className="text-slate-700 mb-6">
-              {translate('test_your_display_with_professional_tools')}
+              Use our professional display testing tools to optimize your monitor setup
             </p>
             <Link
               href={getLocalizedPath(locale as any, '/white-screen')}
@@ -193,7 +193,7 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
           {relatedComparisons.length > 0 && (
             <div>
               <h2 className="text-2xl font-bold mb-6 text-slate-900">
-                {translate('related_comparisons')}
+                Related Comparisons
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {relatedComparisons.slice(0, 4).map((related) => (

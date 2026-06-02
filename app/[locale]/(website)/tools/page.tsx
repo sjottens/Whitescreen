@@ -118,7 +118,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('monitor_tests')}</h2>
           <p className="text-slate-600 text-lg mb-8">
-            Test your display with monitor brand-specific test pages optimized for different manufacturers.
+            Test your display with brand-specific test pages optimized for 50+ monitor manufacturers. Find your brand and optimize your setup.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link
@@ -155,6 +155,23 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               <Monitor className="w-8 h-8 text-purple-600 mb-3" />
               <h3 className="text-xl font-bold mb-2">{translate('monitor_dell')}</h3>
               <p className="text-slate-600 text-sm">{translate('monitor_dell_description')}</p>
+            </Link>
+          </div>
+
+          {/* CTA for more brands */}
+          <div className="mt-12 p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200 text-center">
+            <p className="text-slate-700 mb-4">
+              <strong>We support 50+ monitor brands!</strong> From ASUS ROG to BenQ, Alienware to EIZO, and many more.
+            </p>
+            <p className="text-sm text-slate-600 mb-6">
+              Try typing your brand name in the URL: <code className="bg-white px-2 py-1 rounded">/monitor-test/benq</code>, 
+              <code className="bg-white px-2 py-1 rounded ml-2">/monitor-test/alienware</code>, etc.
+            </p>
+            <Link
+              href={getLocalizedPath(locale, '/monitor-test/benq')}
+              className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Browse More Brands →
             </Link>
           </div>
         </div>
@@ -203,6 +220,140 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               <h3 className="text-xl font-bold mb-2">{translate('oled_tv_test')}</h3>
               <p className="text-slate-600 text-sm">{translate('oled_tv_test_description')}</p>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Calculator & Utility Tools */}
+      <section className="section">
+        <div className="container">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">📊 Calculator & Utility Tools</h2>
+          <p className="text-slate-600 text-lg mb-8">
+            Interactive tools to help you find the perfect monitor setup and understand display specifications.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Link
+              href={getLocalizedPath(locale, '/tools/refresh-rate-calculator')}
+              className="card group hover:shadow-lg transition-all border-l-4 border-purple-500"
+            >
+              <div className="text-4xl mb-3">⚡</div>
+              <h3 className="text-xl font-bold mb-2">Refresh Rate Calculator</h3>
+              <p className="text-slate-600 text-sm mb-4">
+                Find the optimal refresh rate for your GPU and CPU. Get personalized recommendations for gaming and professional use.
+              </p>
+              <span className="text-purple-600 font-semibold text-sm">Explore →</span>
+            </Link>
+
+            <Link
+              href={getLocalizedPath(locale, '/tools/pixel-density-calculator')}
+              className="card group hover:shadow-lg transition-all border-l-4 border-emerald-500"
+            >
+              <div className="text-4xl mb-3">🔍</div>
+              <h3 className="text-xl font-bold mb-2">Pixel Density Calculator</h3>
+              <p className="text-slate-600 text-sm mb-4">
+                Calculate PPI and DPI for any monitor. Quick presets for common resolutions and screen sizes.
+              </p>
+              <span className="text-emerald-600 font-semibold text-sm">Calculate →</span>
+            </Link>
+
+            <Link
+              href={getLocalizedPath(locale, '/tools/monitor-comparison')}
+              className="card group hover:shadow-lg transition-all border-l-4 border-orange-500"
+            >
+              <div className="text-4xl mb-3">⚖️</div>
+              <h3 className="text-xl font-bold mb-2">Monitor Comparison Tool</h3>
+              <p className="text-slate-600 text-sm mb-4">
+                Compare up to 3 monitors side-by-side. Analyze specs, differences, and find your perfect match.
+              </p>
+              <span className="text-orange-600 font-semibold text-sm">Compare →</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison Guides */}
+      <section className="section-alt">
+        <div className="container">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">🔄 Monitor & Spec Comparisons</h2>
+          <p className="text-slate-600 text-lg mb-8">
+            In-depth guides comparing popular monitor brands, specifications, and gaming setups to help you make informed decisions.
+          </p>
+          
+          {/* Brand Comparisons */}
+          <div className="mb-12">
+            <h3 className="text-xl font-bold mb-6">Brand vs Brand</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                href={getLocalizedPath(locale, '/compare/asus-vs-lg')}
+                className="card hover:shadow-lg transition-all p-4 border-l-4 border-blue-500"
+              >
+                <h4 className="font-semibold text-slate-900 mb-2">ASUS vs LG</h4>
+                <p className="text-sm text-slate-600">Compare two gaming monitor giants</p>
+              </Link>
+              <Link
+                href={getLocalizedPath(locale, '/compare/asus-vs-dell')}
+                className="card hover:shadow-lg transition-all p-4 border-l-4 border-blue-500"
+              >
+                <h4 className="font-semibold text-slate-900 mb-2">ASUS vs Dell</h4>
+                <p className="text-sm text-slate-600">Gaming vs Professional displays</p>
+              </Link>
+              <Link
+                href={getLocalizedPath(locale, '/compare/lg-vs-samsung')}
+                className="card hover:shadow-lg transition-all p-4 border-l-4 border-blue-500"
+              >
+                <h4 className="font-semibold text-slate-900 mb-2">LG vs Samsung</h4>
+                <p className="text-sm text-slate-600">Two industry leaders compared</p>
+              </Link>
+            </div>
+          </div>
+
+          {/* Spec Comparisons */}
+          <div className="mb-12">
+            <h3 className="text-xl font-bold mb-6">Specification Comparisons</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                href={getLocalizedPath(locale, '/compare/ips-vs-va-vs-tn')}
+                className="card hover:shadow-lg transition-all p-4 border-l-4 border-green-500"
+              >
+                <h4 className="font-semibold text-slate-900 mb-2">IPS vs VA vs TN</h4>
+                <p className="text-sm text-slate-600">Panel types explained and compared</p>
+              </Link>
+              <Link
+                href={getLocalizedPath(locale, '/compare/144hz-vs-240hz')}
+                className="card hover:shadow-lg transition-all p-4 border-l-4 border-green-500"
+              >
+                <h4 className="font-semibold text-slate-900 mb-2">144Hz vs 240Hz</h4>
+                <p className="text-sm text-slate-600">Refresh rate impact on gaming</p>
+              </Link>
+              <Link
+                href={getLocalizedPath(locale, '/compare/curved-vs-flat')}
+                className="card hover:shadow-lg transition-all p-4 border-l-4 border-green-500"
+              >
+                <h4 className="font-semibold text-slate-900 mb-2">Curved vs Flat</h4>
+                <p className="text-sm text-slate-600">Which panel design is better?</p>
+              </Link>
+            </div>
+          </div>
+
+          {/* Device Comparisons */}
+          <div>
+            <h3 className="text-xl font-bold mb-6">Device Comparisons</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Link
+                href={getLocalizedPath(locale, '/compare/ps5-vs-xbox-series-x')}
+                className="card hover:shadow-lg transition-all p-4 border-l-4 border-orange-500"
+              >
+                <h4 className="font-semibold text-slate-900 mb-2">PS5 vs Xbox Series X</h4>
+                <p className="text-sm text-slate-600">Gaming console display requirements</p>
+              </Link>
+              <Link
+                href={getLocalizedPath(locale, '/compare/ultrawide-vs-dual-monitor')}
+                className="card hover:shadow-lg transition-all p-4 border-l-4 border-orange-500"
+              >
+                <h4 className="font-semibold text-slate-900 mb-2">Ultrawide vs Dual Monitor</h4>
+                <p className="text-sm text-slate-600">Workspace setup options compared</p>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

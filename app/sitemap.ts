@@ -3,6 +3,8 @@
 import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/constants';
 import { generateHrefLangAlternates, LOCALES, DEFAULT_LOCALE, getCanonicalUrl } from '@/lib/i18n';
+import { getMonitorBrandSlugs } from '@/lib/monitor-brands';
+import { getComparisonSlugs } from '@/lib/comparisons';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
@@ -63,17 +65,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'brightness-test',
     'contrast-test',
     'zoom-lighting',
-    // Device-specific tests (planned for expansion)
+    // Device-specific tests
     'iphone-screen-test',
     'ipad-screen-test',
     'macbook-screen-test',
     'android-screen-test',
-    // Monitor brand tests (planned for expansion)
-    'monitor-test-asus',
-    'monitor-test-lg',
-    'monitor-test-samsung',
-    'monitor-test-dell',
-    // Resolution-specific tests (planned for expansion)
+    // Resolution-specific tests
     '1080p-screen-test',
     '2k-screen-test',
     '4k-screen-test',
@@ -103,6 +100,103 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
         alternates: {
           languages: generateHrefLangAlternates(toolPath),
+        },
+      });
+    });
+  });
+
+  // Add calculator tool pages
+  const calculatorTools = [
+    'tools/refresh-rate-calculator',
+    'tools/pixel-density-calculator',
+    'tools/monitor-comparison',
+  ];
+
+  calculatorTools.forEach((toolPath) => {
+    const path = `/${toolPath}`;
+
+    // Add default locale entry
+    sitemapEntries.push({
+      url: getCanonicalUrl(DEFAULT_LOCALE, path),
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+      alternates: {
+        languages: generateHrefLangAlternates(path),
+      },
+    });
+
+    // Add non-default locale entries
+    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
+      sitemapEntries.push({
+        url: getCanonicalUrl(locale, path),
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.85,
+        alternates: {
+          languages: generateHrefLangAlternates(path),
+        },
+      });
+    });
+  });
+
+  // Add dynamic monitor brand pages
+  const monitorBrands = getMonitorBrandSlugs();
+
+  monitorBrands.forEach((brand) => {
+    const brandPath = `/monitor-test/${brand}`;
+
+    // Add default locale entry
+    sitemapEntries.push({
+      url: getCanonicalUrl(DEFAULT_LOCALE, brandPath),
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+      alternates: {
+        languages: generateHrefLangAlternates(brandPath),
+      },
+    });
+
+    // Add non-default locale entries
+    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
+      sitemapEntries.push({
+        url: getCanonicalUrl(locale, brandPath),
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+        alternates: {
+          languages: generateHrefLangAlternates(brandPath),
+        },
+      });
+    });
+  });
+
+  // Add dynamic comparison pages
+  const comparisons = getComparisonSlugs();
+
+  comparisons.forEach((comparison) => {
+    const comparisonPath = `/compare/${comparison}`;
+
+    // Add default locale entry
+    sitemapEntries.push({
+      url: getCanonicalUrl(DEFAULT_LOCALE, comparisonPath),
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+      alternates: {
+        languages: generateHrefLangAlternates(comparisonPath),
+      },
+    });
+
+    // Add non-default locale entries
+    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
+      sitemapEntries.push({
+        url: getCanonicalUrl(locale, comparisonPath),
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+        alternates: {
+          languages: generateHrefLangAlternates(comparisonPath),
         },
       });
     });
