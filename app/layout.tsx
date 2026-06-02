@@ -52,6 +52,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+
+        {/* Google AdSense - Advertisement display */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
 
         {/* Google Analytics - Early tracking with non-blocking strategy */}
         <Script
@@ -75,6 +84,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Meta tags */}
         <meta name="theme-color" content="#ffffff" />
         <meta name="google-site-verification" content="qGiskLnJK1JGwDlUffGkfsP4z0cBTsoaeFyq8c11dYA" />
+        <meta name="google-adsense-account" content="ca-pub-5016673566357322" />
 
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
