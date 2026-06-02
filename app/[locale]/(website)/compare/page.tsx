@@ -105,9 +105,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {comparisons.map((slug) => {
-              const comparison = getComparisonData(slug);
-              return (
+            {comparisons
+              .map((slug) => ({
+                slug,
+                comparison: getComparisonData(slug),
+              }))
+              .filter((item) => item.comparison !== null)
+              .map(({ slug, comparison }) => (
                 <Link
                   key={slug}
                   href={getLocalizedPath(locale, `/compare/${slug}`)}
@@ -116,15 +120,14 @@ export default async function ComparePage({ params }: ComparePageProps) {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                        {comparison.title}
+                        {comparison!.title}
                       </h3>
-                      <p className="text-sm text-slate-600 mt-2">{comparison.description}</p>
+                      <p className="text-sm text-slate-600 mt-2">{comparison!.description}</p>
                     </div>
                     <div className="text-blue-400 group-hover:text-blue-600 transition-colors text-xl">→</div>
                   </div>
                 </Link>
-              );
-            })}
+              ))}
           </div>
         </div>
       </section>

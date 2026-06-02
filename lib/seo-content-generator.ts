@@ -28,7 +28,7 @@ export function generateScreenVariantContent(
   variant: string,
   toolName: string,
   baseKeywords: string[],
-  translateFn?: (key: any) => string
+  translateFn?: (key: string) => string
 ): VariantContent {
   const colorName = color.charAt(0).toUpperCase() + color.slice(1);
   
@@ -278,16 +278,16 @@ export function generateScreenVariantContent(
   if (translateFn) {
     result.faqs = [
       {
-        question: translateFn('tool_faq_1_q' as any),
-        answer: translateFn('tool_faq_1_a' as any),
+        question: translateFn('tool_faq_1_q'),
+        answer: translateFn('tool_faq_1_a'),
       },
       {
-        question: translateFn('tool_faq_2_q' as any),
-        answer: translateFn('tool_faq_2_a' as any),
+        question: translateFn('tool_faq_2_q'),
+        answer: translateFn('tool_faq_2_a'),
       },
       {
-        question: translateFn('tool_faq_3_q' as any),
-        answer: translateFn('tool_faq_3_a' as any),
+        question: translateFn('tool_faq_3_q'),
+        answer: translateFn('tool_faq_3_a'),
       },
     ];
   }
