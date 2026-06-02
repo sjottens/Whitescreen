@@ -25,7 +25,7 @@ interface LinkButtonProps extends Omit<ButtonProps, 'onClick' | 'type'> {
 }
 
 const variantClasses = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 shadow-md hover:shadow-lg disabled:shadow-none',
+  primary: 'bg-blue-600 text-white hover:bg-blue-800 active:bg-blue-900 shadow-md hover:shadow-lg disabled:shadow-none',
   secondary: 'bg-slate-200 text-slate-900 hover:bg-slate-300 active:bg-slate-400 shadow-sm hover:shadow-md disabled:shadow-none',
   outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 active:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2',
   ghost: 'text-blue-600 hover:bg-blue-50 active:bg-blue-100',
