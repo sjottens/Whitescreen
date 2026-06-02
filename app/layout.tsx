@@ -55,12 +55,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
 
         {/* Google AdSense - Advertisement display */}
-        <Script
+        <script
+          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"
           crossOrigin="anonymous"
-          strategy="lazyOnload"
-          suppressHydrationWarning
-        />
+        ></script>
 
         {/* Google Analytics - Early tracking with non-blocking strategy */}
         <Script
