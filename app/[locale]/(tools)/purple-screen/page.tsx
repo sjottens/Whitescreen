@@ -2,13 +2,19 @@
 
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
-import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'purple-screen')!;
+
+export async function generateStaticParams() {
+  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
+    locale,
+  }));
+}
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -36,7 +42,7 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
     locale
   );
 
-  const translatedUseCases = TOOL.useCases.map((key) => translate(key as any));
+  const translatedUseCases = (TOOL.useCases || []).map((key) => translate(key as any));
 
   const translatedFeatures = [
     translate('feature_fullscreen_pure'),

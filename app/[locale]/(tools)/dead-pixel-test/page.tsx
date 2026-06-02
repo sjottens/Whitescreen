@@ -2,12 +2,19 @@
 
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
-import { getLocaleFromParams } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 import { t } from '@/lib/translations';
 import { TEST_TOOLS } from '@/lib/constants';
+import ToolLayout from '@/components/tools/tool-layout';
 import DeadPixelTest from '@/components/tools/dead-pixel-test';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'dead-pixel-test')!;
+
+export async function generateStaticParams() {
+  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
+    locale,
+  }));
+}
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
