@@ -106,7 +106,7 @@ export default function RefreshRateCalculator() {
             const gpu = GPU_OPTIONS.find((g) => g.name === e.target.value);
             setSelectedGPU(gpu || null);
           }}
-          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900"
+          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black"
         >
           <option value="">Select GPU...</option>
           {GPU_OPTIONS.map((gpu) => (
@@ -128,7 +128,7 @@ export default function RefreshRateCalculator() {
             const cpu = CPU_OPTIONS.find((c) => c.name === e.target.value);
             setSelectedCPU(cpu || null);
           }}
-          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-slate-900"
+          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black"
         >
           <option value="">Select CPU...</option>
           {CPU_OPTIONS.map((cpu) => (

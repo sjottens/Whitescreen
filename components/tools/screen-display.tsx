@@ -235,7 +235,7 @@ export default function ScreenDisplay({ color, colorId, title, locale = 'en' }: 
                   setCustomWidth(e.target.value);
                   setResolution('custom');
                 }}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 bg-white text-black border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />
             </div>
             <div>
@@ -249,7 +249,7 @@ export default function ScreenDisplay({ color, colorId, title, locale = 'en' }: 
                   setCustomHeight(e.target.value);
                   setResolution('custom');
                 }}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 bg-white text-black border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />
             </div>
           </div>

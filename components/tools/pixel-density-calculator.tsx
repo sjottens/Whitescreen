@@ -99,7 +99,7 @@ export default function PixelDensityCalculator() {
             type="number"
             value={horizontalPixels}
             onChange={(e) => setHorizontalPixels(Number(e.target.value))}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 bg-white text-black border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="e.g., 2560"
           />
         </div>
@@ -113,7 +113,7 @@ export default function PixelDensityCalculator() {
             type="number"
             value={verticalPixels}
             onChange={(e) => setVerticalPixels(Number(e.target.value))}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 bg-white text-black border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="e.g., 1440"
           />
         </div>
@@ -128,7 +128,7 @@ export default function PixelDensityCalculator() {
             step="0.1"
             value={diagonalInches}
             onChange={(e) => setDiagonalInches(Number(e.target.value))}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 bg-white text-black border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="e.g., 27"
           />
         </div>
