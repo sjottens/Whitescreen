@@ -107,16 +107,16 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {brands.map((brand) => (
               <Link
-                key={brand.slug}
-                href={getLocalizedPath(locale, `/monitor-test/${brand.slug}`)}
+                key={brand.id}
+                href={getLocalizedPath(locale, `/monitor-test/${brand.id}`)}
                 className="group card p-4 hover:shadow-lg transition-all hover:border-blue-300"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                      {brand.name}
+                      {translate(brand.nameKey as any)}
                     </h3>
-                    <p className="text-sm text-slate-600 mt-1">{brand.tagline}</p>
+                    <p className="text-sm text-slate-600 mt-1">{translate(brand.descriptionKey as any)}</p>
                   </div>
                   <div className="text-blue-400 group-hover:text-blue-600 transition-colors">→</div>
                 </div>
