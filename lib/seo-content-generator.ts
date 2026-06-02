@@ -28,7 +28,7 @@ export function generateScreenVariantContent(
   variant: string,
   toolName: string,
   baseKeywords: string[],
-  translateFn?: (key: string) => string
+  translateFn?: (key: any) => string
 ): VariantContent {
   const colorName = color.charAt(0).toUpperCase() + color.slice(1);
   
