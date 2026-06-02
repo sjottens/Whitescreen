@@ -8,42 +8,18 @@ import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
-
-const MONITOR_BRANDS = {
-  asus: {
-    nameKey: 'monitor_asus',
-    titleKey: 'monitor_asus_title',
-    descriptionKey: 'monitor_asus_description',
-    introKey: 'monitor_asus_intro',
-  },
-  lg: {
-    nameKey: 'monitor_lg',
-    titleKey: 'monitor_lg_title',
-    descriptionKey: 'monitor_lg_description',
-    introKey: 'monitor_lg_intro',
-  },
-  samsung: {
-    nameKey: 'monitor_samsung',
-    titleKey: 'monitor_samsung_title',
-    descriptionKey: 'monitor_samsung_description',
-    introKey: 'monitor_samsung_intro',
-  },
-  dell: {
-    nameKey: 'monitor_dell',
-    titleKey: 'monitor_dell_title',
-    descriptionKey: 'monitor_dell_description',
-    introKey: 'monitor_dell_intro',
-  },
-};
+import { MONITOR_BRANDS, getMonitorBrandSlugs } from '@/lib/monitor-brands';
 
 /**
  * Generate static params for all monitor brands across all non-default locales
  * English pages are served at root (e.g., /monitor-test/samsung), not /en/monitor-test/samsung
  * This prevents duplicate content issues with canonical tags
+ * Now dynamically generates 50+ monitor brand pages from centralized database
  */
 export async function generateStaticParams() {
+  const brandSlugs = getMonitorBrandSlugs();
   return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).flatMap((locale) =>
-    Object.keys(MONITOR_BRANDS).map((brand) => ({
+    brandSlugs.map((brand) => ({
       locale,
       brand,
     }))
@@ -55,7 +31,7 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { locale, brand } = await props.params;
   const translate = t(locale as any);
-  const brandData = MONITOR_BRANDS[brand as keyof typeof MONITOR_BRANDS];
+  const brandData = MONITOR_BRANDS[brand];
 
   if (!brandData) {
     return { title: 'Not Found' };
@@ -66,7 +42,7 @@ export async function generateMetadata(props: {
     title: translate(brandData.titleKey as any),
     description: translate(brandData.descriptionKey as any),
     path: `/monitor-test/${brand}`,
-    keywords: [brand, 'monitor test', 'display test', 'screen quality'],
+    keywords: [...brandData.keywords, 'monitor test', 'display test', 'screen quality'],
   });
 }
 
@@ -77,7 +53,7 @@ interface MonitorTestPageProps {
 export default async function MonitorTestPage({ params }: MonitorTestPageProps) {
   const { locale, brand } = await params;
   const translate = t(locale as any);
-  const brandData = MONITOR_BRANDS[brand as keyof typeof MONITOR_BRANDS];
+  const brandData = MONITOR_BRANDS[brand];
 
   if (!brandData) {
     return <div>Monitor brand not found</div>;
