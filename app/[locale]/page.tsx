@@ -367,14 +367,14 @@ export default async function HomePage({ params }: HomePageProps) {
             {/* Pixel Density Calculator */}
             <Link
               href={getLocalizedPath(locale, '/tools/pixel-density-calculator')}
-              className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-emerald-500"
+              className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-emerald-700"
             >
               <div className="text-5xl mb-4">🔍</div>
               <h3 className="text-2xl font-bold mb-3 text-slate-900">Pixel Density Calculator</h3>
               <p className="text-slate-600 mb-4">
                 Calculate PPI and DPI for any monitor. Understand display sharpness with preset common resolutions.
               </p>
-              <span className="text-emerald-600 font-semibold inline-flex items-center">
+              <span className="text-emerald-700 font-semibold inline-flex items-center">
                 Calculate →
               </span>
             </Link>
@@ -382,14 +382,14 @@ export default async function HomePage({ params }: HomePageProps) {
             {/* Monitor Comparisons */}
             <Link
               href={getLocalizedPath(locale, '/tools/monitor-comparison')}
-              className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-orange-500"
+              className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-orange-700"
             >
               <div className="text-5xl mb-4">⚖️</div>
               <h3 className="text-2xl font-bold mb-3 text-slate-900">Monitor Comparison Tool</h3>
               <p className="text-slate-600 mb-4">
                 Compare up to 3 monitors side-by-side. Analyze differences in specs, price, and find your perfect match.
               </p>
-              <span className="text-orange-600 font-semibold inline-flex items-center">
+              <span className="text-orange-700 font-semibold inline-flex items-center">
                 Compare →
               </span>
             </Link>

@@ -136,11 +136,11 @@ export default function PixelDensityCalculator() {
 
       {/* Results */}
       {result && (
-        <div className="bg-gradient-to-br from-slate-50 to-emerald-50 p-8 rounded-lg border-2 border-emerald-200">
+        <div className="bg-gradient-to-br from-slate-50 to-emerald-50 p-8 rounded-lg border-2 border-emerald-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <p className="text-sm text-slate-600 mb-2">Pixels Per Inch (PPI)</p>
-              <p className="text-5xl font-bold text-emerald-600">{result.ppi}</p>
+              <p className="text-5xl font-bold text-emerald-800">{result.ppi}</p>
             </div>
             <div>
               <p className="text-sm text-slate-600 mb-2">Dots Per Inch (DPI)</p>

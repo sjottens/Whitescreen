@@ -131,10 +131,10 @@ export default async function DeviceTestsPage({ params }: DeviceTestsPageProps) 
             {devices.map((device, index) => {
               const Icon = device.icon;
               const colorClasses = {
-                gray: 'text-gray-600 border-gray-300',
-                slate: 'text-slate-600 border-slate-300',
-                orange: 'text-orange-600 border-orange-300',
-                indigo: 'text-indigo-600 border-indigo-300',
+                gray: 'text-gray-700 border-gray-400',
+                slate: 'text-slate-700 border-slate-400',
+                orange: 'text-orange-700 border-orange-400',
+                indigo: 'text-indigo-700 border-indigo-400',
               };
 
               return (
@@ -143,7 +143,7 @@ export default async function DeviceTestsPage({ params }: DeviceTestsPageProps) 
                   href={getLocalizedPath(locale, device.path)}
                   className="group card p-6 hover:shadow-lg transition-all border-l-4 hover:border-blue-500 cursor-pointer"
                 >
-                  <Icon className={`w-10 h-10 mb-4 transition-colors ${device.color === 'gray' ? 'text-gray-600 group-hover:text-blue-600' : device.color === 'slate' ? 'text-slate-600 group-hover:text-blue-600' : device.color === 'orange' ? 'text-orange-600 group-hover:text-blue-600' : 'text-indigo-600 group-hover:text-blue-600'}`} />
+                  <Icon className={`w-10 h-10 mb-4 transition-colors ${device.color === 'gray' ? 'text-gray-700 group-hover:text-blue-600' : device.color === 'slate' ? 'text-slate-700 group-hover:text-blue-600' : device.color === 'orange' ? 'text-orange-700 group-hover:text-blue-600' : 'text-indigo-700 group-hover:text-blue-600'}`} />
                   <h3 className="text-2xl font-bold mb-3 text-slate-900 group-hover:text-blue-600 transition-colors">
                     {device.title}
                   </h3>
