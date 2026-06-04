@@ -54,6 +54,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
 
+        {/* Font imports */}
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" />
+
         {/* Meta tags */}
         <meta name="theme-color" content="#ffffff" />
         <meta name="google-site-verification" content="qGiskLnJK1JGwDlUffGkfsP4z0cBTsoaeFyq8c11dYA" />
@@ -81,8 +85,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={inter.variable}>
         {children}
 
-        {/* Google AdSense - Script loading without data-nscript attribute */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"></script>
+        {/* Google AdSense - Temporarily disabled for Lighthouse testing */}
+        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"></script> */}
 
         {/* Google Analytics - Tracking setup */}
         <Script
