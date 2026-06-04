@@ -1,5 +1,5 @@
 // app/(website)/blog/page.tsx - English blog homepage
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { BlogHomepage } from '@/components/blog/blog-homepage';
 import { getFeaturedArticles, getBlogArticlesByCluster, allBlogArticles } from '@/lib/blog-content';
@@ -101,13 +101,15 @@ export default function BlogPage() {
   }));
 
   return (
-    <BlogHomepage
-      title="Screen Testing Blog"
-      subtitle="Expert guides for display diagnostics, dead pixels, monitor testing, and more"
-      featuredArticles={featuredPreview}
-      latestArticles={latestPreview}
-      categories={categories}
-      locale="en"
-    />
+    <Suspense fallback={<div className="w-full py-20 text-center">Loading...</div>}>
+      <BlogHomepage
+        title="Screen Testing Blog"
+        subtitle="Expert guides for display diagnostics, dead pixels, monitor testing, and more"
+        featuredArticles={featuredPreview}
+        latestArticles={latestPreview}
+        categories={categories}
+        locale="en"
+      />
+    </Suspense>
   );
 }

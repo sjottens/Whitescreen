@@ -1,5 +1,5 @@
 // app/[locale]/(website)/blog/page.tsx - Locale-specific blog homepage
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { isValidLocale, getLocaleUrl, generateHrefLangAlternates, LOCALE_METADATA, type Locale } from '@/lib/i18n';
@@ -222,13 +222,15 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
   };
 
   return (
-    <BlogHomepage
-      title={titles[locale] || titles.en}
-      subtitle={subtitles[locale] || subtitles.en}
-      featuredArticles={featuredPreview}
-      latestArticles={latestPreview}
-      categories={categories}
-      locale={locale}
-    />
+    <Suspense fallback={<div className="w-full py-20 text-center">Loading...</div>}>
+      <BlogHomepage
+        title={titles[locale] || titles.en}
+        subtitle={subtitles[locale] || subtitles.en}
+        featuredArticles={featuredPreview}
+        latestArticles={latestPreview}
+        categories={categories}
+        locale={locale}
+      />
+    </Suspense>
   );
 }

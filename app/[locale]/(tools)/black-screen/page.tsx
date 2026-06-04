@@ -47,11 +47,13 @@ export default async function BlackScreenPage({ params }: PageProps) {
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],
     locale
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const translatedUseCases = (TOOL.useCases || []).map((key) => translate(key as any));
 
   const translatedFeatures = [
@@ -78,6 +80,7 @@ export default async function BlackScreenPage({ params }: PageProps) {
   ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'black-screen').slice(0, 2).map((t) => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     name: translate(t.id.replace(/-/g, '_') as any),
     path: t.path,
     color: t.color,
@@ -86,7 +89,9 @@ export default async function BlackScreenPage({ params }: PageProps) {
   return (
     <>
       <ToolLayout
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         title={translate(TOOL.nameKey as any)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
