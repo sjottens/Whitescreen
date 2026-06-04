@@ -170,7 +170,7 @@ export default async function ScreenVariantPage(props: PageProps) {
 
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="bg-white border-b border-slate-200 py-3 px-4 md:px-8">
-        <ol className="flex flex-wrap gap-2 max-w-6xl mx-auto text-sm">
+        <ol className="container flex flex-wrap gap-2 text-sm">
           {breadcrumbs.map((crumb, i) => (
             <li key={i} className="flex items-center">
               {i > 0 && <span className="text-slate-400 mx-2">/</span>}
@@ -186,7 +186,7 @@ export default async function ScreenVariantPage(props: PageProps) {
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-12">
+      <div className="container py-12">
         
         {/* Header */}
         <header className="mb-12">

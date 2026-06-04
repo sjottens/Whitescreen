@@ -71,7 +71,7 @@ export default function ToolLayout({
           </div>
 
           {/* Tool Information */}
-          <div className="max-w-4xl mx-auto space-y-12">
+          <div className="container space-y-12">
             {/* Title and Description */}
             <div>
               <h1 className="text-5xl md:text-6xl font-bold mb-4">{title}</h1>

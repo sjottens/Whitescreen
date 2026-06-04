@@ -83,7 +83,7 @@ export function BlogHomepage({
     <div className="bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white px-4 py-16 md:py-24">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
           <p className="text-xl text-blue-100 mb-8">{subtitle}</p>
 
@@ -108,7 +108,7 @@ export function BlogHomepage({
 
       {/* Featured Articles */}
       {featuredArticles.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-16">
+        <section className="container py-16">
           <h2 className="text-3xl font-bold mb-8">Featured Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredArticles.map((article) => (
@@ -126,7 +126,7 @@ export function BlogHomepage({
 
       {/* Categories Section */}
       <section className="bg-gray-50 px-4 py-16">
-        <div className="max-w-6xl mx-auto">
+        <div className="container">
           <h2 className="text-3xl font-bold mb-8">Browse by Category</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((cat) => {
@@ -160,7 +160,7 @@ export function BlogHomepage({
       </section>
 
       {/* Latest Articles */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
+      <section className="container py-16">
         <h2 className="text-3xl font-bold mb-8">Latest Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {latestArticles.map((article) => (
@@ -176,7 +176,7 @@ export function BlogHomepage({
 
       {/* FAQ Section */}
       <section className="bg-blue-50 px-4 py-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="container">
           <h2 className="text-3xl font-bold mb-8 text-center">
             Frequently Asked Questions
           </h2>
@@ -237,7 +237,7 @@ export function BlogHomepage({
 
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-16">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="container text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Test Your Screen?</h2>
           <p className="text-lg text-blue-100 mb-8">
             Access our complete collection of professional display testing tools
