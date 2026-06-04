@@ -84,7 +84,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Google AdSense - Advertisement display */}
         <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           crossOrigin="anonymous"
         />
 
