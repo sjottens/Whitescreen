@@ -184,7 +184,7 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
   const featuredPreview = featured.map((a) => ({
     slug: a.slug,
     title: a.translations[locale]?.title || a.translations.en.title,
-    excerpt: a.content.introduction.substring(0, 150) + '...',
+    excerpt: (a.translations[locale]?.content?.introduction || a.content.introduction).substring(0, 150) + '...',
     publishedAt: a.publishedAt,
     readingTimeMinutes: a.readingTimeMinutes,
     cluster: a.cluster,
@@ -194,7 +194,7 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
   const latestPreview = latest.map((a) => ({
     slug: a.slug,
     title: a.translations[locale]?.title || a.translations.en.title,
-    excerpt: a.content.introduction.substring(0, 150) + '...',
+    excerpt: (a.translations[locale]?.content?.introduction || a.content.introduction).substring(0, 150) + '...',
     publishedAt: a.publishedAt,
     readingTimeMinutes: a.readingTimeMinutes,
     cluster: a.cluster,

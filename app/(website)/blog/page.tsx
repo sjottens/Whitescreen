@@ -83,7 +83,7 @@ export default function BlogPage() {
   const featuredPreview = featured.map((a) => ({
     slug: a.slug,
     title: a.translations.en.title,
-    excerpt: a.content.introduction.substring(0, 150) + '...',
+    excerpt: a.translations.en.content?.introduction ? a.translations.en.content.introduction.substring(0, 150) + '...' : a.content.introduction.substring(0, 150) + '...',
     publishedAt: a.publishedAt,
     readingTimeMinutes: a.readingTimeMinutes,
     cluster: a.cluster,
@@ -93,7 +93,7 @@ export default function BlogPage() {
   const latestPreview = latest.map((a) => ({
     slug: a.slug,
     title: a.translations.en.title,
-    excerpt: a.content.introduction.substring(0, 150) + '...',
+    excerpt: a.translations.en.content?.introduction ? a.translations.en.content.introduction.substring(0, 150) + '...' : a.content.introduction.substring(0, 150) + '...',
     publishedAt: a.publishedAt,
     readingTimeMinutes: a.readingTimeMinutes,
     cluster: a.cluster,
