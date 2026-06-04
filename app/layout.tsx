@@ -47,16 +47,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
-        {/* Preconnect to external resources - FIRST for performance optimization */}
+        {/* Critical preconnect only - limit to essential resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
 
-        {/* Font imports */}
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        {/* Font imports with display=swap to prevent FOIT */}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 
         {/* Meta tags */}
         <meta name="theme-color" content="#ffffff" />
@@ -85,13 +82,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={inter.variable}>
         {children}
 
-        {/* Google AdSense - Script loading without data-nscript attribute */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"></script>
+        {/* Google AdSense - Deferred loading for better performance */}
+        <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"></script>
 
         {/* Google Analytics - Tracking setup */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script
           id="gtag-init"
