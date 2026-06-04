@@ -72,8 +72,17 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
     notFound();
   }
 
-  const { seo, translations, content, toolCTAs, schemaType, faqItems } = article;
+  const { seo, translations, content, toolCTAs, schemaType, faqItems: enFaqItems } = article;
   const enTranslations = translations.en;
+  
+  // Use English translations' content if available, otherwise fallback to article.content
+  const displayContent = enTranslations.content || content;
+  const displayToolCTAs = toolCTAs.map((cta, i) => ({
+    ...cta,
+    context: enTranslations.toolCTAs?.[i]?.context || cta.context,
+  }));
+  const displayFaqItems = enTranslations.faqItems || enFaqItems;
+  
   const relatedArticles = getRelatedArticles(article.id, 3);
 
   // Generate Article Schema
@@ -102,11 +111,11 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
 
   // Generate FAQ Schema if applicable
   const faqSchema =
-    schemaType === 'FAQPage' && faqItems
+    schemaType === 'FAQPage' && displayFaqItems
       ? {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
-          mainEntity: faqItems.map((item) => ({
+          mainEntity: displayFaqItems.map((item) => ({
             '@type': 'Question',
             name: item.question,
             acceptedAnswer: {
@@ -126,7 +135,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
   const relatedPreview = relatedArticles.map((a) => ({
     title: a.translations.en.title,
     slug: a.slug,
-    excerpt: a.content.introduction.substring(0, 100) + '...',
+    excerpt: (a.translations.en.content?.introduction || a.content.introduction).substring(0, 100) + '...',
     readingTime: a.readingTimeMinutes,
   }));
 
@@ -163,11 +172,11 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
         <div className="space-y-8">
           {/* Introduction */}
           <p className="text-lg leading-relaxed text-gray-700">
-            {content.introduction}
+            {displayContent.introduction}
           </p>
 
           {/* Sections */}
-          {content.sections.map((section, index) => (
+          {displayContent.sections.map((section, index) => (
             <div key={index} id={`section-${index}`}>
               <h2 className="text-3xl font-bold mt-12 mb-6">{section.h2}</h2>
 
@@ -193,14 +202,14 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
               </p>
 
               {/* Tool CTA for this section if applicable */}
-              {toolCTAs.some((cta) => cta.placement === 'within-content') &&
-                index === Math.floor(content.sections.length / 2) && (
+              {displayToolCTAs.some((cta) => cta.placement === 'within-content') &&
+                index === Math.floor(displayContent.sections.length / 2) && (
                   <div className="my-8 p-6 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                     <h3 className="font-bold text-blue-900 mb-2">
                       Test Your Display Now
                     </h3>
                     <p className="text-blue-800 text-sm mb-4">
-                      {toolCTAs[0]?.context}
+                      {displayToolCTAs[0]?.context}
                     </p>
                     <Link
                       href="/tools"
@@ -216,17 +225,17 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
           {/* Conclusion */}
           <div className="mt-12 pt-8 border-t">
             <h2 className="text-3xl font-bold mb-6">Conclusion</h2>
-            <p className="text-gray-700 leading-relaxed">{content.conclusion}</p>
+            <p className="text-gray-700 leading-relaxed">{displayContent.conclusion}</p>
           </div>
 
           {/* FAQ Section if available */}
-          {faqItems && faqItems.length > 0 && (
+          {displayFaqItems && displayFaqItems.length > 0 && (
             <div className="mt-12 pt-8 border-t">
               <h2 className="text-3xl font-bold mb-6">
                 Frequently Asked Questions
               </h2>
               <div className="space-y-4">
-                {faqItems.map((item, index) => (
+                {displayFaqItems.map((item, index) => (
                   <details
                     key={index}
                     className="p-4 bg-gray-50 rounded-lg border"
