@@ -221,7 +221,7 @@ export default function LocaleBlogArticlePage({
                   <ul className="space-y-1">
                     {section.h3s.map((h3, i) => (
                       <li key={i} className="text-sm text-gray-600">
-                        • {h3}
+                        {h3}
                       </li>
                     ))}
                   </ul>

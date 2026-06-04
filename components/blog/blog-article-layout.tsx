@@ -90,7 +90,7 @@ export function BlogArticleLayout({
       {/* Breadcrumbs */}
       {breadcrumbs && (
         <nav className="bg-gray-50 px-4 py-3 border-b">
-          <div className="max-w-4xl mx-auto flex items-center gap-2 text-sm">
+          <div className="container flex items-center gap-2 text-sm">
             {breadcrumbs.map((crumb, index) => (
               <React.Fragment key={crumb.href}>
                 {index > 0 && <span className="text-gray-400">/</span>}
@@ -105,7 +105,7 @@ export function BlogArticleLayout({
 
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-blue-50 to-white px-4 py-12 border-b">
-        <div className="max-w-4xl mx-auto">
+        <div className="container">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             {h1}
           </h1>
@@ -135,7 +135,7 @@ export function BlogArticleLayout({
         </div>
       </div>
 
-      <div className="flex gap-8 max-w-6xl mx-auto px-4 py-12">
+      <div className="flex gap-8 container py-12">
         {/* Sidebar with TOC */}
         {tableOfContents && tableOfContents.length > 0 && (
           <aside className="hidden lg:block w-64 flex-shrink-0">
@@ -163,7 +163,7 @@ export function BlogArticleLayout({
         )}
 
         {/* Main Content */}
-        <main className="flex-1 max-w-4xl">
+        <main className="flex-1 max-w-3xl">
           <div className="prose prose-lg max-w-none">{children}</div>
 
           {/* Related Articles */}

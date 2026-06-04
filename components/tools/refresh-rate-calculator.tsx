@@ -184,12 +184,12 @@ export default function RefreshRateCalculator() {
         <h3 className="font-semibold text-slate-900 mb-3">💡 Tips for Best Performance</h3>
         <ul className="space-y-2 text-sm text-slate-800 font-medium">
           <li>
-            • Maintain FPS 10-20% above your refresh rate to avoid stuttering (e.g., 160 FPS for
+            Maintain FPS 10-20% above your refresh rate to avoid stuttering (e.g., 160 FPS for
             144Hz)
           </li>
-          <li>• Use G-Sync (NVIDIA) or FreeSync (AMD) to reduce tearing</li>
-          <li>• Higher resolution (1440p, 4K) requires more GPU power - may lower recommended Hz</li>
-          <li>• Check specific game requirements on Steam or YouTube benchmarks</li>
+          <li>Use G-Sync (NVIDIA) or FreeSync (AMD) to reduce tearing</li>
+          <li>Higher resolution (1440p, 4K) requires more GPU power - may lower recommended Hz</li>
+          <li>Check specific game requirements on Steam or YouTube benchmarks</li>
         </ul>
       </div>
     </div>
