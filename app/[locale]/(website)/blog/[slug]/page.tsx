@@ -163,6 +163,17 @@ export default function LocaleBlogArticlePage({
     ja: { home: 'ホーム', blog: 'ブログ' },
   };
 
+  const sectionLabels: Record<Locale, { inThisSection: string; conclusion: string; faq: string }> = {
+    en: { inThisSection: 'In this section:', conclusion: 'Conclusion', faq: 'Frequently Asked Questions' },
+    nl: { inThisSection: 'In deze sectie:', conclusion: 'Conclusie', faq: 'Veelgestelde Vragen' },
+    es: { inThisSection: 'En esta sección:', conclusion: 'Conclusión', faq: 'Preguntas Frecuentes' },
+    de: { inThisSection: 'In diesem Abschnitt:', conclusion: 'Fazit', faq: 'Häufig Gestellte Fragen' },
+    fr: { inThisSection: 'Dans cette section :', conclusion: 'Conclusion', faq: 'Questions Fréquemment Posées' },
+    it: { inThisSection: 'In questa sezione:', conclusion: 'Conclusione', faq: 'Domande Frequenti' },
+    pt: { inThisSection: 'Nesta seção:', conclusion: 'Conclusão', faq: 'Perguntas Frequentes' },
+    ja: { inThisSection: 'このセクション内:', conclusion: '結論', faq: 'よくある質問' },
+  };
+
   const labels = breadcrumbLabels[locale] || breadcrumbLabels.en;
   const baseBlogUrl = locale === 'en' ? '/blog' : `/${locale}/blog`;
 
@@ -224,7 +235,7 @@ export default function LocaleBlogArticlePage({
               {section.h3s && section.h3s.length > 0 && (
                 <div className="mb-4 p-4 bg-gray-50 rounded-lg">
                   <h3 className="font-semibold text-gray-700 mb-2">
-                    In this section:
+                    {sectionLabels[locale]?.inThisSection || 'In this section:'}
                   </h3>
                   <ul className="space-y-1">
                     {section.h3s.map((h3, i) => (
@@ -264,7 +275,7 @@ export default function LocaleBlogArticlePage({
 
           {/* Conclusion */}
           <div className="mt-12 pt-8 border-t">
-            <h2 className="text-3xl font-bold mb-6">Conclusion</h2>
+            <h2 className="text-3xl font-bold mb-6">{sectionLabels[locale]?.conclusion || 'Conclusion'}</h2>
             <p className="text-gray-700 leading-relaxed">{displayContent.conclusion}</p>
           </div>
 
@@ -272,7 +283,7 @@ export default function LocaleBlogArticlePage({
           {displayFaqItems && displayFaqItems.length > 0 && (
             <div className="mt-12 pt-8 border-t">
               <h2 className="text-3xl font-bold mb-6">
-                Frequently Asked Questions
+                {sectionLabels[locale]?.faq || 'Frequently Asked Questions'}
               </h2>
               <div className="space-y-4">
                 {displayFaqItems.map((item, index) => (

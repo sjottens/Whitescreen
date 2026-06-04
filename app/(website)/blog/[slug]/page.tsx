@@ -132,6 +132,12 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
     { label: enTranslations.title, href: seo.canonicalPath },
   ];
 
+  const sectionLabels = {
+    inThisSection: 'In this section:',
+    conclusion: 'Conclusion',
+    faq: 'Frequently Asked Questions',
+  };
+
   const relatedPreview = relatedArticles.map((a) => ({
     title: a.translations.en.title,
     slug: a.slug,
@@ -184,7 +190,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
               {section.h3s && section.h3s.length > 0 && (
                 <div className="mb-4 p-4 bg-gray-50 rounded-lg">
                   <h3 className="font-semibold text-gray-700 mb-2">
-                    In this section:
+                    {sectionLabels.inThisSection}
                   </h3>
                   <ul className="space-y-1">
                     {section.h3s.map((h3, i) => (
@@ -224,7 +230,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
 
           {/* Conclusion */}
           <div className="mt-12 pt-8 border-t">
-            <h2 className="text-3xl font-bold mb-6">Conclusion</h2>
+            <h2 className="text-3xl font-bold mb-6">{sectionLabels.conclusion}</h2>
             <p className="text-gray-700 leading-relaxed">{displayContent.conclusion}</p>
           </div>
 
@@ -232,7 +238,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
           {displayFaqItems && displayFaqItems.length > 0 && (
             <div className="mt-12 pt-8 border-t">
               <h2 className="text-3xl font-bold mb-6">
-                Frequently Asked Questions
+                {sectionLabels.faq}
               </h2>
               <div className="space-y-4">
                 {displayFaqItems.map((item, index) => (
