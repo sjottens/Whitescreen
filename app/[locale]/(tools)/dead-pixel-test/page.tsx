@@ -44,7 +44,14 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
   );
   return (
     <>
-      <DeadPixelTest />
+      <ToolLayout
+        title={translate(TOOL.descriptionKey as any)}
+        description={translate(TOOL.descriptionKey as any)}
+        locale={locale}
+        toolName={translate(TOOL.nameKey as any)}
+      >
+        <DeadPixelTest />
+      </ToolLayout>
       <GuideSection toolId="dead-pixel-test" />
     </>
   );

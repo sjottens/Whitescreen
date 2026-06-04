@@ -5,6 +5,7 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/li
 import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 import { t } from '@/lib/translations';
 import { TEST_TOOLS } from '@/lib/constants';
+import ToolLayout from '@/components/tools/tool-layout';
 import BrightnessTest from '@/components/tools/brightness-test';
 import GuideSection from '@/components/tools/guide-section';
 
@@ -33,9 +34,24 @@ export async function generateMetadata(props: {
 export default async function BrightnessTestPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = await getLocaleFromParams(params);
   const translate = t(locale);
+  const breadcrumbs = breadcrumbSchemaMultilingual(
+    [
+      { name: translate('home'), path: '/' },
+      { name: translate('tools'), path: '/tools' },
+      { name: translate(TOOL.nameKey as any), path: TOOL.path },
+    ],
+    locale
+  );
   return (
     <>
-      <BrightnessTest />
+      <ToolLayout
+        title={translate(TOOL.descriptionKey as any)}
+        description={translate(TOOL.descriptionKey as any)}
+        locale={locale}
+        toolName={translate(TOOL.nameKey as any)}
+      >
+        <BrightnessTest />
+      </ToolLayout>
       <GuideSection toolId="brightness-test" />
     </>
   );

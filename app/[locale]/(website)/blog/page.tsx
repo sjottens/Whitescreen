@@ -1,0 +1,234 @@
+// app/[locale]/(website)/blog/page.tsx - Locale-specific blog homepage
+import React from 'react';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { isValidLocale, getLocaleUrl, generateHrefLangAlternates, LOCALE_METADATA } from '@/lib/i18n';
+import { BlogHomepage } from '@/components/blog/blog-homepage';
+import { getFeaturedArticles, getBlogArticlesByCluster, allBlogArticles } from '@/lib/blog-content';
+import { SITE_URL, SITE_NAME } from '@/lib/constants';
+
+interface LocaleBlogPageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export async function generateStaticParams() {
+  return ['nl', 'es', 'de', 'fr', 'it', 'pt', 'ja'].map((locale) => ({
+    locale,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: LocaleBlogPageProps): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+
+  if (!isValidLocale(localeParam)) {
+    notFound();
+  }
+
+  const locale = localeParam as any;
+  const localeInfo = LOCALE_METADATA[locale];
+
+  // Localized titles and descriptions
+  const titles: Record<string, string> = {
+    nl: 'Schermtest Blog | Gratis Displaytest Gidsen',
+    es: 'Blog de Prueba de Pantalla | Guías Gratuitas de Prueba de Pantalla',
+    de: 'Bildschirmtest Blog | Kostenlose Display-Test-Anleitungen',
+    fr: 'Blog de Test d\'écran | Guides Gratuits de Test d\'affichage',
+    it: 'Blog Test dello Schermo | Guide Gratuite per i Test del Display',
+    pt: 'Blog de Teste de Tela | Guias Gratuitos de Teste de Display',
+    ja: 'スクリーンテストブログ | 無料ディスプレイテストガイド',
+  };
+
+  const descriptions: Record<string, string> = {
+    nl: 'Leer over schermtesten, dode pixels, kleurnauwkeurigheid, monitordiagnostiek en displayprobleemoplossing. Deskundige gidsen voor monitokapers en IT-professionals.',
+    es: 'Aprenda sobre pruebas de pantalla, píxeles muertos, precisión del color, diagnóstico de monitores y solución de problemas de pantalla. Guías de expertos para compradores de monitores y profesionales de TI.',
+    de: 'Erfahren Sie mehr über Bildschirmtests, tote Pixel, Farbgenauigkeit, Monitordiagnose und Display-Fehlerbehebung. Expertenleitfäden für Monitor-Käufer und IT-Profis.',
+    fr: 'En savoir plus sur les tests d\'écran, les pixels morts, la précision des couleurs, les diagnostics de moniteur et le dépannage des écrans. Guides d\'experts pour les acheteurs de moniteurs et les professionnels informatiques.',
+    it: 'Scopri i test dello schermo, i pixel morti, l\'accuratezza del colore, la diagnostica del monitor e la risoluzione dei problemi del display. Guide di esperti per gli acquirenti di monitor e i professionisti IT.',
+    pt: 'Aprenda sobre testes de tela, pixels mortos, precisão de cores, diagnóstico de monitor e solução de problemas de display. Guias de especialistas para compradores de monitores e profissionais de TI.',
+    ja: 'スクリーンテスト、デッドピクセル、色精度、モニター診断、ディスプレイのトラブルシューティングについて学びます。モニター購入者とITプロフェッショナルのためのエキスパートガイド。',
+  };
+
+  return {
+    title: titles[locale] || titles.en,
+    description: descriptions[locale] || descriptions.en,
+    alternates: {
+      canonical: getLocaleUrl(locale, '/blog'),
+      languages: generateHrefLangAlternates('/blog'),
+    },
+    openGraph: {
+      title: titles[locale] || titles.en,
+      description: descriptions[locale] || descriptions.en,
+      type: 'website',
+      url: getLocaleUrl(locale, '/blog'),
+      locale: localeInfo.hreflang,
+    },
+  };
+}
+
+export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPageProps) {
+  const { locale } = React.use(paramsPromise);
+
+  if (!isValidLocale(locale)) {
+    notFound();
+  }
+
+  const featured = getFeaturedArticles();
+  const latest = allBlogArticles
+    .filter((a) => !a.featured)
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, 6);
+
+  // Localized category names
+  const categoryNames: Record<string, Record<string, string>> = {
+    nl: {
+      'pixel-problems': 'Pixelproblemen',
+      'screen-testing': 'Schermtest',
+      'color-quality': 'Kleur & Beeldkwaliteit',
+      troubleshooting: 'Probleemoplossing',
+      'buying-guides': 'Koopgidsen',
+      educational: 'Educatief',
+    },
+    es: {
+      'pixel-problems': 'Problemas de Píxeles',
+      'screen-testing': 'Prueba de Pantalla',
+      'color-quality': 'Color y Calidad de Imagen',
+      troubleshooting: 'Solución de Problemas',
+      'buying-guides': 'Guías de Compra',
+      educational: 'Educativo',
+    },
+    de: {
+      'pixel-problems': 'Pixelprobleme',
+      'screen-testing': 'Bildschirmtest',
+      'color-quality': 'Farbe und Bildqualität',
+      troubleshooting: 'Fehlerbehebung',
+      'buying-guides': 'Kaufanleitungen',
+      educational: 'Bildung',
+    },
+    fr: {
+      'pixel-problems': 'Problèmes de Pixels',
+      'screen-testing': 'Test d\'Écran',
+      'color-quality': 'Couleur et Qualité d\'Image',
+      troubleshooting: 'Dépannage',
+      'buying-guides': 'Guides d\'Achat',
+      educational: 'Éducation',
+    },
+    it: {
+      'pixel-problems': 'Problemi di Pixel',
+      'screen-testing': 'Test dello Schermo',
+      'color-quality': 'Colore e Qualità Immagine',
+      troubleshooting: 'Risoluzione dei Problemi',
+      'buying-guides': 'Guide agli Acquisti',
+      educational: 'Educativo',
+    },
+    pt: {
+      'pixel-problems': 'Problemas de Pixels',
+      'screen-testing': 'Teste de Tela',
+      'color-quality': 'Cor e Qualidade de Imagem',
+      troubleshooting: 'Solução de Problemas',
+      'buying-guides': 'Guias de Compra',
+      educational: 'Educacional',
+    },
+    ja: {
+      'pixel-problems': 'ピクセルの問題',
+      'screen-testing': 'スクリーンテスト',
+      'color-quality': '色と画像品質',
+      troubleshooting: 'トラブルシューティング',
+      'buying-guides': '購入ガイド',
+      educational: '教育的',
+    },
+  };
+
+  const categories = [
+    {
+      id: 'pixel-problems',
+      name: categoryNames[locale]?.['pixel-problems'] || 'Pixel Problems',
+      description: categoryNames[locale]?.['pixel-problems'] || 'Pixel Problems',
+      articleCount: getBlogArticlesByCluster('pixel-problems').length,
+    },
+    {
+      id: 'screen-testing',
+      name: categoryNames[locale]?.['screen-testing'] || 'Screen Testing',
+      description: categoryNames[locale]?.['screen-testing'] || 'Screen Testing',
+      articleCount: getBlogArticlesByCluster('screen-testing').length,
+    },
+    {
+      id: 'color-quality',
+      name: categoryNames[locale]?.['color-quality'] || 'Color & Quality',
+      description: categoryNames[locale]?.['color-quality'] || 'Color & Quality',
+      articleCount: getBlogArticlesByCluster('color-quality').length,
+    },
+    {
+      id: 'troubleshooting',
+      name: categoryNames[locale]?.troubleshooting || 'Troubleshooting',
+      description: categoryNames[locale]?.troubleshooting || 'Troubleshooting',
+      articleCount: getBlogArticlesByCluster('troubleshooting').length,
+    },
+    {
+      id: 'buying-guides',
+      name: categoryNames[locale]?.['buying-guides'] || 'Buying Guides',
+      description: categoryNames[locale]?.['buying-guides'] || 'Buying Guides',
+      articleCount: getBlogArticlesByCluster('buying-guides').length,
+    },
+    {
+      id: 'educational',
+      name: categoryNames[locale]?.educational || 'Educational',
+      description: categoryNames[locale]?.educational || 'Educational',
+      articleCount: getBlogArticlesByCluster('educational').length,
+    },
+  ];
+
+  const featuredPreview = featured.map((a) => ({
+    slug: a.slug,
+    title: a.translations[locale]?.title || a.translations.en.title,
+    excerpt: a.content.introduction.substring(0, 150) + '...',
+    publishedAt: a.publishedAt,
+    readingTimeMinutes: a.readingTimeMinutes,
+    cluster: a.cluster,
+    featured: a.featured,
+  }));
+
+  const latestPreview = latest.map((a) => ({
+    slug: a.slug,
+    title: a.translations[locale]?.title || a.translations.en.title,
+    excerpt: a.content.introduction.substring(0, 150) + '...',
+    publishedAt: a.publishedAt,
+    readingTimeMinutes: a.readingTimeMinutes,
+    cluster: a.cluster,
+    featured: a.featured,
+  }));
+
+  const titles: Record<string, string> = {
+    nl: 'Schermtest Blog',
+    es: 'Blog de Prueba de Pantalla',
+    de: 'Bildschirmtest Blog',
+    fr: 'Blog de Test d\'écran',
+    it: 'Blog Test dello Schermo',
+    pt: 'Blog de Teste de Tela',
+    ja: 'スクリーンテストブログ',
+  };
+
+  const subtitles: Record<string, string> = {
+    nl: 'Deskundige gidsen voor displaydiagnostiek, dode pixels, monitortest en meer',
+    es: 'Guías de expertos para diagnóstico de pantalla, píxeles muertos, prueba de monitor y más',
+    de: 'Expertenleitfäden für Display-Diagnose, tote Pixel, Monitortest und mehr',
+    fr: 'Guides d\'experts pour le diagnostic d\'affichage, les pixels morts, le test de moniteur et plus',
+    it: 'Guide di esperti per diagnosi del display, pixel morti, test del monitor e altro',
+    pt: 'Guias de especialistas para diagnóstico de display, pixels mortos, teste de monitor e muito mais',
+    ja: 'ディスプレイ診断、デッドピクセル、モニターテストなどのエキスパートガイド',
+  };
+
+  return (
+    <BlogHomepage
+      title={titles[locale] || titles.en}
+      subtitle={subtitles[locale] || subtitles.en}
+      featuredArticles={featuredPreview}
+      latestArticles={latestPreview}
+      categories={categories}
+      locale={locale}
+    />
+  );
+}
