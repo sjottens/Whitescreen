@@ -1,7 +1,6 @@
 // lib/schema-markup.ts - Comprehensive schema markup generation for SEO
 
 import { SITE_NAME, SITE_URL } from './constants';
-import { Locale } from './i18n';
 
 /**
  * FAQ Schema for tool pages
@@ -51,7 +50,6 @@ export function generateWebPageSchema(props: WebPageSchemaProps) {
     image,
     locale,
     isPartOf,
-    breadcrumbs,
     keywords
   } = props;
 
@@ -86,10 +84,9 @@ export interface BreadcrumbItem {
 }
 
 export function generateBreadcrumbSchema(
-  breadcrumbs: BreadcrumbItem[],
-  locale: Locale
+  breadcrumbs: BreadcrumbItem[]
 ) {
-  const baseUrl = locale === 'en' ? SITE_URL : `${SITE_URL}/${locale}`;
+  const baseUrl = SITE_URL;
 
   return {
     '@context': 'https://schema.org',
@@ -158,7 +155,7 @@ export function generateSoftwareApplicationSchema(props: SoftwareApplicationProp
  * Organization Schema
  * For homepage and brand authority
  */
-export function generateOrganizationSchema(locale: Locale) {
+export function generateOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -225,7 +222,7 @@ export function generateArticleSchema(props: ArticleSchemaProps) {
 /**
  * Combine multiple schemas into JSON-LD format
  */
-export function combineSchemas(...schemas: any[]) {
+export function combineSchemas(...schemas: Record<string, unknown>[]) {
   return {
     '@context': 'https://schema.org',
     '@graph': schemas
@@ -235,7 +232,7 @@ export function combineSchemas(...schemas: any[]) {
 /**
  * Schema.org markup formatter for Next.js metadata
  */
-export function schemaToJsonLD(schema: any): string {
+export function schemaToJsonLD(schema: Record<string, unknown>): string {
   return JSON.stringify(schema);
 }
 

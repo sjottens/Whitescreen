@@ -28,6 +28,7 @@ export function generateScreenVariantContent(
   variant: string,
   toolName: string,
   baseKeywords: string[],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   translateFn?: (key: any) => string
 ): VariantContent {
   const colorName = color.charAt(0).toUpperCase() + color.slice(1);

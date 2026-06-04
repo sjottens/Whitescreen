@@ -59,8 +59,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
       { name: TOOL_CONFIG.name, path: TOOL_CONFIG.path },
-    ],
-    locale
+    ]
   );
 
   // Generate FAQ schema

@@ -24,8 +24,8 @@ export async function generateMetadata(props: {
   
   return generateMultilingualMetadata({
     locale,
-    title: `${translate('screen_tests')} - ${translate('all_colors_variants')}`,
-    description: `${translate('screen_tests_desc')} - Test your display with ${Object.keys(SCREEN_VARIANTS).length} variants across ${COLOR_TOOLS.length} colors.`,
+    title: `${translate('screen_tests' as any)} - ${translate('all_colors_variants' as any)}`,
+    description: `${translate('screen_tests_desc' as any)} - Test your display with ${Object.keys(SCREEN_VARIANTS).length} variants across ${COLOR_TOOLS.length} colors.`,
     path: '/screen',
     keywords: ['screen test', 'display test', 'color test', 'monitor test', 'screen variants'],
   });
@@ -42,7 +42,7 @@ export default async function ScreenTestsPage({ params }: PageProps) {
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('screen_tests'), path: '/screen' },
+      { name: translate('screen_tests' as any), path: '/screen' },
     ],
     locale
   );
@@ -59,7 +59,7 @@ export default async function ScreenTestsPage({ params }: PageProps) {
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale as any, '/') },
-          { name: translate('screen_tests') },
+          { name: translate('screen_tests' as any) },
         ]}
       />
 
@@ -69,16 +69,16 @@ export default async function ScreenTestsPage({ params }: PageProps) {
           {/* Header */}
           <div className="mb-16">
             <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-900">
-              {translate('screen_tests')}
+              {translate('screen_tests' as any)}
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl leading-relaxed">
-              {translate('screen_tests_full_desc')}
+              {translate('screen_tests_full_desc' as any)}
             </p>
           </div>
 
           {/* Colors Grid */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold mb-8 text-slate-900">{translate('select_color')}</h2>
+            <h2 className="text-3xl font-bold mb-8 text-slate-900">{translate('select_color' as any)}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {COLOR_TOOLS.map((color) => (
                 <Link
@@ -104,7 +104,7 @@ export default async function ScreenTestsPage({ params }: PageProps) {
 
           {/* Variants Info */}
           <div className="bg-slate-50 rounded-lg p-8 border border-slate-200">
-            <h2 className="text-3xl font-bold mb-6 text-slate-900">{translate('available_variants')}</h2>
+            <h2 className="text-3xl font-bold mb-6 text-slate-900">{translate('available_variants' as any)}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {variants.map((variant) => (
                 <div key={variant.id} className="bg-white p-4 rounded-lg border border-slate-200">
@@ -117,19 +117,19 @@ export default async function ScreenTestsPage({ params }: PageProps) {
 
           {/* How It Works */}
           <div className="mt-16 prose prose-lg max-w-none">
-            <h2 className="text-3xl font-bold mb-6 text-slate-900">{translate('how_to_use')}</h2>
+            <h2 className="text-3xl font-bold mb-6 text-slate-900">{translate('how_to_use' as any)}</h2>
             <ol className="space-y-4">
               <li className="flex gap-4">
                 <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">1</span>
-                <span className="text-slate-700">{translate('choose_color_step')}</span>
+                <span className="text-slate-700">{translate('choose_color_step' as any)}</span>
               </li>
               <li className="flex gap-4">
                 <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">2</span>
-                <span className="text-slate-700">{translate('select_variant_step')}</span>
+                <span className="text-slate-700">{translate('select_variant_step' as any)}</span>
               </li>
               <li className="flex gap-4">
                 <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">3</span>
-                <span className="text-slate-700">{translate('test_your_screen_step')}</span>
+                <span className="text-slate-700">{translate('test_your_screen_step' as any)}</span>
               </li>
             </ol>
           </div>

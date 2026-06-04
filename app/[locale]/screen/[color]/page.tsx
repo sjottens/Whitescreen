@@ -51,7 +51,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 
   return generateMultilingualMetadata({
     locale: locale as any,
-    title: `${translate(colorTool.nameKey as any)} - ${translate('all_variants')}`,
+    title: `${translate(colorTool.nameKey as any)} - ${translate('all_variants' as any)}`,
     description: `Test ${translate(colorTool.nameKey as any).toLowerCase()} with ${Object.keys(SCREEN_VARIANTS).length} variants. Choose from 4K, OLED, or Fullscreen display tests.`,
     path: `/screen/${color}`,
     keywords: [...(colorTool.keywords || []), 'variants', 'display test', 'screen test'],
@@ -78,7 +78,7 @@ export default async function ColorVariantsPage({ params }: PageProps) {
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('screen_tests'), path: '/screen' },
+      { name: translate('screen_tests' as any), path: '/screen' },
       { name: translate(colorTool.nameKey as any), path: `/screen/${color}` },
     ],
     locale as any
@@ -97,7 +97,7 @@ export default async function ColorVariantsPage({ params }: PageProps) {
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale as any, '/') },
-          { name: translate('screen_tests'), path: getLocalizedPath(locale as any, '/screen') },
+          { name: translate('screen_tests' as any), path: getLocalizedPath(locale as any, '/screen') },
           { name: translate(colorTool.nameKey as any) },
         ]}
       />
@@ -112,7 +112,7 @@ export default async function ColorVariantsPage({ params }: PageProps) {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            {translate('back_to_screen_tests')}
+            {translate('back_to_screen_tests' as any)}
           </LinkButton>
         </div>
       </div>
@@ -149,7 +149,7 @@ export default async function ColorVariantsPage({ params }: PageProps) {
 
           {/* Variants Grid */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-slate-900">{translate('choose_variant')}</h2>
+            <h2 className="text-3xl font-bold mb-8 text-slate-900">{translate('choose_variant' as any)}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {variants.map((variant) => (
                 <Link
@@ -193,7 +193,7 @@ export default async function ColorVariantsPage({ params }: PageProps) {
 
           {/* Other Colors */}
           <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6 text-slate-900">{translate('other_colors')}</h2>
+            <h2 className="text-2xl font-bold mb-6 text-slate-900">{translate('other_colors' as any)}</h2>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
               {COLOR_TOOLS.filter((c) => c.id !== color).map((c) => (
                 <Link

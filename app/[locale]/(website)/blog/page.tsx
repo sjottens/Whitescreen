@@ -2,7 +2,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { isValidLocale, getLocaleUrl, generateHrefLangAlternates, LOCALE_METADATA } from '@/lib/i18n';
+import { isValidLocale, getLocaleUrl, generateHrefLangAlternates, LOCALE_METADATA, type Locale } from '@/lib/i18n';
 import { BlogHomepage } from '@/components/blog/blog-homepage';
 import { getFeaturedArticles, getBlogArticlesByCluster, allBlogArticles } from '@/lib/blog-content';
 import { SITE_URL, SITE_NAME } from '@/lib/constants';
@@ -28,7 +28,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const locale = localeParam as any;
+  const locale = localeParam as Locale;
   const localeInfo = LOCALE_METADATA[locale];
 
   // Localized titles and descriptions
