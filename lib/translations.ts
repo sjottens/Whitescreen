@@ -118,6 +118,13 @@ export const translations = {
     tools_title: 'All Screen Testing Tools',
     tools_description: 'Browse our complete collection of free screen testing and display calibration tools',
     
+    // Screen Pages
+    screen_tests: 'Screen Tests',
+    back_to_screen_tests: 'Back to Screen Tests',
+    all_variants: 'All Variants',
+    choose_variant: 'Choose Variant',
+    other_colors: 'Other Colors',
+    
     // Homepage
     home_title: 'TestAScreen | Free Online Screen Test & Display Testing Tools',
     home_description: 'Test your monitor, laptop, TV, or mobile display with free online screen testing tools. Check for dead pixels, color accuracy, backlight bleed, brightness, contrast, and more.',
@@ -126,6 +133,7 @@ export const translations = {
     home: 'Home',
     tools: 'Tools',
     about: 'About',
+    blog: 'Blog',
     contact: 'Contact',
     faq: 'FAQ',
     privacy: 'Privacy',
@@ -768,6 +776,13 @@ export const translations = {
     tools_title: 'Alle Schermtest Gereedschappen',
     tools_description: 'Blader door onze volledige verzameling van gratis schermtest- en schermkalibratiegereedschappen',
     
+    // Screen Pages
+    screen_tests: 'Schermtests',
+    back_to_screen_tests: 'Terug naar schermtests',
+    all_variants: 'Alle varianten',
+    choose_variant: 'Kies variant',
+    other_colors: 'Andere kleuren',
+    
     // Homepage
     home_title: 'TestAScreen | Gratis Online Schermtest & Display Testwerktuigen',
     home_description: 'Test je monitor, laptop, TV of mobiel scherm met gratis online schermatest gereedschappen. Controleer op dode pixels, kleurnauwkeurigheid, teruglichting, helderheid, contrast en meer.',
@@ -1175,6 +1190,13 @@ export const translations = {
     tools_title: 'Todas las Herramientas de Prueba de Pantalla',
     tools_description: 'Explora nuestra colección completa de herramientas gratuitas de prueba de pantalla y calibración de displays',
     
+    // Screen Pages
+    screen_tests: 'Pruebas de Pantalla',
+    back_to_screen_tests: 'Volver a Pruebas de Pantalla',
+    all_variants: 'Todas las Variantes',
+    choose_variant: 'Elegir Variante',
+    other_colors: 'Otros Colores',
+    
     // Homepage
     home_title: 'TestAScreen | Prueba de Pantalla Online Gratuita y Herramientas de Prueba',
     home_description: 'Prueba tu monitor, laptop, TV o pantalla móvil con herramientas gratuitas de prueba de pantalla en línea. Comprueba píxeles muertos, precisión de color, iluminación de fondo, brillo, contraste y más.',
@@ -1393,6 +1415,7 @@ export const translations = {
     home: 'Inicio',
     tools: 'Herramientas',
     about: 'Acerca de',
+    blog: 'Blog',
     contact: 'Contacto',
     faq: 'Preguntas Frecuentes',
     privacy: 'Privacidad',
@@ -1589,6 +1612,13 @@ export const translations = {
     faq_description: 'Finden Sie Antworten auf häufig gestellte Fragen zu unseren Bildschirmtest-Tools',
     tools_title: 'Alle Bildschirmtest-Tools',
     tools_description: 'Durchsuchen Sie unsere vollständige Sammlung von kostenlosen Bildschirmtest- und Bildschirmkalibrier-Tools',
+    
+    // Screen Pages
+    screen_tests: 'Bildschirmtests',
+    back_to_screen_tests: 'Zurück zu Bildschirmtests',
+    all_variants: 'Alle Varianten',
+    choose_variant: 'Variante wählen',
+    other_colors: 'Andere Farben',
     
     // Homepage
     home_title: 'TestAScreen | Kostenlos Online Bildschirmtest & Display-Test-Tools',
@@ -1887,6 +1917,13 @@ export const translations = {
     tools_title: 'Tous les Outils de Test d\'Écran',
     tools_description: 'Parcourez notre collection complète d\'outils de test d\'écran et d\'étalonnage d\'affichage gratuits',
     
+    // Screen Pages
+    screen_tests: 'Tests d\'Écran',
+    back_to_screen_tests: 'Retour aux Tests d\'Écran',
+    all_variants: 'Toutes les Variantes',
+    choose_variant: 'Choisir une Variante',
+    other_colors: 'Autres Couleurs',
+    
     // Homepage
     home_title: 'TestAScreen | Test d\'Écran Gratuit en Ligne et Outils Professionnels de Test',
     home_description: 'Testez votre moniteur, ordinateur portable, TV ou écran mobile avec des outils de test d\'écran gratuits en ligne. Vérifiez les pixels morts, la précision des couleurs, le rétroéclairage, la luminosité, le contraste et bien d\'autres.',
@@ -1978,6 +2015,7 @@ export const translations = {
     common: 'Commun',
     tools: 'Outils',
     about: 'À propos',
+    blog: 'Blog',
     contact: 'Contact',
     faq: 'Questions Fréquemment Posées',
     privacy: 'Confidentialité',
@@ -2253,6 +2291,13 @@ export const translations = {
     faq_description: 'Trova risposte alle domande comuni sui nostri strumenti di test dello schermo',
     tools_title: 'Tutti gli Strumenti di Test dello Schermo',
     tools_description: 'Sfoglia la nostra collezione completa di strumenti gratuiti di test dello schermo e calibrazione del display',
+    
+    // Screen Pages
+    screen_tests: 'Test dello Schermo',
+    back_to_screen_tests: 'Torna ai Test dello Schermo',
+    all_variants: 'Tutte le Varianti',
+    choose_variant: 'Scegli Variante',
+    other_colors: 'Altri Colori',
     
     // Homepage
     home_title: 'TestAScreen | Test dello Schermo Online Gratuito e Strumenti Professionali di Test',
@@ -2621,6 +2666,13 @@ export const translations = {
     tools_title: 'Todas as Ferramentas de Teste de Tela',
     tools_description: 'Navegue por nossa coleção completa de ferramentas de teste de tela e calibração de exibição gratuitas',
     
+    // Screen Pages
+    screen_tests: 'Testes de Tela',
+    back_to_screen_tests: 'Voltar para Testes de Tela',
+    all_variants: 'Todas as Variantes',
+    choose_variant: 'Escolher Variante',
+    other_colors: 'Outras Cores',
+    
     // Homepage
     home_title: 'TestAScreen | Teste de Tela Online Gratuito e Ferramentas Profissionais de Teste',
     home_description: 'Teste seu monitor, laptop, TV ou tela móvel com ferramentas gratuitas de teste de tela online. Verifique pixels mortos, precisão de cor, iluminação de fundo, brilho, contraste e muito mais.',
@@ -2712,6 +2764,7 @@ export const translations = {
     common: 'Comum',
     tools: 'Ferramentas',
     about: 'Sobre',
+    blog: 'Blog',
     contact: 'Contato',
     faq: 'Perguntas Frequentes',
     privacy: 'Privacidade',
@@ -2988,6 +3041,13 @@ export const translations = {
     tools_title: 'すべてのスクリーンテストツール',
     tools_description: '無料のスクリーンテストおよびディスプレイキャリブレーションツールの完全なコレクションを参照してください',
     
+    // Screen Pages
+    screen_tests: 'スクリーンテスト',
+    back_to_screen_tests: 'スクリーンテストに戻る',
+    all_variants: 'すべてのバリエーション',
+    choose_variant: 'バリエーションを選択',
+    other_colors: 'その他の色',
+    
     // Homepage
     home_title: 'TestAScreen | 無料オンラインスクリーンテストとディスプレイテストツール',
     home_description: '無料のオンラインスクリーンテストツールでモニター、ノートパソコン、TV、モバイルディスプレイをテストします。デッドピクセル、色精度、バックライト漏れ、明るさ、コントラストなどをチェックしてください。',
@@ -3079,6 +3139,7 @@ export const translations = {
     common: '共通',
     tools: 'ツール',
     about: '概要',
+    blog: 'ブログ',
     contact: 'お問い合わせ',
     faq: 'よくある質問',
     privacy: 'プライバシー',

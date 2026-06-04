@@ -31,6 +31,9 @@ export default function Navigation({ locale }: NavigationProps) {
         <Link href={getLocalizedPath(locale, '/about')} className="text-slate-700 hover:text-black font-medium focus-ring">
           {translate('about')}
         </Link>
+        <Link href={getLocalizedPath(locale, '/blog')} className="text-slate-700 hover:text-black font-medium focus-ring">
+          {translate('blog')}
+        </Link>
         <Link href={getLocalizedPath(locale, '/contact')} className="text-slate-700 hover:text-black font-medium focus-ring">
           {translate('contact')}
         </Link>
@@ -64,6 +67,13 @@ export default function Navigation({ locale }: NavigationProps) {
               onClick={() => setIsOpen(false)}
             >
               {translate('about')}
+            </Link>
+            <Link
+              href={getLocalizedPath(locale, '/blog')}
+              className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-black rounded-lg focus-ring"
+              onClick={() => setIsOpen(false)}
+            >
+              {translate('blog')}
             </Link>
             <Link
               href={getLocalizedPath(locale, '/contact')}
