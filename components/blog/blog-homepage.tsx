@@ -1,9 +1,10 @@
 // components/blog/blog-homepage.tsx - Homepage for blog section
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Search, ChevronRight } from 'lucide-react';
+import { Search, ChevronRight, X } from 'lucide-react';
 import { BlogArticleCard } from './blog-article-card';
 
 interface BlogArticlePreview {
@@ -71,13 +72,42 @@ export function BlogHomepage({
   categories,
   locale = 'en',
 }: BlogHomepageProps) {
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Read category from URL on mount
+  useEffect(() => {
+    setMounted(true);
+    const categoryParam = searchParams.get('category');
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [searchParams]);
 
   const baseUrl = locale === 'en' ? '/blog' : `/${locale}/blog`;
 
-  const categoryColor =
-    CATEGORY_COLORS[selectedCategory || ''] || CATEGORY_COLORS['educational'];
+  // Filter articles based on search query and selected category
+  const filteredLatestArticles = latestArticles.filter((article) => {
+    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesCategory = !selectedCategory || article.cluster === selectedCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
+
+  // Also filter featured articles if category is selected
+  const displayedFeaturedArticles = selectedCategory
+    ? featuredArticles.filter((article) => article.cluster === selectedCategory)
+    : featuredArticles;
+
+  const categoryColor = CATEGORY_COLORS[selectedCategory || ''] || CATEGORY_COLORS['educational'];
+
+  if (!mounted) {
+    return null; // Prevent hydration mismatch
+  }
 
   return (
     <div className="bg-white">
@@ -106,12 +136,35 @@ export function BlogHomepage({
         </div>
       </section>
 
-      {/* Featured Articles */}
-      {featuredArticles.length > 0 && (
+      {/* Active Filter Display */}
+      {selectedCategory && (
+        <section className="bg-blue-50 px-4 py-4 border-b border-blue-200">
+          <div className="container">
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-semibold text-gray-700">
+                Filtering by:
+              </span>
+              <div className="flex items-center gap-2 px-3 py-1 bg-white rounded-full border border-blue-300">
+                <span className="text-sm font-medium text-gray-800">
+                  {categories.find((c) => c.id === selectedCategory)?.name}
+                </span>
+                <Link href={baseUrl}>
+                  <X size={16} className="text-gray-500 hover:text-gray-700 cursor-pointer" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Featured Articles - Only shown if no filter or articles match category */}
+      {displayedFeaturedArticles.length > 0 && (
         <section className="container py-16">
-          <h2 className="text-3xl font-bold mb-8">Featured Articles</h2>
+          <h2 className="text-3xl font-bold mb-8">
+            {selectedCategory ? 'Featured in This Category' : 'Featured Articles'}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredArticles.map((article) => (
+            {displayedFeaturedArticles.map((article) => (
               <BlogArticleCard
                 key={article.slug}
                 {...article}
@@ -124,55 +177,75 @@ export function BlogHomepage({
         </section>
       )}
 
-      {/* Categories Section */}
-      <section className="bg-gray-50 px-4 py-16">
-        <div className="container">
-          <h2 className="text-3xl font-bold mb-8">Browse by Category</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((cat) => {
-              const colors =
-                CATEGORY_COLORS[cat.id] || CATEGORY_COLORS['educational'];
-              return (
-                <Link key={cat.id} href={`${baseUrl}?category=${cat.id}`}>
-                  <div
-                    className={`p-6 rounded-lg border-2 border-gray-200 hover:border-blue-400 transition-all cursor-pointer group ${colors.bg}`}
-                  >
-                    <div className="text-4xl mb-3">{colors.icon}</div>
-                    <h3 className="text-lg font-bold mb-2">{cat.name}</h3>
-                    <p className="text-sm text-gray-600 mb-4">
-                      {cat.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-gray-700">
-                        {cat.articleCount} articles
-                      </span>
-                      <ChevronRight
-                        size={20}
-                        className="group-hover:translate-x-1 transition-transform"
-                      />
+      {/* Categories Section - Hidden when filter is active */}
+      {!selectedCategory && (
+        <section className="bg-gray-50 px-4 py-16">
+          <div className="container">
+            <h2 className="text-3xl font-bold mb-8">Browse by Category</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categories.map((cat) => {
+                const colors =
+                  CATEGORY_COLORS[cat.id] || CATEGORY_COLORS['educational'];
+                return (
+                  <Link key={cat.id} href={`${baseUrl}?category=${cat.id}`}>
+                    <div
+                      className={`p-6 rounded-lg border-2 border-gray-200 hover:border-blue-400 transition-all cursor-pointer group ${colors.bg}`}
+                    >
+                      <div className="text-4xl mb-3">{colors.icon}</div>
+                      <h3 className="text-lg font-bold mb-2">{cat.name}</h3>
+                      <p className="text-sm text-gray-600 mb-4">
+                        {cat.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-gray-700">
+                          {cat.articleCount} articles
+                        </span>
+                        <ChevronRight
+                          size={20}
+                          className="group-hover:translate-x-1 transition-transform"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Latest Articles */}
-      <section className="container py-16">
-        <h2 className="text-3xl font-bold mb-8">Latest Articles</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {latestArticles.map((article) => (
-            <BlogArticleCard
-              key={article.slug}
-              {...article}
-              category={article.cluster}
-              locale={locale}
-            />
-          ))}
-        </div>
-      </section>
+      {/* Latest Articles or Filtered Results */}
+      {filteredLatestArticles.length > 0 && (
+        <section className="container py-16">
+          <h2 className="text-3xl font-bold mb-8">
+            {selectedCategory
+              ? `Articles in ${categories.find((c) => c.id === selectedCategory)?.name}`
+              : 'Latest Articles'}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredLatestArticles.map((article) => (
+              <BlogArticleCard
+                key={article.slug}
+                {...article}
+                category={article.cluster}
+                locale={locale}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* No Results Message */}
+      {selectedCategory && filteredLatestArticles.length === 0 && displayedFeaturedArticles.length === 0 && (
+        <section className="container py-16 text-center">
+          <p className="text-xl text-gray-600 mb-4">
+            No articles found in this category yet.
+          </p>
+          <Link href={baseUrl} className="text-blue-600 hover:text-blue-800 font-semibold">
+            View all articles
+          </Link>
+        </section>
+      )}
 
       {/* FAQ Section */}
       <section className="bg-blue-50 px-4 py-16">
