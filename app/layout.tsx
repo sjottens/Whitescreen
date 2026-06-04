@@ -85,8 +85,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={inter.variable}>
         {children}
 
-        {/* Google AdSense - Temporarily disabled for Lighthouse testing */}
-        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"></script> */}
+        {/* Google AdSense - Script loading without data-nscript attribute */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"></script>
 
         {/* Google Analytics - Tracking setup */}
         <Script
