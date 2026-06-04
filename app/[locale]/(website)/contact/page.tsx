@@ -53,7 +53,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
       />
 
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
-        <div className="container max-w-4xl">
+        <div className="container">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('contact_title')}</h1>
           <p className="text-xl text-slate-700">
             {translate('contact_hero_subtitle')}
@@ -62,8 +62,8 @@ export default async function ContactPage({ params }: ContactPageProps) {
       </section>
 
       <section className="section">
-        <div className="container max-w-2xl">
-          <div className="card">
+        <div className="container">
+          <div className="card max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold mb-6">{translate('contact_title')}</h2>
             
             <form className="space-y-6">

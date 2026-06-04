@@ -69,7 +69,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
       {/* Hero Section */}
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
-        <div className="container max-w-4xl">
+        <div className="container">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('about_title')}</h1>
           <p className="text-xl text-slate-700 mb-8">
             {translate('about_description')}
@@ -79,7 +79,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
       {/* Content Sections */}
       <section className="section">
-        <div className="container max-w-4xl">
+        <div className="container">
           <div className="prose prose-lg max-w-none">
             <h2>{translate('about_mission_title')}</h2>
             <p>{translate('about_mission_text')}</p>
