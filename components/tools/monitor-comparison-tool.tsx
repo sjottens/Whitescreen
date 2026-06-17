@@ -205,7 +205,7 @@ export default function MonitorComparisonTool() {
                         className={`px-6 py-4 ${
                           highlightDifference(monitor1, monitor2, spec.key as keyof Monitor) ||
                           highlightDifference(monitor1, monitor3, spec.key as keyof Monitor)
-                            ? 'bg-yellow-100 font-semibold'
+                            ? 'bg-yellow-100 font-semibold text-slate-900'
                             : ''
                         }`}
                       >
@@ -217,7 +217,7 @@ export default function MonitorComparisonTool() {
                         className={`px-6 py-4 ${
                           highlightDifference(monitor2, monitor1, spec.key as keyof Monitor) ||
                           highlightDifference(monitor2, monitor3, spec.key as keyof Monitor)
-                            ? 'bg-yellow-100 font-semibold'
+                            ? 'bg-yellow-100 font-semibold text-slate-900'
                             : ''
                         }`}
                       >
@@ -229,7 +229,7 @@ export default function MonitorComparisonTool() {
                         className={`px-6 py-4 ${
                           highlightDifference(monitor3, monitor1, spec.key as keyof Monitor) ||
                           highlightDifference(monitor3, monitor2, spec.key as keyof Monitor)
-                            ? 'bg-yellow-100 font-semibold'
+                            ? 'bg-yellow-100 font-semibold text-slate-900'
                             : ''
                         }`}
                       >
