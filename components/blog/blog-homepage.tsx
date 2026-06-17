@@ -149,6 +149,27 @@ export function BlogHomepage({
         </section>
       )}
 
+      {/* Latest Articles or Filtered Results */}
+      {filteredLatestArticles.length > 0 && (
+        <section className="container py-16">
+          <h2 className="text-3xl font-bold mb-8">
+            {selectedCategory
+              ? `${translate('blog_articles_in')} ${selectedCategoryName}`
+              : translate('blog_latest_articles')}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredLatestArticles.map((article) => (
+              <BlogArticleCard
+                key={article.slug}
+                {...article}
+                category={article.cluster}
+                locale={locale}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Featured Articles - Only shown if no filter or articles match category */}
       {displayedFeaturedArticles.length > 0 && (
         <section className="container py-16">
@@ -206,27 +227,6 @@ export function BlogHomepage({
                 );
               })}
             </div>
-          </div>
-        </section>
-      )}
-
-      {/* Latest Articles or Filtered Results */}
-      {filteredLatestArticles.length > 0 && (
-        <section className="container py-16">
-          <h2 className="text-3xl font-bold mb-8">
-            {selectedCategory
-              ? `${translate('blog_articles_in')} ${selectedCategoryName}`
-              : translate('blog_latest_articles')}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredLatestArticles.map((article) => (
-              <BlogArticleCard
-                key={article.slug}
-                {...article}
-                category={article.cluster}
-                locale={locale}
-              />
-            ))}
           </div>
         </section>
       )}
