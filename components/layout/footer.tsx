@@ -1,7 +1,7 @@
 // components/layout/footer.tsx - SEO-optimized footer with comprehensive internal linking and multilingual support
 
 import Link from 'next/link';
-import { SITE_NAME, SITE_URL, COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
+import { SITE_NAME, COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import type { Locale } from '@/lib/i18n';
@@ -23,7 +23,7 @@ export default function Footer({ locale }: FooterProps) {
           <div className="lg:col-span-1">
             <h3 className="text-white font-bold text-lg mb-4">{SITE_NAME}</h3>
             <p className="text-white text-sm mb-4">
-              Elite screen testing and display tools for professionals and enthusiasts. TestaScreen.eu
+              {translate('footer_brand_description' as any)}
             </p>
             
           </div>
@@ -155,14 +155,11 @@ export default function Footer({ locale }: FooterProps) {
           </p>
           <div className="flex gap-6">
             <Link href="/sitemap.xml" className="text-white hover:text-slate-100 transition-colors">
-              Sitemap
+              {translate('footer_sitemap_label' as any)}
             </Link>
             <Link href="/robots.txt" className="text-white hover:text-slate-100 transition-colors">
-              Robots
+              {translate('footer_robots_label' as any)}
             </Link>
-            <a href={SITE_URL} className="text-white hover:text-slate-100 transition-colors">
-              {SITE_URL}
-            </a>
           </div>
         </div>
       </div>

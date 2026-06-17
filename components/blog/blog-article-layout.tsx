@@ -5,6 +5,7 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronUp } from 'lucide-react';
+import { t } from '@/lib/translations';
 
 interface BlogArticleLayoutProps {
   title: string;
@@ -40,9 +41,11 @@ export function BlogArticleLayout({
   relatedArticles,
   locale = 'en',
 }: BlogArticleLayoutProps) {
+  const translate = t((locale as 'en' | 'nl' | 'es' | 'de') || 'en');
   const [showTOC, setShowTOC] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const blogBasePath = locale === 'en' ? '/blog' : `/${locale}/blog`;
 
   // Track reading progress
   useEffect(() => {
@@ -113,18 +116,18 @@ export function BlogArticleLayout({
           {/* Article Metadata */}
           <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-6">
             <div className="flex items-center gap-2">
-              <span className="text-sm">By</span>
+              <span className="text-sm">{translate('blog_layout_by_label' as any)}</span>
               <span className="font-semibold">{author}</span>
             </div>
             <div className="text-sm">
-              Published: <time>{formatDate(publishedAt)}</time>
+              {translate('blog_layout_published_label' as any)}: <time>{formatDate(publishedAt)}</time>
             </div>
             {updatedAt !== publishedAt && (
               <div className="text-sm">
-                Updated: <time>{formatDate(updatedAt)}</time>
+                {translate('blog_layout_updated_label' as any)}: <time>{formatDate(updatedAt)}</time>
               </div>
             )}
-            <div className="text-sm">{readingTimeMinutes} min read</div>
+            <div className="text-sm">{readingTimeMinutes} {translate('blog_layout_min_read_suffix' as any)}</div>
           </div>
 
           {/* Article Stats */}
@@ -141,7 +144,7 @@ export function BlogArticleLayout({
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-20 bg-gray-50 rounded-lg p-6">
               <h2 className="font-bold text-lg mb-4 text-gray-900">
-                Table of Contents
+                  {translate('blog_layout_toc_title' as any)}
               </h2>
               <nav className="space-y-2">
                 {tableOfContents.map((item) => (
@@ -169,22 +172,22 @@ export function BlogArticleLayout({
           {/* Related Articles */}
           {relatedArticles && relatedArticles.length > 0 && (
             <section className="mt-16 pt-16 border-t">
-              <h2 className="text-3xl font-bold mb-8">Related Articles</h2>
+              <h2 className="text-3xl font-bold mb-8">{translate('blog_layout_related_title' as any)}</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedArticles.map((article) => (
                   <Link
                     key={article.slug}
-                    href={`/blog/${article.slug}`}
-                    className="p-6 border rounded-lg hover:shadow-lg transition-shadow"
+                    href={`${blogBasePath}/${article.slug}`}
+                    className="group p-6 border rounded-lg hover:shadow-lg transition-shadow no-underline text-inherit hover:no-underline"
                   >
-                    <h3 className="font-bold text-lg mb-2 hover:text-blue-600">
+                    <h3 className="font-bold text-lg mb-2 text-slate-900 group-hover:text-cyan-300">
                       {article.title}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-slate-600 text-sm mb-4">
                       {article.excerpt}
                     </p>
                     <span className="text-xs text-gray-500">
-                      {article.readingTime} min read
+                      {article.readingTime} {translate('blog_layout_min_read_suffix' as any)}
                     </span>
                   </Link>
                 ))}
@@ -194,16 +197,15 @@ export function BlogArticleLayout({
 
           {/* CTA Section */}
           <section className="mt-16 p-8 bg-blue-50 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">Ready to Test Your Display?</h2>
+            <h2 className="text-2xl font-bold mb-4">{translate('cta_ready_title')}</h2>
             <p className="text-gray-700 mb-6">
-              Use our free online screen testing tools to check for dead pixels,
-              color accuracy, brightness, contrast, and more.
+              {translate('cta_ready_desc')}
             </p>
             <Link
-              href="/tools"
+              href={locale === 'en' ? '/tools' : `/${locale}/tools`}
               className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Explore Testing Tools
+              {translate('blog_layout_explore_tools_cta' as any)}
             </Link>
           </section>
         </main>
@@ -214,7 +216,7 @@ export function BlogArticleLayout({
             <button
               onClick={scrollToTop}
               className="mb-2 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"
-              aria-label="Scroll to top"
+              aria-label={translate('blog_layout_scroll_top_aria' as any)}
             >
               <ChevronUp size={24} />
             </button>

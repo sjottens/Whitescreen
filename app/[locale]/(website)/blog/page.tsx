@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { isValidLocale, getLocaleUrl, generateHrefLangAlternates, LOCALE_METADATA, type Locale } from '@/lib/i18n';
 import { BlogHomepage } from '@/components/blog/blog-homepage';
 import { getFeaturedArticles, getBlogArticlesByCluster, allBlogArticles } from '@/lib/blog-content';
-import { SITE_URL, SITE_NAME } from '@/lib/constants';
+import { t } from '@/lib/translations';
 
 interface LocaleBlogPageProps {
   params: Promise<{
@@ -14,7 +14,7 @@ interface LocaleBlogPageProps {
 }
 
 export async function generateStaticParams() {
-  return ['nl', 'es', 'de', 'fr', 'it', 'pt', 'ja'].map((locale) => ({
+  return ['nl', 'es', 'de'].map((locale) => ({
     locale,
   }));
 }
@@ -36,20 +36,12 @@ export async function generateMetadata({
     nl: 'Schermtest Blog | Gratis Displaytest Gidsen',
     es: 'Blog de Prueba de Pantalla | Guías Gratuitas de Prueba de Pantalla',
     de: 'Bildschirmtest Blog | Kostenlose Display-Test-Anleitungen',
-    fr: 'Blog de Test d\'écran | Guides Gratuits de Test d\'affichage',
-    it: 'Blog Test dello Schermo | Guide Gratuite per i Test del Display',
-    pt: 'Blog de Teste de Tela | Guias Gratuitos de Teste de Display',
-    ja: 'スクリーンテストブログ | 無料ディスプレイテストガイド',
   };
 
   const descriptions: Record<string, string> = {
-    nl: 'Leer over schermtesten, dode pixels, kleurnauwkeurigheid, monitordiagnostiek en displayprobleemoplossing. Deskundige gidsen voor monitokapers en IT-professionals.',
+    nl: 'Leer alles over schermtesten, dode pixels, kleurnauwkeurigheid, monitordiagnostiek en display-probleemoplossing. Praktische gidsen voor monitor-kopers en IT-professionals.',
     es: 'Aprenda sobre pruebas de pantalla, píxeles muertos, precisión del color, diagnóstico de monitores y solución de problemas de pantalla. Guías de expertos para compradores de monitores y profesionales de TI.',
     de: 'Erfahren Sie mehr über Bildschirmtests, tote Pixel, Farbgenauigkeit, Monitordiagnose und Display-Fehlerbehebung. Expertenleitfäden für Monitor-Käufer und IT-Profis.',
-    fr: 'En savoir plus sur les tests d\'écran, les pixels morts, la précision des couleurs, les diagnostics de moniteur et le dépannage des écrans. Guides d\'experts pour les acheteurs de moniteurs et les professionnels informatiques.',
-    it: 'Scopri i test dello schermo, i pixel morti, l\'accuratezza del colore, la diagnostica del monitor e la risoluzione dei problemi del display. Guide di esperti per gli acquirenti di monitor e i professionisti IT.',
-    pt: 'Aprenda sobre testes de tela, pixels mortos, precisão de cores, diagnóstico de monitor e solução de problemas de display. Guias de especialistas para compradores de monitores e profissionais de TI.',
-    ja: 'スクリーンテスト、デッドピクセル、色精度、モニター診断、ディスプレイのトラブルシューティングについて学びます。モニター購入者とITプロフェッショナルのためのエキスパートガイド。',
   };
 
   return {
@@ -71,6 +63,7 @@ export async function generateMetadata({
 
 export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPageProps) {
   const { locale } = React.use(paramsPromise);
+  const translate = t(locale as Locale);
 
   if (!isValidLocale(locale)) {
     notFound();
@@ -79,7 +72,7 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
   const featured = getFeaturedArticles();
   const latest = allBlogArticles
     .filter((a) => !a.featured)
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
     .slice(0, 6);
 
   // Localized category names
@@ -107,38 +100,6 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
       troubleshooting: 'Fehlerbehebung',
       'buying-guides': 'Kaufanleitungen',
       educational: 'Bildung',
-    },
-    fr: {
-      'pixel-problems': 'Problèmes de Pixels',
-      'screen-testing': 'Test d\'Écran',
-      'color-quality': 'Couleur et Qualité d\'Image',
-      troubleshooting: 'Dépannage',
-      'buying-guides': 'Guides d\'Achat',
-      educational: 'Éducation',
-    },
-    it: {
-      'pixel-problems': 'Problemi di Pixel',
-      'screen-testing': 'Test dello Schermo',
-      'color-quality': 'Colore e Qualità Immagine',
-      troubleshooting: 'Risoluzione dei Problemi',
-      'buying-guides': 'Guide agli Acquisti',
-      educational: 'Educativo',
-    },
-    pt: {
-      'pixel-problems': 'Problemas de Pixels',
-      'screen-testing': 'Teste de Tela',
-      'color-quality': 'Cor e Qualidade de Imagem',
-      troubleshooting: 'Solução de Problemas',
-      'buying-guides': 'Guias de Compra',
-      educational: 'Educacional',
-    },
-    ja: {
-      'pixel-problems': 'ピクセルの問題',
-      'screen-testing': 'スクリーンテスト',
-      'color-quality': '色と画像品質',
-      troubleshooting: 'トラブルシューティング',
-      'buying-guides': '購入ガイド',
-      educational: '教育的',
     },
   };
 
@@ -195,7 +156,7 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
     slug: a.slug,
     title: a.translations[locale]?.title || a.translations.en.title,
     excerpt: (a.translations[locale]?.content?.introduction || a.content.introduction).substring(0, 150) + '...',
-    publishedAt: a.publishedAt,
+    publishedAt: a.updatedAt || a.publishedAt,
     readingTimeMinutes: a.readingTimeMinutes,
     cluster: a.cluster,
     featured: a.featured,
@@ -205,24 +166,16 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
     nl: 'Schermtest Blog',
     es: 'Blog de Prueba de Pantalla',
     de: 'Bildschirmtest Blog',
-    fr: 'Blog de Test d\'écran',
-    it: 'Blog Test dello Schermo',
-    pt: 'Blog de Teste de Tela',
-    ja: 'スクリーンテストブログ',
   };
 
   const subtitles: Record<string, string> = {
     nl: 'Deskundige gidsen voor displaydiagnostiek, dode pixels, monitortest en meer',
     es: 'Guías de expertos para diagnóstico de pantalla, píxeles muertos, prueba de monitor y más',
     de: 'Expertenleitfäden für Display-Diagnose, tote Pixel, Monitortest und mehr',
-    fr: 'Guides d\'experts pour le diagnostic d\'affichage, les pixels morts, le test de moniteur et plus',
-    it: 'Guide di esperti per diagnosi del display, pixel morti, test del monitor e altro',
-    pt: 'Guias de especialistas para diagnóstico de display, pixels mortos, teste de monitor e muito mais',
-    ja: 'ディスプレイ診断、デッドピクセル、モニターテストなどのエキスパートガイド',
   };
 
   return (
-    <Suspense fallback={<div className="w-full py-20 text-center">Loading...</div>}>
+    <Suspense fallback={<div className="w-full py-20 text-center">{translate('common_loading' as any)}</div>}>
       <BlogHomepage
         title={titles[locale] || titles.en}
         subtitle={subtitles[locale] || subtitles.en}

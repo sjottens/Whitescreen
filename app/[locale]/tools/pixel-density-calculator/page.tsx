@@ -7,28 +7,43 @@ import PixelDensityCalculator from '@/components/tools/pixel-density-calculator'
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
+import { getLocaleFromParams } from '@/lib/i18n';
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
+
   return generateMultilingualMetadata({
-    locale: 'en',
-    title: 'Pixel Density Calculator - Calculate Monitor DPI & PPI',
-    description:
-      'Calculate pixel density, DPI, and PPI for any monitor. Enter resolution and screen size to find out display sharpness.',
+    locale,
+    title: translate('pixel_density_page_title' as any),
+    description: translate('pixel_density_page_description' as any),
     path: '/tools/pixel-density-calculator',
-    keywords: ['pixel density calculator', 'DPI calculator', 'PPI calculator', 'monitor sharpness'],
+    keywords: [
+      translate('pixel_density_keyword_1' as any),
+      translate('pixel_density_keyword_2' as any),
+      translate('pixel_density_keyword_3' as any),
+      translate('pixel_density_keyword_4' as any),
+    ],
   });
 }
 
-export default function PixelDensityCalculatorPage() {
-  const translate = t('en');
+interface PixelDensityCalculatorPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function PixelDensityCalculatorPage({ params }: PixelDensityCalculatorPageProps) {
+  const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: 'Pixel Density Calculator', path: '/tools/pixel-density-calculator' },
+      { name: translate('pixel_density_calculator'), path: '/tools/pixel-density-calculator' },
     ],
-    'en'
+    locale
   );
 
   return (
@@ -41,9 +56,9 @@ export default function PixelDensityCalculatorPage() {
 
       <Breadcrumbs
         items={[
-          { name: translate('home'), path: getLocalizedPath('en', '/') },
-          { name: translate('tools'), path: getLocalizedPath('en', '/tools') },
-          { name: 'Pixel Density Calculator' },
+          { name: translate('home'), path: getLocalizedPath(locale, '/') },
+          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('pixel_density_calculator') },
         ]}
       />
 
@@ -51,11 +66,10 @@ export default function PixelDensityCalculatorPage() {
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-emerald-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">
-            Pixel Density Calculator
+            {translate('pixel_density_calculator')}
           </h1>
           <p className="text-xl text-slate-700">
-            Calculate DPI, PPI, and pixel density for any monitor. Determine display sharpness and
-            clarity.
+            {translate('pixel_density_page_header_desc' as any)}
           </p>
         </div>
       </section>
@@ -67,35 +81,32 @@ export default function PixelDensityCalculatorPage() {
 
           {/* Info Section */}
           <div className="mt-12 prose prose-lg max-w-none">
-            <h2 className="text-2xl font-bold mb-4">Understanding Pixel Density</h2>
+            <h2 className="text-2xl font-bold mb-4">{translate('pixel_density_understanding_title' as any)}</h2>
             <p>
-              Pixel density (measured in PPI - Pixels Per Inch or DPI - Dots Per Inch) determines
-              how sharp and crisp your display appears. Higher PPI means sharper text and images.
+              {translate('pixel_density_understanding_desc' as any)}
             </p>
 
-            <h3 className="text-xl font-bold mt-8 mb-3">Pixel Density Standards</h3>
+            <h3 className="text-xl font-bold mt-8 mb-3">{translate('pixel_density_standards_title' as any)}</h3>
             <ul>
               <li>
-                <strong>Below 100 PPI</strong> - Lower density, may see pixelation at normal viewing
-                distance
+                <strong>{translate('pixel_density_standard_1_title' as any)}</strong> - {translate('pixel_density_standard_1_desc' as any)}
               </li>
               <li>
-                <strong>100-150 PPI</strong> - Standard quality for desktop monitors, comfortable
-                viewing
+                <strong>{translate('pixel_density_standard_2_title' as any)}</strong> - {translate('pixel_density_standard_2_desc' as any)}
               </li>
               <li>
-                <strong>150-200 PPI</strong> - High quality, very sharp text and images
+                <strong>{translate('pixel_density_standard_3_title' as any)}</strong> - {translate('pixel_density_standard_3_desc' as any)}
               </li>
               <li>
-                <strong>200+ PPI</strong> - Retina-level sharpness, approaching print quality
+                <strong>{translate('pixel_density_standard_4_title' as any)}</strong> - {translate('pixel_density_standard_4_desc' as any)}
               </li>
             </ul>
 
-            <h3 className="text-xl font-bold mt-8 mb-3">Common Resolutions & Sizes</h3>
+            <h3 className="text-xl font-bold mt-8 mb-3">{translate('pixel_density_common_table_title' as any)}</h3>
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-slate-100">
-                  <th className="border p-3 text-left">Monitor Size</th>
+                  <th className="border p-3 text-left">{translate('pixel_density_table_monitor_size' as any)}</th>
                   <th className="border p-3 text-left">1080p</th>
                   <th className="border p-3 text-left">1440p</th>
                   <th className="border p-3 text-left">4K</th>

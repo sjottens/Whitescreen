@@ -7,8 +7,9 @@
 // - All canonicals and hreflang handled automatically
 
 import { NextRequest, NextResponse } from 'next/server';
+import { LOCALES } from '@/lib/i18n';
 
-const SUPPORTED_LOCALES = ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'ja'];
+const SUPPORTED_LOCALES = LOCALES;
 const DEFAULT_LOCALE = 'en';
 
 export function middleware(request: NextRequest) {

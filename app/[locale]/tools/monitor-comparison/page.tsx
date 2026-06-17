@@ -5,30 +5,40 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import MonitorComparisonTool from '@/components/tools/monitor-comparison-tool';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
+import { getLocaleFromParams } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
+
   return generateMultilingualMetadata({
-    locale: 'en',
-    title: 'Monitor Comparison Tool - Compare Specs Side by Side',
-    description:
-      'Compare monitor specifications side by side. Find differences in resolution, refresh rate, panel type, and more.',
+    locale,
+    title: translate('monitor_comparison_page_title' as any),
+    description: translate('monitor_comparison_page_description' as any),
     path: '/tools/monitor-comparison',
     keywords: ['monitor comparison', 'compare monitors', 'monitor specs', 'monitor vs monitor'],
   });
 }
 
-export default function MonitorComparisonPage() {
-  const translate = t('en');
+export default async function MonitorComparisonPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: 'Monitor Comparison', path: '/tools/monitor-comparison' },
+      { name: translate('monitor_comparison_page_breadcrumb' as any), path: '/tools/monitor-comparison' },
     ],
-    'en'
+    locale
   );
 
   return (
@@ -41,9 +51,9 @@ export default function MonitorComparisonPage() {
 
       <Breadcrumbs
         items={[
-          { name: translate('home'), path: getLocalizedPath('en', '/') },
-          { name: translate('tools'), path: getLocalizedPath('en', '/tools') },
-          { name: 'Monitor Comparison' },
+          { name: translate('home'), path: getLocalizedPath(locale, '/') },
+          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('monitor_comparison_page_breadcrumb' as any) },
         ]}
       />
 
@@ -51,10 +61,10 @@ export default function MonitorComparisonPage() {
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-orange-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">
-            Monitor Comparison Tool
+            {translate('monitor_comparison_page_heading' as any)}
           </h1>
           <p className="text-xl text-slate-700">
-            Compare up to 3 monitors side by side. Analyze specs and make informed decisions.
+            {translate('monitor_comparison_page_subheading' as any)}
           </p>
         </div>
       </section>

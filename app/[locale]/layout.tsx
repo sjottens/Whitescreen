@@ -15,7 +15,7 @@ interface LocaleLayoutProps {
  * Generate static params for all supported locales EXCEPT the default locale
  * English pages are served at root (e.g., /about), not /en/about
  * This prevents duplicate content issues: only /nl/about, /es/about, etc. are generated
- * Tells Next.js to pre-render pages for nl, es, de, fr, it, pt, ja (NOT en)
+ * Tells Next.js to pre-render pages for nl, es, de (NOT en)
  */
 export function generateStaticParams() {
   return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({

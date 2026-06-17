@@ -5,6 +5,7 @@ import { BlogHomepage } from '@/components/blog/blog-homepage';
 import { getFeaturedArticles, getBlogArticlesByCluster, allBlogArticles } from '@/lib/blog-content';
 import { generateHrefLangAlternates } from '@/lib/i18n';
 import { SITE_URL } from '@/lib/constants';
+import { t } from '@/lib/translations';
 
 export const metadata: Metadata = {
   title: 'Screen Testing Blog | Free Display Testing Guides',
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const translate = t('en');
   const featured = getFeaturedArticles();
   
   // Get latest articles (not featured)
@@ -101,10 +103,10 @@ export default function BlogPage() {
   }));
 
   return (
-    <Suspense fallback={<div className="w-full py-20 text-center">Loading...</div>}>
+    <Suspense fallback={<div className="w-full py-20 text-center">{translate('common_loading' as any)}</div>}>
       <BlogHomepage
-        title="Screen Testing Blog"
-        subtitle="Expert guides for display diagnostics, dead pixels, monitor testing, and more"
+        title={translate('blog_page_title' as any)}
+        subtitle={translate('blog_page_subtitle' as any)}
         featuredArticles={featuredPreview}
         latestArticles={latestPreview}
         categories={categories}

@@ -25,10 +25,14 @@ export async function generateMetadata(props: {
 
   return generateMultilingualMetadata({
     locale,
-    title: 'Test Your Monitor - 50+ Brands',
-    description: 'Find your monitor brand and access specialized test pages optimized for your display.',
+    title: translate('monitor_test_page_title' as any),
+    description: translate('monitor_test_page_description' as any),
     path: '/monitor-test',
-    keywords: ['monitor test', 'brand test', 'display test'],
+    keywords: [
+      translate('monitor_test_keyword_1' as any),
+      translate('monitor_test_keyword_2' as any),
+      translate('monitor_test_keyword_3' as any),
+    ],
   });
 }
 
@@ -45,7 +49,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: 'Monitor Test Brands', path: '/monitor-test' },
+      { name: translate('monitor_test_breadcrumb_title' as any), path: '/monitor-test' },
     ],
     locale
   );
@@ -62,7 +66,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
           { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
-          { name: 'Monitor Brands' },
+          { name: translate('monitor_test_breadcrumb_title' as any) },
         ]}
       />
 
@@ -86,11 +90,11 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
         <div className="container max-w-4xl">
           <div className="flex items-center gap-3 mb-4">
             <Monitor className="w-8 h-8 text-blue-600" />
-            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Test Your Monitor</span>
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">{translate('monitor_test_badge' as any)}</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">50+ Monitor Brands</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('monitor_test_heading' as any)}</h1>
           <p className="text-xl text-slate-700 leading-relaxed">
-            Select your monitor brand below to access specialized test pages optimized for your specific display model and specifications.
+            {translate('monitor_test_intro' as any)}
           </p>
         </div>
       </section>
@@ -100,7 +104,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
         <div className="container">
           <div className="mb-8">
             <p className="text-slate-600">
-              Browse all {brands.length} supported monitor brands, from gaming-focused manufacturers to professional display makers.
+              {translate('monitor_test_browse_prefix' as any)} {brands.length} {translate('monitor_test_browse_suffix' as any)}
             </p>
           </div>
 
@@ -129,16 +133,16 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
       {/* CTA Section */}
       <section className="section-alt">
         <div className="container max-w-2xl text-center">
-          <h2 className="text-3xl font-bold mb-4">Don't see your brand?</h2>
+          <h2 className="text-3xl font-bold mb-4">{translate('monitor_test_not_found_brand_title' as any)}</h2>
           <p className="text-slate-600 mb-6">
-            All monitor tests work with any brand. Use our general display tests for comprehensive monitor evaluation.
+            {translate('monitor_test_not_found_brand_desc' as any)}
           </p>
           <LinkButton 
             href={getLocalizedPath(locale, '/tools')}
             variant="primary"
             size="lg"
           >
-            Back to All Tools
+            {translate('monitor_test_back_all_tools' as any)}
           </LinkButton>
         </div>
       </section>

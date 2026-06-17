@@ -63,12 +63,12 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
   if (!comparisonData) {
     return (
       <div className="container max-w-4xl py-12">
-        <h1 className="text-3xl font-bold mb-4">Comparison not found</h1>
+        <h1 className="text-3xl font-bold mb-4">{translate('compare_not_found_title' as any)}</h1>
         <Link
           href={getLocalizedPath(locale as any, '/tools')}
           className="text-blue-600 hover:text-blue-800"
         >
-          ← Back to tools
+          ← {translate('back_to_tools')}
         </Link>
       </div>
     );
@@ -131,7 +131,7 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
               <thead>
                 <tr className="bg-slate-100 border-b border-slate-200">
                   <th className="px-6 py-3 text-left font-semibold text-slate-900">
-                    Feature
+                    {translate('compare_feature_col_label' as any)}
                   </th>
                   <th className="px-6 py-3 text-left font-semibold text-blue-600">
                     {comparisonData.item1.keywords[0]}
@@ -148,7 +148,7 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
               </thead>
               <tbody>
                 <tr className="border-b border-slate-200 hover:bg-slate-50">
-                  <td className="px-6 py-4 font-semibold text-slate-900">Type</td>
+                  <td className="px-6 py-4 font-semibold text-slate-900">{translate('compare_type_label' as any)}</td>
                   <td className="px-6 py-4 text-slate-700">{comparisonData.item1.type}</td>
                   <td className="px-6 py-4 text-slate-700">{comparisonData.item2.type}</td>
                   {comparisonData.item3 && (
@@ -157,17 +157,17 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
                 </tr>
                 <tr className="border-b border-slate-200 hover:bg-slate-50">
                   <td className="px-6 py-4 font-semibold text-slate-900">
-                    Popularity
+                    {translate('compare_popularity_label' as any)}
                   </td>
                   <td className="px-6 py-4 text-slate-700">
-                    {comparisonData.item1.searchVolume} monthly searches
+                    {comparisonData.item1.searchVolume} {translate('compare_monthly_searches_label' as any)}
                   </td>
                   <td className="px-6 py-4 text-slate-700">
-                    {comparisonData.item2.searchVolume} monthly searches
+                    {comparisonData.item2.searchVolume} {translate('compare_monthly_searches_label' as any)}
                   </td>
                   {comparisonData.item3 && (
                     <td className="px-6 py-4 text-slate-700">
-                      {comparisonData.item3.searchVolume} monthly searches
+                      {comparisonData.item3.searchVolume} {translate('compare_monthly_searches_label' as any)}
                     </td>
                   )}
                 </tr>
@@ -177,9 +177,9 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
 
           {/* Call to Action */}
           <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 rounded-lg mb-12">
-            <h2 className="text-2xl font-bold mb-4 text-slate-900">Ready to Test Your Display?</h2>
+            <h2 className="text-2xl font-bold mb-4 text-slate-900">{translate('compare_detail_cta_title' as any)}</h2>
             <p className="text-slate-700 mb-6">
-              Use our professional display testing tools to optimize your monitor setup
+              {translate('compare_detail_cta_desc' as any)}
             </p>
             <Link
               href={getLocalizedPath(locale as any, '/white-screen')}
@@ -193,7 +193,7 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
           {relatedComparisons.length > 0 && (
             <div>
               <h2 className="text-2xl font-bold mb-6 text-slate-900">
-                Related Comparisons
+                {translate('compare_related_title' as any)}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {relatedComparisons.slice(0, 4).map((related) => (

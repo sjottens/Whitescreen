@@ -11,11 +11,12 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
 
   return generateMultilingualMetadata({
     locale,
-    title: 'Privacy Policy',
-    description: 'Privacy policy for TestaScreen. We explain how we handle and protect user data.',
+    title: translate('privacy_title'),
+    description: translate('privacy_description'),
     path: '/privacy',
   });
 }
@@ -132,16 +133,16 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             <br />
             {translate('privacy_dpa_company_name')}
             <br />
-            Email: legal@testascreen.eu
+            {translate('privacy_legal_email_label' as any)}: {translate('privacy_legal_email' as any)}
           </p>
 
           <h2>12. {translate('privacy_contact')}</h2>
           <p>
             {translate('privacy_contact_full_text')}
             <br />
-            <strong>Email:</strong> privacy@testascreen.eu
+            <strong>{translate('privacy_contact_email_label' as any)}:</strong> {translate('privacy_contact_email' as any)}
             <br />
-            <strong>Data Protection Officer:</strong> dpo@testascreen.eu
+            <strong>{translate('privacy_dpo_label' as any)}:</strong> {translate('privacy_dpo_email' as any)}
           </p>
 
           <hr className="my-8" />

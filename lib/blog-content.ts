@@ -2,6 +2,36 @@
 // Organized by topical authority clusters for faster organic growth
 
 import { Locale } from './i18n';
+import { additionalPixelProblemArticles } from './blog-content-additions';
+
+interface BlogTranslation {
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
+  keyword: string;
+  content?: {
+    introduction: string;
+    sections: Array<{
+      h2: string;
+      h3s?: string[];
+      content: string;
+    }>;
+    conclusion: string;
+  };
+  toolCTAs?: Array<{
+    context: string;
+  }>;
+  internalLinks?: Array<{
+    articleId: string;
+    anchorText: string;
+    relationType: 'related' | 'prerequisite' | 'deeper-dive';
+  }>;
+  faqItems?: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
 
 export interface BlogArticle {
   id: string;
@@ -33,38 +63,7 @@ export interface BlogArticle {
   };
   
   // Multilingual Translations (includes full content translations)
-  translations: Record<Locale, {
-    title: string;
-    metaTitle: string;
-    metaDescription: string;
-    h1: string;
-    keyword: string;
-    // Full content translations for non-English locales
-    content?: {
-      introduction: string;
-      sections: Array<{
-        h2: string;
-        h3s?: string[];
-        content: string;
-      }>;
-      conclusion: string;
-    };
-    // Tool CTA translations
-    toolCTAs?: Array<{
-      context: string;
-    }>;
-    // Internal link translations
-    internalLinks?: Array<{
-      articleId: string;
-      anchorText: string;
-      relationType: 'related' | 'prerequisite' | 'deeper-dive';
-    }>;
-    // FAQ translations
-    faqItems?: Array<{
-      question: string;
-      answer: string;
-    }>;
-  }>;
+  translations: { en: BlogTranslation } & Partial<Record<string, BlogTranslation>>;
   
   // Internal Linking (English default)
   internalLinks: Array<{
@@ -2290,6 +2289,32 @@ export const screenTestingArticles: BlogArticle[] = [
         metaDescription: 'Leer wat schermuniformiteitstests zijn en waarom ze belangrijk zijn. Begrijp hoe u kleur- en helderheidsuniformiteit op uw monitor of TV kunt testen.',
         h1: 'Wat is een schermuniformiteitstest? Volledige gids',
         keyword: 'schermuniformiteitstest',
+        content: {
+          introduction: 'Een schermuniformiteitstest controleert of een display overal op het paneel dezelfde helderheid en kleur toont. Dit is belangrijk voor foto- en videobewerking, designwerk en algemene beeldkwaliteit. Veel gebruikers zien ongelijke verlichting, maar weten niet precies hoe ze dit objectief kunnen testen. In deze gids leggen we uit waar u op moet letten en hoe u uniformiteit correct beoordeelt.',
+          sections: [
+            {
+              h2: 'Wat is schermuniformiteit?',
+              h3s: ['Helderheidsuniformiteit', 'Kleuruniformiteit', 'Waarom het belangrijk is'],
+              content: 'Schermuniformiteit beschrijft hoe gelijkmatig licht en kleur over het hele scherm worden verdeeld. Helderheidsuniformiteit betekent dat dezelfde grijstint overal even helder moet zijn. Kleuruniformiteit betekent dat dezelfde kleur op elke plek van het scherm hetzelfde oogt. Professionele displays blijven vaak binnen 3-5% afwijking, terwijl consumentenpanelen meestal grotere verschillen laten zien, vooral in hoeken en randen.',
+            },
+            {
+              h2: 'Veelvoorkomende uniformiteitsproblemen',
+              h3s: ['Backlight bleed', 'Glow-effecten', 'Donkere zones', 'Kleurverschuivingen'],
+              content: 'Backlight bleed ontstaat wanneer achtergrondverlichting langs randen of hoeken doorlekt. IPS-glow maakt hoeken lichter vanuit bepaalde kijkhoeken. Sommige panelen tonen donkere zones of lichte vlekken. Kleurverschuivingen zorgen ervoor dat dezelfde tint op verschillende delen van het scherm net anders lijkt. Een kleine afwijking is normaal, maar grote verschillen wijzen op lagere paneelkwaliteit of een defect.',
+            },
+            {
+              h2: 'Hoe test u uniformiteit?',
+              h3s: ['Grijsschermtest', 'Effen kleurvlakken', 'Gradientpatronen', 'Kijktechniek'],
+              content: 'Toon een middengrijs vlak in een verduisterde ruimte en controleer op lichtere of donkerdere plekken. Test ook effen wit, zwart en primaire kleuren om lokale afwijkingen te zien. Gebruik gradientpatronen om banding en overgangsfouten op te sporen. Kijk recht op het scherm en daarna vanuit lichte hoeken, omdat onregelmatigheden dan vaak duidelijker worden.',
+            },
+            {
+              h2: 'Professionele versus consumentenstandaarden',
+              h3s: ['Fabriekskalibratie', 'Acceptabele marges', 'Premium displays'],
+              content: 'Professionele monitoren worden vaak in de fabriek op uniformiteit gemeten en gekalibreerd, met strakkere toleranties. Consumentenmonitoren hebben doorgaans ruimere marges. Gamingmonitoren optimaliseren vaak snelheid boven perfecte uniformiteit. Voor fotografie, kleurcorrectie en design is een uniform paneel essentieel en vaak de meerprijs waard.',
+            },
+          ],
+          conclusion: 'Schermuniformiteit is een cruciale maar vaak onderschatte factor in displaykwaliteit. Kleine afwijkingen zijn normaal, maar duidelijke onregelmatigheden kunnen op paneelproblemen wijzen. Test met uniforme kleurvlakken en gradients om snel te bepalen of uw scherm binnen acceptabele grenzen valt.',
+        },
       },
       es: {
         title: '¿Qué es una prueba de uniformidad de pantalla? Guía completa',
@@ -2297,6 +2322,32 @@ export const screenTestingArticles: BlogArticle[] = [
         metaDescription: 'Aprende qué son las pruebas de uniformidad de pantalla y por qué son importantes. Comprende cómo probar la uniformidad de color y brillo en tu monitor o TV.',
         h1: '¿Qué es una prueba de uniformidad de pantalla? Guía completa',
         keyword: 'prueba uniformidad pantalla',
+        content: {
+          introduction: 'Una prueba de uniformidad de pantalla verifica si un panel mantiene brillo y color consistentes en toda su superficie. Esto es clave para edición de foto y video, diseño y evaluación real de calidad de imagen. Muchos usuarios detectan zonas irregulares, pero no saben cómo medirlas correctamente. Esta guía explica el proceso completo de forma práctica.',
+          sections: [
+            {
+              h2: '¿Qué es la uniformidad de pantalla?',
+              h3s: ['Uniformidad de brillo', 'Uniformidad de color', 'Por qué importa'],
+              content: 'La uniformidad de pantalla indica qué tan homogénea es la distribución de luz y color en el panel. La uniformidad de brillo comprueba que el mismo tono gris se vea igual en todas las zonas. La uniformidad de color valida que una misma tonalidad no cambie según la posición. En monitores profesionales, la variación suele ser baja; en paneles de consumo puede ser más evidente en bordes y esquinas.',
+            },
+            {
+              h2: 'Problemas comunes de uniformidad',
+              h3s: ['Backlight bleed', 'Efecto glow', 'Zonas oscuras', 'Cambios de color'],
+              content: 'El backlight bleed aparece como fugas de luz en los bordes. El glow, frecuente en IPS, aclara esquinas desde ciertos ángulos. También pueden aparecer zonas más oscuras o variaciones de color en áreas específicas. Un pequeño nivel de variación es normal, pero diferencias marcadas reducen la calidad percibida y afectan trabajo de precisión.',
+            },
+            {
+              h2: 'Cómo probar la uniformidad',
+              h3s: ['Pantalla gris', 'Colores sólidos', 'Gradientes', 'Técnica de revisión'],
+              content: 'Muestra un gris medio en una habitación con poca luz y observa si hay parches claros u oscuros. Repite con blanco, negro y colores primarios. Usa gradientes para detectar saltos o transiciones irregulares. Revisa de frente y también en ángulos leves, porque algunas desviaciones se notan más fuera del eje central.',
+            },
+            {
+              h2: 'Estándares profesionales vs consumo',
+              h3s: ['Calibración de fábrica', 'Rangos aceptables', 'Paneles premium'],
+              content: 'Los monitores profesionales suelen incluir control de uniformidad y calibración de fábrica con tolerancias más estrictas. Los modelos de consumo aceptan variaciones más amplias según gama y precio. En gaming se prioriza velocidad de respuesta; en fotografía y diseño la uniformidad es más crítica. Elegir según uso evita expectativas incorrectas.',
+            },
+          ],
+          conclusion: 'La uniformidad es un aspecto esencial de la calidad de pantalla que muchas veces se pasa por alto. Variaciones pequeñas son normales, pero irregularidades claras pueden indicar defectos del panel. Con pruebas de color sólido y gradientes puedes validar rápidamente si tu monitor cumple un nivel aceptable.',
+        },
       },
       de: {
         title: 'Was ist ein Bildschirmuniformitätstest? Vollständiger Leitfaden',
@@ -2304,6 +2355,32 @@ export const screenTestingArticles: BlogArticle[] = [
         metaDescription: 'Erfahren Sie, was Bildschirmuniformitätstests sind und warum sie wichtig sind. Verstehen Sie, wie Sie die Farb- und Helligkeitsuniformität auf Ihrem Monitor oder Fernseher testen.',
         h1: 'Was ist ein Bildschirmuniformitätstest? Vollständiger Leitfaden',
         keyword: 'Bildschirmuniformitätstest',
+        content: {
+          introduction: 'Ein Bildschirmuniformitätstest prüft, ob ein Display über die gesamte Fläche gleichmäßige Helligkeit und Farbe liefert. Das ist besonders wichtig für Foto- und Videobearbeitung, Design und allgemeine Bildqualität. Viele Nutzer sehen ungleichmäßige Ausleuchtung, wissen aber nicht, wie man sie korrekt bewertet. Dieser Leitfaden zeigt die wichtigsten Schritte.',
+          sections: [
+            {
+              h2: 'Was bedeutet Bildschirmuniformität?',
+              h3s: ['Helligkeitsuniformität', 'Farbuniformität', 'Warum das relevant ist'],
+              content: 'Bildschirmuniformität beschreibt, wie gleichmäßig Licht und Farbe auf dem Panel verteilt sind. Helligkeitsuniformität bedeutet, dass derselbe Grauton überall ähnlich hell erscheinen soll. Farbuniformität bedeutet, dass eine Farbe auf allen Panelbereichen gleich wirkt. Professionelle Displays haben meist geringe Abweichungen, während Consumer-Panels häufiger Unterschiede in Ecken und Randbereichen zeigen.',
+            },
+            {
+              h2: 'Häufige Uniformitätsprobleme',
+              h3s: ['Backlight Bleeding', 'Glow-Effekte', 'Dunkle Zonen', 'Farbverschiebungen'],
+              content: 'Backlight Bleeding zeigt sich als Lichtaustritt an Kanten. IPS-Glow lässt Ecken aus bestimmten Blickwinkeln heller erscheinen. Zusätzlich können dunklere Zonen oder lokale Farbstiche auftreten. Geringe Unterschiede sind normal, starke Abweichungen beeinträchtigen jedoch die Bildqualität und sind bei farbkritischen Aufgaben problematisch.',
+            },
+            {
+              h2: 'So testen Sie die Uniformität',
+              h3s: ['Grauflächen-Test', 'Vollflächenfarben', 'Gradienten', 'Blickwinkelprüfung'],
+              content: 'Zeigen Sie in einem abgedunkelten Raum eine mittlere Graufläche an und achten Sie auf hellere oder dunklere Flecken. Testen Sie zusätzlich Weiß, Schwarz und Primärfarben. Mit Gradienten lassen sich ungleichmäßige Übergänge und Banding erkennen. Prüfen Sie sowohl frontal als auch aus leichten Winkeln, da manche Probleme seitlich stärker sichtbar sind.',
+            },
+            {
+              h2: 'Profi- vs. Consumer-Standards',
+              h3s: ['Werkskalibrierung', 'Akzeptable Toleranzen', 'Premium-Panels'],
+              content: 'Professionelle Monitore werden häufig mit engeren Toleranzen auf Uniformität kalibriert. Consumer-Modelle erlauben meist größere Abweichungen je nach Preis- und Produktklasse. Gaming-Monitore priorisieren oft Reaktionszeit, während Foto- und Design-Displays Uniformität stärker gewichten. Die richtige Wahl hängt vom Einsatzzweck ab.',
+            },
+          ],
+          conclusion: 'Bildschirmuniformität ist ein wichtiger, aber oft unterschätzter Qualitätsfaktor. Kleine Abweichungen sind normal, deutliche Unregelmäßigkeiten können jedoch auf Panelprobleme hindeuten. Mit Vollflächen- und Gradiententests lässt sich schnell prüfen, ob Ihr Display innerhalb akzeptabler Grenzen liegt.',
+        },
       },
       fr: {
         title: 'Qu\'est-ce qu\'un test d\'uniformité d\'écran? Guide complet',
@@ -2923,6 +3000,7 @@ export const educationalArticles: BlogArticle[] = [
 // Expand export to include all clusters
 export const allBlogArticles: BlogArticle[] = [
   ...pixelProblemsArticles,
+  ...additionalPixelProblemArticles,
   ...screenTestingArticles,
   ...colorQualityArticles,
   ...troubleshootingArticles,

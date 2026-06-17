@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { t } from '@/lib/translations';
 
 type TestMode = 'desktop' | 'mobile';
 type AspectRatio = '16:9' | '18:9' | '19.5:9' | '20:9' | '21:9' | '4:3';
@@ -35,6 +36,7 @@ const ASPECT_RATIOS: { ratio: AspectRatio; label: string }[] = [
 ];
 
 export default function DeadPixelTest() {
+  const translate = t('en');
   const [testMode, setTestMode] = useState<TestMode>('desktop');
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -203,7 +205,7 @@ export default function DeadPixelTest() {
         `}
         role="button"
         tabIndex={0}
-        aria-label="Click to start fullscreen test"
+        aria-label={translate('dead_pixel_start_fullscreen_aria' as any)}
         onKeyDown={(e) => {
           if (!isFullscreen && (e.key === 'Enter' || e.key === ' ')) {
             e.preventDefault();
@@ -225,7 +227,7 @@ export default function DeadPixelTest() {
             <Maximize2 className="w-12 h-12 opacity-40 text-slate-400 mx-auto" />
             <p className="text-slate-600 font-medium text-center mt-4">
               <strong>{currentColor.name}</strong><br />
-              Click or press F for fullscreen
+              {translate('dead_pixel_click_fullscreen_hint' as any)}
             </p>
           </div>
         )}
@@ -242,7 +244,7 @@ export default function DeadPixelTest() {
                   setIsAutoCycling(false);
                 }}
               >
-                ← Previous
+                ← {translate('dead_pixel_previous_button' as any)}
               </Button>
               <Button
                 variant="secondary"
@@ -252,7 +254,7 @@ export default function DeadPixelTest() {
                   setIsAutoCycling(false);
                 }}
               >
-                Next →
+                {translate('dead_pixel_next_button' as any)} →
               </Button>
               <Button
                 variant="secondary"
@@ -261,7 +263,7 @@ export default function DeadPixelTest() {
                   setIsAutoCycling(!isAutoCycling);
                 }}
               >
-                {isAutoCycling ? 'Stop' : 'Start'} Auto-cycle
+                {isAutoCycling ? translate('dead_pixel_stop_button' as any) : translate('dead_pixel_start_button' as any)} {translate('dead_pixel_auto_cycle_label' as any)}
               </Button>
               <Button
                 variant="secondary"
@@ -270,11 +272,11 @@ export default function DeadPixelTest() {
                   toggleFullscreen();
                 }}
               >
-                Exit (ESC)
+                {translate('dead_pixel_exit_button' as any)} (ESC)
               </Button>
             </div>
             <p className="text-center text-white drop-shadow-lg text-sm">
-              ← → arrows: Change color | Space: Auto-cycle | ESC/F: Exit
+              {translate('dead_pixel_keyboard_hint' as any)}
             </p>
           </div>
         )}
@@ -290,21 +292,21 @@ export default function DeadPixelTest() {
               onClick={() => setTestMode('desktop')}
               size="lg"
             >
-              Desktop Test
+              {translate('dead_pixel_desktop_test_button' as any)}
             </Button>
             <Button
               variant={testMode === 'mobile' ? 'primary' : 'outline'}
               onClick={() => setTestMode('mobile')}
               size="lg"
             >
-              Mobile Test
+              {translate('dead_pixel_mobile_test_button' as any)}
             </Button>
           </div>
 
           {/* Aspect ratio selector */}
           {testMode === 'mobile' && (
             <div className="mb-6 p-4 bg-white border border-slate-200 rounded-lg">
-              <p className="text-sm font-medium text-slate-700 mb-3">Select Device Aspect Ratio</p>
+              <p className="text-sm font-medium text-slate-700 mb-3">{translate('dead_pixel_aspect_ratio_label' as any)}</p>
               <div className="flex flex-wrap gap-2">
                 {ASPECT_RATIOS.map((item) => (
                   <Button
@@ -324,15 +326,15 @@ export default function DeadPixelTest() {
           <div className="space-y-6">
             {/* Start button */}
             <div className="flex gap-3 flex-wrap">
-              <Button onClick={() => toggleFullscreen()} variant="primary" size="lg">
+              <Button onClick={toggleFullscreen} variant="primary" size="lg">
                 <Maximize2 className="w-5 h-5 mr-2" />
-                Start Dead Pixel Test
+                {translate('dead_pixel_start_test_button' as any)}
               </Button>
             </div>
 
             {/* Color display */}
             <div className="bg-white rounded-lg p-6 border border-slate-200">
-              <p className="text-sm font-medium text-slate-600 mb-3">Current Test Color</p>
+              <p className="text-sm font-medium text-slate-600 mb-3">{translate('dead_pixel_current_color_label' as any)}</p>
               <div className="flex items-center gap-6">
                 <div
                   style={{ backgroundColor: currentColor.hex }}
@@ -341,14 +343,14 @@ export default function DeadPixelTest() {
                 <div>
                   <p className="text-3xl font-bold text-slate-900">{currentColor.name}</p>
                   <p className="text-lg text-slate-600 font-mono mt-2">{currentColor.hex}</p>
-                  <p className="text-sm text-slate-500 font-mono">RGB: {currentColor.rgb}</p>
+                  <p className="text-sm text-slate-500 font-mono">{translate('dead_pixel_rgb_label' as any)}: {currentColor.rgb}</p>
                 </div>
               </div>
             </div>
 
             {/* Color palette */}
             <div className="bg-white rounded-lg p-6 border border-slate-200">
-              <p className="text-sm font-medium text-slate-600 mb-4">Test Colors</p>
+              <p className="text-sm font-medium text-slate-600 mb-4">{translate('dead_pixel_test_colors_label' as any)}</p>
               <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
                 {TEST_COLORS.map((color, i) => (
                   <button
@@ -359,7 +361,7 @@ export default function DeadPixelTest() {
                     }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}
-                    aria-label={`Select ${color.name}`}
+                    aria-label={`${translate('dead_pixel_select_color_prefix' as any)} ${color.name}`}
                   >
                     {currentColorIndex === i && (
                       <span className={`text-sm font-bold flex items-center justify-center h-full ${
@@ -380,21 +382,21 @@ export default function DeadPixelTest() {
                 variant="outline"
                 size="lg"
               >
-                ← Previous Color
+                ← {translate('dead_pixel_previous_color_button' as any)}
               </Button>
               <Button
                 onClick={() => setCurrentColorIndex((prev) => (prev + 1) % TEST_COLORS.length)}
                 variant="outline"
                 size="lg"
               >
-                Next Color →
+                {translate('dead_pixel_next_color_button' as any)} →
               </Button>
             </div>
 
             {/* Instructions */}
             <div className="bg-cyan-50 rounded-lg p-4 border border-cyan-200">
               <p className="text-sm text-slate-700">
-                <strong>How to test:</strong> Click "Start Dead Pixel Test" or press <kbd className="bg-white px-2 py-1 rounded mx-1 text-xs">F</kbd> to enter fullscreen mode. Use arrow keys to cycle through test colors. Look carefully for any pixels that don't change with the color. Press <kbd className="bg-white px-2 py-1 rounded mx-1 text-xs">ESC</kbd> to exit.
+                <strong>{translate('dead_pixel_how_to_test_label' as any)}:</strong> {translate('dead_pixel_how_to_test_text' as any)}
               </p>
             </div>
           </div>

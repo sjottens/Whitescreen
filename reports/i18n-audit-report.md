@@ -1,0 +1,64 @@
+# I18n Audit Report
+
+- Total translation keys (en baseline): 823
+- Active locales audited: en, nl, de, es
+- Removed locales still present in translation source: none
+
+## Missing/Empty/Unused per locale
+- en: missing=0, empty=0, unused=0
+- nl: missing=0, empty=0, unused=0
+- de: missing=0, empty=0, unused=0
+- es: missing=0, empty=0, unused=0
+
+## Hardcoded Text Candidates
+- Files with candidates: 0
+
+## Pages/Layouts Scanned
+- app/(website)/blog/[slug]/page.tsx
+- app/(website)/blog/page.tsx
+- app/[locale]/(tools)/black-screen/page.tsx
+- app/[locale]/(tools)/blue-screen/page.tsx
+- app/[locale]/(tools)/brightness-test/page.tsx
+- app/[locale]/(tools)/contrast-test/page.tsx
+- app/[locale]/(tools)/dead-pixel-test/page.tsx
+- app/[locale]/(tools)/green-screen/page.tsx
+- app/[locale]/(tools)/layout.tsx
+- app/[locale]/(tools)/orange-screen/page.tsx
+- app/[locale]/(tools)/pink-screen/page.tsx
+- app/[locale]/(tools)/purple-screen/page.tsx
+- app/[locale]/(tools)/red-screen/page.tsx
+- app/[locale]/(tools)/white-screen/page.tsx
+- app/[locale]/(tools)/yellow-screen/page.tsx
+- app/[locale]/(tools)/zoom-lighting/page.tsx
+- app/[locale]/(website)/about/page.tsx
+- app/[locale]/(website)/blog/[slug]/page.tsx
+- app/[locale]/(website)/blog/page.tsx
+- app/[locale]/(website)/compare/[comparison]/page.tsx
+- app/[locale]/(website)/compare/page.tsx
+- app/[locale]/(website)/contact/page.tsx
+- app/[locale]/(website)/device-tests/gaming-monitor/page.tsx
+- app/[locale]/(website)/device-tests/iphone/page.tsx
+- app/[locale]/(website)/device-tests/macbook/page.tsx
+- app/[locale]/(website)/device-tests/oled-tv/page.tsx
+- app/[locale]/(website)/device-tests/page.tsx
+- app/[locale]/(website)/faq/page.tsx
+- app/[locale]/(website)/gaming-monitor-test/page.tsx
+- app/[locale]/(website)/iphone-screen-test/page.tsx
+- app/[locale]/(website)/layout.tsx
+- app/[locale]/(website)/macbook-screen-test/page.tsx
+- app/[locale]/(website)/monitor-test/[brand]/page.tsx
+- app/[locale]/(website)/monitor-test/page.tsx
+- app/[locale]/(website)/oled-tv-test/page.tsx
+- app/[locale]/(website)/privacy/page.tsx
+- app/[locale]/(website)/terms/page.tsx
+- app/[locale]/(website)/tools/page.tsx
+- app/[locale]/layout.tsx
+- app/[locale]/page.tsx
+- app/[locale]/screen/[color]/[variant]/page.tsx
+- app/[locale]/screen/[color]/page.tsx
+- app/[locale]/screen/page.tsx
+- app/[locale]/tools/monitor-comparison/page.tsx
+- app/[locale]/tools/pixel-density-calculator/page.tsx
+- app/[locale]/tools/refresh-rate-calculator/page.tsx
+- app/layout.tsx
+- app/not-found.tsx

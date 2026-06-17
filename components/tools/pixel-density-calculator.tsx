@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { t } from '@/lib/translations';
 
 interface PixelDensityResult {
   ppi: number;
@@ -10,6 +11,7 @@ interface PixelDensityResult {
 }
 
 export default function PixelDensityCalculator() {
+  const translate = t('en');
   const [horizontalPixels, setHorizontalPixels] = useState<number>(2560);
   const [verticalPixels, setVerticalPixels] = useState<number>(1440);
   const [diagonalInches, setDiagonalInches] = useState<number>(27);
@@ -29,20 +31,20 @@ export default function PixelDensityCalculator() {
     let quality = '';
 
     if (ppi < 100) {
-      category = 'Low Density';
-      quality = 'pixelation visible at normal viewing distance';
+      category = translate('pixel_density_category_low' as any);
+      quality = translate('pixel_density_quality_low' as any);
     } else if (ppi < 130) {
-      category = 'Standard Density';
-      quality = 'typical desktop monitor, comfortable for everyday use';
+      category = translate('pixel_density_category_standard' as any);
+      quality = translate('pixel_density_quality_standard' as any);
     } else if (ppi < 170) {
-      category = 'High Density';
-      quality = 'sharp and clear, excellent for productivity and gaming';
+      category = translate('pixel_density_category_high' as any);
+      quality = translate('pixel_density_quality_high' as any);
     } else if (ppi < 220) {
-      category = 'Very High Density';
-      quality = 'very sharp display, approaching professional standards';
+      category = translate('pixel_density_category_very_high' as any);
+      quality = translate('pixel_density_quality_very_high' as any);
     } else {
-      category = 'Ultra Density (Retina)';
-      quality = 'extremely sharp, near print quality';
+      category = translate('pixel_density_category_ultra' as any);
+      quality = translate('pixel_density_quality_ultra' as any);
     }
 
     setResult({
@@ -70,7 +72,7 @@ export default function PixelDensityCalculator() {
     <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
       {/* Presets */}
       <div className="mb-8">
-        <p className="text-sm font-semibold text-slate-900 mb-3">Quick Presets:</p>
+        <p className="text-sm font-semibold text-slate-900 mb-3">{translate('pixel_density_quick_presets' as any)}</p>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
           {presets.map((preset) => (
             <button
@@ -93,35 +95,35 @@ export default function PixelDensityCalculator() {
         {/* Horizontal Resolution */}
         <div>
           <label className="block text-sm font-semibold text-slate-900 mb-3">
-            Horizontal Resolution (pixels)
+            {translate('pixel_density_horizontal_resolution_label' as any)}
           </label>
           <input
             type="number"
             value={horizontalPixels}
             onChange={(e) => setHorizontalPixels(Number(e.target.value))}
             className="w-full px-4 py-3 bg-white text-black border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="e.g., 2560"
+            placeholder={translate('pixel_density_placeholder_horizontal' as any)}
           />
         </div>
 
         {/* Vertical Resolution */}
         <div>
           <label className="block text-sm font-semibold text-slate-900 mb-3">
-            Vertical Resolution (pixels)
+            {translate('pixel_density_vertical_resolution_label' as any)}
           </label>
           <input
             type="number"
             value={verticalPixels}
             onChange={(e) => setVerticalPixels(Number(e.target.value))}
             className="w-full px-4 py-3 bg-white text-black border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="e.g., 1440"
+            placeholder={translate('pixel_density_placeholder_vertical' as any)}
           />
         </div>
 
         {/* Screen Size */}
         <div>
           <label className="block text-sm font-semibold text-slate-900 mb-3">
-            Screen Size (diagonal inches)
+            {translate('pixel_density_screen_size_label' as any)}
           </label>
           <input
             type="number"
@@ -129,7 +131,7 @@ export default function PixelDensityCalculator() {
             value={diagonalInches}
             onChange={(e) => setDiagonalInches(Number(e.target.value))}
             className="w-full px-4 py-3 bg-white text-black border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="e.g., 27"
+            placeholder={translate('pixel_density_placeholder_size' as any)}
           />
         </div>
       </div>
@@ -139,27 +141,27 @@ export default function PixelDensityCalculator() {
         <div className="bg-gradient-to-br from-slate-50 to-emerald-50 p-8 rounded-lg border-2 border-emerald-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <p className="text-sm text-slate-600 mb-2">Pixels Per Inch (PPI)</p>
+              <p className="text-sm text-slate-600 mb-2">{translate('pixel_density_ppi_label' as any)}</p>
               <p className="text-5xl font-bold text-emerald-800">{result.ppi}</p>
             </div>
             <div>
-              <p className="text-sm text-slate-600 mb-2">Dots Per Inch (DPI)</p>
+              <p className="text-sm text-slate-600 mb-2">{translate('pixel_density_dpi_label' as any)}</p>
               <p className="text-5xl font-bold text-blue-600">{result.dpi}</p>
             </div>
           </div>
 
           <div className="mt-6 pt-6 border-t border-slate-200">
-            <p className="text-sm font-semibold text-slate-900 mb-2">Display Quality</p>
+            <p className="text-sm font-semibold text-slate-900 mb-2">{translate('pixel_density_display_quality_label' as any)}</p>
             <p className="text-lg font-semibold text-slate-900 mb-2">{result.category}</p>
             <p className="text-slate-700">{result.quality}</p>
           </div>
 
           {/* Quality Indicators */}
           <div className="mt-6 pt-6 border-t border-slate-200">
-            <p className="text-sm font-semibold text-slate-900 mb-4">Quality Indicators</p>
+            <p className="text-sm font-semibold text-slate-900 mb-4">{translate('pixel_density_quality_indicators_label' as any)}</p>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-700">Sharpness</span>
+                <span className="text-sm text-slate-700">{translate('pixel_density_sharpness_label' as any)}</span>
                 <div className="w-32 h-2 bg-slate-200 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-red-500 to-green-500"
@@ -168,7 +170,7 @@ export default function PixelDensityCalculator() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-700">Text Clarity</span>
+                <span className="text-sm text-slate-700">{translate('pixel_density_text_clarity_label' as any)}</span>
                 <div className="w-32 h-2 bg-slate-200 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-red-500 to-green-500"
@@ -177,7 +179,7 @@ export default function PixelDensityCalculator() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-700">Professional Use</span>
+                <span className="text-sm text-slate-700">{translate('pixel_density_professional_use_label' as any)}</span>
                 <div className="w-32 h-2 bg-slate-200 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-red-500 to-green-500"
@@ -192,23 +194,23 @@ export default function PixelDensityCalculator() {
 
       {/* Reference Guide */}
       <div className="mt-8 p-6 bg-slate-50 rounded-lg border border-slate-200">
-        <h3 className="font-semibold text-slate-900 mb-3">📊 Reference Guide</h3>
+        <h3 className="font-semibold text-slate-900 mb-3">📊 {translate('pixel_density_reference_guide_title' as any)}</h3>
         <div className="text-sm space-y-2 text-slate-700">
           <div className="flex items-center gap-2">
             <span className="w-4 h-4 bg-red-500 rounded"></span>
-            <span>&lt;100 PPI: Low quality, visible pixels</span>
+            <span>{translate('pixel_density_reference_low' as any)}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-4 h-4 bg-yellow-500 rounded"></span>
-            <span>100-130 PPI: Standard quality for desktop</span>
+            <span>{translate('pixel_density_reference_standard' as any)}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-4 h-4 bg-green-500 rounded"></span>
-            <span>130-170 PPI: High quality, very sharp</span>
+            <span>{translate('pixel_density_reference_high' as any)}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-4 h-4 bg-emerald-600 rounded"></span>
-            <span>170+ PPI: Ultra sharp, professional grade</span>
+            <span>{translate('pixel_density_reference_ultra' as any)}</span>
           </div>
         </div>
       </div>

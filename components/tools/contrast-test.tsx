@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Maximize2, RotateCcw, Copy, Check } from 'lucide-react';
+import { t } from '@/lib/translations';
 
 type TestMode = 'wcag-ladder' | 'text-readability' | 'pattern' | 'custom-pair';
 type VisionMode = 'normal' | 'deuteranopia' | 'protanopia' | 'tritanopia' | 'achromatopsia';
@@ -137,6 +138,7 @@ const VISION_FILTERS: Record<VisionMode, { name: string }> = {
 };
 
 export default function ContrastTest() {
+  const translate = t('en');
   const [testMode, setTestMode] = useState<TestMode>('wcag-ladder');
   const [currentPairIndex, setCurrentPairIndex] = useState(0);
   const [visionMode, setVisionMode] = useState<VisionMode>('normal');
@@ -251,7 +253,7 @@ export default function ContrastTest() {
             >
               <div className="text-center max-w-2xl">
                 <p className="text-4xl font-bold mb-4" style={{ color: transformedFG }}>
-                  Contrast Test
+                  {translate('contrast_test_title' as any)}
                 </p>
                 <p className="text-2xl mb-2" style={{ color: transformedFG }}>
                   Ratio: {pair.ratio.toFixed(2)}:1
@@ -289,14 +291,13 @@ export default function ContrastTest() {
         <div className="max-w-4xl space-y-8">
           <div>
             <h1 className="text-5xl font-bold mb-4" style={{ color: transformedFG }}>
-              Readability Test
+              {translate('contrast_readability_test_title' as any)}
             </h1>
             <p className="text-2xl leading-relaxed" style={{ color: transformedFG }}>
-              This is a paragraph with contrast ratio <strong>{currentPair.ratio.toFixed(2)}:1</strong>. Read this text carefully. If you struggle to read
-              this text, the contrast is likely below WCAG standards for body text.
+              {translate('contrast_readability_text' as any)} <strong>{currentPair.ratio.toFixed(2)}:1</strong>.
             </p>
             <p className="text-lg mt-6" style={{ color: transformedFG }}>
-              Smaller text (14px) requires even higher contrast ratios for accessibility. Make sure all text is easy to read.
+              {translate('contrast_readability_small_text_hint' as any)}
             </p>
           </div>
 
@@ -363,13 +364,13 @@ export default function ContrastTest() {
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center">
               <p className="text-3xl font-bold mb-4" style={{ color: transformedFG }}>
-                Pattern Contrast
+                {translate('contrast_pattern_title' as any)}
               </p>
               <p className="text-xl mb-4" style={{ color: transformedFG }}>
                 Ratio: {currentPair.ratio.toFixed(2)}:1
               </p>
               <p className="text-sm" style={{ color: transformedFG }}>
-                Can you clearly distinguish the patterns above?
+                {translate('contrast_pattern_hint' as any)}
               </p>
             </div>
           </div>
@@ -394,9 +395,9 @@ export default function ContrastTest() {
                 color: transformedCustomFG,
               }}
             >
-              <h2 className="text-4xl font-bold mb-4">Custom Pair Test</h2>
-              <p className="text-2xl mb-6">This text uses your custom colors</p>
-              <p className="text-lg">Contrast Ratio: {customRatio.toFixed(2)}:1</p>
+              <h2 className="text-4xl font-bold mb-4">{translate('contrast_custom_pair_title' as any)}</h2>
+              <p className="text-2xl mb-6">{translate('contrast_custom_pair_text' as any)}</p>
+              <p className="text-lg">{translate('contrast_ratio_label' as any)}: {customRatio.toFixed(2)}:1</p>
             </div>
           </div>
         </div>
@@ -404,7 +405,7 @@ export default function ContrastTest() {
         {/* Controls */}
         <div className="flex-1 bg-slate-100 p-8 flex flex-col justify-center space-y-6 overflow-auto max-h-screen">
           <div>
-            <label className="block font-bold mb-2">Foreground Color</label>
+            <label className="block font-bold mb-2">{translate('contrast_foreground_label' as any)}</label>
             <div className="flex gap-3 items-center">
               <input
                 type="color"
@@ -418,14 +419,14 @@ export default function ContrastTest() {
                   onClick={() => copyToClipboard(customFG, 'FG')}
                   className="text-xs text-blue-600 hover:underline flex items-center gap-1"
                 >
-                  {copiedText === 'FG' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />} Copy
+                  {copiedText === 'FG' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />} {translate('contrast_copy_button' as any)}
                 </button>
               </div>
             </div>
           </div>
 
           <div>
-            <label className="block font-bold mb-2">Background Color</label>
+            <label className="block font-bold mb-2">{translate('contrast_background_label' as any)}</label>
             <div className="flex gap-3 items-center">
               <input
                 type="color"
@@ -439,14 +440,14 @@ export default function ContrastTest() {
                   onClick={() => copyToClipboard(customBG, 'BG')}
                   className="text-xs text-blue-600 hover:underline flex items-center gap-1"
                 >
-                  {copiedText === 'BG' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />} Copy
+                  {copiedText === 'BG' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />} {translate('contrast_copy_button' as any)}
                 </button>
               </div>
             </div>
           </div>
 
           <div className="bg-white p-4 rounded-lg space-y-2">
-            <p className="font-bold">Contrast Ratio: {customRatio.toFixed(2)}:1</p>
+            <p className="font-bold">{translate('contrast_ratio_label' as any)}: {customRatio.toFixed(2)}:1</p>
             <div className="space-y-2 text-sm">
               <p className={customWCAGAA ? 'text-green-700' : 'text-red-700'}>
                 {customWCAGAA ? '✓' : '✗'} WCAG AA (4.5:1)
@@ -497,7 +498,7 @@ export default function ContrastTest() {
               testMode === 'wcag-ladder' ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            WCAG Ladder
+            {translate('contrast_mode_wcag_ladder' as any)}
           </button>
           <button
             onClick={() => setTestMode('text-readability')}
@@ -505,7 +506,7 @@ export default function ContrastTest() {
               testMode === 'text-readability' ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Readability
+            {translate('contrast_mode_readability' as any)}
           </button>
           <button
             onClick={() => setTestMode('pattern')}
@@ -513,7 +514,7 @@ export default function ContrastTest() {
               testMode === 'pattern' ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Patterns
+            {translate('contrast_mode_patterns' as any)}
           </button>
           <button
             onClick={() => setTestMode('custom-pair')}
@@ -521,13 +522,13 @@ export default function ContrastTest() {
               testMode === 'custom-pair' ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Custom Pair
+            {translate('contrast_mode_custom_pair' as any)}
           </button>
         </div>
 
         {/* Vision Mode Selection */}
         <div className="space-y-2">
-          <label className="font-semibold text-slate-700 text-sm">Color Vision Simulation</label>
+          <label className="font-semibold text-slate-700 text-sm">{translate('contrast_vision_simulation_label' as any)}</label>
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
             {Object.entries(VISION_FILTERS).map(([key, filter]) => (
               <button
@@ -542,13 +543,13 @@ export default function ContrastTest() {
             ))}
           </div>
           <p className="text-xs text-slate-600">
-            💡 Try contrast pairs 6-10 (colored pairs) to see the biggest differences
+            💡 {translate('contrast_vision_hint' as any)}
           </p>
         </div>
 
         {/* Debug: Show color transformation */}
         <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
-          <p className="font-semibold text-slate-700 text-xs">Color Transformation (Current Mode)</p>
+          <p className="font-semibold text-slate-700 text-xs">{translate('contrast_color_transformation_label' as any)}</p>
           <div className="space-y-2">
             {testMode === 'custom-pair' ? (
               <>
@@ -620,7 +621,7 @@ export default function ContrastTest() {
         {(testMode === 'wcag-ladder' || testMode === 'text-readability' || testMode === 'pattern') && (
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="font-semibold text-slate-700 text-sm">Contrast Pair</label>
+              <label className="font-semibold text-slate-700 text-sm">{translate('contrast_pair_label' as any)}</label>
               <span className="text-xs text-slate-600">
                 {currentPairIndex + 1} / {WCAG_CONTRAST_PAIRS.length}
               </span>
@@ -649,20 +650,20 @@ export default function ContrastTest() {
             }}
             className="p-3 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-medium transition-all text-sm flex items-center justify-center gap-2"
           >
-            <RotateCcw className="w-4 h-4" /> Reset
+            <RotateCcw className="w-4 h-4" /> {translate('contrast_reset_button' as any)}
           </button>
 
           <button
             onClick={toggleFullscreen}
             className="p-3 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-medium transition-all text-sm flex items-center justify-center gap-2"
           >
-            <Maximize2 className="w-4 h-4" /> Fullscreen
+            <Maximize2 className="w-4 h-4" /> {translate('contrast_fullscreen_button' as any)}
           </button>
         </div>
 
         {/* Keyboard Shortcuts */}
         <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-          <p className="font-semibold text-slate-700 mb-2 text-sm">Shortcuts</p>
+          <p className="font-semibold text-slate-700 mb-2 text-sm">{translate('contrast_shortcuts_label' as any)}</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 text-xs text-slate-600">
             <div>
               <kbd className="bg-white px-1.5 py-0.5 rounded border">F</kbd> - Fullscreen

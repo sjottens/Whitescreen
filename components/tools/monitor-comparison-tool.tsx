@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { t } from '@/lib/translations';
 
 interface Monitor {
   name: string;
@@ -79,6 +80,7 @@ const PRESET_MONITORS: Monitor[] = [
 ];
 
 export default function MonitorComparisonTool() {
+  const translate = t('en');
   const [monitor1, setMonitor1] = useState<Monitor | null>(PRESET_MONITORS[0]);
   const [monitor2, setMonitor2] = useState<Monitor | null>(PRESET_MONITORS[1]);
   const [monitor3, setMonitor3] = useState<Monitor | null>(PRESET_MONITORS[4]);
@@ -109,7 +111,7 @@ export default function MonitorComparisonTool() {
       {/* Selection Dropdowns */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white rounded-lg shadow-lg p-6">
         <div>
-          <label className="block text-sm font-semibold text-slate-900 mb-3">Monitor 1</label>
+          <label className="block text-sm font-semibold text-slate-900 mb-3">{translate('monitor_compare_monitor_1_label' as any)}</label>
           <select
             value={monitor1?.name || ''}
             onChange={(e) => {
@@ -118,7 +120,7 @@ export default function MonitorComparisonTool() {
             }}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="">Select Monitor...</option>
+            <option value="">{translate('monitor_compare_select_monitor_placeholder' as any)}</option>
             {PRESET_MONITORS.map((mon) => (
               <option key={mon.name} value={mon.name}>
                 {mon.brand} - {mon.name}
@@ -128,7 +130,7 @@ export default function MonitorComparisonTool() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-slate-900 mb-3">Monitor 2</label>
+          <label className="block text-sm font-semibold text-slate-900 mb-3">{translate('monitor_compare_monitor_2_label' as any)}</label>
           <select
             value={monitor2?.name || ''}
             onChange={(e) => {
@@ -137,7 +139,7 @@ export default function MonitorComparisonTool() {
             }}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="">Select Monitor...</option>
+            <option value="">{translate('monitor_compare_select_monitor_placeholder' as any)}</option>
             {PRESET_MONITORS.map((mon) => (
               <option key={mon.name} value={mon.name}>
                 {mon.brand} - {mon.name}
@@ -147,7 +149,7 @@ export default function MonitorComparisonTool() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-slate-900 mb-3">Monitor 3 (Optional)</label>
+          <label className="block text-sm font-semibold text-slate-900 mb-3">{translate('monitor_compare_monitor_3_label' as any)}</label>
           <select
             value={monitor3?.name || ''}
             onChange={(e) => {
@@ -156,7 +158,7 @@ export default function MonitorComparisonTool() {
             }}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="">Skip</option>
+            <option value="">{translate('monitor_compare_skip_option' as any)}</option>
             {PRESET_MONITORS.map((mon) => (
               <option key={mon.name} value={mon.name}>
                 {mon.brand} - {mon.name}
@@ -173,7 +175,7 @@ export default function MonitorComparisonTool() {
             <table className="w-full">
               <thead>
                 <tr className="bg-slate-100 border-b border-slate-200">
-                  <th className="px-6 py-4 text-left font-semibold text-slate-900 w-24">Spec</th>
+                  <th className="px-6 py-4 text-left font-semibold text-slate-900 w-24">{translate('monitor_compare_spec_col_label' as any)}</th>
                   {monitor1 && (
                     <th className="px-6 py-4 text-left font-semibold text-blue-600">
                       {monitor1.brand} {monitor1.name}
@@ -242,7 +244,7 @@ export default function MonitorComparisonTool() {
 
           {/* Summary */}
           <div className="bg-gradient-to-r from-slate-50 to-blue-50 p-6 border-t border-slate-200">
-            <h3 className="font-semibold text-slate-900 mb-4">💡 Comparison Summary</h3>
+            <h3 className="font-semibold text-slate-900 mb-4">💡 {translate('monitor_compare_summary_title' as any)}</h3>
             <ul className="text-sm text-slate-700 space-y-2">
               {monitor1 && (
                 <li>
@@ -282,7 +284,7 @@ export default function MonitorComparisonTool() {
         </div>
       ) : (
         <div className="bg-slate-100 rounded-lg p-12 text-center">
-          <p className="text-slate-600 mb-4">Select at least 2 monitors to compare</p>
+          <p className="text-slate-600 mb-4">{translate('monitor_compare_minimum_hint' as any)}</p>
         </div>
       )}
     </div>

@@ -135,6 +135,25 @@ export function organizationSchema(): SchemaConfig {
 }
 
 /**
+ * Generate WebSite Schema
+ */
+export function websiteSchema(): SchemaConfig {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    inLanguage: ['en', 'nl', 'es', 'de'],
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${SITE_URL}/blog?query={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+
+/**
  * Generate SoftwareApplication Schema
  */
 export function softwareApplicationSchema(): SchemaConfig {

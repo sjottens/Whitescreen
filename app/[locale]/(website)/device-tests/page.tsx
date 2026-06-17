@@ -25,9 +25,15 @@ export async function generateMetadata(props: {
   return generateMultilingualMetadata({
     locale,
     title: translate('device_tests_title'),
-    description: 'Specialized display tests designed for iPhones, MacBooks, gaming monitors, and OLED TVs.',
+    description: translate('device_tests_meta_description' as any),
     path: '/device-tests',
-    keywords: ['device test', 'iPhone test', 'MacBook test', 'gaming monitor', 'OLED TV test'],
+    keywords: [
+      translate('device_tests_keyword_1' as any),
+      translate('device_tests_keyword_2' as any),
+      translate('device_tests_keyword_3' as any),
+      translate('device_tests_keyword_4' as any),
+      translate('device_tests_keyword_5' as any),
+    ],
   });
 }
 
@@ -115,11 +121,11 @@ export default async function DeviceTestsPage({ params }: DeviceTestsPageProps) 
         <div className="container max-w-4xl">
           <div className="flex items-center gap-3 mb-4">
             <Smartphone className="w-8 h-8 text-blue-600" />
-            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Device-Specific</span>
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">{translate('device_tests_badge' as any)}</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('device_tests_title')}</h1>
           <p className="text-xl text-slate-700 leading-relaxed">
-            Specialized test pages designed for specific devices and display types. Each test is optimized for the unique characteristics and resolutions of these devices.
+            {translate('device_tests_intro' as any)}
           </p>
         </div>
       </section>
@@ -130,12 +136,6 @@ export default async function DeviceTestsPage({ params }: DeviceTestsPageProps) 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {devices.map((device, index) => {
               const Icon = device.icon;
-              const colorClasses = {
-                gray: 'text-gray-700 border-gray-400',
-                slate: 'text-slate-700 border-slate-400',
-                orange: 'text-orange-700 border-orange-400',
-                indigo: 'text-indigo-700 border-indigo-400',
-              };
 
               return (
                 <Link
@@ -151,7 +151,7 @@ export default async function DeviceTestsPage({ params }: DeviceTestsPageProps) 
                     {device.description}
                   </p>
                   <div className="flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-3 transition-all">
-                    Test Now <span>→</span>
+                    {translate('test_now')} <span>→</span>
                   </div>
                 </Link>
               );
@@ -163,16 +163,16 @@ export default async function DeviceTestsPage({ params }: DeviceTestsPageProps) 
       {/* CTA Section */}
       <section className="section-alt">
         <div className="container max-w-2xl text-center">
-          <h2 className="text-3xl font-bold mb-4">Not on this list?</h2>
+          <h2 className="text-3xl font-bold mb-4">{translate('device_tests_not_listed_title' as any)}</h2>
           <p className="text-slate-600 mb-6">
-            All of our general display tests work with any device. Visit the main tools page to explore color screens, brightness tests, and more.
+            {translate('device_tests_not_listed_desc' as any)}
           </p>
           <LinkButton 
             href={getLocalizedPath(locale, '/tools')}
             variant="primary"
             size="lg"
           >
-            View All Tools
+            {translate('btn_view_tools')}
           </LinkButton>
         </div>
       </section>

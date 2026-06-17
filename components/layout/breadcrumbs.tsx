@@ -13,8 +13,10 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+  const breadcrumbAriaLabel = items.map((item) => item.name).join(' / ');
+
   return (
-    <nav aria-label="Breadcrumb" className="bg-slate-50 border-b border-slate-200">
+    <nav aria-label={breadcrumbAriaLabel} className="bg-slate-50 border-b border-slate-200">
       <div className="container">
         <ol className="flex flex-wrap items-center gap-2 py-3 text-sm">
           {items.map((item, index) => (

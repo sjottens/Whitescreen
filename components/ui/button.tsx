@@ -25,10 +25,10 @@ interface LinkButtonProps extends Omit<ButtonProps, 'onClick' | 'type'> {
 }
 
 const variantClasses = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-800 hover:text-white active:bg-blue-900 shadow-md hover:shadow-lg disabled:shadow-none',
-  secondary: 'bg-slate-200 text-slate-900 hover:bg-slate-300 active:bg-slate-400 shadow-sm hover:shadow-md disabled:shadow-none',
-  outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 active:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2',
-  ghost: 'text-blue-600 hover:bg-blue-50 active:bg-blue-100',
+  primary: 'bg-blue-600 text-white hover:bg-blue-800 hover:text-white active:bg-blue-900 shadow-md hover:shadow-lg disabled:bg-blue-800 disabled:text-slate-100 disabled:shadow-none',
+  secondary: 'bg-slate-200 text-slate-900 hover:bg-slate-300 active:bg-slate-400 shadow-sm hover:shadow-md disabled:bg-slate-700 disabled:text-slate-100 disabled:shadow-none',
+  outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 active:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:border-slate-500 disabled:bg-slate-900/50 disabled:text-slate-200',
+  ghost: 'text-blue-600 hover:bg-blue-50 active:bg-blue-100 disabled:bg-transparent disabled:text-slate-400',
 };
 
 const sizeClasses = {
@@ -51,7 +51,7 @@ export function Button({
       className={`
         inline-flex items-center justify-center rounded-lg font-medium
         transition-all duration-200 whitespace-nowrap
-        disabled:opacity-50 disabled:cursor-not-allowed
+        disabled:opacity-100 disabled:cursor-not-allowed
         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600
         ${variantClasses[variant]}
         ${sizeClasses[size]}

@@ -148,7 +148,7 @@ export default function ToolLayout({
                   <div className="flex justify-between">
                     <span className="text-slate-600">{translate('fullscreen_mode')}:</span>
                     <kbd className="bg-white border border-slate-200 rounded px-2 py-1">F</kbd>
-                    <kbd className="bg-white border border-slate-200 rounded px-2 py-1">Space</kbd>
+                    <kbd className="bg-white border border-slate-200 rounded px-2 py-1">{translate('tool_layout_space_key' as any)}</kbd>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-600">{translate('exit_fullscreen')}:</span>
@@ -156,7 +156,7 @@ export default function ToolLayout({
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-600">{translate('download_shortcut')}:</span>
-                    <kbd className="bg-white border border-slate-200 rounded px-2 py-1">Ctrl + S</kbd>
+                    <kbd className="bg-white border border-slate-200 rounded px-2 py-1">{translate('tool_layout_ctrl_s_key' as any)}</kbd>
                   </div>
                 </div>
               </div>
@@ -214,9 +214,9 @@ export default function ToolLayout({
 
             {/* CTA */}
             <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">Explore More Tools</h3>
+              <h3 className="text-2xl font-bold mb-4">{translate('tool_layout_explore_more_title' as any)}</h3>
               <LinkButton href={getLocalizedPath(locale, '/tools')} variant="primary" size="lg">
-                View All {relatedTools.length + 1}+ Tools
+                {translate('tool_layout_view_all_prefix' as any)} {relatedTools.length + 1}+ {translate('tools')}
               </LinkButton>
             </div>
           </div>

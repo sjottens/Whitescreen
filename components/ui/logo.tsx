@@ -1,6 +1,10 @@
 // components/ui/logo.tsx - Optimized SVG logo component
 
+import { t } from '@/lib/translations';
+
 export default function Logo() {
+  const translate = t('en');
+
   return (
     <svg
       width="40"
@@ -8,7 +12,7 @@ export default function Logo() {
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="TestaScreen logo"
+      aria-label={translate('logo_aria_label' as any)}
     >
       {/* Background circle */}
       <rect width="40" height="40" rx="8" fill="#06B6D4" />

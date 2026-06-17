@@ -170,7 +170,7 @@ export function generateOrganizationSchema() {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
       email: 'support@testascreen.com',
-      availableLanguage: ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'ja']
+      availableLanguage: ['en', 'nl', 'es', 'de']
     }
   };
 }

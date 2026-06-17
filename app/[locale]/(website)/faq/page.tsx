@@ -12,11 +12,12 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
 
   return generateMultilingualMetadata({
     locale,
-    title: 'Frequently Asked Questions',
-    description: 'Get answers to common questions about TestaScreen tools and how to use our screen testing features.',
+    title: translate('faq_title'),
+    description: translate('faq_description'),
     path: '/faq',
   });
 }

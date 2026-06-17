@@ -3,9 +3,9 @@
 import { Metadata } from 'next';
 import { SITE_URL } from './constants';
 
-export type Locale = 'en' | 'nl' | 'es' | 'de' | 'fr' | 'it' | 'pt' | 'ja';
+export type Locale = 'en' | 'nl' | 'es' | 'de';
 
-export const LOCALES: Locale[] = ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'ja'];
+export const LOCALES: Locale[] = ['en', 'nl', 'es', 'de'];
 export const DEFAULT_LOCALE: Locale = 'en';
 
 // Language metadata
@@ -14,10 +14,6 @@ export const LOCALE_METADATA: Record<Locale, { name: string; nativeName: string;
   nl: { name: 'Dutch', nativeName: 'Nederlands', hreflang: 'nl' },
   es: { name: 'Spanish', nativeName: 'Español', hreflang: 'es' },
   de: { name: 'German', nativeName: 'Deutsch', hreflang: 'de' },
-  fr: { name: 'French', nativeName: 'Français', hreflang: 'fr' },
-  it: { name: 'Italian', nativeName: 'Italiano', hreflang: 'it' },
-  pt: { name: 'Portuguese', nativeName: 'Português', hreflang: 'pt' },
-  ja: { name: 'Japanese', nativeName: '日本語', hreflang: 'ja' },
 };
 
 /**
@@ -75,10 +71,6 @@ export function getOpenGraphLocale(locale: Locale): string {
     nl: 'nl_NL',
     es: 'es_ES',
     de: 'de_DE',
-    fr: 'fr_FR',
-    it: 'it_IT',
-    pt: 'pt_BR',
-    ja: 'ja_JP',
   };
   return ogLocaleMap[locale];
 }

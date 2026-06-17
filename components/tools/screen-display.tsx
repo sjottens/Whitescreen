@@ -132,13 +132,15 @@ export default function ScreenDisplay({ color, colorId, title, locale = 'en' }: 
       <div
         ref={screenRef}
         style={{ backgroundColor: displayColor }}
-        className={`w-full rounded-lg shadow-inner border-4 border-slate-200 cursor-pointer hover:shadow-lg transition-shadow ${
-          isFullscreenActive ? 'fixed inset-0 border-0 rounded-none m-0 p-0' : 'aspect-video mb-6'
+        className={`screen-display-fullscreen-target w-full cursor-pointer transition-shadow ${
+          isFullscreenActive
+            ? 'fixed inset-0 m-0 rounded-none border-0 p-0 shadow-none'
+            : 'aspect-video mb-6 rounded-lg border-4 border-slate-200 shadow-inner hover:shadow-lg'
         }`}
         onClick={handleFullscreen}
         role="button"
         tabIndex={0}
-        aria-label="Click to fullscreen"
+        aria-label={translate('screen_display_fullscreen_aria' as any)}
       >
         <div className="w-full h-full flex items-center justify-center relative">
           {/* Fullscreen exit button - only show when in fullscreen */}

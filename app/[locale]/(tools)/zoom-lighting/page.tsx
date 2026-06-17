@@ -62,8 +62,8 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
       >
         <section className="section">
           <div className="container">
-            <h2>Zoom Lighting Tool</h2>
-            <p>This tool provides adjustable lighting for photography and video production.</p>
+            <h2>{translate('zoom_lighting_heading' as any)}</h2>
+            <p>{translate('zoom_lighting_description_long' as any)}</p>
           </div>
         </section>
       </ToolLayout>

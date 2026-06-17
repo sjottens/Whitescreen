@@ -1,12 +1,14 @@
 // components/tools/guide-section.tsx - Reusable guide section component for all tools
 
 import { TOOL_GUIDES } from '@/lib/tool-guides';
+import { t } from '@/lib/translations';
 
 interface GuideSectionProps {
   toolId: string;
 }
 
 export default function GuideSection({ toolId }: GuideSectionProps) {
+  const translate = t('en');
   const guide = TOOL_GUIDES[toolId];
 
   if (!guide) {
@@ -16,11 +18,11 @@ export default function GuideSection({ toolId }: GuideSectionProps) {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="mt-12 bg-gradient-to-b from-slate-50 to-white rounded-xl p-8 border border-slate-200">
-        <h2 className="text-3xl font-bold text-slate-900 mb-6">How to Use This Tool</h2>
+        <h2 className="text-3xl font-bold text-slate-900 mb-6">{translate('guide_how_to_use_title' as any)}</h2>
 
         {/* What is section */}
         <div className="mb-8">
-          <h3 className="text-xl font-semibold text-slate-800 mb-4">What is this Test?</h3>
+          <h3 className="text-xl font-semibold text-slate-800 mb-4">{translate('guide_what_is_test_title' as any)}</h3>
           <p className="text-slate-700 leading-relaxed">{guide.whatIs}</p>
         </div>
 
@@ -47,7 +49,7 @@ export default function GuideSection({ toolId }: GuideSectionProps) {
 
         {/* Tips section */}
         <div className="pt-8 border-t border-slate-200">
-          <h3 className="text-xl font-semibold text-slate-800 mb-4">Testing Tips</h3>
+          <h3 className="text-xl font-semibold text-slate-800 mb-4">{translate('guide_testing_tips_title' as any)}</h3>
           <ul className="text-slate-700 space-y-3 grid md:grid-cols-2 gap-4">
             {guide.tips.map((tip, idx) => (
               <li key={idx} className="flex items-start">
@@ -61,7 +63,7 @@ export default function GuideSection({ toolId }: GuideSectionProps) {
         {/* Keyboard shortcuts section (if available) */}
         {guide.shortcuts && guide.shortcuts.length > 0 && (
           <div className="mt-8 pt-8 border-t border-slate-200">
-            <h3 className="text-xl font-semibold text-slate-800 mb-4">Keyboard Shortcuts</h3>
+            <h3 className="text-xl font-semibold text-slate-800 mb-4">{translate('keyboard_shortcuts')}</h3>
             <div className="grid md:grid-cols-2 gap-4 text-slate-700">
               {guide.shortcuts.map((shortcut, idx) => (
                 <div key={idx} className="flex items-center">
@@ -77,8 +79,8 @@ export default function GuideSection({ toolId }: GuideSectionProps) {
 
         {/* Pro tip section */}
         <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-blue-900 text-sm">
-            <strong>Pro Tip:</strong> {guide.proTip}
+          <p className="text-slate-200 text-sm leading-relaxed">
+            <strong className="text-cyan-200">{translate('guide_pro_tip_label' as any)}:</strong> {guide.proTip}
           </p>
         </div>
       </div>

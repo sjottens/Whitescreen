@@ -4,7 +4,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import Link from 'next/link';
-import { isValidLocale, getLocaleUrl, generateHrefLangAlternates, Locale } from '@/lib/i18n';
+import { isValidLocale, generateHrefLangAlternates, Locale } from '@/lib/i18n';
+import { t } from '@/lib/translations';
 import { getBlogArticleBySlug, getRelatedArticles, allBlogArticles } from '@/lib/blog-content';
 import { BlogArticleLayout } from '@/components/blog/blog-article-layout';
 import { SITE_URL } from '@/lib/constants';
@@ -18,7 +19,7 @@ interface LocaleBlogArticlePageProps {
 
 export async function generateStaticParams() {
   const params: Array<{ locale: string; slug: string }> = [];
-  const locales: Locale[] = ['nl', 'es', 'de', 'fr', 'it', 'pt', 'ja'];
+  const locales: Locale[] = ['nl', 'es', 'de'];
 
   allBlogArticles.forEach((article) => {
     locales.forEach((locale) => {
@@ -90,6 +91,7 @@ export default function LocaleBlogArticlePage({
   }
 
   const locale = localeParam as Locale;
+  const translate = t(locale);
   const article = getBlogArticleBySlug(slug);
 
   if (!article) {
@@ -152,29 +154,21 @@ export default function LocaleBlogArticlePage({
         }
       : null;
 
-  const breadcrumbLabels: Record<Locale, { home: string; blog: string }> = {
+  const breadcrumbLabels: Partial<Record<Locale, { home: string; blog: string }>> = {
     en: { home: 'Home', blog: 'Blog' },
     nl: { home: 'Startpagina', blog: 'Blog' },
     es: { home: 'Inicio', blog: 'Blog' },
     de: { home: 'Startseite', blog: 'Blog' },
-    fr: { home: 'Accueil', blog: 'Blog' },
-    it: { home: 'Home', blog: 'Blog' },
-    pt: { home: 'Início', blog: 'Blog' },
-    ja: { home: 'ホーム', blog: 'ブログ' },
   };
 
-  const sectionLabels: Record<Locale, { inThisSection: string; conclusion: string; faq: string }> = {
+  const sectionLabels: Partial<Record<Locale, { inThisSection: string; conclusion: string; faq: string }>> = {
     en: { inThisSection: 'In this section:', conclusion: 'Conclusion', faq: 'Frequently Asked Questions' },
     nl: { inThisSection: 'In deze sectie:', conclusion: 'Conclusie', faq: 'Veelgestelde Vragen' },
     es: { inThisSection: 'En esta sección:', conclusion: 'Conclusión', faq: 'Preguntas Frecuentes' },
     de: { inThisSection: 'In diesem Abschnitt:', conclusion: 'Fazit', faq: 'Häufig Gestellte Fragen' },
-    fr: { inThisSection: 'Dans cette section :', conclusion: 'Conclusion', faq: 'Questions Fréquemment Posées' },
-    it: { inThisSection: 'In questa sezione:', conclusion: 'Conclusione', faq: 'Domande Frequenti' },
-    pt: { inThisSection: 'Nesta seção:', conclusion: 'Conclusão', faq: 'Perguntas Frequentes' },
-    ja: { inThisSection: 'このセクション内:', conclusion: '結論', faq: 'よくある質問' },
   };
 
-  const labels = breadcrumbLabels[locale] || breadcrumbLabels.en;
+  const labels = breadcrumbLabels[locale] ?? { home: 'Home', blog: 'Blog' };
   const baseBlogUrl = locale === 'en' ? '/blog' : `/${locale}/blog`;
 
   const breadcrumbs = [
@@ -257,7 +251,7 @@ export default function LocaleBlogArticlePage({
                 index === Math.floor(displayContent.sections.length / 2) && (
                   <div className="my-8 p-6 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                     <h3 className="font-bold text-blue-900 mb-2">
-                      Test Your Display Now
+                      {translate('blog_inline_cta_title' as any)}
                     </h3>
                     <p className="text-blue-800 text-sm mb-4">
                       {displayToolCTAs[0]?.context}
@@ -266,7 +260,7 @@ export default function LocaleBlogArticlePage({
                       href={locale === 'en' ? '/tools' : `/${locale}/tools`}
                       className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
                     >
-                      Try Testing Tools
+                      {translate('blog_inline_cta_button' as any)}
                     </Link>
                   </div>
                 )}

@@ -13,13 +13,15 @@ interface HeaderProps {
 
 export default function Header({ locale }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-40 w-full bg-white border-b border-slate-200 backdrop-blur-sm bg-opacity-95">
+    <header className="sticky top-0 z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88">
       <div className="container py-4 md:py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href={getLocalizedPath(locale, '/')} className="flex items-center gap-2 focus-ring">
+          <Link href={getLocalizedPath(locale, '/')} className="group flex items-center gap-3 focus-ring">
             <Logo />
-            <span className="text-xl md:text-2xl font-bold text-slate-900">{SITE_NAME}</span>
+            <span className="text-xl md:text-2xl font-bold text-slate-100 transition-colors group-hover:text-cyan-300">
+              {SITE_NAME}
+            </span>
           </Link>
 
           {/* Navigation */}

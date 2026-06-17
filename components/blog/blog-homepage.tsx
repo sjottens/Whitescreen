@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Search, ChevronRight, X } from 'lucide-react';
 import { BlogArticleCard } from './blog-article-card';
+import { t } from '@/lib/translations';
 
 interface BlogArticlePreview {
   slug: string;
@@ -31,35 +32,23 @@ interface BlogHomepageProps {
   locale?: string;
 }
 
-const CATEGORY_COLORS: Record<string, { bg: string; text: string; icon: string }> = {
+const CATEGORY_COLORS: Record<string, { icon: string }> = {
   'pixel-problems': {
-    bg: 'bg-red-50',
-    text: 'text-red-700',
     icon: '🔴',
   },
   'screen-testing': {
-    bg: 'bg-blue-50',
-    text: 'text-blue-700',
     icon: '🧪',
   },
   'color-quality': {
-    bg: 'bg-purple-50',
-    text: 'text-purple-700',
     icon: '🎨',
   },
   troubleshooting: {
-    bg: 'bg-yellow-50',
-    text: 'text-yellow-700',
     icon: '⚙️',
   },
   'buying-guides': {
-    bg: 'bg-green-50',
-    text: 'text-green-700',
     icon: '🛒',
   },
   educational: {
-    bg: 'bg-indigo-50',
-    text: 'text-indigo-700',
     icon: '📚',
   },
 };
@@ -72,6 +61,7 @@ export function BlogHomepage({
   categories,
   locale = 'en',
 }: BlogHomepageProps) {
+  const translate = t(locale as 'en' | 'nl' | 'es' | 'de');
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -103,7 +93,9 @@ export function BlogHomepage({
     ? featuredArticles.filter((article) => article.cluster === selectedCategory)
     : featuredArticles;
 
-  const categoryColor = CATEGORY_COLORS[selectedCategory || ''] || CATEGORY_COLORS['educational'];
+  const selectedCategoryName = selectedCategory
+    ? categories.find((category) => category.id === selectedCategory)?.name
+    : null;
 
   if (!mounted) {
     return null; // Prevent hydration mismatch
@@ -122,7 +114,7 @@ export function BlogHomepage({
             <div className="relative">
               <input
                 type="search"
-                placeholder="Search articles..."
+                placeholder={translate('blog_search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
@@ -142,11 +134,11 @@ export function BlogHomepage({
           <div className="container">
             <div className="flex items-center gap-3">
               <span className="text-sm font-semibold text-gray-700">
-                Filtering by:
+                {translate('blog_filtering_by')}
               </span>
               <div className="flex items-center gap-2 px-3 py-1 bg-white rounded-full border border-blue-300">
                 <span className="text-sm font-medium text-gray-800">
-                  {categories.find((c) => c.id === selectedCategory)?.name}
+                  {selectedCategoryName}
                 </span>
                 <Link href={baseUrl}>
                   <X size={16} className="text-gray-500 hover:text-gray-700 cursor-pointer" />
@@ -161,7 +153,7 @@ export function BlogHomepage({
       {displayedFeaturedArticles.length > 0 && (
         <section className="container py-16">
           <h2 className="text-3xl font-bold mb-8">
-            {selectedCategory ? 'Featured in This Category' : 'Featured Articles'}
+            {selectedCategory ? translate('blog_featured_in_category') : translate('blog_featured_articles')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayedFeaturedArticles.map((article) => (
@@ -181,28 +173,32 @@ export function BlogHomepage({
       {!selectedCategory && (
         <section className="bg-gray-50 px-4 py-16">
           <div className="container">
-            <h2 className="text-3xl font-bold mb-8">Browse by Category</h2>
+            <h2 className="text-3xl font-bold mb-8">{translate('blog_browse_by_category')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {categories.map((cat) => {
                 const colors =
                   CATEGORY_COLORS[cat.id] || CATEGORY_COLORS['educational'];
                 return (
-                  <Link key={cat.id} href={`${baseUrl}?category=${cat.id}`}>
+                  <Link
+                    key={cat.id}
+                    href={`${baseUrl}?category=${cat.id}`}
+                    className="block no-underline text-inherit hover:no-underline"
+                  >
                     <div
-                      className={`p-6 rounded-lg border-2 border-gray-200 hover:border-blue-400 transition-all cursor-pointer group ${colors.bg}`}
+                      className="h-full p-6 rounded-lg border border-slate-200 bg-white hover:shadow-lg transition-all duration-300 cursor-pointer group"
                     >
                       <div className="text-4xl mb-3">{colors.icon}</div>
-                      <h3 className="text-lg font-bold mb-2">{cat.name}</h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <h3 className="text-lg font-bold mb-2 text-slate-900 group-hover:text-cyan-300 transition-colors">{cat.name}</h3>
+                      <p className="text-sm text-slate-600 mb-4 leading-6">
                         {cat.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-gray-700">
-                          {cat.articleCount} articles
+                        <span className="text-sm font-semibold text-slate-500">
+                          {cat.articleCount} {translate('blog_articles_count_label')}
                         </span>
                         <ChevronRight
                           size={20}
-                          className="group-hover:translate-x-1 transition-transform"
+                          className="text-slate-400 group-hover:text-cyan-300 group-hover:translate-x-1 transition-all"
                         />
                       </div>
                     </div>
@@ -219,8 +215,8 @@ export function BlogHomepage({
         <section className="container py-16">
           <h2 className="text-3xl font-bold mb-8">
             {selectedCategory
-              ? `Articles in ${categories.find((c) => c.id === selectedCategory)?.name}`
-              : 'Latest Articles'}
+              ? `${translate('blog_articles_in')} ${selectedCategoryName}`
+              : translate('blog_latest_articles')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredLatestArticles.map((article) => (
@@ -239,10 +235,10 @@ export function BlogHomepage({
       {selectedCategory && filteredLatestArticles.length === 0 && displayedFeaturedArticles.length === 0 && (
         <section className="container py-16 text-center">
           <p className="text-xl text-gray-600 mb-4">
-            No articles found in this category yet.
+            {translate('blog_no_articles_category')}
           </p>
           <Link href={baseUrl} className="text-blue-600 hover:text-blue-800 font-semibold">
-            View all articles
+            {translate('blog_view_all_articles')}
           </Link>
         </section>
       )}
@@ -251,57 +247,46 @@ export function BlogHomepage({
       <section className="bg-blue-50 px-4 py-16">
         <div className="container">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Frequently Asked Questions
+            {translate('blog_faq_title')}
           </h2>
           <div className="space-y-4">
             <details className="p-6 bg-white rounded-lg border border-gray-200 hover:border-blue-400 transition-colors">
               <summary className="font-bold cursor-pointer flex items-center justify-between">
-                What types of screen issues can I test for?
+                {translate('blog_faq_1_q')}
                 <span className="text-blue-600">+</span>
               </summary>
               <p className="mt-4 text-gray-600">
-                You can test for dead pixels, stuck pixels, color accuracy,
-                brightness, contrast, gradient uniformity, and much more. We
-                offer specialized tools for monitors, laptops, tablets, and
-                smartphones.
+                {translate('blog_faq_1_a')}
               </p>
             </details>
 
             <details className="p-6 bg-white rounded-lg border border-gray-200 hover:border-blue-400 transition-colors">
               <summary className="font-bold cursor-pointer flex items-center justify-between">
-                Are all tests completely free?
+                {translate('blog_faq_2_q')}
                 <span className="text-blue-600">+</span>
               </summary>
               <p className="mt-4 text-gray-600">
-                Yes, all our screen testing tools are 100% free. No registration
-                or software installation required. Access them directly from
-                your browser.
+                {translate('blog_faq_2_a')}
               </p>
             </details>
 
             <details className="p-6 bg-white rounded-lg border border-gray-200 hover:border-blue-400 transition-colors">
               <summary className="font-bold cursor-pointer flex items-center justify-between">
-                Can I fix dead pixels if I find them?
+                {translate('blog_faq_3_q')}
                 <span className="text-blue-600">+</span>
               </summary>
               <p className="mt-4 text-gray-600">
-                Dead pixels cannot be repaired, but they may be covered under
-                warranty if your monitor is new. Check your warranty terms and
-                contact the manufacturer. Read our article on fixing dead pixels
-                for more details.
+                {translate('blog_faq_3_a')}
               </p>
             </details>
 
             <details className="p-6 bg-white rounded-lg border border-gray-200 hover:border-blue-400 transition-colors">
               <summary className="font-bold cursor-pointer flex items-center justify-between">
-                How often should I test my display?
+                {translate('blog_faq_4_q')}
                 <span className="text-blue-600">+</span>
               </summary>
               <p className="mt-4 text-gray-600">
-                Test new monitors immediately upon purchase to verify their
-                quality. For existing displays, periodic testing (monthly or
-                quarterly) helps track pixel health and identify emerging issues
-                early.
+                {translate('blog_faq_4_a')}
               </p>
             </details>
           </div>
@@ -311,16 +296,15 @@ export function BlogHomepage({
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-16">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Test Your Screen?</h2>
+          <h2 className="text-3xl font-bold mb-4">{translate('blog_cta_title')}</h2>
           <p className="text-lg text-blue-100 mb-8">
-            Access our complete collection of professional display testing tools
-            right now.
+            {translate('blog_cta_desc')}
           </p>
           <Link
             href="/tools"
-            className="inline-block px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition-colors"
+            className="inline-block px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition-colors no-underline hover:no-underline"
           >
-            Explore All Testing Tools
+            {translate('blog_cta_button')}
           </Link>
         </div>
       </section>

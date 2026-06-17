@@ -1,6 +1,6 @@
 // lib/link-utils.ts - Utilities for generating locale-aware links
 
-import { Locale, DEFAULT_LOCALE } from './i18n';
+import { Locale, DEFAULT_LOCALE, LOCALES } from './i18n';
 
 /**
  * Generate a locale-aware URL
@@ -38,21 +38,14 @@ export function getLocalizedPath(locale: Locale, path: string): string {
  * - '/nl/about' → ['nl', '/about']
  * - '/es/about' → ['es', '/about']
  * - '/de/about' → ['de', '/about']
- * - '/fr/about' → ['fr', '/about']
- * - '/it/about' → ['it', '/about']
- * - '/pt/about' → ['pt', '/about']
- * - '/ja/about' → ['ja', '/about']
  * - '/' → ['en', '/']
  */
 export function parseLocalePath(pathname: string): [Locale, string] {
   // Remove trailing slash for comparison (but preserve for root)
   const cleanPath = pathname === '/' ? '/' : pathname.replace(/\/$/, '');
 
-  // All supported locales
-  const locales: Locale[] = ['en', 'nl', 'es', 'de', 'fr', 'it', 'pt', 'ja'];
-
   // Check if path starts with any supported locale
-  for (const locale of locales) {
+  for (const locale of LOCALES) {
     if (cleanPath.startsWith(`/${locale}/`) || cleanPath === `/${locale}`) {
       const path = cleanPath === `/${locale}` ? '/' : cleanPath.replace(new RegExp(`^/${locale}`), '');
       return [locale, path];

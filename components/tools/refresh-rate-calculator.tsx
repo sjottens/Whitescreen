@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { t } from '@/lib/translations';
 
 interface GPUSpec {
   name: string;
@@ -50,6 +51,7 @@ const CPU_OPTIONS: CPUSpec[] = [
 ];
 
 export default function RefreshRateCalculator() {
+  const translate = t('en');
   const [selectedGPU, setSelectedGPU] = useState<GPUSpec | null>(GPU_OPTIONS[0]);
   const [selectedCPU, setSelectedCPU] = useState<CPUSpec | null>(CPU_OPTIONS[0]);
   const [recommendation, setRecommendation] = useState<number>(60);
@@ -98,7 +100,7 @@ export default function RefreshRateCalculator() {
       {/* GPU Selection */}
       <div className="mb-8">
         <label className="block text-sm font-semibold text-slate-900 mb-3">
-          Select Your Graphics Card (GPU)
+          {translate('refresh_rate_gpu_label' as any)}
         </label>
         <select
           value={selectedGPU?.name || ''}
@@ -108,7 +110,7 @@ export default function RefreshRateCalculator() {
           }}
           className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black"
         >
-          <option value="">Select GPU...</option>
+          <option value="">{translate('refresh_rate_gpu_placeholder' as any)}</option>
           {GPU_OPTIONS.map((gpu) => (
             <option key={gpu.name} value={gpu.name}>
               {gpu.name}
@@ -120,7 +122,7 @@ export default function RefreshRateCalculator() {
       {/* CPU Selection */}
       <div className="mb-8">
         <label className="block text-sm font-semibold text-slate-900 mb-3">
-          Select Your Processor (CPU)
+          {translate('refresh_rate_cpu_label' as any)}
         </label>
         <select
           value={selectedCPU?.name || ''}
@@ -130,7 +132,7 @@ export default function RefreshRateCalculator() {
           }}
           className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black"
         >
-          <option value="">Select CPU...</option>
+          <option value="">{translate('refresh_rate_cpu_placeholder' as any)}</option>
           {CPU_OPTIONS.map((cpu) => (
             <option key={cpu.name} value={cpu.name}>
               {cpu.name}
@@ -141,7 +143,7 @@ export default function RefreshRateCalculator() {
 
       {/* Recommendation */}
       <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-lg border-2 border-blue-200">
-        <p className="text-sm font-semibold text-slate-800 mb-2">Recommended Refresh Rate</p>
+        <p className="text-sm font-semibold text-slate-800 mb-2">{translate('refresh_rate_recommended_label' as any)}</p>
         <p className={`text-6xl font-bold mb-4 ${getColorClass(recommendation)}`}>
           {recommendation}Hz
         </p>
@@ -149,7 +151,7 @@ export default function RefreshRateCalculator() {
 
         {/* Monitor Options */}
         <div className="mt-6 pt-6 border-t border-slate-200">
-          <p className="text-sm font-semibold text-slate-900 mb-4">Monitor Recommendations:</p>
+          <p className="text-sm font-semibold text-slate-900 mb-4">{translate('refresh_rate_monitor_recommendations_label' as any)}</p>
           <div className="space-y-2 text-sm">
             {recommendation >= 240 && (
               <div className="flex items-center gap-2">
@@ -181,15 +183,14 @@ export default function RefreshRateCalculator() {
 
       {/* Tips */}
       <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
-        <h3 className="font-semibold text-slate-900 mb-3">💡 Tips for Best Performance</h3>
+        <h3 className="font-semibold text-slate-900 mb-3">💡 {translate('refresh_rate_tips_title' as any)}</h3>
         <ul className="space-y-2 text-sm text-slate-800 font-medium">
           <li>
-            Maintain FPS 10-20% above your refresh rate to avoid stuttering (e.g., 160 FPS for
-            144Hz)
+            {translate('refresh_rate_tip_1' as any)}
           </li>
-          <li>Use G-Sync (NVIDIA) or FreeSync (AMD) to reduce tearing</li>
-          <li>Higher resolution (1440p, 4K) requires more GPU power - may lower recommended Hz</li>
-          <li>Check specific game requirements on Steam or YouTube benchmarks</li>
+          <li>{translate('refresh_rate_tip_2' as any)}</li>
+          <li>{translate('refresh_rate_tip_3' as any)}</li>
+          <li>{translate('refresh_rate_tip_4' as any)}</li>
         </ul>
       </div>
     </div>

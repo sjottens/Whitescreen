@@ -25,10 +25,10 @@ export async function generateMetadata(props: {
 
   return generateMultilingualMetadata({
     locale,
-    title: 'Monitor & Spec Comparisons',
-    description: 'In-depth guides comparing popular monitor brands, specifications, and display types to help you make informed decisions.',
+    title: translate('compare_page_title'),
+    description: translate('compare_page_description'),
     path: '/compare',
-    keywords: ['monitor comparison', 'brand comparison', 'gaming monitor', 'professional display'],
+    keywords: [translate('compare_keyword_1'), translate('compare_keyword_2'), translate('compare_keyword_3'), translate('compare_keyword_4')],
   });
 }
 
@@ -45,7 +45,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: 'Monitor Comparisons', path: '/compare' },
+      { name: translate('compare_page_title'), path: '/compare' },
     ],
     locale
   );
@@ -62,7 +62,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
           { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
-          { name: 'Comparisons' },
+          { name: translate('compare_nav_label') },
         ]}
       />
 
@@ -86,11 +86,11 @@ export default async function ComparePage({ params }: ComparePageProps) {
         <div className="container max-w-4xl">
           <div className="flex items-center gap-3 mb-4">
             <BarChart3 className="w-8 h-8 text-blue-600" />
-            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Comparison Guides</span>
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">{translate('compare_badge')}</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">Monitor & Spec Comparisons</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('compare_page_title')}</h1>
           <p className="text-xl text-slate-700 leading-relaxed">
-            In-depth guides comparing popular monitor brands, specifications, and gaming setups to help you make informed decisions.
+            {translate('compare_page_description')}
           </p>
         </div>
       </section>
@@ -100,7 +100,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
         <div className="container">
           <div className="mb-8">
             <p className="text-slate-600">
-              Browse our comprehensive comparison guides covering {comparisons.length}+ monitor matchups and specification breakdowns.
+              {translate('compare_browse_intro')} {comparisons.length}+ {translate('compare_browse_suffix')}
             </p>
           </div>
 
@@ -135,30 +135,30 @@ export default async function ComparePage({ params }: ComparePageProps) {
       {/* Features Section */}
       <section className="section-alt">
         <div className="container max-w-3xl">
-          <h2 className="text-3xl font-bold mb-8 text-center">Why Compare?</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">{translate('compare_why_title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-slate-900">Make Informed Decisions</h3>
+              <h3 className="text-lg font-bold text-slate-900">{translate('compare_feature_1_title')}</h3>
               <p className="text-slate-600">
-                Understand key differences between brands and specifications to find the perfect monitor for your needs.
+                {translate('compare_feature_1_desc')}
               </p>
             </div>
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-slate-900">Spec Deep Dives</h3>
+              <h3 className="text-lg font-bold text-slate-900">{translate('compare_feature_2_title')}</h3>
               <p className="text-slate-600">
-                Learn what refresh rates, panel types, resolution, and other specs mean for your use case.
+                {translate('compare_feature_2_desc')}
               </p>
             </div>
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-slate-900">Gaming Optimization</h3>
+              <h3 className="text-lg font-bold text-slate-900">{translate('compare_feature_3_title')}</h3>
               <p className="text-slate-600">
-                Get specific recommendations for gaming setups, competitive play, and streaming configurations.
+                {translate('compare_feature_3_desc')}
               </p>
             </div>
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-slate-900">Professional Use</h3>
+              <h3 className="text-lg font-bold text-slate-900">{translate('compare_feature_4_title')}</h3>
               <p className="text-slate-600">
-                Explore comparisons for color accuracy, professional displays, and content creation needs.
+                {translate('compare_feature_4_desc')}
               </p>
             </div>
           </div>
@@ -168,16 +168,16 @@ export default async function ComparePage({ params }: ComparePageProps) {
       {/* CTA Section */}
       <section className="section">
         <div className="container max-w-2xl text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to find your perfect monitor?</h2>
+          <h2 className="text-3xl font-bold mb-4">{translate('compare_cta_title')}</h2>
           <p className="text-slate-600 mb-6">
-            Use our interactive tools and tests to evaluate monitor performance and specifications.
+            {translate('compare_cta_desc')}
           </p>
           <LinkButton 
             href={getLocalizedPath(locale, '/tools')}
             variant="primary"
             size="lg"
           >
-            Explore All Tools
+            {translate('compare_cta_button')}
           </LinkButton>
         </div>
       </section>

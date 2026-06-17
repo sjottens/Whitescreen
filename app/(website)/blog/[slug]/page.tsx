@@ -8,6 +8,7 @@ import { generateHrefLangAlternates } from '@/lib/i18n';
 import { SITE_URL } from '@/lib/constants';
 import Script from 'next/script';
 import Link from 'next/link';
+import { t } from '@/lib/translations';
 
 interface BlogArticlePageProps {
   params: Promise<{
@@ -65,6 +66,7 @@ export async function generateMetadata({
 }
 
 export default function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const translate = t('en');
   const { slug } = React.use(params);
   const article = getBlogArticleBySlug(slug);
 
@@ -133,9 +135,9 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
   ];
 
   const sectionLabels = {
-    inThisSection: 'In this section:',
-    conclusion: 'Conclusion',
-    faq: 'Frequently Asked Questions',
+    inThisSection: translate('blog_section_in_this_section' as any),
+    conclusion: translate('blog_section_conclusion' as any),
+    faq: translate('blog_section_faq' as any),
   };
 
   const relatedPreview = relatedArticles.map((a) => ({
@@ -212,7 +214,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
                 index === Math.floor(displayContent.sections.length / 2) && (
                   <div className="my-8 p-6 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                     <h3 className="font-bold text-blue-900 mb-2">
-                      Test Your Display Now
+                      {translate('blog_inline_cta_title' as any)}
                     </h3>
                     <p className="text-blue-800 text-sm mb-4">
                       {displayToolCTAs[0]?.context}
@@ -221,7 +223,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
                       href="/tools"
                       className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
                     >
-                      Try Testing Tools
+                      {translate('blog_inline_cta_button' as any)}
                     </Link>
                   </div>
                 )}

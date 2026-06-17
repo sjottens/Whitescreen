@@ -34,7 +34,7 @@ export async function generateMetadata(props: {
   const brandData = MONITOR_BRANDS[brand];
 
   if (!brandData) {
-    return { title: 'Not Found' };
+    return { title: translate('not_found_title' as any) };
   }
 
   return generateMultilingualMetadata({
@@ -56,7 +56,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
   const brandData = MONITOR_BRANDS[brand];
 
   if (!brandData) {
-    return <div>Monitor brand not found</div>;
+    return <div>{translate('monitor_brand_not_found' as any)}</div>;
   }
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
@@ -179,7 +179,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
                     className="card p-6 hover:shadow-lg transition-all group"
                   >
                     <h3 className="font-bold text-lg group-hover:text-cyan-600">
-                      {translate(data.nameKey as any)} Monitor Test
+                      {translate(data.nameKey as any)} {translate('monitor_test_suffix' as any)}
                     </h3>
                     <p className="text-sm text-slate-600 mt-2">
                       {translate(data.descriptionKey as any)}

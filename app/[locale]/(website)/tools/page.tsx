@@ -10,6 +10,7 @@ import { getLocaleFromParams } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
+import { getComparisonData } from '@/lib/comparisons';
 import { LinkButton } from '@/components/ui/button';
 
 export async function generateMetadata(props: {
@@ -33,6 +34,9 @@ interface ToolsPageProps {
 export default async function ToolsPage({ params }: ToolsPageProps) {
   const locale = await getLocaleFromParams(params);
   const translate = t(locale);
+  const brandComparisonSlugs = ['asus-vs-lg', 'asus-vs-dell', 'lg-vs-samsung'];
+  const specComparisonSlugs = ['ips-vs-va-vs-tn', '144hz-vs-240hz', 'curved-vs-flat'];
+  const deviceComparisonSlugs = ['ps5-vs-xbox-series-x', 'ultrawide-vs-dual-monitor'];
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
@@ -67,7 +71,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Home
+            {translate('back_to_home')}
           </LinkButton>
         </div>
       </div>
@@ -135,7 +139,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('monitor_tests')}</h2>
           <p className="text-slate-600 text-lg mb-8">
-            Test your display with brand-specific test pages optimized for 50+ monitor manufacturers. Find your brand and optimize your setup.
+            {translate('tools_monitor_intro')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link
@@ -178,18 +182,18 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
           {/* CTA for more brands */}
           <div className="mt-12 p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200 text-center">
             <p className="text-slate-700 mb-4">
-              <strong>We support 50+ monitor brands!</strong> From ASUS ROG to BenQ, Alienware to EIZO, and many more.
+              <strong>{translate('tools_monitor_support_title')}</strong> {translate('tools_monitor_support_desc')}
             </p>
             <p className="text-sm text-slate-600 mb-6">
-              Try typing your brand name in the URL: <code className="bg-white px-2 py-1 rounded">/monitor-test/benq</code>, 
-              <code className="bg-white px-2 py-1 rounded ml-2">/monitor-test/alienware</code>, etc.
+              {translate('tools_monitor_url_hint')} <code className="bg-white px-2 py-1 rounded">/monitor-test/benq</code>, 
+              <code className="bg-white px-2 py-1 rounded ml-2">/monitor-test/alienware</code>.
             </p>
             <LinkButton
               href={getLocalizedPath(locale, '/monitor-test/benq')}
               variant="primary"
               size="lg"
             >
-              Browse More Brands <ArrowRight className="w-5 h-5 ml-2" />
+              {translate('tools_browse_more_brands')} <ArrowRight className="w-5 h-5 ml-2" />
             </LinkButton>
           </div>
         </div>
@@ -200,7 +204,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('device_tests_title')}</h2>
           <p className="text-slate-600 text-lg mb-8">
-            Specialized test pages designed for specific devices and display types.
+            {translate('tools_device_intro')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link
@@ -245,9 +249,9 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
       {/* Calculator & Utility Tools */}
       <section className="section">
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">📊 Calculator & Utility Tools</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">📊 {translate('tools_calculators_title')}</h2>
           <p className="text-slate-600 text-lg mb-8">
-            Interactive tools to help you find the perfect monitor setup and understand display specifications.
+            {translate('tools_calculators_intro')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
@@ -255,11 +259,11 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               className="card group hover:shadow-lg transition-all border-l-4 border-purple-500"
             >
               <div className="text-4xl mb-3">⚡</div>
-              <h3 className="text-xl font-bold mb-2">Refresh Rate Calculator</h3>
+              <h3 className="text-xl font-bold mb-2">{translate('refresh_rate_calculator')}</h3>
               <p className="text-slate-600 text-sm mb-4">
-                Find the optimal refresh rate for your GPU and CPU. Get personalized recommendations for gaming and professional use.
+                {translate('tools_refresh_calculator_desc')}
               </p>
-              <span className="text-purple-600 font-semibold text-sm">Explore →</span>
+              <span className="text-purple-600 font-semibold text-sm">{translate('tools_explore_cta' as any)}</span>
             </Link>
 
             <Link
@@ -267,11 +271,11 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               className="card group hover:shadow-lg transition-all border-l-4 border-emerald-500"
             >
               <div className="text-4xl mb-3">🔍</div>
-              <h3 className="text-xl font-bold mb-2">Pixel Density Calculator</h3>
+              <h3 className="text-xl font-bold mb-2">{translate('pixel_density_calculator')}</h3>
               <p className="text-slate-600 text-sm mb-4">
-                Calculate PPI and DPI for any monitor. Quick presets for common resolutions and screen sizes.
+                {translate('tools_pixel_calculator_desc')}
               </p>
-              <span className="text-emerald-600 font-semibold text-sm">Calculate →</span>
+              <span className="text-emerald-600 font-semibold text-sm">{translate('tools_calculate_cta' as any)}</span>
             </Link>
 
             <Link
@@ -279,11 +283,11 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               className="card group hover:shadow-lg transition-all border-l-4 border-orange-500"
             >
               <div className="text-4xl mb-3">⚖️</div>
-              <h3 className="text-xl font-bold mb-2">Monitor Comparison Tool</h3>
+              <h3 className="text-xl font-bold mb-2">{translate('monitor_comparison_tool')}</h3>
               <p className="text-slate-600 text-sm mb-4">
-                Compare up to 3 monitors side-by-side. Analyze specs, differences, and find your perfect match.
+                {translate('tools_monitor_comparison_desc')}
               </p>
-              <span className="text-orange-600 font-semibold text-sm">Compare →</span>
+              <span className="text-orange-600 font-semibold text-sm">{translate('tools_compare_cta' as any)}</span>
             </Link>
           </div>
         </div>
@@ -292,85 +296,71 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
       {/* Comparison Guides */}
       <section className="section-alt">
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">🔄 Monitor & Spec Comparisons</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">🔄 {translate('compare_page_title')}</h2>
           <p className="text-slate-600 text-lg mb-8">
-            In-depth guides comparing popular monitor brands, specifications, and gaming setups to help you make informed decisions.
+            {translate('compare_page_description')}
           </p>
           
           {/* Brand Comparisons */}
           <div className="mb-12">
-            <h3 className="text-xl font-bold mb-6">Brand vs Brand</h3>
+            <h3 className="text-xl font-bold mb-6">{translate('compare_brand_section_title' as any)}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <Link
-                href={getLocalizedPath(locale, '/compare/asus-vs-lg')}
-                className="card hover:shadow-lg transition-all p-4 border-l-4 border-blue-500"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">ASUS vs LG</h4>
-                <p className="text-sm text-slate-600">Compare two gaming monitor giants</p>
-              </Link>
-              <Link
-                href={getLocalizedPath(locale, '/compare/asus-vs-dell')}
-                className="card hover:shadow-lg transition-all p-4 border-l-4 border-blue-500"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">ASUS vs Dell</h4>
-                <p className="text-sm text-slate-600">Gaming vs Professional displays</p>
-              </Link>
-              <Link
-                href={getLocalizedPath(locale, '/compare/lg-vs-samsung')}
-                className="card hover:shadow-lg transition-all p-4 border-l-4 border-blue-500"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">LG vs Samsung</h4>
-                <p className="text-sm text-slate-600">Two industry leaders compared</p>
-              </Link>
+              {brandComparisonSlugs.map((slug) => {
+                const comparison = getComparisonData(slug);
+                if (!comparison) return null;
+                return (
+                  <Link
+                    key={slug}
+                    href={getLocalizedPath(locale, `/compare/${slug}`)}
+                    className="card hover:shadow-lg transition-all p-4 border-l-4 border-blue-500"
+                  >
+                    <h4 className="font-semibold text-slate-900 mb-2">{translate(comparison.titleKey as any)}</h4>
+                    <p className="text-sm text-slate-600">{translate(comparison.descriptionKey as any)}</p>
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
           {/* Spec Comparisons */}
           <div className="mb-12">
-            <h3 className="text-xl font-bold mb-6">Specification Comparisons</h3>
+            <h3 className="text-xl font-bold mb-6">{translate('compare_spec_section_title' as any)}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <Link
-                href={getLocalizedPath(locale, '/compare/ips-vs-va-vs-tn')}
-                className="card hover:shadow-lg transition-all p-4 border-l-4 border-green-500"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">IPS vs VA vs TN</h4>
-                <p className="text-sm text-slate-600">Panel types explained and compared</p>
-              </Link>
-              <Link
-                href={getLocalizedPath(locale, '/compare/144hz-vs-240hz')}
-                className="card hover:shadow-lg transition-all p-4 border-l-4 border-green-500"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">144Hz vs 240Hz</h4>
-                <p className="text-sm text-slate-600">Refresh rate impact on gaming</p>
-              </Link>
-              <Link
-                href={getLocalizedPath(locale, '/compare/curved-vs-flat')}
-                className="card hover:shadow-lg transition-all p-4 border-l-4 border-green-500"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">Curved vs Flat</h4>
-                <p className="text-sm text-slate-600">Which panel design is better?</p>
-              </Link>
+              {specComparisonSlugs.map((slug) => {
+                const comparison = getComparisonData(slug);
+                if (!comparison) return null;
+                return (
+                  <Link
+                    key={slug}
+                    href={getLocalizedPath(locale, `/compare/${slug}`)}
+                    className="card hover:shadow-lg transition-all p-4 border-l-4 border-green-500"
+                  >
+                    <h4 className="font-semibold text-slate-900 mb-2">{translate(comparison.titleKey as any)}</h4>
+                    <p className="text-sm text-slate-600">{translate(comparison.descriptionKey as any)}</p>
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
           {/* Device Comparisons */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Device Comparisons</h3>
+            <h3 className="text-xl font-bold mb-6">{translate('compare_device_section_title' as any)}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Link
-                href={getLocalizedPath(locale, '/compare/ps5-vs-xbox-series-x')}
-                className="card hover:shadow-lg transition-all p-4 border-l-4 border-orange-500"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">PS5 vs Xbox Series X</h4>
-                <p className="text-sm text-slate-600">Gaming console display requirements</p>
-              </Link>
-              <Link
-                href={getLocalizedPath(locale, '/compare/ultrawide-vs-dual-monitor')}
-                className="card hover:shadow-lg transition-all p-4 border-l-4 border-orange-500"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">Ultrawide vs Dual Monitor</h4>
-                <p className="text-sm text-slate-600">Workspace setup options compared</p>
-              </Link>
+              {deviceComparisonSlugs.map((slug) => {
+                const comparison = getComparisonData(slug);
+                if (!comparison) return null;
+                return (
+                  <Link
+                    key={slug}
+                    href={getLocalizedPath(locale, `/compare/${slug}`)}
+                    className="card hover:shadow-lg transition-all p-4 border-l-4 border-orange-500"
+                  >
+                    <h4 className="font-semibold text-slate-900 mb-2">{translate(comparison.titleKey as any)}</h4>
+                    <p className="text-sm text-slate-600">{translate(comparison.descriptionKey as any)}</p>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

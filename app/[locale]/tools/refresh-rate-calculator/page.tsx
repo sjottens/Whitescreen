@@ -7,33 +7,43 @@ import RefreshRateCalculator from '@/components/tools/refresh-rate-calculator';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
+import { getLocaleFromParams } from '@/lib/i18n';
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = await getLocaleFromParams(props.params);
+  const translate = t(locale);
+
   return generateMultilingualMetadata({
-    locale: 'en',
-    title: 'Refresh Rate Calculator - Find Your Optimal Gaming Hz',
-    description:
-      'Calculate the perfect refresh rate for your gaming setup. Input your GPU and CPU to get recommendations for 60Hz, 144Hz, 240Hz, or 360Hz.',
+    locale,
+    title: translate('refresh_rate_page_title' as any),
+    description: translate('refresh_rate_page_description' as any),
     path: '/tools/refresh-rate-calculator',
     keywords: [
-      'refresh rate calculator',
-      'gaming monitor Hz',
-      '144Hz vs 240Hz',
-      'GPU FPS calculator',
+      translate('refresh_rate_keyword_1' as any),
+      translate('refresh_rate_keyword_2' as any),
+      translate('refresh_rate_keyword_3' as any),
+      translate('refresh_rate_keyword_4' as any),
     ],
   });
 }
 
-export default function RefreshRateCalculatorPage() {
-  const translate = t('en');
+interface RefreshRateCalculatorPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function RefreshRateCalculatorPage({ params }: RefreshRateCalculatorPageProps) {
+  const locale = await getLocaleFromParams(params);
+  const translate = t(locale);
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
       { name: translate('tools'), path: '/tools' },
-      { name: 'Refresh Rate Calculator', path: '/tools/refresh-rate-calculator' },
+      { name: translate('refresh_rate_calculator'), path: '/tools/refresh-rate-calculator' },
     ],
-    'en'
+    locale
   );
 
   return (
@@ -46,9 +56,9 @@ export default function RefreshRateCalculatorPage() {
 
       <Breadcrumbs
         items={[
-          { name: translate('home'), path: getLocalizedPath('en', '/') },
-          { name: translate('tools'), path: getLocalizedPath('en', '/tools') },
-          { name: 'Refresh Rate Calculator' },
+          { name: translate('home'), path: getLocalizedPath(locale, '/') },
+          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('refresh_rate_calculator') },
         ]}
       />
 
@@ -56,11 +66,10 @@ export default function RefreshRateCalculatorPage() {
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-purple-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">
-            Refresh Rate Calculator
+            {translate('refresh_rate_calculator')}
           </h1>
           <p className="text-xl text-slate-700">
-            Calculate the optimal refresh rate for your gaming setup based on your GPU and CPU
-            performance
+            {translate('refresh_rate_page_header_desc' as any)}
           </p>
         </div>
       </section>
@@ -72,38 +81,30 @@ export default function RefreshRateCalculatorPage() {
 
           {/* Info Section */}
           <div className="mt-12 prose prose-lg max-w-none">
-            <h2 className="text-2xl font-bold mb-4">Understanding Refresh Rate</h2>
+            <h2 className="text-2xl font-bold mb-4">{translate('refresh_rate_understanding_title' as any)}</h2>
             <p>
-              Your monitor's refresh rate (measured in Hz) determines how many times per second
-              your display updates. A higher refresh rate provides smoother gameplay, but you need
-              sufficient GPU power to maintain high FPS (frames per second).
+              {translate('refresh_rate_understanding_desc' as any)}
             </p>
 
-            <h3 className="text-xl font-bold mt-8 mb-3">Refresh Rate Guidelines</h3>
+            <h3 className="text-xl font-bold mt-8 mb-3">{translate('refresh_rate_guidelines_title' as any)}</h3>
             <ul>
               <li>
-                <strong>60Hz</strong> - Good for casual gaming and office work. Most entry-level
-                GPUs can handle this.
+                <strong>60Hz</strong> - {translate('refresh_rate_guideline_60' as any)}
               </li>
               <li>
-                <strong>144Hz</strong> - Recommended for serious gamers. Requires GTX 1660 Ti or
-                better.
+                <strong>144Hz</strong> - {translate('refresh_rate_guideline_144' as any)}
               </li>
               <li>
-                <strong>240Hz</strong> - For competitive esports players. Needs RTX 3070 or
-                equivalent.
+                <strong>240Hz</strong> - {translate('refresh_rate_guideline_240' as any)}
               </li>
               <li>
-                <strong>360Hz</strong> - For professional esports. Requires high-end RTX 4090 or
-                better.
+                <strong>360Hz</strong> - {translate('refresh_rate_guideline_360' as any)}
               </li>
             </ul>
 
-            <h3 className="text-xl font-bold mt-8 mb-3">FPS vs Refresh Rate</h3>
+            <h3 className="text-xl font-bold mt-8 mb-3">{translate('refresh_rate_fps_vs_hz_title' as any)}</h3>
             <p>
-              For smooth gameplay, your GPU should maintain FPS slightly above your monitor's
-              refresh rate. For example, for a 144Hz monitor, aim for 150-160 FPS. This prevents
-              frame tearing and stuttering.
+              {translate('refresh_rate_fps_vs_hz_desc' as any)}
             </p>
           </div>
         </div>

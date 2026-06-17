@@ -9,6 +9,7 @@ import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS } from '@/lib/constants';
 import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import { getLocalizedPath } from '@/lib/link-utils';
+import HeroThreeBackground from '@/components/ui/hero-three-background';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -35,7 +36,7 @@ export default async function HomePage({ params }: HomePageProps) {
   // Schema data
   const faqData = faqSchema(FAQ_ITEMS);
   const breadcrumbs = breadcrumbSchemaMultilingual([
-    { name: 'Home', path: '/' },
+    { name: translate('home'), path: '/' },
   ], locale);
 
   return (
@@ -54,10 +55,11 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-br from-slate-50 via-white to-cyan-50">
+        <HeroThreeBackground />
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-              {translate('hero_title')} <span className="text-cyan-600">Tools</span>
+              {translate('hero_title')} <span className="text-cyan-600">{translate('tools')}</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-700 mb-8 leading-relaxed">
               {translate('hero_subtitle')}
@@ -143,7 +145,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">{translate('monitor_tests')}</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Test your display with monitor-specific and device-specific test pages designed for different screen types and use cases.
+              {translate('home_monitor_device_intro' as any)}
             </p>
           </div>
 
@@ -203,7 +205,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-bold mb-4">{translate('device_tests_title')}</h3>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Specialized test pages for different devices and display types.
+                {translate('home_device_tests_intro' as any)}
               </p>
             </div>
 
@@ -342,9 +344,9 @@ export default async function HomePage({ params }: HomePageProps) {
       <section className="section">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">🛠️ Powerful Calculator Tools & Comparisons</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">🛠️ {translate('home_tools_resources_title' as any)}</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Discover our interactive tools to optimize your monitor setup and compare specifications with confidence.
+              {translate('home_tools_resources_desc' as any)}
             </p>
           </div>
 
@@ -355,12 +357,12 @@ export default async function HomePage({ params }: HomePageProps) {
               className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-purple-500"
             >
               <div className="text-5xl mb-4">⚡</div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Refresh Rate Calculator</h3>
+              <h3 className="text-2xl font-bold mb-3 text-slate-900">{translate('refresh_rate_calculator')}</h3>
               <p className="text-slate-600 mb-4">
-                Find the optimal refresh rate for your gaming setup based on your GPU and CPU. Get personalized recommendations.
+                {translate('tools_refresh_calculator_desc')}
               </p>
               <span className="text-purple-600 font-semibold inline-flex items-center">
-                Calculate →
+                {translate('tools_calculate_cta' as any)}
               </span>
             </Link>
 
@@ -370,12 +372,12 @@ export default async function HomePage({ params }: HomePageProps) {
               className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-emerald-700"
             >
               <div className="text-5xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Pixel Density Calculator</h3>
+              <h3 className="text-2xl font-bold mb-3 text-slate-900">{translate('pixel_density_calculator')}</h3>
               <p className="text-slate-600 mb-4">
-                Calculate PPI and DPI for any monitor. Understand display sharpness with preset common resolutions.
+                {translate('tools_pixel_calculator_desc')}
               </p>
               <span className="text-emerald-700 font-semibold inline-flex items-center">
-                Calculate →
+                {translate('tools_calculate_cta' as any)}
               </span>
             </Link>
 
@@ -385,52 +387,52 @@ export default async function HomePage({ params }: HomePageProps) {
               className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-orange-700"
             >
               <div className="text-5xl mb-4">⚖️</div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Monitor Comparison Tool</h3>
+              <h3 className="text-2xl font-bold mb-3 text-slate-900">{translate('monitor_comparison_tool')}</h3>
               <p className="text-slate-600 mb-4">
-                Compare up to 3 monitors side-by-side. Analyze differences in specs, price, and find your perfect match.
+                {translate('tools_monitor_comparison_desc')}
               </p>
               <span className="text-orange-700 font-semibold inline-flex items-center">
-                Compare →
+                {translate('tools_compare_cta' as any)}
               </span>
             </Link>
           </div>
 
           {/* Comparisons Callout */}
-          <div className="mt-12 p-8 bg-gradient-to-r from-blue-50 via-cyan-50 to-blue-50 rounded-lg border border-blue-200">
+          <div className="mt-12 rounded-2xl border border-cyan-500/30 bg-slate-950/90 p-8 shadow-2xl shadow-cyan-950/40">
             <div className="text-center mb-6">
-              <h3 className="text-3xl font-bold mb-3 text-slate-900">📊 Monitor & Spec Comparisons</h3>
-              <p className="text-slate-700 mb-6">
-                In-depth guides comparing monitor brands, panel types, and gaming setups to help you make informed decisions.
+              <h3 className="text-3xl font-bold mb-3 text-slate-100">📊 {translate('compare_page_title')}</h3>
+              <p className="text-slate-300 mb-6">
+                {translate('home_compare_callout_desc' as any)}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
                 href={getLocalizedPath(locale, '/compare/ips-vs-va-vs-tn')}
-                className="px-4 py-3 bg-white rounded-lg hover:shadow-md transition-shadow text-center border border-blue-200"
+                className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-center transition-all hover:border-cyan-400 hover:bg-slate-800"
               >
-                <p className="font-semibold text-blue-600">IPS vs VA vs TN</p>
-                <p className="text-xs text-slate-600">Panel types</p>
+                <p className="font-semibold text-cyan-300">IPS vs VA vs TN</p>
+                <p className="text-xs text-slate-300">{translate('home_compare_panel_types' as any)}</p>
               </Link>
               <Link
                 href={getLocalizedPath(locale, '/compare/144hz-vs-240hz')}
-                className="px-4 py-3 bg-white rounded-lg hover:shadow-md transition-shadow text-center border border-blue-200"
+                className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-center transition-all hover:border-cyan-400 hover:bg-slate-800"
               >
-                <p className="font-semibold text-blue-600">144Hz vs 240Hz</p>
-                <p className="text-xs text-slate-600">Refresh rates</p>
+                <p className="font-semibold text-cyan-300">144Hz vs 240Hz</p>
+                <p className="text-xs text-slate-300">{translate('home_compare_refresh_rates' as any)}</p>
               </Link>
               <Link
                 href={getLocalizedPath(locale, '/compare/asus-vs-lg')}
-                className="px-4 py-3 bg-white rounded-lg hover:shadow-md transition-shadow text-center border border-blue-200"
+                className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-center transition-all hover:border-cyan-400 hover:bg-slate-800"
               >
-                <p className="font-semibold text-blue-600">ASUS vs LG</p>
-                <p className="text-xs text-slate-600">Brands</p>
+                <p className="font-semibold text-cyan-300">ASUS vs LG</p>
+                <p className="text-xs text-slate-300">{translate('home_compare_brands' as any)}</p>
               </Link>
               <Link
                 href={getLocalizedPath(locale, '/tools')}
-                className="px-4 py-3 bg-white rounded-lg hover:shadow-md transition-shadow text-center border border-blue-200"
+                className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-center transition-all hover:border-cyan-400 hover:bg-slate-800"
               >
-                <p className="font-semibold text-blue-600">See All</p>
-                <p className="text-xs text-slate-600">15+ comparisons</p>
+                <p className="font-semibold text-cyan-300">{translate('home_compare_see_all' as any)}</p>
+                <p className="text-xs text-slate-300">{translate('home_compare_count_label' as any)}</p>
               </Link>
             </div>
           </div>

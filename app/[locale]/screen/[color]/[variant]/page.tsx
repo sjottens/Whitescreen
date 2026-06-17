@@ -92,11 +92,12 @@ export default async function ScreenVariantPage(props: PageProps) {
   
   // Validate that both color and variant exist
   if (!colorTool || !variantData) {
+    const fallbackTranslate = t(locale as any);
     return (
       <div className="container py-20">
-        <h1 className="text-4xl font-bold mb-4">Not Found</h1>
-        <p className="text-slate-600 mb-6">The requested screen configuration does not exist.</p>
-        <Link href="/" className="text-blue-600 hover:underline">Return to home</Link>
+        <h1 className="text-4xl font-bold mb-4">{fallbackTranslate('not_found_title' as any)}</h1>
+        <p className="text-slate-600 mb-6">{fallbackTranslate('screen_variant_not_found_desc' as any)}</p>
+        <Link href="/" className="text-blue-600 hover:underline">{fallbackTranslate('go_home_button' as any)}</Link>
       </div>
     );
   }
@@ -169,7 +170,7 @@ export default async function ScreenVariantPage(props: PageProps) {
       />
 
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="bg-white border-b border-slate-200 py-3 px-4 md:px-8">
+      <nav aria-label={translate('breadcrumbs_aria_label' as any)} className="bg-white border-b border-slate-200 py-3 px-4 md:px-8">
         <ol className="container flex flex-wrap gap-2 text-sm">
           {breadcrumbs.map((crumb, i) => (
             <li key={i} className="flex items-center">
@@ -236,7 +237,7 @@ export default async function ScreenVariantPage(props: PageProps) {
         {content.useCases.length > 0 && (
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-slate-900 mb-6">
-              {translate('common')} {translate('use_cases') || 'Use Cases'}
+              {translate('common')} {translate('use_cases')}
             </h2>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {content.useCases.map((useCase, i) => (
@@ -253,7 +254,7 @@ export default async function ScreenVariantPage(props: PageProps) {
         {content.faqs.length > 0 && (
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-slate-900 mb-6">
-              {translate('faq_title') || 'Frequently Asked Questions'}
+              {translate('faq_title')}
             </h2>
             <div className="space-y-4">
               {content.faqs.map((faq, i) => (
@@ -278,7 +279,7 @@ export default async function ScreenVariantPage(props: PageProps) {
         {relatedVariants.length > 0 && (
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-slate-900 mb-6">
-              Other Variants
+              {translate('screen_variant_other_variants_title' as any)}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {relatedVariants.map((item, i) => (
@@ -299,7 +300,7 @@ export default async function ScreenVariantPage(props: PageProps) {
         {relatedColors.length > 0 && (
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-slate-900 mb-6">
-              Related Screen Tests
+              {translate('screen_variant_related_tests_title' as any)}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {relatedColors.map((item, i) => (
@@ -322,7 +323,7 @@ export default async function ScreenVariantPage(props: PageProps) {
             variant="primary"
             size="lg"
           >
-            {translate('back_to_tools') || 'Back to Tools'}
+            {translate('back_to_tools')}
           </LinkButton>
         </div>
       </div>

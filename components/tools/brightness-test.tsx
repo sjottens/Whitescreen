@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, RotateCcw, Play, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { t } from '@/lib/translations';
 
 type TestMode = 'desktop' | 'mobile';
 type DisplayMode = 'gradient' | 'ladder' | 'bars' | 'flicker';
@@ -29,6 +30,7 @@ const GRAY_LEVELS: GrayLevel[] = [
 ];
 
 export default function BrightnessTest() {
+  const translate = t('en');
   const [testMode, setTestMode] = useState<TestMode>('desktop');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('ladder');
   const [currentLevelIndex, setCurrentLevelIndex] = useState(5); // Start at 50%
@@ -168,9 +170,9 @@ export default function BrightnessTest() {
     return (
       <div className="w-full h-full bg-gradient-to-r from-black to-white flex flex-col items-center justify-center">
         <div className="text-white text-center drop-shadow-lg">
-          <p className="text-2xl font-bold mb-2">Brightness Gradient Test</p>
-          <p className="text-lg">Left: Black (0%) → Right: White (100%)</p>
-          <p className="text-sm mt-4 opacity-80">Look for banding or color shifts</p>
+          <p className="text-2xl font-bold mb-2">{translate('brightness_gradient_test_title' as any)}</p>
+          <p className="text-lg">{translate('brightness_gradient_test_subtitle' as any)}</p>
+          <p className="text-sm mt-4 opacity-80">{translate('brightness_gradient_test_hint' as any)}</p>
         </div>
       </div>
     );
@@ -225,10 +227,10 @@ export default function BrightnessTest() {
         style={{ backgroundColor: showBlack ? '#000000' : '#FFFFFF' }}
       >
         <div className={`text-center drop-shadow-lg ${showBlack ? 'text-white' : 'text-black'}`}>
-          <p className="text-2xl font-bold mb-2">Flicker Detection Test</p>
+          <p className="text-2xl font-bold mb-2">{translate('brightness_flicker_test_title' as any)}</p>
           <p className="text-lg mb-4">{flickerSpeed} Hz</p>
           <p className="text-sm opacity-80">
-            {showBlack ? 'BLACK' : 'WHITE'} - Look for screen flickering
+            {showBlack ? translate('brightness_black_label' as any) : translate('brightness_white_label' as any)} - {translate('brightness_flicker_test_hint' as any)}
           </p>
         </div>
       </div>
@@ -277,7 +279,7 @@ export default function BrightnessTest() {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Gray Ladder
+            {translate('brightness_mode_ladder' as any)}
           </button>
           <button
             onClick={() => setDisplayMode('gradient')}
@@ -287,7 +289,7 @@ export default function BrightnessTest() {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Gradient
+            {translate('brightness_mode_gradient' as any)}
           </button>
           <button
             onClick={() => setDisplayMode('bars')}
@@ -297,7 +299,7 @@ export default function BrightnessTest() {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Bars
+            {translate('brightness_mode_bars' as any)}
           </button>
           <button
             onClick={() => setDisplayMode('flicker')}
@@ -307,7 +309,7 @@ export default function BrightnessTest() {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Flicker
+            {translate('brightness_mode_flicker' as any)}
           </button>
         </div>
 
@@ -315,7 +317,7 @@ export default function BrightnessTest() {
         {displayMode === 'ladder' && (
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="font-semibold text-slate-700">Gray Level Navigation</label>
+              <label className="font-semibold text-slate-700">{translate('brightness_gray_navigation_label' as any)}</label>
               <span className="text-sm text-slate-600">
                 {currentLevelIndex + 1} / {GRAY_LEVELS.length}
               </span>
@@ -345,7 +347,7 @@ export default function BrightnessTest() {
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <label htmlFor="brightness" className="font-semibold text-slate-700">
-              Display Opacity
+              {translate('brightness_display_opacity_label' as any)}
             </label>
             <span className="text-sm font-mono text-slate-600">{customBrightness}%</span>
           </div>
@@ -358,7 +360,7 @@ export default function BrightnessTest() {
             onChange={(e) => setCustomBrightness(Number(e.target.value))}
             className="w-full"
           />
-          <p className="text-xs text-slate-500">Adjust to test monitor brightness response</p>
+          <p className="text-xs text-slate-500">{translate('brightness_display_opacity_hint' as any)}</p>
         </div>
 
         {/* Flicker Speed Control (for flicker mode) */}
@@ -366,7 +368,7 @@ export default function BrightnessTest() {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <label htmlFor="flicker" className="font-semibold text-slate-700">
-                Flicker Frequency
+                {translate('brightness_flicker_frequency_label' as any)}
               </label>
               <span className="text-sm font-mono text-slate-600">{flickerSpeed} Hz</span>
             </div>
@@ -380,7 +382,7 @@ export default function BrightnessTest() {
               onChange={(e) => setFlickerSpeed(Number(e.target.value))}
               className="w-full"
             />
-            <p className="text-xs text-slate-500">Test for screen flickering at different refresh rates</p>
+            <p className="text-xs text-slate-500">{translate('brightness_flicker_frequency_hint' as any)}</p>
           </div>
         )}
 
@@ -394,11 +396,11 @@ export default function BrightnessTest() {
             >
               {isAutoCycling ? (
                 <>
-                  <Pause className="w-4 h-4" /> Pause
+                  <Pause className="w-4 h-4" /> {translate('brightness_pause_button' as any)}
                 </>
               ) : (
                 <>
-                  <Play className="w-4 h-4" /> Auto-Cycle
+                  <Play className="w-4 h-4" /> {translate('brightness_auto_cycle_button' as any)}
                 </>
               )}
             </Button>
@@ -414,11 +416,11 @@ export default function BrightnessTest() {
             variant="outline"
             className="gap-2"
           >
-            <RotateCcw className="w-4 h-4" /> Reset
+            <RotateCcw className="w-4 h-4" /> {translate('brightness_reset_button' as any)}
           </Button>
 
           <Button onClick={toggleFullscreen} variant="outline" className="gap-2">
-            <Maximize2 className="w-4 h-4" /> Fullscreen
+            <Maximize2 className="w-4 h-4" /> {translate('brightness_fullscreen_button' as any)}
           </Button>
 
           <div className="flex gap-2 col-span-2 md:col-span-1">
@@ -430,7 +432,7 @@ export default function BrightnessTest() {
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Desktop
+              {translate('brightness_desktop_button' as any)}
             </button>
             <button
               onClick={() => setTestMode('mobile')}
@@ -440,26 +442,26 @@ export default function BrightnessTest() {
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Mobile
+              {translate('brightness_mobile_button' as any)}
             </button>
           </div>
         </div>
 
         {/* Keyboard Shortcuts Info */}
         <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-          <p className="font-semibold text-slate-700 mb-2">Keyboard Shortcuts</p>
+          <p className="font-semibold text-slate-700 mb-2">{translate('keyboard_shortcuts')}</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-slate-600">
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">F</kbd> - Fullscreen
+              <kbd className="bg-white px-2 py-1 rounded border">F</kbd> - {translate('brightness_fullscreen_button' as any)}
             </div>
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">Space</kbd> - Auto-cycle
+              <kbd className="bg-white px-2 py-1 rounded border">{translate('tool_layout_space_key' as any)}</kbd> - {translate('brightness_auto_cycle_button' as any)}
             </div>
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">←/→</kbd> - Navigate
+              <kbd className="bg-white px-2 py-1 rounded border">←/→</kbd> - {translate('brightness_navigate_label' as any)}
             </div>
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">R</kbd> - Reset
+              <kbd className="bg-white px-2 py-1 rounded border">R</kbd> - {translate('brightness_reset_button' as any)}
             </div>
           </div>
         </div>

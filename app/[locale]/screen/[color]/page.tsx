@@ -64,10 +64,11 @@ export default async function ColorVariantsPage({ params }: PageProps) {
   // Validate color exists
   const colorTool = COLOR_TOOLS.find((t) => t.id === color);
   if (!colorTool) {
+    const fallbackTranslate = t(locale as any);
     return (
       <div className="section">
         <div className="container">
-          <h1 className="text-3xl font-bold">Color not found</h1>
+          <h1 className="text-3xl font-bold">{fallbackTranslate('screen_color_not_found_title' as any)}</h1>
         </div>
       </div>
     );
@@ -90,6 +91,8 @@ export default async function ColorVariantsPage({ params }: PageProps) {
     desc: data.descSuffix,
     keywords: data.keywords,
   }));
+
+  const otherColorTools = COLOR_TOOLS.filter((tool) => tool.id !== color);
 
   return (
     <>
@@ -138,10 +141,10 @@ export default async function ColorVariantsPage({ params }: PageProps) {
               {/* Specs */}
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
-                  <strong>Hex:</strong> {colorTool.hex}
+                  <strong>{translate('screen_color_hex_label' as any)}:</strong> {colorTool.hex}
                 </div>
                 <div className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
-                  <strong>RGB:</strong> {colorTool.rgb}
+                  <strong>{translate('screen_color_rgb_label' as any)}:</strong> {colorTool.rgb}
                 </div>
               </div>
             </div>
@@ -181,12 +184,12 @@ export default async function ColorVariantsPage({ params }: PageProps) {
             <h2 className="text-2xl font-bold mb-4 text-slate-900">{translate('about')} {translate(colorTool.nameKey as any).toLowerCase()}</h2>
             <div className="prose prose-sm max-w-none text-slate-700">
               <p>
-                The {translate(colorTool.nameKey as any).toLowerCase()} test is essential for evaluating your display's color accuracy and uniformity. This color can be used to:
+                {translate('screen_color_about_intro_prefix' as any)} {translate(colorTool.nameKey as any).toLowerCase()} {translate('screen_color_about_intro_suffix' as any)}
               </p>
               <ul className="list-disc pl-5 space-y-1">
                 {colorTool.useCases?.map((useCase) => (
                   <li key={useCase}>{translate(useCase as any)}</li>
-                )) || <li>Test display quality</li>}
+                )) || <li>{translate('screen_color_default_use_case' as any)}</li>}
               </ul>
             </div>
           </div>
@@ -195,20 +198,20 @@ export default async function ColorVariantsPage({ params }: PageProps) {
           <div className="mt-16">
             <h2 className="text-2xl font-bold mb-6 text-slate-900">{translate('other_colors' as any)}</h2>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-              {COLOR_TOOLS.filter((c) => c.id !== color).map((c) => (
+              {otherColorTools.map((tool) => (
                 <Link
-                  key={c.id}
-                  href={getLocalizedPath(locale as any, `/screen/${c.id}`)}
+                  key={tool.id}
+                  href={getLocalizedPath(locale as any, `/screen/${tool.id}`)}
                   className="group relative overflow-hidden rounded-lg border-2 border-slate-200 hover:border-slate-400 transition-all hover:shadow-md"
-                  title={translate(c.nameKey as any)}
+                  title={translate(tool.nameKey as any)}
                 >
                   <div
                     className="h-16 w-full transition-transform group-hover:scale-110"
-                    style={{ backgroundColor: c.color }}
+                    style={{ backgroundColor: tool.color }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all flex items-center justify-center">
                     <span className="text-white text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity text-center px-1">
-                      {translate(c.nameKey as any)}
+                      {translate(tool.nameKey as any)}
                     </span>
                   </div>
                 </Link>

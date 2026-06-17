@@ -100,7 +100,7 @@ export default async function TermsPage({ params }: TermsPageProps) {
           <p>
             {translate('terms_contact_text')}
             <br />
-            <strong>Email:</strong> legal@testascreen.eu
+            <strong>{translate('terms_email_label' as any)}</strong> {translate('terms_email_value' as any)}
           </p>
 
           <hr className="my-12" />

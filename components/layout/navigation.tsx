@@ -28,13 +28,13 @@ export default function Navigation({ locale }: NavigationProps) {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-6">
         {/* Links */}
-        <Link href={getLocalizedPath(locale, '/about')} className="text-slate-700 hover:text-black font-medium focus-ring">
+        <Link href={getLocalizedPath(locale, '/about')} className="nav-link-premium focus-ring">
           {translate('about')}
         </Link>
-        <Link href={getLocalizedPath(locale, '/blog')} className="text-slate-700 hover:text-black font-medium focus-ring">
+        <Link href={getLocalizedPath(locale, '/blog')} className="nav-link-premium focus-ring">
           {translate('blog')}
         </Link>
-        <Link href={getLocalizedPath(locale, '/contact')} className="text-slate-700 hover:text-black font-medium focus-ring">
+        <Link href={getLocalizedPath(locale, '/contact')} className="nav-link-premium focus-ring">
           {translate('contact')}
         </Link>
 
@@ -49,35 +49,35 @@ export default function Navigation({ locale }: NavigationProps) {
 
       {/* Mobile Navigation Toggle */}
       <button
-        className="md:hidden btn btn-ghost btn-icon focus-ring"
+        className="md:hidden rounded-lg p-2 text-slate-100 transition-colors hover:bg-slate-800 hover:text-white focus-ring"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle menu"
+        aria-label={translate('navigation_toggle_menu_aria' as any)}
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-lg md:hidden">
+        <div className="absolute top-full left-0 right-0 border-b border-slate-700 bg-slate-950/96 backdrop-blur-xl shadow-2xl md:hidden animate-in">
           <nav className="container py-4 space-y-2">
             {/* Links */}
             <Link
               href={getLocalizedPath(locale, '/about')}
-              className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-black rounded-lg focus-ring"
+              className="block rounded-lg px-4 py-2 text-slate-100 hover:bg-slate-800 hover:text-cyan-300 focus-ring"
               onClick={() => setIsOpen(false)}
             >
               {translate('about')}
             </Link>
             <Link
               href={getLocalizedPath(locale, '/blog')}
-              className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-black rounded-lg focus-ring"
+              className="block rounded-lg px-4 py-2 text-slate-100 hover:bg-slate-800 hover:text-cyan-300 focus-ring"
               onClick={() => setIsOpen(false)}
             >
               {translate('blog')}
             </Link>
             <Link
               href={getLocalizedPath(locale, '/contact')}
-              className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-black rounded-lg focus-ring"
+              className="block rounded-lg px-4 py-2 text-slate-100 hover:bg-slate-800 hover:text-cyan-300 focus-ring"
               onClick={() => setIsOpen(false)}
             >
               {translate('contact')}

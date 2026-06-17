@@ -51,7 +51,7 @@ export function generateScreenVariantContent(
   const vData = variantData[variant] || variantData['fullscreen'];
 
   // Locale-specific HUMAN-WRITTEN content
-  const contentMap: Record<Locale, VariantContent> = {
+  const contentMap: Record<string, VariantContent> = {
     en: {
       title: `${colorName} Screen Test - ${vData.titleSuffix} Display Quality Check`,
       metaDescription: `Test your display with a ${colorName.toLowerCase()} ${vData.titleSuffix.toLowerCase()} screen. Spot dead pixels, check color uniformity, and verify monitor quality in seconds.`,
@@ -303,7 +303,7 @@ export function generateMonitorModelContent(
   modelName: string,
   modelSpecs: string
 ): MonitorModelContent {
-  const contentMap: Record<Locale, MonitorModelContent> = {
+  const contentMap: Record<string, MonitorModelContent> = {
     en: {
       title: `${brand} ${modelName} Monitor Test - Display Quality & Color Accuracy`,
       metaDescription: `Comprehensive ${brand} ${modelName} (${modelSpecs}) display test. Check color accuracy, dead pixels, brightness, and monitor performance instantly.`,
