@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Search, ChevronRight, X } from 'lucide-react';
 import { BlogArticleCard } from './blog-article-card';
@@ -63,6 +63,7 @@ export function BlogHomepage({
 }: BlogHomepageProps) {
   const translate = t(locale as 'en' | 'nl' | 'es' | 'de');
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -77,6 +78,11 @@ export function BlogHomepage({
   }, [searchParams]);
 
   const baseUrl = locale === 'en' ? '/blog' : `/${locale}/blog`;
+
+  const clearFilter = () => {
+    setSelectedCategory(null);
+    router.push(baseUrl);
+  };
 
   // Filter articles based on search query and selected category
   const filteredLatestArticles = latestArticles.filter((article) => {
@@ -140,9 +146,14 @@ export function BlogHomepage({
                 <span className="text-sm font-medium text-gray-800">
                   {selectedCategoryName}
                 </span>
-                <Link href={baseUrl}>
-                  <X size={16} className="text-gray-500 hover:text-gray-700 cursor-pointer" />
-                </Link>
+                <button
+                  onClick={clearFilter}
+                  className="text-gray-500 hover:text-gray-700 cursor-pointer p-1 rounded hover:bg-gray-100 transition-colors"
+                  aria-label="Clear filter"
+                  type="button"
+                >
+                  <X size={16} />
+                </button>
               </div>
             </div>
           </div>
