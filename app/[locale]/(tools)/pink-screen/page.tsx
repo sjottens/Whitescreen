@@ -8,6 +8,8 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
+import ColorScreenIntro from '@/components/tools/color-screen-intro';
+import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'pink-screen')!;
 
@@ -76,6 +78,20 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
 
   return (
     <>
+      <ColorScreenIntro 
+        locale={locale} 
+        colorName="pink" 
+        colorHex="#FF1493" 
+        colorLabel={translate(TOOL.nameKey as any)}
+        useCases={[
+          { en: 'Light color rendering and accuracy testing', fr: 'Test du rendu et de la précision des couleurs claires' },
+          { en: 'Tonal gradation and mid-tone accuracy', fr: 'Gradation tonale et précision des tons moyens' },
+          { en: 'Soft lighting reference for photography', fr: 'Référence d\'éclairage doux en photographie' },
+          { en: 'Color balance in vibrant tones', fr: 'Équilibre des couleurs dans les tons vibrants' },
+          { en: 'Display quality and uniformity verification', fr: 'Vérification de la qualité et de l\'uniformité de l\'affichage' },
+          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
+        ]}
+      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
@@ -86,6 +102,9 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
         locale={locale}
       >
         <ScreenDisplay color="#FF1493" title={translate(TOOL.nameKey as any)} locale={locale} />
-      </ToolLayout>      <GuideSection toolId="pink-screen" />    </>
+      </ToolLayout>
+      <GuideSection toolId="pink-screen" />
+      <RelatedTools currentToolId="pink-screen" locale={locale as any} />
+    </>
   );
 }

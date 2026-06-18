@@ -8,6 +8,8 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
+import ColorScreenIntro from '@/components/tools/color-screen-intro';
+import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'yellow-screen')!;
 
@@ -76,6 +78,20 @@ export default async function YellowScreenPage({ params }: { params: Promise<{ l
 
   return (
     <>
+      <ColorScreenIntro 
+        locale={locale} 
+        colorName="yellow" 
+        colorHex="#FFFF00" 
+        colorLabel={translate(TOOL.nameKey as any)}
+        useCases={[
+          { en: 'Warm color rendering and accuracy testing', fr: 'Test du rendu et de la précision des couleurs chaudes' },
+          { en: 'Combined red and green channel verification', fr: 'Vérification combinée des canaux rouge et vert' },
+          { en: 'Brightness and luminance uniformity checks', fr: 'Vérification de l\'uniformité de la luminosité et de la luminance' },
+          { en: 'Video production lighting reference', fr: 'Référence d\'éclairage pour production vidéo' },
+          { en: 'Photography warm light fill', fr: 'Remplissage de lumière chaude en photographie' },
+          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
+        ]}
+      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
@@ -88,6 +104,7 @@ export default async function YellowScreenPage({ params }: { params: Promise<{ l
         <ScreenDisplay color="#FFFF00" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="yellow-screen" />
+      <RelatedTools currentToolId="yellow-screen" locale={locale as any} />
     </>
   );
 }

@@ -9,23 +9,28 @@ export default function Logo() {
     <svg
       width="40"
       height="40"
-      viewBox="0 0 40 40"
+      viewBox="0 0 200 200"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-label={translate('logo_aria_label' as any)}
     >
-      {/* Background circle */}
-      <rect width="40" height="40" rx="8" fill="#06B6D4" />
-
-      {/* Monitor frame */}
-      <rect x="8" y="8" width="24" height="18" rx="2" fill="white" />
-
-      {/* Screen content - test pattern */}
-      <rect x="10" y="10" width="20" height="12" fill="#E2E8F0" />
-
-      {/* Accent elements */}
-      <circle cx="18" cy="15" r="2" fill="#0F172A" opacity="0.3" />
-      <circle cx="22" cy="15" r="2" fill="#0F172A" opacity="0.3" />
+      {/* Dark background */}
+      <rect width="200" height="200" fill="#0f172a" rx="8" />
+      
+      {/* Gradient definition for T */}
+      <defs>
+        <linearGradient id="tGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#06b6d4" stopOpacity={1} />
+          <stop offset="100%" stopColor="#0891b2" stopOpacity={1} />
+        </linearGradient>
+      </defs>
+      
+      {/* Letter T */}
+      {/* Top horizontal bar */}
+      <rect x="50" y="35" width="100" height="18" rx="4" fill="url(#tGradient)" />
+      
+      {/* Vertical stem */}
+      <rect x="85" y="50" width="30" height="115" rx="4" fill="url(#tGradient)" />
     </svg>
   );
 }

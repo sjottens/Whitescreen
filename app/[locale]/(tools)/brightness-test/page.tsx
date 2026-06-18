@@ -8,6 +8,8 @@ import { TEST_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import BrightnessTest from '@/components/tools/brightness-test';
 import GuideSection from '@/components/tools/guide-section';
+import BrightnessTestIntro from '@/components/tools/brightness-test-intro';
+import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'brightness-test')!;
 
@@ -44,6 +46,7 @@ export default async function BrightnessTestPage({ params }: { params: Promise<{
   );
   return (
     <>
+      <BrightnessTestIntro locale={locale} />
       <ToolLayout
         title={translate(TOOL.descriptionKey as any)}
         description={translate(TOOL.descriptionKey as any)}
@@ -53,6 +56,7 @@ export default async function BrightnessTestPage({ params }: { params: Promise<{
         <BrightnessTest />
       </ToolLayout>
       <GuideSection toolId="brightness-test" />
+      <RelatedTools currentToolId="brightness-test" locale={locale as any} />
     </>
   );
 }

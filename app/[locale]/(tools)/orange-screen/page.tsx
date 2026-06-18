@@ -8,6 +8,8 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
+import ColorScreenIntro from '@/components/tools/color-screen-intro';
+import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'orange-screen')!;
 
@@ -76,6 +78,20 @@ export default async function OrangeScreenPage({ params }: { params: Promise<{ l
 
   return (
     <>
+      <ColorScreenIntro 
+        locale={locale} 
+        colorName="orange" 
+        colorHex="#FFA500" 
+        colorLabel={translate(TOOL.nameKey as any)}
+        useCases={[
+          { en: 'Warm color rendering and accuracy testing', fr: 'Test du rendu et de la précision des couleurs chaudes' },
+          { en: 'Gradient smoothness and banding detection', fr: 'Détection de la douceur et des bandes des dégradés' },
+          { en: 'Photography warm light fill lighting', fr: 'Remplissage de lumière chaude en photographie' },
+          { en: 'Video production color grading reference', fr: 'Référence d\'étalonnage des couleurs pour production vidéo' },
+          { en: 'Color balance and saturation testing', fr: 'Test d\'équilibre des couleurs et de saturation' },
+          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
+        ]}
+      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
@@ -88,6 +104,7 @@ export default async function OrangeScreenPage({ params }: { params: Promise<{ l
         <ScreenDisplay color="#FFA500" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="orange-screen" />
+      <RelatedTools currentToolId="orange-screen" locale={locale as any} />
     </>
   );
 }

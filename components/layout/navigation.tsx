@@ -37,6 +37,9 @@ export default function Navigation({ locale }: NavigationProps) {
         <Link href={getLocalizedPath(locale, '/contact')} className="nav-link-premium focus-ring">
           {translate('contact')}
         </Link>
+        <Link href={getLocalizedPath(locale, '/dead-pixel-fixer')} className="nav-link-premium focus-ring font-semibold text-[#00DC82] hover:text-emerald-300 transition-colors">
+          ✨ Fixer
+        </Link>
 
         {/* Language Selector */}
         <LanguageSelector locale={locale} currentPath={cleanPath} />
@@ -58,33 +61,43 @@ export default function Navigation({ locale }: NavigationProps) {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 border-b border-slate-700 bg-slate-950/96 backdrop-blur-xl shadow-2xl md:hidden animate-in">
-          <nav className="container py-4 space-y-2">
+        <div className="absolute top-full left-0 right-0 z-50 border-b border-slate-700 bg-gradient-to-b from-slate-900 to-slate-950 backdrop-blur-xl shadow-2xl md:hidden animate-in">
+          <nav className="container py-6 space-y-1">
             {/* Links */}
             <Link
               href={getLocalizedPath(locale, '/about')}
-              className="block rounded-lg px-4 py-2 text-slate-100 hover:bg-slate-800 hover:text-cyan-300 focus-ring"
+              className="block rounded-lg px-4 py-3 text-slate-100 bg-slate-800/30 hover:bg-slate-700 hover:text-cyan-300 transition-colors focus-ring"
               onClick={() => setIsOpen(false)}
             >
               {translate('about')}
             </Link>
             <Link
               href={getLocalizedPath(locale, '/blog')}
-              className="block rounded-lg px-4 py-2 text-slate-100 hover:bg-slate-800 hover:text-cyan-300 focus-ring"
+              className="block rounded-lg px-4 py-3 text-slate-100 bg-slate-800/30 hover:bg-slate-700 hover:text-cyan-300 transition-colors focus-ring"
               onClick={() => setIsOpen(false)}
             >
               {translate('blog')}
             </Link>
             <Link
               href={getLocalizedPath(locale, '/contact')}
-              className="block rounded-lg px-4 py-2 text-slate-100 hover:bg-slate-800 hover:text-cyan-300 focus-ring"
+              className="block rounded-lg px-4 py-3 text-slate-100 bg-slate-800/30 hover:bg-slate-700 hover:text-cyan-300 transition-colors focus-ring"
               onClick={() => setIsOpen(false)}
             >
               {translate('contact')}
             </Link>
+            <Link
+              href={getLocalizedPath(locale, '/dead-pixel-fixer')}
+              className="block rounded-lg px-4 py-3 font-semibold text-[#00DC82] bg-slate-800/50 hover:bg-slate-700 hover:text-emerald-300 transition-colors focus-ring"
+              onClick={() => setIsOpen(false)}
+            >
+              ✨ Dead Pixel Fixer
+            </Link>
+
+            {/* Divider */}
+            <div className="my-3 border-t border-slate-700/50" />
 
             {/* Language Selector - Mobile */}
-            <div className="px-4 py-2">
+            <div className="px-4 py-3">
               <LanguageSelector locale={locale} currentPath={cleanPath} />
             </div>
 

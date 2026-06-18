@@ -8,6 +8,8 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
+import ColorScreenIntro from '@/components/tools/color-screen-intro';
+import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'green-screen')!;
 
@@ -76,6 +78,20 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
 
   return (
     <>
+      <ColorScreenIntro 
+        locale={locale} 
+        colorName="green" 
+        colorHex="#00FF00" 
+        colorLabel={translate(TOOL.nameKey as any)}
+        useCases={[
+          { en: 'Green channel testing and response curves', fr: 'Test du canal vert et courbes de réponse' },
+          { en: 'Green pixel defect detection', fr: 'Détection des défauts de pixels verts' },
+          { en: 'Chroma key green screen for video production', fr: 'Écran vert chroma key pour production vidéo' },
+          { en: 'Color separation and accuracy verification', fr: 'Vérification de la séparation et de la précision des couleurs' },
+          { en: 'Professional lighting reference', fr: 'Référence professionnelle d\'éclairage' },
+          { en: 'Color calibration and balance testing', fr: 'Test d\'étalonnage et d\'équilibre des couleurs' }
+        ]}
+      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
@@ -88,6 +104,7 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
         <ScreenDisplay color="#00FF00" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="green-screen" />
+      <RelatedTools currentToolId="green-screen" locale={locale as any} />
     </>
   );
 }

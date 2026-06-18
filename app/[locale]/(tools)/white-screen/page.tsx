@@ -8,6 +8,8 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
+import ColorScreenIntro from '@/components/tools/color-screen-intro';
+import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'white-screen')!;
 
@@ -86,6 +88,20 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
 
   return (
     <>
+      <ColorScreenIntro 
+        locale={locale} 
+        colorName="white" 
+        colorHex="#FFFFFF" 
+        colorLabel={translate(TOOL.nameKey as any)}
+        useCases={[
+          { en: 'Display testing and uniformity checks', fr: 'Test d\'affichage et vérification d\'uniformité' },
+          { en: 'Screen cleaning and dust detection', fr: 'Nettoyage d\'écran et détection de poussière' },
+          { en: 'Photography fill lighting', fr: 'Éclairage d\'appoint en photographie' },
+          { en: 'Brightness and flicker testing', fr: 'Test de luminosité et de scintillement' },
+          { en: 'Backlight bleeding detection', fr: 'Détection des fuites de rétroéclairage' },
+          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
+        ]}
+      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
@@ -98,6 +114,7 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
           <ScreenDisplay color="#FFFFFF" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="white-screen" />
+      <RelatedTools currentToolId="white-screen" locale={locale as any} />
     </>
   );
 }

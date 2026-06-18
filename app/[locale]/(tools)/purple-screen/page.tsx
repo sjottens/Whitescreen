@@ -8,6 +8,8 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
+import ColorScreenIntro from '@/components/tools/color-screen-intro';
+import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'purple-screen')!;
 
@@ -76,6 +78,20 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
 
   return (
     <>
+      <ColorScreenIntro 
+        locale={locale} 
+        colorName="purple" 
+        colorHex="#800080" 
+        colorLabel={translate(TOOL.nameKey as any)}
+        useCases={[
+          { en: 'Deep color saturation and accuracy testing', fr: 'Test de saturation profonde et de précision des couleurs' },
+          { en: 'Mid-tone color accuracy verification', fr: 'Vérification de la précision des couleurs de tons moyens' },
+          { en: 'Combined red and blue channel testing', fr: 'Test combiné des canaux rouge et bleu' },
+          { en: 'Video production color grading reference', fr: 'Référence d\'étalonnage des couleurs pour production vidéo' },
+          { en: 'Professional lighting reference', fr: 'Référence professionnelle d\'éclairage' },
+          { en: 'Color calibration and balance testing', fr: 'Test d\'étalonnage et d\'équilibre des couleurs' }
+        ]}
+      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
@@ -88,6 +104,7 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
         <ScreenDisplay color="#800080" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="purple-screen" />
+      <RelatedTools currentToolId="purple-screen" locale={locale as any} />
     </>
   );
 }

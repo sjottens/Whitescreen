@@ -182,6 +182,75 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
+      {/* Dead Pixel Fixer Banner - Premium CTA */}
+      <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950">
+        {/* Animated background effects */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#00DC82] rounded-full mix-blend-screen filter blur-3xl animate-float opacity-20" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl animate-pulse-glow opacity-20" />
+        </div>
+
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-[#00DC82]/20 to-cyan-500/20 border border-[#00DC82]/40 rounded-2xl p-8 md:p-12 backdrop-blur-sm hover:border-[#00DC82]/60 transition-all duration-300">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00DC82]/10 border border-[#00DC82]/50 mb-6">
+                <Sparkles className="w-4 h-4 text-[#00DC82]" />
+                <span className="text-xs font-bold text-[#00DC82] uppercase tracking-wider">New Tool</span>
+              </div>
+
+              {/* Main Content */}
+              <div className="mb-8">
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                  <span className="block text-white mb-2">Fix Your Screen</span>
+                  <span className="block bg-gradient-to-r from-[#00DC82] to-emerald-400 bg-clip-text text-transparent">Dead Pixel Fixer</span>
+                </h2>
+                <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
+                  Repair stuck pixels with our free online tool. Using advanced color stimulation and multiple repair modes, our Dead Pixel Fixer helps revive stuck pixels on LCD, LED, and OLED displays. Success rate: 10-40% for stuck pixels.
+                </p>
+              </div>
+
+              {/* Features List */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 py-6 border-t border-[#00DC82]/20">
+                <div className="flex gap-3">
+                  <Check className="w-5 h-5 text-[#00DC82] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-white">Multiple Modes</p>
+                    <p className="text-sm text-slate-400">RGB, RGB+White+Black, Random</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Check className="w-5 h-5 text-[#00DC82] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-white">Fullscreen Support</p>
+                    <p className="text-sm text-slate-400">Optimal coverage & immersion</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Check className="w-5 h-5 text-[#00DC82] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-white">Real-time Stats</p>
+                    <p className="text-sm text-slate-400">FPS & elapsed time tracking</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <div className="flex flex-col sm:flex-row gap-4 items-center">
+                <Link 
+                  href={getLocalizedPath(locale, '/dead-pixel-fixer')}
+                  className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#00DC82] to-emerald-500 text-white font-bold rounded-lg hover:shadow-[0_0_30px_rgba(0,220,130,0.4)] transition-all duration-300 hover:scale-105 group"
+                >
+                  <span>Launch Dead Pixel Fixer</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <p className="text-sm text-slate-400 whitespace-nowrap">100% Free • No Registration</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Monitor & Device Tests Section */}
       <section className="section-alt">
         <div className="container">
@@ -379,6 +448,89 @@ export default async function HomePage({ params }: HomePageProps) {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How to Fix Dead Pixels Section */}
+      <section className="section bg-gradient-to-r from-slate-900 to-slate-950">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#00DC82] to-[#1CED8F] bg-clip-text text-transparent">
+              {translate('dead_pixel_fix_title' as any)}
+            </h2>
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              {translate('dead_pixel_fix_intro' as any)}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {[
+              {
+                title: translate('dead_pixel_fix_method1_title' as any),
+                description: translate('dead_pixel_fix_method1_desc' as any),
+              },
+              {
+                title: translate('dead_pixel_fix_method2_title' as any),
+                description: translate('dead_pixel_fix_method2_desc' as any),
+              },
+              {
+                title: translate('dead_pixel_fix_method3_title' as any),
+                description: translate('dead_pixel_fix_method3_desc' as any),
+              },
+              {
+                title: translate('dead_pixel_fix_method4_title' as any),
+                description: translate('dead_pixel_fix_method4_desc' as any),
+              },
+            ].map((method, index) => (
+              <div
+                key={index}
+                className="glass glass-dark rounded-xl p-6 border border-slate-700/50 hover:border-[#00DC82]/30 transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="text-3xl font-bold text-[#00DC82] min-w-fit">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">{method.title}</h3>
+                    <p className="text-slate-300 leading-relaxed">{method.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-xl border border-[#00DC82]/30 bg-[#00DC82]/5 p-8 mb-8">
+            <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+              <Shield className="w-6 h-6 text-[#00DC82]" />
+              {translate('dead_pixel_fix_success_title' as any)}
+            </h3>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3 text-slate-300">
+                <Check className="w-5 h-5 text-[#00DC82] mt-1 flex-shrink-0" />
+                <span>{translate('dead_pixel_fix_success_note1' as any)}</span>
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <Check className="w-5 h-5 text-[#00DC82] mt-1 flex-shrink-0" />
+                <span>{translate('dead_pixel_fix_success_note2' as any)}</span>
+              </li>
+              <li className="flex items-start gap-3 text-slate-300">
+                <Check className="w-5 h-5 text-[#00DC82] mt-1 flex-shrink-0" />
+                <span>{translate('dead_pixel_fix_success_note3' as any)}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="text-center">
+            <LinkButton 
+              href={getLocalizedPath(locale, '/dead-pixel-test')} 
+              variant="primary" 
+              size="lg"
+              className="group"
+            >
+              {translate('dead_pixel_fix_cta' as any)}
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </LinkButton>
           </div>
         </div>
       </section>

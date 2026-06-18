@@ -8,6 +8,8 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
+import ColorScreenIntro from '@/components/tools/color-screen-intro';
+import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'red-screen')!;
 
@@ -76,6 +78,20 @@ export default async function RedScreenPage({ params }: { params: Promise<{ loca
 
   return (
     <>
+      <ColorScreenIntro 
+        locale={locale} 
+        colorName="red" 
+        colorHex="#FF0000" 
+        colorLabel={translate(TOOL.nameKey as any)}
+        useCases={[
+          { en: 'Red channel testing and response curves', fr: 'Test du canal rouge et courbes de réponse' },
+          { en: 'Red pixel defect detection', fr: 'Détection des défauts de pixels rouges' },
+          { en: 'Color separation and accuracy verification', fr: 'Vérification de la séparation et de la précision des couleurs' },
+          { en: 'Video production color grading', fr: 'Étalonnage des couleurs pour production vidéo' },
+          { en: 'Photography warm light fill', fr: 'Remplissage de lumière chaude en photographie' },
+          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
+        ]}
+      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
@@ -88,6 +104,7 @@ export default async function RedScreenPage({ params }: { params: Promise<{ loca
         <ScreenDisplay color="#FF0000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="red-screen" />
+      <RelatedTools currentToolId="red-screen" locale={locale as any} />
     </>
   );
 }

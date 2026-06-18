@@ -254,10 +254,10 @@ export default function LocaleBlogArticlePage({
                       {translate('blog_inline_cta_title' as any)}
                     </h3>
                     <p className="text-blue-800 text-sm mb-4">
-                      {displayToolCTAs[0]?.context}
+                      {displayToolCTAs.find((cta) => cta.placement === 'within-content')?.context}
                     </p>
                     <Link
-                      href={locale === 'en' ? '/tools' : `/${locale}/tools`}
+                      href={locale === 'en' ? `/${displayToolCTAs.find((cta) => cta.placement === 'within-content')?.toolSlug}` : `/${locale}/${displayToolCTAs.find((cta) => cta.placement === 'within-content')?.toolSlug}`}
                       className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
                     >
                       {translate('blog_inline_cta_button' as any)}
