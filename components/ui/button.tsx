@@ -1,4 +1,4 @@
-// components/ui/button.tsx - Reusable button component
+// components/ui/button.tsx - Modern button component with neon green theme
 
 import { ReactNode, MouseEvent } from 'react';
 import Link from 'next/link';
@@ -25,10 +25,10 @@ interface LinkButtonProps extends Omit<ButtonProps, 'onClick' | 'type'> {
 }
 
 const variantClasses = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-800 hover:text-white active:bg-blue-900 shadow-md hover:shadow-lg disabled:bg-blue-800 disabled:text-slate-100 disabled:shadow-none',
-  secondary: 'bg-slate-200 text-slate-900 hover:bg-slate-300 active:bg-slate-400 shadow-sm hover:shadow-md disabled:bg-slate-700 disabled:text-slate-100 disabled:shadow-none',
-  outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 active:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:border-slate-500 disabled:bg-slate-900/50 disabled:text-slate-200',
-  ghost: 'text-blue-600 hover:bg-blue-50 active:bg-blue-100 disabled:bg-transparent disabled:text-slate-400',
+  primary: 'bg-gradient-to-r from-[#00DC82] to-emerald-500 text-slate-900 font-semibold hover:from-[#1CED8F] hover:to-emerald-400 active:from-[#00B966] active:to-emerald-600 shadow-lg hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-105 disabled:from-slate-600 disabled:to-slate-600 disabled:text-slate-200 disabled:shadow-none disabled:scale-100',
+  secondary: 'bg-slate-800 text-slate-100 border border-slate-700 hover:bg-slate-700 hover:border-[#00DC82]/50 active:bg-slate-600 shadow-md disabled:bg-slate-700 disabled:text-slate-400 disabled:shadow-none',
+  outline: 'border-2 border-[#00DC82] text-[#00DC82] font-semibold hover:bg-[#00DC82] hover:text-slate-900 active:bg-emerald-600 active:border-emerald-600 shadow-md hover:shadow-lg hover:shadow-emerald-500/30 disabled:border-slate-600 disabled:bg-transparent disabled:text-slate-500',
+  ghost: 'text-slate-200 hover:bg-slate-800 hover:text-[#00DC82] active:bg-slate-700 disabled:bg-transparent disabled:text-slate-500',
 };
 
 const sizeClasses = {
@@ -52,7 +52,7 @@ export function Button({
         inline-flex items-center justify-center rounded-lg font-medium
         transition-all duration-200 whitespace-nowrap
         disabled:opacity-100 disabled:cursor-not-allowed
-        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00DC82]
         ${variantClasses[variant]}
         ${sizeClasses[size]}
         ${className}
@@ -81,7 +81,7 @@ export function LinkButton({
       className={`
         inline-flex items-center justify-center rounded-lg font-medium
         transition-all duration-200 whitespace-nowrap
-        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00DC82]
         ${variantClasses[variant]}
         ${sizeClasses[size]}
         ${className}

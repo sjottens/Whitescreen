@@ -1,15 +1,15 @@
-// app/[locale]/page.tsx - Locale-aware homepage
+// app/[locale]/page.tsx - Locale-aware homepage with modern design
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Check, Zap, Smartphone, Shield, Monitor, Gamepad2 } from 'lucide-react';
+import { ArrowRight, Check, Zap, Smartphone, Shield, Monitor, Gamepad2, Sparkles } from 'lucide-react';
 import { generateMultilingualMetadata, faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS } from '@/lib/constants';
 import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import { getLocalizedPath } from '@/lib/link-utils';
-import HeroThreeBackground from '@/components/ui/hero-three-background';
+import ModernHeroBackground from '@/components/ui/modern-hero-background';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -53,87 +53,130 @@ export default async function HomePage({ params }: HomePageProps) {
         suppressHydrationWarning
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-br from-slate-50 via-white to-cyan-50">
-        <HeroThreeBackground />
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-              {translate('hero_title')} <span className="text-cyan-600">{translate('tools')}</span>
+      {/* Hero Section - Modern Design */}
+      <section className="relative overflow-hidden py-20 md:py-32 bg-slate-950">
+        <ModernHeroBackground />
+        
+        {/* Gradient overlays for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950 pointer-events-none" />
+        
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Badge */}
+            <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#00DC82]/10 border border-[#00DC82]/30 mb-8 animate-fade-in-down">
+              <Sparkles className="w-4 h-4 text-[#00DC82]" />
+              <span className="text-sm font-semibold text-[#00DC82]">Modern • Award-Worthy • Next Generation</span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="hero-title text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+              <span className="block text-white">{translate('hero_title')}</span>
+              <span className="block bg-gradient-to-r from-[#00DC82] via-emerald-400 to-[#1CED8F] bg-clip-text text-transparent">
+                {translate('tools')}
+              </span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-700 mb-8 leading-relaxed">
+
+            {/* Subtitle */}
+            <p className="hero-subtitle text-lg md:text-2xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
               {translate('hero_subtitle')}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <LinkButton href={getLocalizedPath(locale, '/white-screen')} size="lg" variant="primary" className="sm:w-auto">
-                {translate('btn_start_testing')} <ArrowRight className="w-5 h-5 ml-2" />
+            <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center mb-16">
+              <LinkButton 
+                href={getLocalizedPath(locale, '/white-screen')} 
+                size="lg" 
+                variant="primary" 
+                className="sm:w-auto group"
+              >
+                {translate('btn_start_testing')} 
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </LinkButton>
-              <LinkButton href={getLocalizedPath(locale, '/tools')} size="lg" variant="outline" className="sm:w-auto">
+              <LinkButton 
+                href={getLocalizedPath(locale, '/tools')} 
+                size="lg" 
+                variant="outline" 
+                className="sm:w-auto"
+              >
                 {translate('btn_view_tools')}
               </LinkButton>
             </div>
 
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-4 justify-center text-sm text-slate-600">
+            {/* Trust Badges */}
+            <div className="glass glass-dark inline-flex flex-wrap gap-6 px-6 py-4 rounded-full">
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span>{translate('trust_free')}</span>
+                <Check className="w-5 h-5 text-[#00DC82]" />
+                <span className="text-sm text-slate-300">{translate('trust_free')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span>{translate('trust_no_registration')}</span>
+                <Check className="w-5 h-5 text-[#00DC82]" />
+                <span className="text-sm text-slate-300">{translate('trust_no_registration')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span>{translate('trust_open_source')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span>{translate('trust_users')}</span>
+                <Check className="w-5 h-5 text-[#00DC82]" />
+                <span className="text-sm text-slate-300">{translate('trust_open_source')}</span>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Animated gradient orbs */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/20 rounded-full mix-blend-screen filter blur-3xl animate-float opacity-20 pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#00DC82]/10 rounded-full mix-blend-screen filter blur-3xl animate-pulse-glow opacity-10 pointer-events-none" />
       </section>
 
-      {/* Featured Tools Grid */}
-      <section className="section">
+      {/* Featured Tools Grid - Modern Cards */}
+      <section className="section bg-gradient-to-b from-slate-950 to-slate-900">
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{translate('color_screens')}</h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
+              {translate('color_screens')}
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
               {translate('features_subtitle')}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {COLOR_TOOLS.slice(0, 4).map((tool) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {COLOR_TOOLS.slice(0, 4).map((tool, idx) => (
               <Link
                 key={tool.id}
                 href={getLocalizedPath(locale, tool.path)}
-                className="group relative h-48 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+                className="group card neon-glow overflow-hidden cursor-pointer transform transition-all duration-300 hover:-translate-y-1"
+                style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <div
-                  className="absolute inset-0 transition-transform duration-300 group-hover:scale-105"
-                  style={{ backgroundColor: tool.color }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white font-bold text-lg">{translate(tool.nameKey as any)}</h3>
-                  <p className="text-white/80 text-sm">{translate(tool.descriptionKey as any)}</p>
+                <div className="aspect-square relative overflow-hidden mb-4">
+                  <div
+                    className="absolute inset-0 transition-transform duration-300 group-hover:scale-110"
+                    style={{ backgroundColor: tool.color }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 </div>
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowRight className="w-5 h-5 text-white" />
+                <div className="relative">
+                  <h3 className="font-bold text-lg text-white mb-2 group-hover:text-[#00DC82] transition-colors">
+                    {translate(tool.nameKey as any)}
+                  </h3>
+                  <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors line-clamp-2">
+                    {translate(tool.descriptionKey as any)}
+                  </p>
+                  <div className="mt-4 flex items-center text-[#00DC82] opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-sm font-semibold mr-2">Explore</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <LinkButton href={getLocalizedPath(locale, '/tools')} variant="outline" size="lg">
+          <div className="text-center">
+            <LinkButton 
+              href={getLocalizedPath(locale, '/tools')} 
+              variant="outline" 
+              size="lg"
+              className="group"
+            >
               {translate('browse_all_tools').replace('{count}', String(COLOR_TOOLS.length + TEST_TOOLS.length))}
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </LinkButton>
           </div>
         </div>
