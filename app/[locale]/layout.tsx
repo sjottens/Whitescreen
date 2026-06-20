@@ -27,7 +27,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const locale = await getLocaleFromParams(params);
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header locale={locale} />
       <main id="main-content" className="flex-1 w-full">
         {children}

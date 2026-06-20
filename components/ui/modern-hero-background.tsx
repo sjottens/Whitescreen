@@ -128,7 +128,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 -z-10 ${className}`}
+      className={`fixed inset-0 -z-10 overflow-hidden ${className}`}
       style={{ pointerEvents: 'none' }}
     />
   );
