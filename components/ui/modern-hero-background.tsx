@@ -23,9 +23,12 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     sceneRef.current = scene;
 
     // Camera setup
+    const width = containerRef.current.clientWidth || window.innerWidth;
+    const height = containerRef.current.clientHeight || window.innerHeight;
+
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      width / height,
       0.1,
       1000
     );
@@ -38,9 +41,10 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
       alpha: true,
       precision: 'highp'
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
+    renderer.domElement.style.maxWidth = '100%';
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
@@ -87,12 +91,12 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     // Handle window resize
     const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const w = containerRef.current?.clientWidth || window.innerWidth;
+      const h = containerRef.current?.clientHeight || window.innerHeight;
 
-      camera.aspect = width / height;
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
+      renderer.setSize(w, h);
     };
 
     window.addEventListener('resize', handleResize);

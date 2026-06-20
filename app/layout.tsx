@@ -4,7 +4,7 @@
 // This prevents duplicate headers/footers
 
 import { ReactNode } from 'react';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Manrope, Space_Grotesk } from 'next/font/google';
 
@@ -27,6 +27,11 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   preload: true,
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
