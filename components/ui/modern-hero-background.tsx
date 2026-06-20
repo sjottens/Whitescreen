@@ -18,34 +18,43 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Always use the true device viewport dimensions
+    const getSize = () => ({
+      w: window.innerWidth,
+      h: window.innerHeight,
+    });
+
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
     // Camera setup
-    const width = containerRef.current.clientWidth || window.innerWidth;
-    const height = containerRef.current.clientHeight || window.innerHeight;
+    const { w: initW, h: initH } = getSize();
 
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      width / height,
-      0.1,
-      1000
-    );
+    const camera = new THREE.PerspectiveCamera(75, initW / initH, 0.1, 1000);
     camera.position.z = 50;
     cameraRef.current = camera;
 
-    // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+    // Renderer setup — pass `false` so Three.js doesn't override canvas CSS styles
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
       alpha: true,
-      precision: 'highp'
+      precision: 'highp',
     });
-    renderer.setSize(width, height);
+    renderer.setSize(initW, initH, false);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
-    renderer.domElement.style.maxWidth = '100%';
-    containerRef.current.appendChild(renderer.domElement);
+
+    // Pin the canvas to fill its fixed container via CSS, not via pixel dimensions
+    const canvas = renderer.domElement;
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
+
+    containerRef.current.appendChild(canvas);
     rendererRef.current = renderer;
 
     // Create particles with neon green color
@@ -91,12 +100,10 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     // Handle window resize
     const handleResize = () => {
-      const w = containerRef.current?.clientWidth || window.innerWidth;
-      const h = containerRef.current?.clientHeight || window.innerHeight;
-
+      const { w, h } = getSize();
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      renderer.setSize(w, h, false);
     };
 
     window.addEventListener('resize', handleResize);
@@ -132,7 +139,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 -z-10 overflow-hidden ${className}`}
+      className={`fixed inset-0 -z-10 ${className}`}
       style={{ pointerEvents: 'none' }}
     />
   );

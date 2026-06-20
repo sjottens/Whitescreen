@@ -54,11 +54,11 @@ export default async function HomePage({ params }: HomePageProps) {
       />
 
       {/* Hero Section - Modern Design */}
-      <section className="relative overflow-hidden py-20 md:py-32 bg-slate-950">
+      <section className="relative overflow-hidden py-20 md:py-32">
         <ModernHeroBackground />
         
         {/* Gradient overlays for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/30 to-slate-950/80 pointer-events-none" />
         
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -69,7 +69,7 @@ export default async function HomePage({ params }: HomePageProps) {
             </div>
 
             {/* Main Heading */}
-            <h1 className="hero-title text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+            <h1 className="hero-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-tight">
               <span className="block text-white">{translate('hero_title')}</span>
               <span className="block bg-gradient-to-r from-[#00DC82] via-emerald-400 to-[#1CED8F] bg-clip-text text-transparent">
                 {translate('tools')}
@@ -126,7 +126,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* Featured Tools Grid - Modern Cards */}
-      <section className="section bg-gradient-to-b from-slate-950 to-slate-900">
+      <section className="section bg-gradient-to-b from-slate-950/80 to-slate-900/90">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
