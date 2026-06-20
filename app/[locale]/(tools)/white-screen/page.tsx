@@ -93,14 +93,7 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
         colorName="white" 
         colorHex="#FFFFFF" 
         colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Display testing and uniformity checks', fr: 'Test d\'affichage et vérification d\'uniformité' },
-          { en: 'Screen cleaning and dust detection', fr: 'Nettoyage d\'écran et détection de poussière' },
-          { en: 'Photography fill lighting', fr: 'Éclairage d\'appoint en photographie' },
-          { en: 'Brightness and flicker testing', fr: 'Test de luminosité et de scintillement' },
-          { en: 'Backlight bleeding detection', fr: 'Détection des fuites de rétroéclairage' },
-          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
-        ]}
+        useCases={translatedUseCases}
       />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}

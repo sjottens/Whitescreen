@@ -83,14 +83,7 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
         colorName="green" 
         colorHex="#00FF00" 
         colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Green channel testing and response curves', fr: 'Test du canal vert et courbes de réponse' },
-          { en: 'Green pixel defect detection', fr: 'Détection des défauts de pixels verts' },
-          { en: 'Chroma key green screen for video production', fr: 'Écran vert chroma key pour production vidéo' },
-          { en: 'Color separation and accuracy verification', fr: 'Vérification de la séparation et de la précision des couleurs' },
-          { en: 'Professional lighting reference', fr: 'Référence professionnelle d\'éclairage' },
-          { en: 'Color calibration and balance testing', fr: 'Test d\'étalonnage et d\'équilibre des couleurs' }
-        ]}
+        useCases={translatedUseCases}
       />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}

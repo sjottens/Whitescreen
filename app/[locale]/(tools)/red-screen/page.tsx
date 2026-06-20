@@ -83,14 +83,7 @@ export default async function RedScreenPage({ params }: { params: Promise<{ loca
         colorName="red" 
         colorHex="#FF0000" 
         colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Red channel testing and response curves', fr: 'Test du canal rouge et courbes de réponse' },
-          { en: 'Red pixel defect detection', fr: 'Détection des défauts de pixels rouges' },
-          { en: 'Color separation and accuracy verification', fr: 'Vérification de la séparation et de la précision des couleurs' },
-          { en: 'Video production color grading', fr: 'Étalonnage des couleurs pour production vidéo' },
-          { en: 'Photography warm light fill', fr: 'Remplissage de lumière chaude en photographie' },
-          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
-        ]}
+        useCases={translatedUseCases}
       />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}

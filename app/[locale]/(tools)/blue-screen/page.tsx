@@ -86,14 +86,7 @@ export default async function BlueScreenPage({ params }: { params: Promise<{ loc
         colorName="blue" 
         colorHex="#0000FF" 
         colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Blue channel testing and response curves', fr: 'Test du canal bleu et courbes de réponse' },
-          { en: 'Blue pixel defect detection', fr: 'Détection des défauts de pixels bleus' },
-          { en: 'Chroma key blue screen for video production', fr: 'Écran bleu chroma key pour production vidéo' },
-          { en: 'Color separation and accuracy verification', fr: 'Vérification de la séparation et de la précision des couleurs' },
-          { en: 'Professional lighting and color reference', fr: 'Référence d\'éclairage et de couleur professionnels' },
-          { en: 'Color calibration and balance testing', fr: 'Test d\'étalonnage et d\'équilibre des couleurs' }
-        ]}
+        useCases={translatedUseCases}
       />
       <ToolLayout
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

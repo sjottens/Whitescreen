@@ -83,14 +83,7 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
         colorName="pink" 
         colorHex="#FF1493" 
         colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Light color rendering and accuracy testing', fr: 'Test du rendu et de la précision des couleurs claires' },
-          { en: 'Tonal gradation and mid-tone accuracy', fr: 'Gradation tonale et précision des tons moyens' },
-          { en: 'Soft lighting reference for photography', fr: 'Référence d\'éclairage doux en photographie' },
-          { en: 'Color balance in vibrant tones', fr: 'Équilibre des couleurs dans les tons vibrants' },
-          { en: 'Display quality and uniformity verification', fr: 'Vérification de la qualité et de l\'uniformité de l\'affichage' },
-          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
-        ]}
+        useCases={translatedUseCases}
       />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}

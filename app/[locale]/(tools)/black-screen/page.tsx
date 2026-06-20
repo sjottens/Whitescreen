@@ -95,14 +95,7 @@ export default async function BlackScreenPage({ params }: PageProps) {
         colorName="black" 
         colorHex="#000000" 
         colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Dead pixel detection on dark backgrounds', fr: 'Détection des pixels morts sur fonds sombres' },
-          { en: 'Testing contrast and visibility', fr: 'Test du contraste et de la visibilité' },
-          { en: 'Dark scene rendering verification', fr: 'Vérification du rendu des scènes sombres' },
-          { en: 'Screen uniformity in black levels', fr: 'Uniformité de l\'écran aux niveaux de noir' },
-          { en: 'Video production lighting reference', fr: 'Référence d\'éclairage pour production vidéo' },
-          { en: 'OLED burn-in prevention testing', fr: 'Test de prévention du burn-in OLED' }
-        ]}
+        useCases={translatedUseCases}
       />
       <ToolLayout
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -83,14 +83,7 @@ export default async function YellowScreenPage({ params }: { params: Promise<{ l
         colorName="yellow" 
         colorHex="#FFFF00" 
         colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Warm color rendering and accuracy testing', fr: 'Test du rendu et de la précision des couleurs chaudes' },
-          { en: 'Combined red and green channel verification', fr: 'Vérification combinée des canaux rouge et vert' },
-          { en: 'Brightness and luminance uniformity checks', fr: 'Vérification de l\'uniformité de la luminosité et de la luminance' },
-          { en: 'Video production lighting reference', fr: 'Référence d\'éclairage pour production vidéo' },
-          { en: 'Photography warm light fill', fr: 'Remplissage de lumière chaude en photographie' },
-          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
-        ]}
+        useCases={translatedUseCases}
       />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}

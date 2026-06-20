@@ -83,14 +83,7 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
         colorName="purple" 
         colorHex="#800080" 
         colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Deep color saturation and accuracy testing', fr: 'Test de saturation profonde et de précision des couleurs' },
-          { en: 'Mid-tone color accuracy verification', fr: 'Vérification de la précision des couleurs de tons moyens' },
-          { en: 'Combined red and blue channel testing', fr: 'Test combiné des canaux rouge et bleu' },
-          { en: 'Video production color grading reference', fr: 'Référence d\'étalonnage des couleurs pour production vidéo' },
-          { en: 'Professional lighting reference', fr: 'Référence professionnelle d\'éclairage' },
-          { en: 'Color calibration and balance testing', fr: 'Test d\'étalonnage et d\'équilibre des couleurs' }
-        ]}
+        useCases={translatedUseCases}
       />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
