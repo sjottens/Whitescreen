@@ -13,6 +13,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     { path: '/', changeFrequency: 'weekly' as const, priority: 1 },
     { path: '/tools', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/monitor-test-tool', changeFrequency: 'weekly' as const, priority: 0.95 },
+    { path: '/stuck-pixel-fix', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/screen-color-test', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/backlight-bleed-test', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/about', changeFrequency: 'monthly' as const, priority: 0.7 },
     { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.7 },
     { path: '/privacy', changeFrequency: 'yearly' as const, priority: 0.5 },

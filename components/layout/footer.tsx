@@ -18,7 +18,7 @@ export default function Footer({ locale }: FooterProps) {
     <footer className="bg-slate-900 text-slate-100 border-t border-slate-800">
       {/* Main Footer Content */}
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <h3 className="text-white font-bold text-lg mb-4">{SITE_NAME}</h3>
@@ -53,6 +53,38 @@ export default function Footer({ locale }: FooterProps) {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* SEO Tool Cluster */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">{translate('footer_seo_tools_title' as any)}</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href={getLocalizedPath(locale, '/monitor-test-tool')} className="text-white hover:text-blue-400 transition-colors text-sm">
+                  {translate('monitor_test_tool' as any)}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/stuck-pixel-fix')} className="text-white hover:text-cyan-400 transition-colors text-sm">
+                  {translate('stuck_pixel_fix' as any)}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/screen-color-test')} className="text-white hover:text-green-400 transition-colors text-sm">
+                  {translate('screen_color_test' as any)}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/backlight-bleed-test')} className="text-white hover:text-yellow-400 transition-colors text-sm">
+                  {translate('backlight_bleed_test' as any)}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/dead-pixel-fixer')} className="text-white hover:text-red-400 transition-colors text-sm">
+                  {translate('dead_pixel_fixer' as any)}
+                </Link>
+              </li>
             </ul>
           </div>
 
