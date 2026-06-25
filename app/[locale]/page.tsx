@@ -123,7 +123,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* Featured Tools Grid - Modern Cards */}
-      <section className="section bg-gradient-to-b from-slate-950 to-slate-900">
+      <section className="section bg-gradient-to-b from-slate-950 to-slate-900 content-auto">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
@@ -180,7 +180,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* Dead Pixel Fixer Banner - Premium CTA */}
-      <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950">
+      <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 content-auto">
         {/* Animated background effects */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#00DC82] rounded-full mix-blend-screen filter blur-3xl animate-float opacity-20" />
@@ -249,7 +249,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* Monitor & Device Tests Section */}
-      <section className="section-alt">
+      <section className="section-alt content-auto">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">{translate('monitor_tests')}</h2>
@@ -370,7 +370,7 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </div>
       </section>
-      <section className="section-alt">
+      <section className="section-alt content-auto">
         <div className="container">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">{translate('features_title')}</h2>
 
@@ -406,7 +406,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* Use Cases Section */}
-      <section className="section">
+      <section className="section content-auto">
         <div className="container">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">{translate('use_cases_title')}</h2>
 
@@ -450,7 +450,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* How to Fix Dead Pixels Section */}
-      <section className="section bg-gradient-to-r from-slate-900 to-slate-950">
+      <section className="section bg-gradient-to-r from-slate-900 to-slate-950 content-auto">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#00DC82] to-[#1CED8F] bg-clip-text text-transparent">
@@ -533,7 +533,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* New Tools & Resources Section */}
-      <section className="section">
+      <section className="section content-auto">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">🛠️ {translate('home_tools_resources_title' as any)}</h2>
@@ -632,7 +632,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="section-alt">
+      <section className="section-alt content-auto">
         <div className="container max-w-3xl">
           <div className="text-center">
             <h2 className="text-4xl font-bold mb-4">{translate('cta_ready_title')}</h2>
