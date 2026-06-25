@@ -7,35 +7,31 @@ interface DeadPixelIntroProps {
 }
 
 export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
-  const isEn = locale === 'en';
-
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
       <div className="container">
         {/* Main Intro */}
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 gradient-text">
-            {isEn ? 'Dead Pixel Test & Detector' : 'Test Pixel Mort'}
+            Dead Pixel Test & Detector
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl leading-relaxed mb-6">
-            {isEn
-              ? 'Use our free dead pixel detector to identify stuck pixels, dead pixels, and hot pixels on your display. This comprehensive test cycles through multiple color backgrounds to make defective pixels highly visible.'
-              : 'Utilisez notre détecteur gratuit de pixels morts pour identifier les pixels coincés, morts et chauds sur votre écran.'}
+            Use our free dead pixel detector to identify stuck pixels, dead pixels, and hot pixels on your display. This comprehensive test cycles through multiple color backgrounds to make defective pixels highly visible.
           </p>
 
           {/* Quick Stats */}
           <div className="grid md:grid-cols-3 gap-4 mb-8">
             <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
               <div className="text-emerald-400 font-bold text-2xl mb-1">100%</div>
-              <p className="text-slate-300 text-sm">{isEn ? 'Free to Use' : 'Gratuit'}</p>
+              <p className="text-slate-300 text-sm">Free to Use</p>
             </div>
             <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
               <div className="text-emerald-400 font-bold text-2xl mb-1">16 Colors</div>
-              <p className="text-slate-300 text-sm">{isEn ? 'Comprehensive Detection' : 'Détection Complète'}</p>
+              <p className="text-slate-300 text-sm">Comprehensive Detection</p>
             </div>
             <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
               <div className="text-emerald-400 font-bold text-2xl mb-1">Instant</div>
-              <p className="text-slate-300 text-sm">{isEn ? 'Results in Seconds' : 'Résultats Instantanés'}</p>
+              <p className="text-slate-300 text-sm">Results in Seconds</p>
             </div>
           </div>
         </div>
@@ -44,7 +40,7 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
             <AlertCircle className="w-8 h-8 text-emerald-400" />
-            {isEn ? 'What Are Dead Pixels?' : 'Que Sont les Pixels Morts?'}
+            What Are Dead Pixels?
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -52,17 +48,15 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
             <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6 backdrop-blur hover:border-emerald-500/50 transition-colors">
               <div className="flex items-center gap-3 mb-4">
                 <XCircle className="w-6 h-6 text-red-400" />
-                <h3 className="text-xl font-bold text-white">{isEn ? 'Dead Pixels' : 'Pixels Morts'}</h3>
+                <h3 className="text-xl font-bold text-white">Dead Pixels</h3>
               </div>
               <p className="text-slate-300 mb-4">
-                {isEn
-                  ? 'Pixels that are not receiving power and appear as small dark/black dots on your display. They fail to illuminate regardless of color changes.'
-                  : 'Pixels qui ne reçoivent pas d\'alimentation et apparaissent comme de petits points noirs.'}
+                Pixels that are not receiving power and appear as small dark/black dots on your display. They fail to illuminate regardless of color changes.
               </p>
               <ul className="space-y-2 text-slate-400">
-                <li>• {isEn ? 'Appear as black or dark spots' : 'Apparaissent en noir'}</li>
-                <li>• {isEn ? 'Permanent defect (hard to fix)' : 'Défaut permanent'}</li>
-                <li>• {isEn ? 'More common than stuck pixels' : 'Plus commun que les pixels coincés'}</li>
+                <li>• Appear as black or dark spots</li>
+                <li>• Permanent defect (hard to fix)</li>
+                <li>• More common than stuck pixels</li>
               </ul>
             </div>
 
@@ -70,17 +64,15 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
             <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6 backdrop-blur hover:border-emerald-500/50 transition-colors">
               <div className="flex items-center gap-3 mb-4">
                 <CheckCircle className="w-6 h-6 text-blue-400" />
-                <h3 className="text-xl font-bold text-white">{isEn ? 'Stuck Pixels' : 'Pixels Coincés'}</h3>
+                <h3 className="text-xl font-bold text-white">Stuck Pixels</h3>
               </div>
               <p className="text-slate-300 mb-4">
-                {isEn
-                  ? 'Pixels "stuck" in the ON position, displaying a single color (usually red, green, or blue). They may respond to physical pressure or heat.'
-                  : 'Pixels "coincés" en position ON, affichant une seule couleur.'}
+                Pixels "stuck" in the ON position, displaying a single color (usually red, green, or blue). They may respond to physical pressure or heat.
               </p>
               <ul className="space-y-2 text-slate-400">
-                <li>• {isEn ? 'Appear as colored dots (RGB)' : 'Apparaissent comme des points colorés'}</li>
-                <li>• {isEn ? 'Sometimes fixable with tools/methods' : 'Parfois réparables'}</li>
-                <li>• {isEn ? 'Less common but more noticeable' : 'Moins commun mais plus visible'}</li>
+                <li>• Appear as colored dots (RGB)</li>
+                <li>• Sometimes fixable with tools/methods</li>
+                <li>• Less common but more noticeable</li>
               </ul>
             </div>
           </div>
@@ -89,7 +81,7 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
         {/* Pixel Types */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-white mb-6">
-            {isEn ? 'Types of Defective Pixels' : 'Types de Pixels Défectueux'}
+            Types of Defective Pixels
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -98,9 +90,9 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
               <div className="w-full h-24 bg-white rounded mb-4 flex items-center justify-center">
                 <div className="w-2 h-2 bg-black rounded-full shadow-md"></div>
               </div>
-              <h4 className="font-bold text-white mb-2">{isEn ? 'Black Dead Pixel' : 'Pixel Noir Mort'}</h4>
+              <h4 className="font-bold text-white mb-2">Black Dead Pixel</h4>
               <p className="text-sm text-slate-400">
-                {isEn ? 'Appears on colored backgrounds' : 'Apparaît sur fond coloré'}
+                Appears on colored backgrounds
               </p>
             </div>
 
@@ -109,9 +101,9 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
               <div className="w-full h-24 bg-white rounded mb-4 flex items-center justify-center">
                 <div className="w-2 h-2 bg-red-500 rounded-full shadow-md"></div>
               </div>
-              <h4 className="font-bold text-white mb-2">{isEn ? 'Red Stuck Pixel' : 'Pixel Rouge Coincé'}</h4>
+              <h4 className="font-bold text-white mb-2">Red Stuck Pixel</h4>
               <p className="text-sm text-slate-400">
-                {isEn ? 'Stuck on red subpixel' : 'Coincé sur le sous-pixel rouge'}
+                Stuck on red subpixel
               </p>
             </div>
 
@@ -120,9 +112,9 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
               <div className="w-full h-24 bg-white rounded mb-4 flex items-center justify-center">
                 <div className="w-2 h-2 bg-green-500 rounded-full shadow-md"></div>
               </div>
-              <h4 className="font-bold text-white mb-2">{isEn ? 'Green Stuck Pixel' : 'Pixel Vert Coincé'}</h4>
+              <h4 className="font-bold text-white mb-2">Green Stuck Pixel</h4>
               <p className="text-sm text-slate-400">
-                {isEn ? 'Stuck on green subpixel' : 'Coincé sur le sous-pixel vert'}
+                Stuck on green subpixel
               </p>
             </div>
 
@@ -131,9 +123,9 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
               <div className="w-full h-24 bg-white rounded mb-4 flex items-center justify-center">
                 <div className="w-2 h-2 bg-blue-500 rounded-full shadow-md"></div>
               </div>
-              <h4 className="font-bold text-white mb-2">{isEn ? 'Blue Stuck Pixel' : 'Pixel Bleu Coincé'}</h4>
+              <h4 className="font-bold text-white mb-2">Blue Stuck Pixel</h4>
               <p className="text-sm text-slate-400">
-                {isEn ? 'Stuck on blue subpixel' : 'Coincé sur le sous-pixel bleu'}
+                Stuck on blue subpixel
               </p>
             </div>
           </div>
@@ -142,7 +134,7 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
         {/* How to Use */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-white mb-6">
-            {isEn ? 'How to Use This Dead Pixel Test' : 'Comment Utiliser ce Test'}
+            How to Use This Dead Pixel Test
           </h2>
 
           <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-8 backdrop-blur">
@@ -152,11 +144,9 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
                   1
                 </span>
                 <div>
-                  <h4 className="font-bold text-white mb-1">{isEn ? 'Clean Your Screen' : 'Nettoyez Votre Écran'}</h4>
+                  <h4 className="font-bold text-white mb-1">Clean Your Screen</h4>
                   <p className="text-slate-300">
-                    {isEn
-                      ? 'Use a soft, lint-free cloth to gently clean your screen. Remove any dust or smudges.'
-                      : 'Utilisez un chiffon doux pour nettoyer votre écran.'}
+                    Use a soft, lint-free cloth to gently clean your screen. Remove any dust or smudges.
                   </p>
                 </div>
               </li>
@@ -165,11 +155,9 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
                   2
                 </span>
                 <div>
-                  <h4 className="font-bold text-white mb-1">{isEn ? 'Start the Test' : 'Commencez le Test'}</h4>
+                  <h4 className="font-bold text-white mb-1">Start the Test</h4>
                   <p className="text-slate-300">
-                    {isEn
-                      ? 'Click "Start Test" and press F11 for fullscreen mode (recommended for best results).'
-                      : 'Cliquez sur "Démarrer le Test" et appuyez sur F11.'}
+                    Click "Start Test" and press F11 for fullscreen mode (recommended for best results).
                   </p>
                 </div>
               </li>
@@ -179,12 +167,10 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
                 </span>
                 <div>
                   <h4 className="font-bold text-white mb-1">
-                    {isEn ? 'Look Carefully' : 'Regardez Attentivement'}
+                    Look Carefully
                   </h4>
                   <p className="text-slate-300">
-                    {isEn
-                      ? 'Spend 10-15 seconds on each color. Look for spots that don\'t match the background color.'
-                      : 'Passez 10-15 secondes par couleur. Recherchez des taches.'}
+                    Spend 10-15 seconds on each color. Look for spots that don't match the background color.
                   </p>
                 </div>
               </li>
@@ -193,11 +179,9 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
                   4
                 </span>
                 <div>
-                  <h4 className="font-bold text-white mb-1">{isEn ? 'Document Issues' : 'Documentez les Problèmes'}</h4>
+                  <h4 className="font-bold text-white mb-1">Document Issues</h4>
                   <p className="text-slate-300">
-                    {isEn
-                      ? 'Take photos of any dead pixels found. Note their location for warranty claims.'
-                      : 'Prenez des photos pour les réclamations en garantie.'}
+                    Take photos of any dead pixels found. Note their location for warranty claims.
                   </p>
                 </div>
               </li>
@@ -208,35 +192,27 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
         {/* FAQ Section */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-white mb-6">
-            {isEn ? 'Frequently Asked Questions' : 'Questions Fréquemment Posées'}
+            Frequently Asked Questions
           </h2>
 
           <div className="space-y-4">
             {[
               {
-                q: isEn ? 'Can dead pixels be fixed?' : 'Les pixels morts peuvent-ils être réparés?',
-                a: isEn
-                  ? 'Dead pixels are usually permanent hardware failures. Stuck pixels sometimes respond to software fixes or physical pressure, but dead pixels cannot be repaired.'
-                  : 'Les pixels morts sont généralement des défauts permanents.',
+                q: 'Can dead pixels be fixed?',
+                a: 'Dead pixels are usually permanent hardware failures. Stuck pixels sometimes respond to software fixes or physical pressure, but dead pixels cannot be repaired.'
               },
               {
-                q: isEn ? 'How many dead pixels are acceptable?' : 'Combien de pixels morts sont acceptables?',
-                a: isEn
-                  ? 'Most manufacturers allow 0-8 dead pixels depending on the warranty terms. Check your warranty for specifics.'
-                  : 'La plupart acceptent 0-8 pixels morts selon la garantie.',
+                q: 'How many dead pixels are acceptable?',
+                a: 'Most manufacturers allow 0-8 dead pixels depending on the warranty terms. Check your warranty for specifics.'
               },
               {
-                q: isEn ? 'Is this test accurate?' : 'Ce test est-il précis?',
-                a: isEn
-                  ? 'Yes, this is a comprehensive color-cycling test that makes defective pixels highly visible. It\'s the most effective method for detecting dead and stuck pixels.'
-                  : 'Oui, c\'est une méthode efficace pour détecter les pixels défectueux.',
+                q: 'Is this test accurate?',
+                a: 'Yes, this is a comprehensive color-cycling test that makes defective pixels highly visible. It\'s the most effective method for detecting dead and stuck pixels.'
               },
               {
-                q: isEn ? 'Why do I need fullscreen mode?' : 'Pourquoi avez-vous besoin du mode plein écran?',
-                a: isEn
-                  ? 'Fullscreen mode ensures you\'re testing the entire display surface and eliminates distractions from the browser UI.'
-                  : 'Le mode plein écran teste toute la surface d\'affichage.',
-              },
+                q: 'Why do I need fullscreen mode?',
+                a: 'Fullscreen mode ensures you\'re testing the entire display surface and eliminates distractions from the browser UI.'
+              }
             ].map((faq, idx) => (
               <div key={idx} className="bg-slate-900/50 border border-slate-700 rounded-lg p-6 backdrop-blur">
                 <h3 className="font-bold text-white mb-3">{faq.q}</h3>
@@ -249,17 +225,13 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
         {/* Warranty Info */}
         <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/30 rounded-lg p-8 backdrop-blur">
           <h2 className="text-2xl font-bold text-white mb-4">
-            {isEn ? '💡 Warranty Information' : '💡 Information de Garantie'}
+            💡 Warranty Information
           </h2>
           <p className="text-slate-300 mb-4">
-            {isEn
-              ? 'If you find dead pixels within your warranty period, contact the manufacturer with documented evidence (photos). Most manufacturers cover 0-8 dead pixels. Premium displays often have stricter standards.'
-              : 'Si vous trouvez des pixels morts, contactez le fabricant avec des preuves documentées.'}
+            If you find dead pixels within your warranty period, contact the manufacturer with documented evidence (photos). Most manufacturers cover 0-8 dead pixels. Premium displays often have stricter standards.
           </p>
           <p className="text-slate-400 text-sm">
-            {isEn
-              ? 'Common manufacturers: Dell, LG, ASUS, BenQ, Samsung, HP, AOC, MSI'
-              : 'Fabricants courants: Dell, LG, ASUS, BenQ, Samsung, HP, AOC, MSI'}
+            Common manufacturers: Dell, LG, ASUS, BenQ, Samsung, HP, AOC, MSI
           </p>
         </div>
       </div>

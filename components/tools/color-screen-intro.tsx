@@ -9,7 +9,7 @@ interface ColorScreenIntroProps {
   colorName: string;
   colorHex: string;
   colorLabel: string;
-  useCases?: Array<{ en: string; fr: string }>;
+  useCases?: Array<{ text?: string; en?: string; fr?: string }>;
 }
 
 export default function ColorScreenIntro({ locale, colorName, colorHex, colorLabel }: ColorScreenIntroProps) {
