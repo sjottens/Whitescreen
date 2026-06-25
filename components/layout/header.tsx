@@ -17,8 +17,12 @@ interface HeaderProps {
 export default function Header({ locale }: HeaderProps) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Set initial mobile state
+    setIsMobile(window.innerWidth < 768);
+
     let ticking = false;
 
     const handleScroll = () => {
@@ -43,14 +47,26 @@ export default function Header({ locale }: HeaderProps) {
       }
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      // Always show header on mobile
+      if (window.innerWidth < 768) {
+        setIsHeaderVisible(true);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, [lastScrollY]);
 
   return (
     <header
-      className={`sticky top-0 z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 hidden md:block ${
-        isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+      className={`sticky top-0 z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
+        isMobile || isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
       <div className="container py-4 md:py-3">
