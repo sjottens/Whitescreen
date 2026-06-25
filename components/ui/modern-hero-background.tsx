@@ -41,14 +41,13 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    // Camera setup - use visualViewport for better mobile support
-    const width = window.visualViewport?.width || window.innerWidth;
-    const height = window.visualViewport?.height || window.innerHeight;
-    const aspect = width / height;
+    // Use actual window dimensions for reliable sizing
+    let width = window.innerWidth;
+    let height = window.innerHeight;
     
     const camera = new THREE.PerspectiveCamera(
       75,
-      aspect,
+      width / height,
       0.1,
       1000
     );
@@ -78,6 +77,20 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     renderer.domElement.style.touchAction = 'none';
     
     containerRef.current.appendChild(renderer.domElement);
+    
+    // After appending, get actual dimensions and recalculate if needed
+    const actualWidth = window.innerWidth;
+    const actualHeight = window.innerHeight;
+    const actualAspect = actualWidth / actualHeight;
+    
+    if (Math.abs(actualAspect - (width / height)) > 0.01) {
+      width = actualWidth;
+      height = actualHeight;
+      camera.aspect = actualAspect;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+    
     rendererRef.current = renderer;
 
     // Create particles with neon green color
@@ -87,10 +100,9 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     const posArray = new Float32Array(particleCount * 3);
 
     // Calculate visible area at camera Z distance to prevent distortion
-    // Formula: visibleHeight = 2 * tan(FOV/2) * Z
     const FOV = camera.fov * Math.PI / 180;
     const visibleHeight = 2 * Math.tan(FOV / 2) * cameraZ;
-    const visibleWidth = visibleHeight * aspect;
+    const visibleWidth = visibleHeight * (width / height);
     
     // Scale particle field to fit camera view with padding
     const fieldScaleX = visibleWidth * 0.9;
@@ -137,17 +149,30 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     // Handle window resize
     const handleResize = () => {
-      const newWidth = window.visualViewport?.width || window.innerWidth;
-      const newHeight = window.visualViewport?.height || window.innerHeight;
-      const newAspect = newWidth / newHeight;
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
 
-      camera.aspect = newAspect;
+      camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(newWidth, newHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.5 : 2));
     };
 
     window.addEventListener('resize', handleResize);
+
+    // Handle zoom events via visualViewport
+    const handleViewportResize = () => {
+      const newWidth = window.visualViewport?.width || window.innerWidth;
+      const newHeight = window.visualViewport?.height || window.innerHeight;
+
+      camera.aspect = newWidth / newHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleViewportResize);
+    }
 
     // Mouse interaction for interactivity (desktop only - touch would be better for mobile)
     const handleMouseMove = (e: MouseEvent) => {
@@ -170,6 +195,9 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleViewportResize);
+      }
       if (containerRef.current && renderer.domElement.parentNode === containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
       }
