@@ -41,9 +41,9 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    // Camera setup - optimized for both desktop and mobile
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    // Camera setup - use visualViewport for better mobile support
+    const width = window.visualViewport?.width || window.innerWidth;
+    const height = window.visualViewport?.height || window.innerHeight;
     const camera = new THREE.PerspectiveCamera(
       75,
       width / height,
@@ -73,6 +73,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     renderer.domElement.style.height = '100%';
     renderer.domElement.style.margin = '0';
     renderer.domElement.style.padding = '0';
+    renderer.domElement.style.touchAction = 'none';
     
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
@@ -127,8 +128,8 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     // Handle window resize
     const handleResize = () => {
-      const newWidth = window.innerWidth;
-      const newHeight = window.innerHeight;
+      const newWidth = window.visualViewport?.width || window.innerWidth;
+      const newHeight = window.visualViewport?.height || window.innerHeight;
       const newIsMobile = newWidth < 768;
 
       camera.aspect = newWidth / newHeight;
@@ -174,7 +175,12 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     <div
       ref={containerRef}
       className={`fixed inset-0 -z-30 overflow-hidden ${className}`}
-      style={{ pointerEvents: 'none' }}
+      style={{ 
+        pointerEvents: 'none',
+        touchAction: 'none',
+        WebkitTouchCallout: 'none',
+        WebkitUserSelect: 'none',
+      }}
     />
   );
 }
