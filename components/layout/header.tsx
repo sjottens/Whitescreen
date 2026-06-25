@@ -27,24 +27,17 @@ export default function Header({ locale }: HeaderProps) {
       setIsDesktop(desktop);
 
       // Ensure predictable state after breakpoint changes.
-      if (!desktop) {
-        setIsHeaderVisible(true);
-      } else {
-        setIsHeaderVisible(true);
-        lastScrollYRef.current = window.scrollY;
-      }
+      setIsHeaderVisible(true);
+      lastScrollYRef.current = window.scrollY;
     };
 
     syncViewportMode();
 
     const handleScroll = () => {
-      if (!isDesktopViewport()) {
-        return;
-      }
-
       const currentScrollY = window.scrollY;
       const previousScrollY = lastScrollYRef.current;
       const delta = currentScrollY - previousScrollY;
+      const desktop = isDesktopViewport();
 
       // Always show near top.
       if (currentScrollY <= 80) {
@@ -54,7 +47,7 @@ export default function Header({ locale }: HeaderProps) {
       }
 
       // Ignore tiny movements to avoid jitter.
-      if (Math.abs(delta) <= 2) {
+      if (Math.abs(delta) <= (desktop ? 2 : 4)) {
         return;
       }
 
@@ -74,9 +67,9 @@ export default function Header({ locale }: HeaderProps) {
   return (
     <header
       className={`z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
-        isDesktop
-          ? `fixed top-0 left-0 right-0 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`
-          : 'sticky top-0'
+        isDesktop ? 'fixed top-0 left-0 right-0' : 'sticky top-0'
+      } ${
+        isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
       <div className="container py-4 md:py-3">
