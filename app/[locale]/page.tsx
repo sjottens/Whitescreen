@@ -54,7 +54,7 @@ export default async function HomePage({ params }: HomePageProps) {
       />
 
       {/* Hero Section - Modern Design */}
-      <section className="relative overflow-hidden py-20 md:py-32 bg-slate-950">
+      <section className="relative overflow-hidden py-20 md:py-32">
         <ModernHeroBackground />
         
         {/* Gradient overlays for depth - positioned below particles */}
