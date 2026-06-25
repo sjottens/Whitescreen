@@ -119,13 +119,14 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     // Create material with neon green and circular texture
     const particlesMaterial = new THREE.PointsMaterial({
-      size: isMobile ? 0.6 : 0.5,
+      size: isMobile ? 2.5 : 2.0,
       color: 0x00DC82,
       map: texture,
       sizeAttenuation: true,
       transparent: true,
       opacity: isMobile ? 0.95 : 0.9,
       depthWrite: false,
+      alphaTest: 0.001,
     });
 
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
