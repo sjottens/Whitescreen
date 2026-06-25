@@ -21,6 +21,22 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     // Detect if mobile
     const isMobile = window.innerWidth < 768;
 
+    // Create circular particle texture
+    const canvas = document.createElement('canvas');
+    canvas.width = 64;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      // Create circular gradient
+      const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.8)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 64, 64);
+    }
+    const texture = new THREE.CanvasTexture(canvas);
+
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
@@ -71,13 +87,15 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
-    // Create material with neon green
+    // Create material with neon green and circular texture
     const particlesMaterial = new THREE.PointsMaterial({
-      size: isMobile ? 0.4 : 0.3,
+      size: isMobile ? 0.6 : 0.5,
       color: 0x00DC82,
+      map: texture,
       sizeAttenuation: true,
       transparent: true,
-      opacity: isMobile ? 0.9 : 0.8,
+      opacity: isMobile ? 0.95 : 0.9,
+      depthWrite: false,
     });
 
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -139,6 +157,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
       }
       particlesGeometry.dispose();
       particlesMaterial.dispose();
+      texture.dispose();
       renderer.dispose();
     };
   }, []);
@@ -146,7 +165,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 -z-10 ${className}`}
+      className={`fixed inset-0 -z-30 ${className}`}
       style={{ pointerEvents: 'none' }}
     />
   );

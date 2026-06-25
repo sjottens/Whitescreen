@@ -57,8 +57,8 @@ export default async function HomePage({ params }: HomePageProps) {
       <section className="relative overflow-hidden py-20 md:py-32 bg-slate-950">
         <ModernHeroBackground />
         
-        {/* Gradient overlays for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950 pointer-events-none" />
+        {/* Gradient overlays for depth - positioned below particles */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/30 to-slate-950 pointer-events-none -z-20" />
         
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
