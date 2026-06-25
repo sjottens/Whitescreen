@@ -66,6 +66,14 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.setClearColor(0x000000, 0);
+    
+    // Ensure canvas doesn't cause horizontal scroll on mobile
+    renderer.domElement.style.display = 'block';
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    renderer.domElement.style.margin = '0';
+    renderer.domElement.style.padding = '0';
+    
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
@@ -165,7 +173,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 -z-30 ${className}`}
+      className={`fixed inset-0 -z-30 overflow-hidden ${className}`}
       style={{ pointerEvents: 'none' }}
     />
   );
