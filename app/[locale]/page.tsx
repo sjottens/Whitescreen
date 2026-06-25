@@ -69,11 +69,8 @@ export default async function HomePage({ params }: HomePageProps) {
             </div>
 
             {/* Main Heading */}
-            <h1 className="hero-title text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+            <h1 className="hero-title text-[2rem] md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
               <span className="block text-white">{translate('hero_title')}</span>
-              <span className="block bg-gradient-to-r from-[#00DC82] via-emerald-400 to-[#1CED8F] bg-clip-text text-transparent">
-                {translate('tools')}
-              </span>
             </h1>
 
             {/* Subtitle */}
