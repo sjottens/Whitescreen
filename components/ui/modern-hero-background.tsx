@@ -18,52 +18,66 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Detect if mobile
+    const isMobile = window.innerWidth < 768;
+
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    // Camera setup
+    // Camera setup - optimized for both desktop and mobile
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      width / height,
       0.1,
       1000
     );
-    camera.position.z = 50;
+    
+    // Adjust camera position for mobile vs desktop
+    // Mobile needs closer camera for better particle visibility
+    camera.position.z = isMobile ? 35 : 50;
     cameraRef.current = camera;
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true, 
       alpha: true,
-      precision: 'highp'
+      precision: 'highp',
+      powerPreference: isMobile ? 'low-power' : 'high-performance'
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.setClearColor(0x000000, 0);
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Create particles with neon green color
     const particlesGeometry = new THREE.BufferGeometry();
-    const particleCount = 1000;
+    // Reduce particle count on mobile for better performance
+    const particleCount = isMobile ? 400 : 1000;
     const posArray = new Float32Array(particleCount * 3);
 
+    // Scale particle field based on viewport aspect ratio
+    const fieldScale = isMobile ? 60 : 100;
+    const fieldDepth = isMobile ? 80 : 100;
+
     for (let i = 0; i < particleCount * 3; i += 3) {
-      posArray[i] = (Math.random() - 0.5) * 100;
-      posArray[i + 1] = (Math.random() - 0.5) * 100;
-      posArray[i + 2] = (Math.random() - 0.5) * 100;
+      posArray[i] = (Math.random() - 0.5) * fieldScale;
+      posArray[i + 1] = (Math.random() - 0.5) * fieldScale;
+      posArray[i + 2] = (Math.random() - 0.5) * fieldDepth;
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
     // Create material with neon green
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.3,
+      size: isMobile ? 0.4 : 0.3,
       color: 0x00DC82,
       sizeAttenuation: true,
       transparent: true,
-      opacity: 0.8,
+      opacity: isMobile ? 0.9 : 0.8,
     });
 
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -74,10 +88,10 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Rotate particles
+      // Rotate particles - slower on mobile to reduce jank
       if (particlesRef.current) {
-        particlesRef.current.rotation.x += 0.0002;
-        particlesRef.current.rotation.y += 0.0003;
+        particlesRef.current.rotation.x += isMobile ? 0.0001 : 0.0002;
+        particlesRef.current.rotation.y += isMobile ? 0.00015 : 0.0003;
       }
 
       renderer.render(scene, camera);
@@ -87,19 +101,21 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     // Handle window resize
     const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+      const newIsMobile = newWidth < 768;
 
-      camera.aspect = width / height;
+      camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
+      renderer.setSize(newWidth, newHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, newIsMobile ? 1.5 : 2));
     };
 
     window.addEventListener('resize', handleResize);
 
-    // Mouse interaction for interactivity
+    // Mouse interaction for interactivity (desktop only - touch would be better for mobile)
     const handleMouseMove = (e: MouseEvent) => {
-      if (!particlesRef.current) return;
+      if (!particlesRef.current || isMobile) return;
 
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -118,7 +134,9 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
-      containerRef.current?.removeChild(renderer.domElement);
+      if (containerRef.current && renderer.domElement.parentNode === containerRef.current) {
+        containerRef.current.removeChild(renderer.domElement);
+      }
       particlesGeometry.dispose();
       particlesMaterial.dispose();
       renderer.dispose();
