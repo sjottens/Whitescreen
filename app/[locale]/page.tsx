@@ -592,7 +592,7 @@ export default async function HomePage({ params }: HomePageProps) {
           {/* Comparisons Callout */}
           <div className="mt-12 rounded-2xl border border-cyan-500/30 bg-slate-950/90 p-8 shadow-2xl shadow-cyan-950/40">
             <div className="text-center mb-6">
-              <h3 className="text-3xl font-bold mb-3 text-slate-100">📊 {translate('compare_page_title')}</h3>
+              <h3 className="text-3xl font-bold mb-3 text-slate-100 break-all">📊 {translate('compare_page_title')}</h3>
               <p className="text-slate-300 mb-6">
                 {translate('home_compare_callout_desc' as any)}
               </p>
