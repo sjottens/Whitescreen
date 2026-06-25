@@ -18,43 +18,55 @@ export default function Header({ locale }: HeaderProps) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isDesktop, setIsDesktop] = useState(false);
   const lastScrollYRef = useRef(0);
+  const tickingRef = useRef(false);
 
   useEffect(() => {
     const syncViewportMode = () => {
-      const desktop = window.innerWidth >= 768;
+      const desktop = window.matchMedia('(min-width: 768px)').matches;
       setIsDesktop(desktop);
+
+      // Reset visibility state when switching viewport mode.
       if (!desktop) {
         setIsHeaderVisible(true);
+      } else {
+        setIsHeaderVisible(true);
+        lastScrollYRef.current = window.scrollY;
       }
     };
 
     syncViewportMode();
 
-    let ticking = false;
-
     const handleScroll = () => {
-      if (!isDesktop) {
+      if (!window.matchMedia('(min-width: 768px)').matches) {
         return;
       }
 
-      if (!ticking) {
+      if (!tickingRef.current) {
+        tickingRef.current = true;
+
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          const scrollDifference = Math.abs(currentScrollY - lastScrollYRef.current);
+          const previousScrollY = lastScrollYRef.current;
+
+          // Keep visible near top for predictable UX.
+          if (currentScrollY <= 80) {
+            setIsHeaderVisible(true);
+            lastScrollYRef.current = currentScrollY;
+            tickingRef.current = false;
+            return;
+          }
+
+          const scrollDifference = Math.abs(currentScrollY - previousScrollY);
 
           // Only update if scroll difference is significant (prevent jitter)
           if (scrollDifference > 5) {
-            // Show header when scrolling up or at top of page
-            const isScrollingUp = currentScrollY < lastScrollYRef.current;
-            const isAtTop = currentScrollY < 80;
-
-            setIsHeaderVisible(isScrollingUp || isAtTop);
+            const isScrollingUp = currentScrollY < previousScrollY;
+            setIsHeaderVisible(isScrollingUp);
             lastScrollYRef.current = currentScrollY;
           }
 
-          ticking = false;
+          tickingRef.current = false;
         });
-        ticking = true;
       }
     };
 
@@ -69,8 +81,10 @@ export default function Header({ locale }: HeaderProps) {
 
   return (
     <header
-      className={`sticky top-0 z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
-        isDesktop && !isHeaderVisible ? '-translate-y-full' : 'translate-y-0'
+      className={`z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
+        isDesktop
+          ? `fixed top-0 left-0 right-0 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`
+          : 'sticky top-0'
       }`}
     >
       <div className="container py-4 md:py-3">

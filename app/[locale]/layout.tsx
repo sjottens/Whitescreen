@@ -29,6 +29,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header locale={locale} />
+      <div className="hidden md:block h-[76px]" aria-hidden="true" />
       <main id="main-content" className="flex-1 w-full">
         {children}
       </main>
