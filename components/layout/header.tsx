@@ -18,14 +18,15 @@ export default function Header({ locale }: HeaderProps) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isDesktop, setIsDesktop] = useState(false);
   const lastScrollYRef = useRef(0);
-  const tickingRef = useRef(false);
 
   useEffect(() => {
+    const isDesktopViewport = () => window.matchMedia('(min-width: 768px)').matches;
+
     const syncViewportMode = () => {
-      const desktop = window.matchMedia('(min-width: 768px)').matches;
+      const desktop = isDesktopViewport();
       setIsDesktop(desktop);
 
-      // Reset visibility state when switching viewport mode.
+      // Ensure predictable state after breakpoint changes.
       if (!desktop) {
         setIsHeaderVisible(true);
       } else {
@@ -37,37 +38,28 @@ export default function Header({ locale }: HeaderProps) {
     syncViewportMode();
 
     const handleScroll = () => {
-      if (!window.matchMedia('(min-width: 768px)').matches) {
+      if (!isDesktopViewport()) {
         return;
       }
 
-      if (!tickingRef.current) {
-        tickingRef.current = true;
+      const currentScrollY = window.scrollY;
+      const previousScrollY = lastScrollYRef.current;
+      const delta = currentScrollY - previousScrollY;
 
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          const previousScrollY = lastScrollYRef.current;
-
-          // Keep visible near top for predictable UX.
-          if (currentScrollY <= 80) {
-            setIsHeaderVisible(true);
-            lastScrollYRef.current = currentScrollY;
-            tickingRef.current = false;
-            return;
-          }
-
-          const scrollDifference = Math.abs(currentScrollY - previousScrollY);
-
-          // Only update if scroll difference is significant (prevent jitter)
-          if (scrollDifference > 5) {
-            const isScrollingUp = currentScrollY < previousScrollY;
-            setIsHeaderVisible(isScrollingUp);
-            lastScrollYRef.current = currentScrollY;
-          }
-
-          tickingRef.current = false;
-        });
+      // Always show near top.
+      if (currentScrollY <= 80) {
+        setIsHeaderVisible(true);
+        lastScrollYRef.current = currentScrollY;
+        return;
       }
+
+      // Ignore tiny movements to avoid jitter.
+      if (Math.abs(delta) <= 2) {
+        return;
+      }
+
+      setIsHeaderVisible(delta < 0);
+      lastScrollYRef.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -77,7 +69,7 @@ export default function Header({ locale }: HeaderProps) {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', syncViewportMode);
     };
-  }, [isDesktop]);
+  }, []);
 
   return (
     <header
