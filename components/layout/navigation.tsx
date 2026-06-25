@@ -98,7 +98,7 @@ export default function Navigation({ locale }: NavigationProps) {
 
             {/* Language Selector - Mobile */}
             <div className="px-4 py-3">
-              <LanguageSelector locale={locale} currentPath={cleanPath} />
+              <LanguageSelector locale={locale} currentPath={cleanPath} onSelect={() => setIsOpen(false)} />
             </div>
 
             {/* CTA Button */}

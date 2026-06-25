@@ -12,11 +12,17 @@ import { t } from '@/lib/translations';
 interface LanguageSelectorProps {
   locale: Locale;
   currentPath: string;
+  onSelect?: () => void;
 }
 
-export default function LanguageSelector({ locale, currentPath }: LanguageSelectorProps) {
+export default function LanguageSelector({ locale, currentPath, onSelect }: LanguageSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const translate = t(locale);
+
+  const handleSelect = () => {
+    setIsOpen(false);
+    onSelect?.();
+  };
 
   const languages: Array<{ locale: Locale; code: string; name: string }> = [
     { locale: 'en', code: 'EN', name: 'English' },
@@ -56,7 +62,7 @@ export default function LanguageSelector({ locale, currentPath }: LanguageSelect
                     ? 'bg-cyan-500 text-slate-950 font-semibold'
                     : 'text-slate-100 hover:bg-slate-800'
                 }`}
-                onClick={() => setIsOpen(false)}
+                onClick={handleSelect}
               >
                 <div className="font-medium">{language.name}</div>
                 <div className={`text-xs ${isActive ? 'text-slate-900/80' : 'text-slate-400'}`}>
