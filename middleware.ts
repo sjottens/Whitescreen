@@ -27,8 +27,13 @@ export function middleware(request: NextRequest) {
   }
 
   // 2. REJECT /en/ prefix (prevent duplicate content)
+  // Hard reject: 301 redirect all /en/* paths to canonical root paths
   if (pathname.startsWith('/en/') || pathname === '/en') {
-    return NextResponse.redirect(new URL(pathname.replace(/^\/en/, '') || '/', request.url), { status: 301 });
+    const redirectPath = pathname.replace(/^\/en/, '') || '/';
+    const response = NextResponse.redirect(new URL(redirectPath, request.url), { status: 301 });
+    // Add X-Robots-Tag as redundant safety to prevent Google from indexing this redirect
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return response;
   }
 
   // 3. Get user's preferred locale for root paths
