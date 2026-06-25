@@ -18,7 +18,7 @@ export default function Header({ locale }: HeaderProps) {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href={getLocalizedPath(locale, '/')} className="group flex items-center gap-3 focus-ring">
-            <Logo />
+            <Logo locale={locale} />
             <span className="text-xl md:text-2xl font-bold text-slate-100 transition-colors group-hover:text-cyan-300">
               {SITE_NAME}
             </span>

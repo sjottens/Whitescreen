@@ -103,7 +103,7 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
       >
         <ScreenDisplay color="#800080" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
-      <GuideSection toolId="purple-screen" />
+      <GuideSection toolId="purple-screen" locale={locale as any} />
       <RelatedTools currentToolId="purple-screen" locale={locale as any} />
     </>
   );

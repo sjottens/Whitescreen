@@ -1,9 +1,14 @@
 // components/ui/logo.tsx - Optimized SVG logo component
 
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
-export default function Logo() {
-  const translate = t('en');
+interface LogoProps {
+  locale?: Locale;
+}
+
+export default function Logo({ locale = 'en' }: LogoProps) {
+  const translate = t(locale);
 
   return (
     <svg

@@ -117,7 +117,7 @@ export default async function BlackScreenPage({ params }: PageProps) {
       >
         <ScreenDisplay color="#000000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
-      <GuideSection toolId="black-screen" />
+      <GuideSection toolId="black-screen" locale={locale as any} />
       <RelatedTools currentToolId="black-screen" locale={locale as any} />
     </>
   );

@@ -2,9 +2,14 @@
 'use client';
 
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
-export default function SkipButton() {
-  const translate = t('en');
+interface SkipButtonProps {
+  locale?: Locale;
+}
+
+export default function SkipButton({ locale = 'en' }: SkipButtonProps) {
+  const translate = t(locale);
 
   const handleClick = () => {
     const main = document.getElementById('main-content');

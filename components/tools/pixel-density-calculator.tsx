@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
 interface PixelDensityResult {
   ppi: number;
@@ -10,8 +11,12 @@ interface PixelDensityResult {
   quality: string;
 }
 
-export default function PixelDensityCalculator() {
-  const translate = t('en');
+interface PixelDensityCalculatorProps {
+  locale?: Locale;
+}
+
+export default function PixelDensityCalculator({ locale = 'en' }: PixelDensityCalculatorProps) {
+  const translate = t(locale);
   const [horizontalPixels, setHorizontalPixels] = useState<number>(2560);
   const [verticalPixels, setVerticalPixels] = useState<number>(1440);
   const [diagonalInches, setDiagonalInches] = useState<number>(27);

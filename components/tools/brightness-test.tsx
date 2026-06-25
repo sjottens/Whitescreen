@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, RotateCcw, Play, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
 type TestMode = 'desktop' | 'mobile';
 type DisplayMode = 'gradient' | 'ladder' | 'bars' | 'flicker';
@@ -29,8 +30,12 @@ const GRAY_LEVELS: GrayLevel[] = [
   { name: '100% (White)', percentage: 100, hex: '#FFFFFF', rgb: '255, 255, 255' },
 ];
 
-export default function BrightnessTest() {
-  const translate = t('en');
+interface BrightnessTestProps {
+  locale?: Locale;
+}
+
+export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
+  const translate = t(locale);
   const [testMode, setTestMode] = useState<TestMode>('desktop');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('ladder');
   const [currentLevelIndex, setCurrentLevelIndex] = useState(5); // Start at 50%

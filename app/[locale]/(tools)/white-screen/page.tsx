@@ -113,7 +113,7 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
       >
           <ScreenDisplay color="#FFFFFF" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
-      <GuideSection toolId="white-screen" />
+      <GuideSection toolId="white-screen" locale={locale as any} />
       <RelatedTools currentToolId="white-screen" locale={locale as any} />
     </>
   );

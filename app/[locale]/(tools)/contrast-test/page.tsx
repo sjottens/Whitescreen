@@ -53,9 +53,9 @@ export default async function ContrastTestPage({ params }: { params: Promise<{ l
         locale={locale}
         toolName={translate(TOOL.nameKey as any)}
       >
-        <ContrastTest />
+        <ContrastTest locale={locale as any} />
       </ToolLayout>
-      <GuideSection toolId="contrast-test" />
+      <GuideSection toolId="contrast-test" locale={locale as any} />
       <RelatedTools currentToolId="contrast-test" locale={locale as any} />
     </>
   );

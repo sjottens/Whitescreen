@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Maximize2, RotateCcw, Copy, Check } from 'lucide-react';
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
 type TestMode = 'wcag-ladder' | 'text-readability' | 'pattern' | 'custom-pair';
 type VisionMode = 'normal' | 'deuteranopia' | 'protanopia' | 'tritanopia' | 'achromatopsia';
@@ -137,8 +138,12 @@ const VISION_FILTERS: Record<VisionMode, { name: string }> = {
   achromatopsia: { name: 'Achromatopsia (Monochrome)' },
 };
 
-export default function ContrastTest() {
-  const translate = t('en');
+interface ContrastTestProps {
+  locale?: Locale;
+}
+
+export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
+  const translate = t(locale);
   const [testMode, setTestMode] = useState<TestMode>('wcag-ladder');
   const [currentPairIndex, setCurrentPairIndex] = useState(0);
   const [visionMode, setVisionMode] = useState<VisionMode>('normal');

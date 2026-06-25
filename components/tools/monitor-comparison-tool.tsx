@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
 interface Monitor {
   name: string;
@@ -14,6 +15,10 @@ interface Monitor {
   responseTime: string;
   brightness: string;
   contrast: string;
+}
+
+interface MonitorComparisonToolProps {
+  locale?: Locale;
 }
 
 const PRESET_MONITORS: Monitor[] = [
@@ -79,8 +84,8 @@ const PRESET_MONITORS: Monitor[] = [
   },
 ];
 
-export default function MonitorComparisonTool() {
-  const translate = t('en');
+export default function MonitorComparisonTool({ locale = 'en' }: MonitorComparisonToolProps) {
+  const translate = t(locale);
   const [monitor1, setMonitor1] = useState<Monitor | null>(PRESET_MONITORS[0]);
   const [monitor2, setMonitor2] = useState<Monitor | null>(PRESET_MONITORS[1]);
   const [monitor3, setMonitor3] = useState<Monitor | null>(PRESET_MONITORS[4]);

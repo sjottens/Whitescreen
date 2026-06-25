@@ -53,9 +53,9 @@ export default async function BrightnessTestPage({ params }: { params: Promise<{
         locale={locale}
         toolName={translate(TOOL.nameKey as any)}
       >
-        <BrightnessTest />
+        <BrightnessTest locale={locale as any} />
       </ToolLayout>
-      <GuideSection toolId="brightness-test" />
+      <GuideSection toolId="brightness-test" locale={locale as any} />
       <RelatedTools currentToolId="brightness-test" locale={locale as any} />
     </>
   );

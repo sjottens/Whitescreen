@@ -103,7 +103,7 @@ export default async function RedScreenPage({ params }: { params: Promise<{ loca
       >
         <ScreenDisplay color="#FF0000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
-      <GuideSection toolId="red-screen" />
+      <GuideSection toolId="red-screen" locale={locale as any} />
       <RelatedTools currentToolId="red-screen" locale={locale as any} />
     </>
   );

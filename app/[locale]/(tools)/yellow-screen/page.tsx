@@ -103,7 +103,7 @@ export default async function YellowScreenPage({ params }: { params: Promise<{ l
       >
         <ScreenDisplay color="#FFFF00" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
-      <GuideSection toolId="yellow-screen" />
+      <GuideSection toolId="yellow-screen" locale={locale as any} />
       <RelatedTools currentToolId="yellow-screen" locale={locale as any} />
     </>
   );

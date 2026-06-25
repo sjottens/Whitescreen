@@ -103,7 +103,7 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
       >
         <ScreenDisplay color="#FF1493" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
-      <GuideSection toolId="pink-screen" />
+      <GuideSection toolId="pink-screen" locale={locale as any} />
       <RelatedTools currentToolId="pink-screen" locale={locale as any} />
     </>
   );

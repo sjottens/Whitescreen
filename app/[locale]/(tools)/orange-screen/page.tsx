@@ -103,7 +103,7 @@ export default async function OrangeScreenPage({ params }: { params: Promise<{ l
       >
         <ScreenDisplay color="#FFA500" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
-      <GuideSection toolId="orange-screen" />
+      <GuideSection toolId="orange-screen" locale={locale as any} />
       <RelatedTools currentToolId="orange-screen" locale={locale as any} />
     </>
   );

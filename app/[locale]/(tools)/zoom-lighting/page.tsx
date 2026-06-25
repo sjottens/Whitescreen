@@ -67,7 +67,7 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
           </div>
         </section>
       </ToolLayout>
-      <GuideSection toolId="zoom-lighting" />
+      <GuideSection toolId="zoom-lighting" locale={locale as any} />
     </>
   );
 }

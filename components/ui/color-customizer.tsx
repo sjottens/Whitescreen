@@ -4,19 +4,22 @@ import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
 interface ColorCustomizerProps {
   colorId: string;
   defaultColor: string;
   onColorChange: (color: string) => void;
+  locale?: Locale;
 }
 
 export function ColorCustomizer({
   colorId,
   defaultColor,
   onColorChange,
+  locale = 'en',
 }: ColorCustomizerProps) {
-  const translate = t('en');
+  const translate = t(locale);
   const [baseColor, setBaseColor] = useState(defaultColor);
   const [customColor, setCustomColor] = useState(defaultColor);
   const [hexInput, setHexInput] = useState(defaultColor);

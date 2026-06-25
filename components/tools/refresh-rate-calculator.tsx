@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
 interface GPUSpec {
   name: string;
@@ -12,6 +13,10 @@ interface GPUSpec {
 interface CPUSpec {
   name: string;
   tier: 'entry' | 'mid' | 'high' | 'ultra';
+}
+
+interface RefreshRateCalculatorProps {
+  locale?: Locale;
 }
 
 const GPU_OPTIONS: GPUSpec[] = [
@@ -50,8 +55,8 @@ const CPU_OPTIONS: CPUSpec[] = [
   { name: 'AMD Ryzen 5 5500', tier: 'entry' },
 ];
 
-export default function RefreshRateCalculator() {
-  const translate = t('en');
+export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalculatorProps) {
+  const translate = t(locale);
   const [selectedGPU, setSelectedGPU] = useState<GPUSpec | null>(GPU_OPTIONS[0]);
   const [selectedCPU, setSelectedCPU] = useState<CPUSpec | null>(CPU_OPTIONS[0]);
   const [recommendation, setRecommendation] = useState<number>(60);

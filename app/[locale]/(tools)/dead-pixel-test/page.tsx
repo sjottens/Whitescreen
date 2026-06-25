@@ -116,11 +116,11 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
         locale={locale}
         toolName={translate(TOOL.nameKey as any)}
       >
-        <DeadPixelTest />
+        <DeadPixelTest locale={locale as any} />
       </ToolLayout>
 
       {/* Detailed Guide */}
-      <GuideSection toolId="dead-pixel-test" />
+      <GuideSection toolId="dead-pixel-test" locale={locale} />
 
       {/* Related Tools for Internal Linking & Engagement */}
       <RelatedTools currentToolId="dead-pixel-test" locale={locale} />

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
 
 type TestMode = 'desktop' | 'mobile';
 type AspectRatio = '16:9' | '18:9' | '19.5:9' | '20:9' | '21:9' | '4:3';
@@ -35,8 +36,8 @@ const ASPECT_RATIOS: { ratio: AspectRatio; label: string }[] = [
   { ratio: '4:3', label: 'iPad/Tablets' },
 ];
 
-export default function DeadPixelTest() {
-  const translate = t('en');
+export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
+  const translate = t(locale);
   const [testMode, setTestMode] = useState<TestMode>('desktop');
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);

@@ -108,7 +108,7 @@ export default async function BlueScreenPage({ params }: { params: Promise<{ loc
       >
         <ScreenDisplay color="#0000FF" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
-      <GuideSection toolId="blue-screen" />
+      <GuideSection toolId="blue-screen" locale={locale as any} />
       <RelatedTools currentToolId="blue-screen" locale={locale as any} />
     </>
   );
