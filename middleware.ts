@@ -14,16 +14,23 @@ const DEFAULT_LOCALE = 'en';
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const preferredLocaleCookie = request.cookies.get('preferred-locale')?.value;
 
   // 1. Check if already has non-English locale prefix
-  const hasLocalePrefix = SUPPORTED_LOCALES.some(
+  const matchedLocalePrefix = SUPPORTED_LOCALES.find(
     (locale) =>
       locale !== DEFAULT_LOCALE &&
       (pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
   );
 
-  if (hasLocalePrefix) {
-    return NextResponse.next();
+  if (matchedLocalePrefix) {
+    const response = NextResponse.next();
+    response.cookies.set('preferred-locale', matchedLocalePrefix, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: 'lax',
+    });
+    return response;
   }
 
   // 2. REJECT /en/ prefix (prevent duplicate content)
@@ -33,6 +40,11 @@ export function middleware(request: NextRequest) {
     const response = NextResponse.redirect(new URL(redirectPath, request.url), { status: 301 });
     // Add X-Robots-Tag as redundant safety to prevent Google from indexing this redirect
     response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    response.cookies.set('preferred-locale', DEFAULT_LOCALE, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: 'lax',
+    });
     return response;
   }
 
@@ -44,7 +56,12 @@ export function middleware(request: NextRequest) {
 
   let userLocale = DEFAULT_LOCALE;
 
-  if (!isCrawler) {
+  const cookieLocale = SUPPORTED_LOCALES.find((locale) => locale === preferredLocaleCookie);
+  if (cookieLocale) {
+    userLocale = cookieLocale;
+  }
+
+  if (!isCrawler && !cookieLocale) {
     const [primaryLang] = acceptLanguage.split(',')[0].split('-');
     const localeMatch = SUPPORTED_LOCALES.find(
       (locale) => locale === primaryLang && locale !== DEFAULT_LOCALE

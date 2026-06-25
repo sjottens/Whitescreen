@@ -3,7 +3,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SITE_NAME } from '@/lib/constants';
 import { getLocalizedPath } from '@/lib/link-utils';
 import Navigation from './navigation';
@@ -16,29 +16,40 @@ interface HeaderProps {
 
 export default function Header({ locale }: HeaderProps) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
-    // Set initial mobile state
-    setIsMobile(window.innerWidth < 768);
+    const syncViewportMode = () => {
+      const desktop = window.innerWidth >= 768;
+      setIsDesktop(desktop);
+      if (!desktop) {
+        setIsHeaderVisible(true);
+      }
+    };
+
+    syncViewportMode();
 
     let ticking = false;
 
     const handleScroll = () => {
+      if (!isDesktop) {
+        return;
+      }
+
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          const scrollDifference = Math.abs(currentScrollY - lastScrollY);
+          const scrollDifference = Math.abs(currentScrollY - lastScrollYRef.current);
 
           // Only update if scroll difference is significant (prevent jitter)
           if (scrollDifference > 5) {
             // Show header when scrolling up or at top of page
-            const isScrollingUp = currentScrollY < lastScrollY;
+            const isScrollingUp = currentScrollY < lastScrollYRef.current;
             const isAtTop = currentScrollY < 80;
 
             setIsHeaderVisible(isScrollingUp || isAtTop);
-            setLastScrollY(currentScrollY);
+            lastScrollYRef.current = currentScrollY;
           }
 
           ticking = false;
@@ -47,28 +58,19 @@ export default function Header({ locale }: HeaderProps) {
       }
     };
 
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      // Always show header on mobile
-      if (window.innerWidth < 768) {
-        setIsHeaderVisible(true);
-      }
-    };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('resize', syncViewportMode, { passive: true });
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', syncViewportMode);
     };
-  }, [lastScrollY]);
+  }, [isDesktop]);
 
   return (
     <header
-      className={`z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
-        isMobile 
-          ? 'sticky top-0'
-          : `fixed top-0 left-0 right-0 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`
+      className={`sticky top-0 z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
+        isDesktop && !isHeaderVisible ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
       <div className="container py-4 md:py-3">
