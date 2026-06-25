@@ -16,16 +16,12 @@ interface HeaderProps {
 
 export default function Header({ locale }: HeaderProps) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [isDesktop, setIsDesktop] = useState(false);
   const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const isDesktopViewport = () => window.matchMedia('(min-width: 768px)').matches;
 
     const syncViewportMode = () => {
-      const desktop = isDesktopViewport();
-      setIsDesktop(desktop);
-
       // Ensure predictable state after breakpoint changes.
       setIsHeaderVisible(true);
       lastScrollYRef.current = window.scrollY;
@@ -66,9 +62,7 @@ export default function Header({ locale }: HeaderProps) {
 
   return (
     <header
-      className={`z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
-        isDesktop ? 'fixed top-0 left-0 right-0' : 'sticky top-0'
-      } ${
+      className={`fixed top-0 left-0 right-0 z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
