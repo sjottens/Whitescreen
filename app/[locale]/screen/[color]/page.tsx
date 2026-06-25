@@ -22,12 +22,14 @@ interface PageProps {
 }
 
 /**
- * Generate static params for all non-default locales
- * English pages serve at root (/screen/{color}), other locales at /{locale}/screen/{color}
+ * Generate static params for all locales
+ * Includes English pages at /en/screen/{color} paths (for middleware rewrites from root)
+ * Also generates non-default locales at /{locale}/screen/{color} paths
+ * Prevents 404s when middleware rewrites root paths to /en/ variants
  */
 export async function generateStaticParams() {
   const colors = COLOR_TOOLS.map((t) => t.id);
-  const locales = LOCALES.filter((locale) => locale !== DEFAULT_LOCALE);
+  const locales = LOCALES;
 
   const params: PageParams[] = [];
   for (const locale of locales) {

@@ -32,14 +32,15 @@ interface PageProps {
 }
 
 /**
- * Generate static params for all combinations across non-default locales
- * English pages are served at root (e.g., /screen/red/4k), not /en/screen/red/4k
- * This prevents duplicate content issues with canonical tags
+ * Generate static params for all combinations across all locales
+ * Includes English pages at /en/screen/red/4k paths (for middleware rewrites from root)
+ * Also generates non-default locales at /nl/screen/red/4k paths
+ * Prevents 404s when middleware rewrites root paths to /en/ variants
  */
 export async function generateStaticParams() {
   const colors = COLOR_TOOLS.map(t => t.id);
   const variants = Object.keys(SCREEN_VARIANTS);
-  const locales = LOCALES.filter((locale) => locale !== DEFAULT_LOCALE);
+  const locales = LOCALES;
 
   const params: PageParams[] = [];
   for (const locale of locales) {

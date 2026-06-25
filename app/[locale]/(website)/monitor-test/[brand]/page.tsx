@@ -11,14 +11,15 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import { MONITOR_BRANDS, getMonitorBrandSlugs } from '@/lib/monitor-brands';
 
 /**
- * Generate static params for all monitor brands across all non-default locales
- * English pages are served at root (e.g., /monitor-test/samsung), not /en/monitor-test/samsung
- * This prevents duplicate content issues with canonical tags
- * Now dynamically generates 50+ monitor brand pages from centralized database
+ * Generate static params for all monitor brands across all locales
+ * Includes English pages at /en/monitor-test/{brand} paths (for middleware rewrites from root)
+ * Also generates non-default locales at /{locale}/monitor-test/{brand} paths
+ * Prevents 404s when middleware rewrites root paths to /en/ variants
+ * Dynamically generates 50+ monitor brand pages from centralized database
  */
 export async function generateStaticParams() {
   const brandSlugs = getMonitorBrandSlugs();
-  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).flatMap((locale) =>
+  return LOCALES.flatMap((locale) =>
     brandSlugs.map((brand) => ({
       locale,
       brand,

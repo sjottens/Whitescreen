@@ -5,6 +5,7 @@ import { SITE_URL } from '@/lib/constants';
 import { generateHrefLangAlternates, LOCALES, DEFAULT_LOCALE, getCanonicalUrl } from '@/lib/i18n';
 import { getMonitorBrandSlugs } from '@/lib/monitor-brands';
 import { getComparisonSlugs } from '@/lib/comparisons';
+import { COLOR_TOOLS, SCREEN_VARIANTS } from '@/lib/constants';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
@@ -199,6 +200,70 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: {
           languages: generateHrefLangAlternates(comparisonPath),
         },
+      });
+    });
+  });
+
+  // Add screen color overview pages (/screen/[color])
+  const colors = COLOR_TOOLS.map((t) => t.id);
+
+  colors.forEach((color) => {
+    const colorPath = `/screen/${color}`;
+
+    // Add default locale entry
+    sitemapEntries.push({
+      url: getCanonicalUrl(DEFAULT_LOCALE, colorPath),
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+      alternates: {
+        languages: generateHrefLangAlternates(colorPath),
+      },
+    });
+
+    // Add non-default locale entries
+    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
+      sitemapEntries.push({
+        url: getCanonicalUrl(locale, colorPath),
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.75,
+        alternates: {
+          languages: generateHrefLangAlternates(colorPath),
+        },
+      });
+    });
+  });
+
+  // Add screen variant pages (/screen/[color]/[variant])
+  const variants = Object.keys(SCREEN_VARIANTS);
+
+  colors.forEach((color) => {
+    variants.forEach((variant) => {
+      const variantPath = `/screen/${color}/${variant}`;
+
+      // Add default locale entry
+      sitemapEntries.push({
+        url: getCanonicalUrl(DEFAULT_LOCALE, variantPath),
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+        alternates: {
+          languages: generateHrefLangAlternates(variantPath),
+        },
+      });
+
+      // Add non-default locale entries
+      LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
+        sitemapEntries.push({
+          url: getCanonicalUrl(locale, variantPath),
+          lastModified: now,
+          changeFrequency: 'weekly' as const,
+          priority: 0.7,
+          alternates: {
+            languages: generateHrefLangAlternates(variantPath),
+          },
+        });
       });
     });
   });
