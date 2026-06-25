@@ -69,5 +69,12 @@ export function parseLocalePath(pathname: string): [Locale, string] {
  * - currentLocale: 'nl', targetLocale: 'en', path: '/about' → '/about'
  */
 export function getLocaleAlternativePath(currentLocale: Locale, targetLocale: Locale, currentPath: string): string {
+  // Force explicit EN switches through /en so middleware can persist preferred-locale=en
+  // before canonicalizing to root (e.g. /en/about -> /about).
+  if (targetLocale === DEFAULT_LOCALE && currentLocale !== DEFAULT_LOCALE) {
+    const cleanPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
+    return `/en${cleanPath}`;
+  }
+
   return getLocalizedPath(targetLocale, currentPath);
 }
