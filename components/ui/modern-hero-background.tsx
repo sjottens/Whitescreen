@@ -36,6 +36,8 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
       ctx.fillRect(0, 0, 64, 64);
     }
     const texture = new THREE.CanvasTexture(canvas);
+    texture.magFilter = THREE.LinearFilter;
+    texture.minFilter = THREE.LinearFilter;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -119,7 +121,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     // Create material with neon green and circular texture
     const particlesMaterial = new THREE.PointsMaterial({
-      size: isMobile ? 2.5 : 2.0,
+      size: isMobile ? 4.0 : 3.5,
       color: 0x00DC82,
       map: texture,
       sizeAttenuation: true,
