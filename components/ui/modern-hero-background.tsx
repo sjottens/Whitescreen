@@ -44,16 +44,18 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     // Camera setup - use visualViewport for better mobile support
     const width = window.visualViewport?.width || window.innerWidth;
     const height = window.visualViewport?.height || window.innerHeight;
+    const aspect = width / height;
+    
     const camera = new THREE.PerspectiveCamera(
       75,
-      width / height,
+      aspect,
       0.1,
       1000
     );
     
     // Adjust camera position for mobile vs desktop
-    // Mobile needs closer camera for better particle visibility
-    camera.position.z = isMobile ? 35 : 50;
+    const cameraZ = isMobile ? 35 : 50;
+    camera.position.z = cameraZ;
     cameraRef.current = camera;
 
     // Renderer setup
@@ -84,13 +86,20 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     const particleCount = isMobile ? 400 : 1000;
     const posArray = new Float32Array(particleCount * 3);
 
-    // Scale particle field based on viewport aspect ratio
-    const fieldScale = isMobile ? 60 : 100;
+    // Calculate visible area at camera Z distance to prevent distortion
+    // Formula: visibleHeight = 2 * tan(FOV/2) * Z
+    const FOV = camera.fov * Math.PI / 180;
+    const visibleHeight = 2 * Math.tan(FOV / 2) * cameraZ;
+    const visibleWidth = visibleHeight * aspect;
+    
+    // Scale particle field to fit camera view with padding
+    const fieldScaleX = visibleWidth * 0.9;
+    const fieldScaleY = visibleHeight * 0.9;
     const fieldDepth = isMobile ? 80 : 100;
 
     for (let i = 0; i < particleCount * 3; i += 3) {
-      posArray[i] = (Math.random() - 0.5) * fieldScale;
-      posArray[i + 1] = (Math.random() - 0.5) * fieldScale;
+      posArray[i] = (Math.random() - 0.5) * fieldScaleX;
+      posArray[i + 1] = (Math.random() - 0.5) * fieldScaleY;
       posArray[i + 2] = (Math.random() - 0.5) * fieldDepth;
     }
 
@@ -130,12 +139,12 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     const handleResize = () => {
       const newWidth = window.visualViewport?.width || window.innerWidth;
       const newHeight = window.visualViewport?.height || window.innerHeight;
-      const newIsMobile = newWidth < 768;
+      const newAspect = newWidth / newHeight;
 
-      camera.aspect = newWidth / newHeight;
+      camera.aspect = newAspect;
       camera.updateProjectionMatrix();
       renderer.setSize(newWidth, newHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, newIsMobile ? 1.5 : 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.5 : 2));
     };
 
     window.addEventListener('resize', handleResize);
