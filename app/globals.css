@@ -71,34 +71,26 @@
       background: rgba(6, 18, 30, 0.85) !important;
     }
 
-    /* Reduce shadow complexity on mobile */
-    .shadow,
-    .shadow-lg,
-    .shadow-xl {
+    /* Reduce shadow complexity on mobile - but keep important visual hierarchy shadows */
+    .shadow:not(.shadow-glow):not([class*="shadow-\[0"]),
+    .shadow-lg:not([class*="shadow-\[0"]),
+    .shadow-xl:not([class*="shadow-\[0"]) {
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
     }
 
-    /* Optimize gradients - use fewer color stops */
-    .bg-gradient-to-r,
-    .bg-gradient-to-b,
-    .bg-gradient-to-t,
-    .bg-gradient-to-l {
-      background-image: linear-gradient(to right, currentColor, currentColor) !important;
-    }
-
-    /* Disable blur effects on mobile */
-    .blur,
-    .blur-sm,
-    .blur-md,
-    .blur-lg {
+    /* Disable blur effects on mobile - but preserve backdrop-blur for cards */
+    .blur:not(.backdrop-blur-sm):not(.backdrop-blur),
+    .blur-sm:not(.backdrop-blur-sm):not(.backdrop-blur),
+    .blur-md:not(.backdrop-blur-sm):not(.backdrop-blur),
+    .blur-lg:not(.backdrop-blur-sm):not(.backdrop-blur) {
       filter: none !important;
       -webkit-filter: none !important;
     }
 
-    /* Optimize text rendering */
+    /* Keep text rendering crisp */
     * {
-      -webkit-font-smoothing: auto;
-      -moz-osx-font-smoothing: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Reduce repaints with will-change sparingly */
