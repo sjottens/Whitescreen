@@ -13,19 +13,14 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
   const cameraRef = useRef<PerspectiveCamera | null>(null);
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const particlesRef = useRef<Points | null>(null);
-  const skipWebGLRef = useRef(false);
 
-  // Check early if we should skip WebGL (server-side compatible)
-  if (typeof window !== 'undefined') {
-    skipWebGLRef.current = window.innerWidth < 768 || 
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-      ('connection' in navigator && (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+  // Return null on mobile - don't render the WebGL canvas at all to save performance
+  if (typeof window !== 'undefined' && window.innerWidth < 768) {
+    return null;
   }
 
   useEffect(() => {
-    if (!containerRef.current || skipWebGLRef.current) {
-      return;
-    }
+    if (!containerRef.current) return;
     let frameId = 0;
     let destroy: (() => void) | undefined;
     let disposed = false;
@@ -35,7 +30,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const saveData = 'connection' in navigator && (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
 
-      // Final check before loading heavy deps
+      // Avoid heavy WebGL work on constrained mobile contexts
       if (isMobile || prefersReducedMotion || saveData) {
         return;
       }
@@ -86,7 +81,6 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
       renderer.domElement.style.margin = '0';
       renderer.domElement.style.padding = '0';
       containerRef.current.appendChild(renderer.domElement);
-
       rendererRef.current = renderer;
 
       const particlesGeometry = new THREE.BufferGeometry();
@@ -183,7 +177,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
     <div
       ref={containerRef}
       className={`fixed inset-0 -z-30 overflow-hidden hidden md:block ${className}`}
-      style={{ 
+      style={{
         pointerEvents: 'none',
         WebkitTouchCallout: 'none',
         WebkitUserSelect: 'none',

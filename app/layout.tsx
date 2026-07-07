@@ -11,6 +11,7 @@ import { Manrope, Space_Grotesk } from 'next/font/google';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
 import { organizationSchema, softwareApplicationSchema, websiteSchema } from '@/lib/seo';
 import RouteTransition from '@/components/layout/route-transition';
+import MobileAnalyticsOptimizer from '@/components/analytics/mobile-analytics-optimizer';
 
 import './globals.css';
 
@@ -158,6 +159,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             `,
           }}
         />
+
+        {/* Mobile performance optimization: defer GTM on mobile */}
+        <MobileAnalyticsOptimizer />
       </body>
     </html>
   );

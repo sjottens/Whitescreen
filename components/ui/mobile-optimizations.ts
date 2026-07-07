@@ -97,13 +97,13 @@ export function injectMobileOptimizations() {
   if (!isMobile) return;
 
   // Defer non-critical analytics
-  if (window.gtag) {
-    (window as any).gtag.config = (window as any).gtag.config || {};
+  if ((window as any).gtag) {
+    ((window as any).gtag).config = ((window as any).gtag).config || {};
   }
 
   // Optimize network requests
   if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
+    (window as any).requestIdleCallback(() => {
       // Prefetch resources after page load
       if ('connection' in navigator) {
         const connection = (navigator as any).connection;
