@@ -7,6 +7,16 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  // Optimize for mobile-first performance
+  safelist: [],
+  corePlugins: {
+    // Disable rarely-used utilities for smaller bundle
+    animation: true,
+    backdropFilter: false, // disabled on mobile via CSS
+    blur: false, // disabled on mobile via CSS
+    boxShadow: true,
+    filter: false, // disabled on mobile via CSS
+  },
   theme: {
     extend: {
       colors: {

@@ -49,12 +49,18 @@
   @media (max-width: 767px) {
     body {
       background-attachment: scroll;
+      /* Simpler gradient for mobile - reduces paint operations */
+      background-image: linear-gradient(180deg, #020617 0%, #0b1120 100%);
+      background-size: 100% 100%;
+      font-size: 14px;
     }
 
     /* Disable expensive decorative animations/effects on mobile. */
     .animate-float,
     .animate-pulse-glow,
-    .animate-fade-in-down {
+    .animate-fade-in-down,
+    .animate-pulse,
+    .animate-bounce {
       animation: none !important;
     }
 
@@ -62,6 +68,68 @@
     .glass-dark {
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
+      background: rgba(6, 18, 30, 0.85) !important;
+    }
+
+    /* Reduce shadow complexity on mobile */
+    .shadow,
+    .shadow-lg,
+    .shadow-xl {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Optimize gradients - use fewer color stops */
+    .bg-gradient-to-r,
+    .bg-gradient-to-b,
+    .bg-gradient-to-t,
+    .bg-gradient-to-l {
+      background-image: linear-gradient(to right, currentColor, currentColor) !important;
+    }
+
+    /* Disable blur effects on mobile */
+    .blur,
+    .blur-sm,
+    .blur-md,
+    .blur-lg {
+      filter: none !important;
+      -webkit-filter: none !important;
+    }
+
+    /* Optimize text rendering */
+    * {
+      -webkit-font-smoothing: auto;
+      -moz-osx-font-smoothing: auto;
+    }
+
+    /* Reduce repaints with will-change sparingly */
+    button,
+    a {
+      will-change: auto;
+    }
+
+    /* Lazy load images by default */
+    img {
+      loading: lazy;
+    }
+
+    /* Disable hover effects on mobile */
+    .hover\:scale-110,
+    .hover\:shadow-lg,
+    .group-hover\:opacity-100,
+    .group-hover\:translate-x-1,
+    .group-hover\:text-slate-300,
+    .group-hover\:scale-105,
+    .hover\:border-\[\#00DC82\]\/60 {
+      transition: none !important;
+    }
+
+    .hover\:scale-110:hover,
+    .hover\:shadow-lg:hover,
+    .group-hover\:opacity-100:hover,
+    .group:hover .group-hover\:translate-x-1,
+    .hover\:scale-105:hover {
+      transform: none !important;
+      opacity: 1 !important;
     }
   }
 

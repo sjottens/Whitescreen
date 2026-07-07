@@ -22,11 +22,13 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
 
     const init = async () => {
       const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth < 1024;
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const saveData = 'connection' in navigator && (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
 
       // Avoid heavy WebGL work on constrained mobile contexts.
-      if (isMobile || prefersReducedMotion || saveData) {
+      // Skip for mobile, tablets on slow connections, or users preferring reduced motion
+      if (isMobile || (isTablet && saveData) || prefersReducedMotion || saveData) {
         return;
       }
 
