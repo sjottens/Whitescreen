@@ -12,6 +12,7 @@ import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
 import { organizationSchema, softwareApplicationSchema, websiteSchema } from '@/lib/seo';
 import RouteTransition from '@/components/layout/route-transition';
 import MobileAnalyticsOptimizer from '@/components/analytics/mobile-analytics-optimizer';
+import AdOptimizer from '@/components/analytics/ad-optimizer';
 
 import './globals.css';
 
@@ -110,12 +111,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
 
-        {/* AdSense must be a plain head script (no next/script data attributes) */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322"
-          crossOrigin="anonymous"
-        />
+        {/* NOTE: AdSense is now loaded deferred via AdOptimizer component to improve performance */}
 
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
@@ -142,26 +138,28 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <RouteTransition>{children}</RouteTransition>
         </div>
 
-        {/* Google Analytics - Tracking setup */}
+        {/* Google Analytics - Tracking setup (deferred to improve performance) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
           strategy="lazyOnload"
+          async
         />
         <Script
           id="gtag-init"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-YP3G096BGK');
+              gtag('config', 'G-YP3G096BGK', {send_page_view: false});
             `,
           }}
         />
 
-        {/* Mobile performance optimization: defer GTM on mobile */}
+        {/* Performance optimization: defer GTM and ads based on device and page load state */}
         <MobileAnalyticsOptimizer />
+        <AdOptimizer />
       </body>
     </html>
   );
