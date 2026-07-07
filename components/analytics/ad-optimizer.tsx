@@ -19,22 +19,24 @@ import { useEffect } from 'react';
  */
 export default function AdOptimizer() {
   useEffect(() => {
-    // Defer ad loading to after page is interactive
-    const loadAdsAfterInteractive = () => {
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(
-          () => {
-            loadAdScripts();
-          },
-          { timeout: 8000 } // Timeout after 8s, load ads anyway
-        );
-      } else {
-        // Fallback: load after a delay on older browsers
-        setTimeout(() => {
+    // Use requestIdleCallback to defer ads until browser is fully idle
+    // This prevents ads from competing with core app initialization
+    if ('requestIdleCallback' in window) {
+      const id = (window as any).requestIdleCallback(
+        () => {
           loadAdScripts();
-        }, 5000);
-      }
-    };
+        },
+        { timeout: 10000 } // Absolute timeout: load ads after 10s if still busy
+      );
+      return () => (window as any).cancelIdleCallback?.(id);
+    } else {
+      // Fallback for older browsers: defer with setTimeout
+      const timeoutId = setTimeout(() => {
+        loadAdScripts();
+      }, 6000); // Longer delay to avoid blocking on older browsers
+
+      return () => clearTimeout(timeoutId);
+    }
 
     const loadAdScripts = () => {
       try {
@@ -68,12 +70,6 @@ export default function AdOptimizer() {
         console.warn('[AdOptimizer] Error loading ads:', error);
       }
     };
-
-    // Start deferral after a small delay to ensure page has initial render
-    // This gives the browser a chance to paint first contentful paint
-    const timeoutId = setTimeout(loadAdsAfterInteractive, 1000);
-
-    return () => clearTimeout(timeoutId);
   }, []);
 
   return null;

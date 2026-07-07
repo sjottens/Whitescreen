@@ -9,7 +9,7 @@ import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS } from '@/lib/constants';
 import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import { getLocalizedPath } from '@/lib/link-utils';
-import ModernHeroBackground from '@/components/ui/modern-hero-background';
+import ModernHeroBackground from '@/components/ui/modern-hero-background-lazy';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
