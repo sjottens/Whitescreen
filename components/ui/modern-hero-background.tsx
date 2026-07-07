@@ -14,11 +14,6 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const particlesRef = useRef<Points | null>(null);
 
-  // Return null on mobile - don't render the WebGL canvas at all to save performance
-  if (typeof window !== 'undefined' && window.innerWidth < 768) {
-    return null;
-  }
-
   useEffect(() => {
     if (!containerRef.current) return;
     let frameId = 0;
@@ -30,7 +25,7 @@ export default function ModernHeroBackground({ className = '' }: ModernHeroBackg
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const saveData = 'connection' in navigator && (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
 
-      // Avoid heavy WebGL work on constrained mobile contexts
+      // Skip heavy WebGL on mobile or constrained contexts
       if (isMobile || prefersReducedMotion || saveData) {
         return;
       }
