@@ -2,7 +2,7 @@
 
 export const SITE_NAME = 'TestaScreen';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://testascreen.eu';
-export const SITE_DESCRIPTION = 'Elite screen testing and display tools for photographers, videographers, gamers, and professionals';
+export const SITE_DESCRIPTION = 'Professional screen testing information and display resources for photographers, videographers, gamers, and professionals';
 
 // All available tools - Color screens, special tools, and test tools
 // Note: nameKey and descriptionKey reference translation keys in lib/translations.ts
@@ -398,7 +398,7 @@ export const FAQ_ITEMS = [
       'A dead pixel is a pixel that remains black or stays stuck on one color. Use our Dead Pixel Test tool to detect them by cycling through full-screen colors.',
   },
   {
-    question: 'How do I use the color screen tools?',
+    question: 'How do I use the color screen displays?',
     answer:
       'Choose your desired color, press F or Space to enter fullscreen mode. Use ESC to exit. Perfect for display testing and photography lighting.',
   },

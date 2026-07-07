@@ -162,7 +162,7 @@ export function generateOrganizationSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    description: 'Elite screen testing and display tools for professionals',
+    description: 'Professional screen testing information and display resources for professionals',
     sameAs: [
       // Add social media URLs as they become available
     ],
