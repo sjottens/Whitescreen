@@ -118,18 +118,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <section className="section">
         <div className="container">
           <div className="max-w-3xl">
-            {/* Direct Contact */}
-            <div className="card mb-12 p-8">
-              <h2 className="text-2xl font-bold mb-4">{translate('contact_email_direct')}</h2>
-              <p className="text-lg font-semibold text-slate-900 mb-2">
-                {translate('contact_email_address')}
-              </p>
-              <p className="text-slate-600 mb-4">{translate('contact_response_time')}</p>
-              <p className="text-slate-600">
-                Reach out with questions about display technology, our guides, or feedback on the site.
-              </p>
-            </div>
-
             {/* Contact Form */}
             <div className="card mb-12 p-8">
               <h2 className="text-2xl font-bold mb-6">{translate('contact_form_title')}</h2>
