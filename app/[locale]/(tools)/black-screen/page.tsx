@@ -48,7 +48,7 @@ export default async function BlackScreenPage({ params }: PageProps) {
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],

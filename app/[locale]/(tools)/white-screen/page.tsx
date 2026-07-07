@@ -47,7 +47,7 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('white_screen'), path: '/white-screen' },
     ],
     locale

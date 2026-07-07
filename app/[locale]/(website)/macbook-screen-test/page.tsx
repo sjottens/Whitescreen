@@ -30,7 +30,7 @@ export default async function MacBookTestPage({ params }: { params: Promise<{ lo
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('macbook_test'), path: '/macbook-screen-test' },
     ],
     locale
@@ -47,7 +47,7 @@ export default async function MacBookTestPage({ params }: { params: Promise<{ lo
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('resources'), path: getLocalizedPath(locale, '/tools') },
           { name: translate('macbook_test') },
         ]}
       />

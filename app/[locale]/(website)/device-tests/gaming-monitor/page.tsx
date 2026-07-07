@@ -29,7 +29,7 @@ export default async function GamingMonitorTestPage({ params }: { params: Promis
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('gaming_monitor_test'), path: '/gaming-monitor-test' },
     ],
     locale

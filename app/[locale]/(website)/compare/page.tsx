@@ -44,7 +44,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('compare_page_title'), path: '/compare' },
     ],
     locale
@@ -61,7 +61,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('resources'), path: getLocalizedPath(locale, '/tools') },
           { name: translate('compare_nav_label') },
         ]}
       />

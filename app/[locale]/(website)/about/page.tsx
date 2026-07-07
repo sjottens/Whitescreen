@@ -1,6 +1,7 @@
 // app/[locale]/(website)/about/page.tsx - About page with multilingual SEO
 
 import { Metadata } from 'next';
+import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
@@ -106,6 +107,70 @@ export default async function AboutPage({ params }: AboutPageProps) {
                   <p className="text-slate-600">{value.description}</p>
                 </div>
               ))}
+            </div>
+
+            <h2>{translate('about_expertise_title')}</h2>
+            <p>{translate('about_expertise_text')}</p>
+            <p>
+              {translate('about_research_title').toLowerCase() === 'accuracy & research' && 'Our guides cover '}
+              <Link href={getLocalizedPath(locale, '/dead-pixel-fixer')} className="text-blue-600 hover:underline">
+                stuck pixel repair techniques
+              </Link>
+              {', '}
+              <Link href={getLocalizedPath(locale, '/tools')} className="text-blue-600 hover:underline">
+                monitor testing concepts
+              </Link>
+              {', and '}
+              <Link href={getLocalizedPath(locale, '/tools')} className="text-blue-600 hover:underline">
+                display specifications
+              </Link>
+              {' with technical depth.'}
+            </p>
+
+            <h2>{translate('about_research_title')}</h2>
+            <p>{translate('about_research_text')}</p>
+
+            <h2>{translate('about_sources_title')}</h2>
+            <p>{translate('about_sources_text')}</p>
+
+            <h2>{translate('about_updates_title')}</h2>
+            <p>{translate('about_updates_text')}</p>
+
+            <h2>{translate('about_for_users_title')}</h2>
+            <p>{translate('about_for_users_text')}</p>
+
+            <div className="bg-slate-100 p-8 rounded-lg my-8 not-prose">
+              <h3 className="text-xl font-bold mb-4">Explore Our Guides</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Link 
+                  href={getLocalizedPath(locale, '/white-screen')} 
+                  className="p-4 bg-white rounded hover:shadow-lg transition-shadow"
+                >
+                  <p className="font-semibold text-slate-900">{translate('white_screen')}</p>
+                  <p className="text-sm text-slate-600">{translate('display_testing_desc')}</p>
+                </Link>
+                <Link 
+                  href={getLocalizedPath(locale, '/dead-pixel-fixer')} 
+                  className="p-4 bg-white rounded hover:shadow-lg transition-shadow"
+                >
+                  <p className="font-semibold text-slate-900">{translate('dead_pixel_fixer')}</p>
+                  <p className="text-sm text-slate-600">Comprehensive guide to stuck pixels and repair techniques</p>
+                </Link>
+                <Link 
+                  href={getLocalizedPath(locale, '/tools')} 
+                  className="p-4 bg-white rounded hover:shadow-lg transition-shadow"
+                >
+                  <p className="font-semibold text-slate-900">{translate('resources_title')}</p>
+                  <p className="text-sm text-slate-600">Browse all guides and resources</p>
+                </Link>
+                <Link 
+                  href={getLocalizedPath(locale, '/faq')} 
+                  className="p-4 bg-white rounded hover:shadow-lg transition-shadow"
+                >
+                  <p className="font-semibold text-slate-900">{translate('faq_title')}</p>
+                  <p className="text-sm text-slate-600">Answers to common questions about display technology</p>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

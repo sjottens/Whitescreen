@@ -39,7 +39,7 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],
     locale

@@ -172,7 +172,7 @@ export default async function HomePage({ params }: HomePageProps) {
               size="lg"
               className="group"
             >
-              {translate('browse_all_tools').replace('{count}', String(COLOR_TOOLS.length + TEST_TOOLS.length))}
+              {translate('browse_all_resources').replace('{count}', String(COLOR_TOOLS.length + TEST_TOOLS.length))}
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </LinkButton>
           </div>
@@ -193,17 +193,17 @@ export default async function HomePage({ params }: HomePageProps) {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00DC82]/10 border border-[#00DC82]/50 mb-6">
                 <Sparkles className="w-4 h-4 text-[#00DC82]" />
-                <span className="text-xs font-bold text-[#00DC82] uppercase tracking-wider">New Tool</span>
+                <span className="text-xs font-bold text-[#00DC82] uppercase tracking-wider">{translate('featured_tool_badge')}</span>
               </div>
 
               {/* Main Content */}
               <div className="mb-8">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                  <span className="block text-white mb-2">Fix Your Screen</span>
-                  <span className="block bg-gradient-to-r from-[#00DC82] to-emerald-400 bg-clip-text text-transparent">Dead Pixel Fixer</span>
+                  <span className="block text-white mb-2">{translate('featured_tool_subtitle')}</span>
+                  <span className="block bg-gradient-to-r from-[#00DC82] to-emerald-400 bg-clip-text text-transparent">{translate('featured_tool_title')}</span>
                 </h2>
                 <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
-                  Repair stuck pixels with our free online tool. Using advanced color stimulation and multiple repair modes, our Dead Pixel Fixer helps revive stuck pixels on LCD, LED, and OLED displays. Success rate: 10-40% for stuck pixels.
+                  {translate('featured_tool_desc')}
                 </p>
               </div>
 
@@ -212,22 +212,22 @@ export default async function HomePage({ params }: HomePageProps) {
                 <div className="flex gap-3">
                   <Check className="w-5 h-5 text-[#00DC82] flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">Multiple Modes</p>
-                    <p className="text-sm text-slate-400">RGB, RGB+White+Black, Random</p>
+                    <p className="font-semibold text-white">{translate('featured_tool_feature1_title')}</p>
+                    <p className="text-sm text-slate-400">{translate('featured_tool_feature1_desc')}</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
                   <Check className="w-5 h-5 text-[#00DC82] flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">Fullscreen Support</p>
-                    <p className="text-sm text-slate-400">Optimal coverage & immersion</p>
+                    <p className="font-semibold text-white">{translate('featured_tool_feature2_title')}</p>
+                    <p className="text-sm text-slate-400">{translate('featured_tool_feature2_desc')}</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
                   <Check className="w-5 h-5 text-[#00DC82] flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">Real-time Stats</p>
-                    <p className="text-sm text-slate-400">FPS & elapsed time tracking</p>
+                    <p className="font-semibold text-white">{translate('featured_tool_feature3_title')}</p>
+                    <p className="text-sm text-slate-400">{translate('featured_tool_feature3_desc')}</p>
                   </div>
                 </div>
               </div>
@@ -238,10 +238,10 @@ export default async function HomePage({ params }: HomePageProps) {
                   href={getLocalizedPath(locale, '/dead-pixel-fixer')}
                   className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#00DC82] to-emerald-500 text-white font-bold rounded-lg hover:shadow-[0_0_30px_rgba(0,220,130,0.4)] transition-all duration-300 hover:scale-105 group"
                 >
-                  <span>Launch Dead Pixel Fixer</span>
+                  <span>{translate('featured_tool_cta')}</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <p className="text-sm text-slate-400 whitespace-nowrap">100% Free • No Registration</p>
+                <p className="text-sm text-slate-400 whitespace-nowrap">{translate('featured_tool_info')}</p>
               </div>
             </div>
           </div>
@@ -551,10 +551,10 @@ export default async function HomePage({ params }: HomePageProps) {
               <div className="text-5xl mb-4">⚡</div>
               <h3 className="text-2xl font-bold mb-3 text-slate-900">{translate('refresh_rate_calculator')}</h3>
               <p className="text-slate-600 mb-4">
-                {translate('tools_refresh_calculator_desc')}
+                {translate('resources_refresh_calculator_desc')}
               </p>
               <span className="text-purple-600 font-semibold inline-flex items-center">
-                {translate('tools_calculate_cta' as any)}
+                {translate('resources_calculate_cta' as any)}
               </span>
             </Link>
 
@@ -566,10 +566,10 @@ export default async function HomePage({ params }: HomePageProps) {
               <div className="text-5xl mb-4">🔍</div>
               <h3 className="text-2xl font-bold mb-3 text-slate-900">{translate('pixel_density_calculator')}</h3>
               <p className="text-slate-600 mb-4">
-                {translate('tools_pixel_calculator_desc')}
+                {translate('resources_pixel_calculator_desc')}
               </p>
               <span className="text-emerald-700 font-semibold inline-flex items-center">
-                {translate('tools_calculate_cta' as any)}
+                {translate('resources_calculate_cta' as any)}
               </span>
             </Link>
 
@@ -581,10 +581,10 @@ export default async function HomePage({ params }: HomePageProps) {
               <div className="text-5xl mb-4">⚖️</div>
               <h3 className="text-2xl font-bold mb-3 text-slate-900">{translate('monitor_comparison_tool')}</h3>
               <p className="text-slate-600 mb-4">
-                {translate('tools_monitor_comparison_desc')}
+                {translate('resources_monitor_comparison_desc')}
               </p>
               <span className="text-orange-700 font-semibold inline-flex items-center">
-                {translate('tools_compare_cta' as any)}
+                {translate('resources_compare_cta' as any)}
               </span>
             </Link>
           </div>

@@ -46,6 +46,10 @@ export default async function FAQPage({ params }: FAQPageProps) {
     { question: translate('faq_item_4_q'), answer: translate('faq_item_4_a') },
     { question: translate('faq_item_5_q'), answer: translate('faq_item_5_a') },
     { question: translate('faq_item_6_q'), answer: translate('faq_item_6_a') },
+    { question: translate('faq_item_7_q'), answer: translate('faq_item_7_a') },
+    { question: translate('faq_item_8_q'), answer: translate('faq_item_8_a') },
+    { question: translate('faq_item_9_q'), answer: translate('faq_item_9_a') },
+    { question: translate('faq_item_10_q'), answer: translate('faq_item_10_a') },
   ];
 
   return (

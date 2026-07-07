@@ -21,8 +21,8 @@ export async function generateMetadata(props: {
 
   return generateMultilingualMetadata({
     locale,
-    title: translate('tools_title'),
-    description: translate('tools_description'),
+    title: translate('resources_title'),
+    description: translate('resources_description'),
     path: '/tools',
   });
 }
@@ -41,7 +41,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
     ],
     locale
   );
@@ -57,7 +57,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('tools') },
+          { name: translate('resources') },
         ]}
       />
 
@@ -78,9 +78,9 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
 
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('tools_title')}</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('resources_title')}</h1>
           <p className="text-xl text-slate-700">
-            {translate('tools_description')}
+            {translate('resources_description')}
           </p>
         </div>
       </section>
@@ -139,7 +139,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('monitor_tests')}</h2>
           <p className="text-slate-600 text-lg mb-8">
-            {translate('tools_monitor_intro')}
+            {translate('resources_monitor_intro')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link
@@ -182,10 +182,10 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
           {/* CTA for more brands */}
           <div className="mt-12 p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200 text-center">
             <p className="text-slate-700 mb-4">
-              <strong>{translate('tools_monitor_support_title')}</strong> {translate('tools_monitor_support_desc')}
+              <strong>{translate('resources_monitor_support_title')}</strong> {translate('resources_monitor_support_desc')}
             </p>
             <p className="text-sm text-slate-600 mb-6">
-              {translate('tools_monitor_url_hint')} <code className="bg-white px-2 py-1 rounded">/monitor-test/benq</code>, 
+              {translate('resources_monitor_url_hint')} <code className="bg-white px-2 py-1 rounded">/monitor-test/benq</code>, 
               <code className="bg-white px-2 py-1 rounded ml-2">/monitor-test/alienware</code>.
             </p>
             <LinkButton
@@ -193,7 +193,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               variant="primary"
               size="lg"
             >
-              {translate('tools_browse_more_brands')} <ArrowRight className="w-5 h-5 ml-2" />
+              {translate('resources_browse_more_brands')} <ArrowRight className="w-5 h-5 ml-2" />
             </LinkButton>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('device_tests_title')}</h2>
           <p className="text-slate-600 text-lg mb-8">
-            {translate('tools_device_intro')}
+            {translate('resources_device_intro')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link
@@ -249,9 +249,9 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
       {/* Calculator & Utility Tools */}
       <section className="section">
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">📊 {translate('tools_calculators_title')}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">📊 {translate('resources_calculators_title')}</h2>
           <p className="text-slate-600 text-lg mb-8">
-            {translate('tools_calculators_intro')}
+            {translate('resources_calculators_intro')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
@@ -261,9 +261,9 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               <div className="text-4xl mb-3">⚡</div>
               <h3 className="text-xl font-bold mb-2">{translate('refresh_rate_calculator')}</h3>
               <p className="text-slate-600 text-sm mb-4">
-                {translate('tools_refresh_calculator_desc')}
+                {translate('resources_refresh_calculator_desc')}
               </p>
-              <span className="text-purple-600 font-semibold text-sm">{translate('tools_explore_cta' as any)}</span>
+              <span className="text-purple-600 font-semibold text-sm">{translate('resources_explore_cta' as any)}</span>
             </Link>
 
             <Link
@@ -273,9 +273,9 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               <div className="text-4xl mb-3">🔍</div>
               <h3 className="text-xl font-bold mb-2">{translate('pixel_density_calculator')}</h3>
               <p className="text-slate-600 text-sm mb-4">
-                {translate('tools_pixel_calculator_desc')}
+                {translate('resources_pixel_calculator_desc')}
               </p>
-              <span className="text-emerald-600 font-semibold text-sm">{translate('tools_calculate_cta' as any)}</span>
+              <span className="text-emerald-600 font-semibold text-sm">{translate('resources_calculate_cta' as any)}</span>
             </Link>
 
             <Link
@@ -285,9 +285,9 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               <div className="text-4xl mb-3">⚖️</div>
               <h3 className="text-xl font-bold mb-2">{translate('monitor_comparison_tool')}</h3>
               <p className="text-slate-600 text-sm mb-4">
-                {translate('tools_monitor_comparison_desc')}
+                {translate('resources_monitor_comparison_desc')}
               </p>
-              <span className="text-orange-600 font-semibold text-sm">{translate('tools_compare_cta' as any)}</span>
+              <span className="text-orange-600 font-semibold text-sm">{translate('resources_compare_cta' as any)}</span>
             </Link>
           </div>
         </div>

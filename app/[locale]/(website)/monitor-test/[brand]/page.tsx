@@ -63,7 +63,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate(brandData.nameKey as any), path: `/monitor-test/${brand}` },
     ],
     locale as any
@@ -80,7 +80,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale as any, '/') },
-          { name: translate('tools'), path: getLocalizedPath(locale as any, '/tools') },
+          { name: translate('resources'), path: getLocalizedPath(locale as any, '/tools') },
           { name: translate(brandData.nameKey as any) },
         ]}
       />

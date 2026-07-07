@@ -40,7 +40,7 @@ export default function ToolLayout({
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('resources'), path: getLocalizedPath(locale, '/tools') },
           { name: toolName || title },
         ]}
       />
@@ -216,7 +216,7 @@ export default function ToolLayout({
             <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-8 text-center">
               <h3 className="text-2xl font-bold mb-4">{translate('tool_layout_explore_more_title' as any)}</h3>
               <LinkButton href={getLocalizedPath(locale, '/tools')} variant="primary" size="lg">
-                {translate('tool_layout_view_all_prefix' as any)} {relatedTools.length + 1}+ {translate('tools')}
+                {translate('tool_layout_view_all_prefix' as any)} {relatedTools.length + 1}+ {translate('resources')}
               </LinkButton>
             </div>
           </div>

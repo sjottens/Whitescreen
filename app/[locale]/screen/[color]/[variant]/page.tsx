@@ -117,7 +117,7 @@ export default async function ScreenVariantPage(props: PageProps) {
   // Breadcrumb schema
   const breadcrumbs = [
     { name: translate('home'), path: getLocalizedPath(locale as any, '/') },
-    { name: translate('tools'), path: getLocalizedPath(locale as any, '/tools') },
+    { name: translate('resources'), path: getLocalizedPath(locale as any, '/tools') },
     { name: translate(colorTool.nameKey as any), path: getLocalizedPath(locale as any, `/screen/${color}`) },
     { name: variantData.titleSuffix, path: getLocalizedPath(locale as any, `/screen/${color}/${variant}`) },
   ];

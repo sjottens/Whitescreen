@@ -91,7 +91,24 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             {translate('privacy_external_services_text')}
           </p>
 
-          <h2>6. {translate('privacy_gdpr_rights')}</h2>
+          <h2>5a. Advertising and Revenue</h2>
+          <p>
+            TestaScreen uses Google AdSense to display advertisements on this website. These ads help fund the development and maintenance of our free tools. Google AdSense may collect information about your browsing behavior across multiple websites to show you targeted advertisements based on your interests. This is controlled by Google's privacy policy, not TestaScreen.
+          </p>
+          <p>
+            <strong>How Google AdSense works:</strong>
+          </p>
+          <ul>
+            <li>Google stores cookies and pixels to identify your browsing interests and preferences</li>
+            <li>Ads shown are tailored to your profile, which may help you see more relevant advertisements</li>
+            <li>You can control these settings using Google's Ad Settings at myaccount.google.com/ads</li>
+            <li>You can also opt out of personalized advertising entirely through your browser privacy settings or third-party tools</li>
+          </ul>
+          <p>
+            TestaScreen receives a portion of revenue when you click on or view advertisements. This is our primary funding model for keeping the tools free and accessible to everyone worldwide.
+          </p>
+
+          <h2>7. {translate('privacy_gdpr_rights')}</h2>
           <p>
             {translate('privacy_gdpr_rights_text')}
           </p>
@@ -104,27 +121,27 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             <li><strong>{translate('privacy_right_object')}:</strong> {translate('privacy_right_object_desc')}</li>
           </ul>
 
-          <h2>7. {translate('privacy_data_retention')}</h2>
+          <h2>8. {translate('privacy_data_retention')}</h2>
           <p>
             {translate('privacy_data_retention_text')}
           </p>
 
-          <h2>8. {translate('privacy_security')}</h2>
+          <h2>9. {translate('privacy_security')}</h2>
           <p>
             {translate('privacy_security_text')}
           </p>
 
-          <h2>9. {translate('privacy_third_parties')}</h2>
+          <h2>10. {translate('privacy_third_parties')}</h2>
           <p>
             {translate('privacy_third_parties_text')}
           </p>
 
-          <h2>10. {translate('privacy_policy_changes')}</h2>
+          <h2>11. {translate('privacy_policy_changes')}</h2>
           <p>
             {translate('privacy_policy_changes_text')}
           </p>
 
-          <h2>11. {translate('privacy_dpa')}</h2>
+          <h2>12. {translate('privacy_dpa')}</h2>
           <p>
             {translate('privacy_dpa_text')}
           </p>
@@ -136,7 +153,7 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             {translate('privacy_legal_email_label' as any)}: {translate('privacy_legal_email' as any)}
           </p>
 
-          <h2>12. {translate('privacy_contact')}</h2>
+          <h2>13. {translate('privacy_contact')}</h2>
           <p>
             {translate('privacy_contact_full_text')}
             <br />

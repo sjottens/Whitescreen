@@ -36,7 +36,7 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate(TOOL.nameKey as any), path: TOOL.path },
     ],
     locale

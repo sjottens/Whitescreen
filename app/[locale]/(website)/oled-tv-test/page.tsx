@@ -30,7 +30,7 @@ export default async function OLEDTVTestPage({ params }: { params: Promise<{ loc
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('oled_tv_test'), path: '/oled-tv-test' },
     ],
     locale
@@ -47,7 +47,7 @@ export default async function OLEDTVTestPage({ params }: { params: Promise<{ loc
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('resources'), path: getLocalizedPath(locale, '/tools') },
           { name: translate('oled_tv_test') },
         ]}
       />

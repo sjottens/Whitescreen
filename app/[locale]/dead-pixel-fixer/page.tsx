@@ -227,7 +227,7 @@ export default function DeadPixelFixerPage() {
       <Breadcrumbs
         items={[
           { name: t(locale as any)('home'), path: getLocalizedPath(locale as any, '/') },
-          { name: t(locale as any)('tools'), path: getLocalizedPath(locale as any, '/tools') },
+          { name: t(locale as any)('resources'), path: getLocalizedPath(locale as any, '/tools') },
           { name: t(locale as any)('dead_pixel_fixer') },
         ]}
       />
@@ -554,16 +554,16 @@ export default function DeadPixelFixerPage() {
 
         {/* Internal Linking Section */}
         <div className="bg-gradient-to-r from-slate-900 to-slate-950 rounded-xl border border-slate-700/50 p-8 mb-16">
-          <h2 className="text-3xl font-bold mb-6 text-white">{t(locale as any)('explore_tools_title')}</h2>
+          <h2 className="text-3xl font-bold mb-6 text-white">{t(locale as any)('explore_guides_title')}</h2>
           <p className="text-slate-300 mb-8">
-            {t(locale as any)('explore_tools_desc')}
+            {t(locale as any)('explore_guides_desc')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { title: t(locale as any)('explore_tools_dead_pixel_test'), path: '/dead-pixel-test', description: t(locale as any)('explore_tools_dead_pixel_test_desc') },
-              { title: t(locale as any)('explore_tools_brightness'), path: '/brightness-test', description: t(locale as any)('explore_tools_brightness_desc') },
-              { title: t(locale as any)('explore_tools_contrast'), path: '/contrast-test', description: t(locale as any)('explore_tools_contrast_desc') },
-              { title: t(locale as any)('explore_tools_color_screen'), path: '/white-screen', description: t(locale as any)('explore_tools_color_screen_desc') },
+              { title: t(locale as any)('explore_guides_dead_pixel_test'), path: '/dead-pixel-test', description: t(locale as any)('explore_guides_dead_pixel_test_desc') },
+              { title: t(locale as any)('explore_guides_brightness'), path: '/brightness-test', description: t(locale as any)('explore_guides_brightness_desc') },
+              { title: t(locale as any)('explore_guides_contrast'), path: '/contrast-test', description: t(locale as any)('explore_guides_contrast_desc') },
+              { title: t(locale as any)('explore_guides_color_screen'), path: '/white-screen', description: t(locale as any)('explore_guides_color_screen_desc') },
             ].map((tool, idx) => {
               const validLocale: any = LOCALES.includes(locale as any) ? locale : 'en';
               return (

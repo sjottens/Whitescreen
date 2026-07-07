@@ -13,6 +13,14 @@ interface FooterProps {
 export default function Footer({ locale }: FooterProps) {
   const translate = t(locale);
   const currentYear = new Date().getFullYear();
+  const cookiePolicyLabel =
+    locale === 'nl'
+      ? 'Cookiebeleid'
+      : locale === 'es'
+        ? 'Politica de Cookies'
+        : locale === 'de'
+          ? 'Cookie-Richtlinie'
+          : 'Cookie Policy';
 
   return (
     <footer className="bg-slate-900 text-slate-100 border-t border-slate-800">
@@ -112,7 +120,7 @@ export default function Footer({ locale }: FooterProps) {
 
           {/* Resources Section */}
           <div>
-            <h4 className="text-white font-semibold mb-4">{translate('tools')}</h4>
+            <h4 className="text-white font-semibold mb-4">{translate('resources')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link href={getLocalizedPath(locale, '/faq')} className="text-white hover:text-slate-100 transition-colors text-sm">
@@ -132,6 +140,11 @@ export default function Footer({ locale }: FooterProps) {
               <li>
                 <Link href={getLocalizedPath(locale, '/privacy')} className="text-white hover:text-slate-100 transition-colors text-sm">
                   {translate('privacy')}
+                </Link>
+              </li>
+              <li>
+                <Link href={getLocalizedPath(locale, '/cookies')} className="text-white hover:text-slate-100 transition-colors text-sm">
+                  {cookiePolicyLabel}
                 </Link>
               </li>
               <li>

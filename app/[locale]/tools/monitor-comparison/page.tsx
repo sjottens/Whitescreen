@@ -4,6 +4,7 @@
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import MonitorComparisonTool from '@/components/tools/monitor-comparison-tool';
+import InformationalContent from '@/components/tools/informational-content';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
@@ -35,7 +36,7 @@ export default async function MonitorComparisonPage({
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('monitor_comparison_page_breadcrumb' as any), path: '/tools/monitor-comparison' },
     ],
     locale
@@ -52,7 +53,7 @@ export default async function MonitorComparisonPage({
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('resources'), path: getLocalizedPath(locale, '/tools') },
           { name: translate('monitor_comparison_page_breadcrumb' as any) },
         ]}
       />
@@ -73,6 +74,7 @@ export default async function MonitorComparisonPage({
       <section className="section">
         <div className="container max-w-6xl">
           <MonitorComparisonTool />
+          <InformationalContent locale={locale} topic="monitor-comparison" />
         </div>
       </section>
     </>

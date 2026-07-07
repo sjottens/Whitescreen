@@ -48,7 +48,7 @@ export default async function DeviceTestsPage({ params }: DeviceTestsPageProps) 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('device_tests_title'), path: '/device-tests' },
     ],
     locale
@@ -96,7 +96,7 @@ export default async function DeviceTestsPage({ params }: DeviceTestsPageProps) 
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('resources'), path: getLocalizedPath(locale, '/tools') },
           { name: translate('device_tests_title') },
         ]}
       />

@@ -805,3 +805,14 @@ button, a, [role="button"] {
     animation-duration: 0.4s;
   }
 }
+
+/* Alert messages - override theme to keep text dark/readable */
+.bg-red-50,
+.bg-green-50 {
+  color: rgb(15 23 42) !important;
+}
+
+.bg-red-50 *,
+.bg-green-50 * {
+  color: rgb(15 23 42) !important;
+}

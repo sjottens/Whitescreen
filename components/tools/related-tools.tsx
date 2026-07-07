@@ -23,8 +23,8 @@ export default function RelatedTools({ currentToolId, locale }: RelatedToolsProp
     <section className="bg-gradient-to-b from-slate-900 to-slate-950 py-16 md:py-20">
       <div className="container">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
-          {translate('browse_all_tools').includes('{count}')
-            ? translate('browse_all_tools').replace('{count}', 'All')
+          {translate('browse_all_resources').includes('{count}')
+            ? translate('browse_all_resources').replace('{count}', 'All')
             : 'Explore More Tools'}
         </h2>
         <p className="text-xl text-slate-300 text-center mb-12 max-w-2xl mx-auto">
@@ -84,7 +84,7 @@ export default function RelatedTools({ currentToolId, locale }: RelatedToolsProp
             href={getLocalizedPath(locale, '/tools')}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-200 hover:scale-105"
           >
-            {translate('browse_all_tools').replace('{count}', 'All')}
+            {translate('browse_all_resources').replace('{count}', 'All')}
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

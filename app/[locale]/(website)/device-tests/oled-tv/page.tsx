@@ -29,7 +29,7 @@ export default async function OLEDTVTestPage({ params }: { params: Promise<{ loc
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('oled_tv_test'), path: '/oled-tv-test' },
     ],
     locale

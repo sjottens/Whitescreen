@@ -30,7 +30,7 @@ export default async function IPhoneTestPage({ params }: { params: Promise<{ loc
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
-      { name: translate('tools'), path: '/tools' },
+      { name: translate('resources'), path: '/tools' },
       { name: translate('iphone_test'), path: '/iphone-screen-test' },
     ],
     locale
@@ -47,7 +47,7 @@ export default async function IPhoneTestPage({ params }: { params: Promise<{ loc
       <Breadcrumbs
         items={[
           { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('tools'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('resources'), path: getLocalizedPath(locale, '/tools') },
           { name: translate('iphone_test') },
         ]}
       />
