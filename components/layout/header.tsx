@@ -65,6 +65,7 @@ export default function Header({ locale }: HeaderProps) {
       className={`fixed top-0 left-0 right-0 z-[120] w-full border-b border-slate-700/80 bg-slate-950/92 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/88 transition-transform duration-300 ${
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
+      style={{ background: 'darkslategrey' }}
     >
       <div className="container py-4 md:py-3">
         <div className="flex items-center justify-between">
