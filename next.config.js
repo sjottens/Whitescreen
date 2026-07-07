@@ -8,13 +8,26 @@ const nextConfig = {
     optimizePackageImports: ['components', 'lib'],
   },
 
-  // Image optimization
+  // Image optimization - aggressive optimization for mobile
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 1080, 1920],
-    imageSizes: [32, 64, 128, 256],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     unoptimized: false,
     minimumCacheTTL: 31536000,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+
+  // Webpack optimization for smaller bundle
+  webpack: (config, { isServer }) => {
+    config.optimization = {
+      ...config.optimization,
+      usedExports: true,
+      sideEffects: false,
+      minimize: true,
+    };
+    return config;
   },
 
   // React strict mode

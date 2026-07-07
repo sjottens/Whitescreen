@@ -89,6 +89,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+        {/* Critical CSS inline for LCP improvement */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `@media (max-width: 767px) {
+              h1, h2, h3 { font-family: var(--font-space-grotesk, system-ui); }
+              body { font-family: var(--font-manrope, system-ui); }
+            }`,
+          }}
+        />
+
         {/* Resource hints for faster third-party startup without blocking rendering */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
