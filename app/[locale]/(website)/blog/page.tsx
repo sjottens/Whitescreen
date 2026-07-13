@@ -162,6 +162,16 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
     featured: a.featured,
   }));
 
+  const allArticlesPreview = allBlogArticles.map((a) => ({
+    slug: a.slug,
+    title: a.translations[locale]?.title || a.translations.en.title,
+    excerpt: (a.translations[locale]?.content?.introduction || a.content.introduction).substring(0, 150) + '...',
+    publishedAt: a.publishedAt,
+    readingTimeMinutes: a.readingTimeMinutes,
+    cluster: a.cluster,
+    featured: a.featured,
+  }));
+
   const titles: Record<string, string> = {
     nl: 'Schermtest Blog',
     es: 'Blog de Prueba de Pantalla',
@@ -181,6 +191,7 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
         subtitle={subtitles[locale] || subtitles.en}
         featuredArticles={featuredPreview}
         latestArticles={latestPreview}
+        allArticles={allArticlesPreview}
         categories={categories}
         locale={locale}
       />

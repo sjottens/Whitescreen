@@ -102,6 +102,16 @@ export default function BlogPage() {
     featured: a.featured,
   }));
 
+  const allArticlesPreview = allBlogArticles.map((a) => ({
+    slug: a.slug,
+    title: a.translations.en.title,
+    excerpt: a.translations.en.content?.introduction ? a.translations.en.content.introduction.substring(0, 150) + '...' : a.content.introduction.substring(0, 150) + '...',
+    publishedAt: a.publishedAt,
+    readingTimeMinutes: a.readingTimeMinutes,
+    cluster: a.cluster,
+    featured: a.featured,
+  }));
+
   return (
     <Suspense fallback={<div className="w-full py-20 text-center">{translate('common_loading' as any)}</div>}>
       <BlogHomepage
@@ -109,6 +119,7 @@ export default function BlogPage() {
         subtitle={translate('blog_page_subtitle' as any)}
         featuredArticles={featuredPreview}
         latestArticles={latestPreview}
+        allArticles={allArticlesPreview}
         categories={categories}
         locale="en"
       />

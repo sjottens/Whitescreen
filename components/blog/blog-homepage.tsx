@@ -23,6 +23,7 @@ interface BlogHomepageProps {
   subtitle: string;
   featuredArticles: BlogArticlePreview[];
   latestArticles: BlogArticlePreview[];
+  allArticles: BlogArticlePreview[];
   categories: Array<{
     id: string;
     name: string;
@@ -58,6 +59,7 @@ export function BlogHomepage({
   subtitle,
   featuredArticles,
   latestArticles,
+  allArticles,
   categories,
   locale = 'en',
 }: BlogHomepageProps) {
@@ -84,6 +86,11 @@ export function BlogHomepage({
     router.push(baseUrl);
   };
 
+  // When filtering by category, get all articles in that category
+  const categoryFilteredArticles = selectedCategory
+    ? allArticles.filter((article) => article.cluster === selectedCategory)
+    : [];
+
   // Filter articles based on search query and selected category
   const filteredLatestArticles = latestArticles.filter((article) => {
     const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -98,6 +105,11 @@ export function BlogHomepage({
   const displayedFeaturedArticles = selectedCategory
     ? featuredArticles.filter((article) => article.cluster === selectedCategory)
     : featuredArticles;
+
+  // When a category is selected, combine both featured and non-featured articles from the full list
+  const allCategoryArticles = selectedCategory
+    ? categoryFilteredArticles
+    : [];
 
   const selectedCategoryName = selectedCategory
     ? categories.find((category) => category.id === selectedCategory)?.name
@@ -161,7 +173,7 @@ export function BlogHomepage({
       )}
 
       {/* Latest Articles or Filtered Results */}
-      {filteredLatestArticles.length > 0 && (
+      {(selectedCategory ? allCategoryArticles.length > 0 : filteredLatestArticles.length > 0) && (
         <section className="container py-16">
           <h2 className="text-3xl font-bold mb-8">
             {selectedCategory
@@ -169,7 +181,7 @@ export function BlogHomepage({
               : translate('blog_latest_articles')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredLatestArticles.map((article) => (
+            {(selectedCategory ? allCategoryArticles : filteredLatestArticles).map((article) => (
               <BlogArticleCard
                 key={article.slug}
                 {...article}
@@ -181,11 +193,11 @@ export function BlogHomepage({
         </section>
       )}
 
-      {/* Featured Articles - Only shown if no filter or articles match category */}
-      {displayedFeaturedArticles.length > 0 && (
+      {/* Featured Articles - Only shown if no filter */}
+      {!selectedCategory && displayedFeaturedArticles.length > 0 && (
         <section className="container py-16">
           <h2 className="text-3xl font-bold mb-8">
-            {selectedCategory ? translate('blog_featured_in_category') : translate('blog_featured_articles')}
+            {translate('blog_featured_articles')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayedFeaturedArticles.map((article) => (
@@ -243,7 +255,7 @@ export function BlogHomepage({
       )}
 
       {/* No Results Message */}
-      {selectedCategory && filteredLatestArticles.length === 0 && displayedFeaturedArticles.length === 0 && (
+      {selectedCategory && allCategoryArticles.length === 0 && (
         <section className="container py-16 text-center">
           <p className="text-xl text-gray-600 mb-4">
             {translate('blog_no_articles_category')}
