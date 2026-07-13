@@ -154,8 +154,8 @@ export default function Footer({ locale }: FooterProps) {
 
       {/* Bottom Footer */}
       <div className="container py-6">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-white text-sm">
-          <p className="text-white">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-white text-sm">
+          <p className="text-white text-left">
             © {currentYear} {SITE_NAME}. {translate('all_rights_reserved')} {translate('built_for')}
           </p>
           <div className="flex gap-6">
