@@ -26,7 +26,7 @@ export default function Footer({ locale }: FooterProps) {
     <footer className="bg-slate-900 text-slate-100 border-t border-slate-800">
       {/* Main Footer Content */}
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-left">
 
           {/* Color Tools Section */}
           <div>
