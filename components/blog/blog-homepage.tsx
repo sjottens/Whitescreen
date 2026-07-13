@@ -110,7 +110,7 @@ export function BlogHomepage({
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white px-4 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white px-4 py-4">
         <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
           <p className="text-xl text-blue-100 mb-8">{subtitle}</p>
@@ -123,7 +123,7 @@ export function BlogHomepage({
                 placeholder={translate('blog_search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-2.5 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="w-full px-6 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
               />
               <Search
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"
