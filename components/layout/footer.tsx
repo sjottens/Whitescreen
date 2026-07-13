@@ -26,7 +26,7 @@ export default function Footer({ locale }: FooterProps) {
     <footer className="bg-slate-900 text-slate-100 border-t border-slate-800">
       {/* Main Footer Content */}
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 text-center">
 
           {/* Color Tools Section */}
           <div>
@@ -154,7 +154,7 @@ export default function Footer({ locale }: FooterProps) {
 
       {/* Bottom Footer */}
       <div className="container py-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-white text-sm">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-white text-sm">
           <p className="text-white">
             © {currentYear} {SITE_NAME}. {translate('all_rights_reserved')} {translate('built_for')}
           </p>
