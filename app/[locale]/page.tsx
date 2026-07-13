@@ -10,6 +10,7 @@ import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import { getLocalizedPath } from '@/lib/link-utils';
 import ModernHeroBackground from '@/components/ui/modern-hero-background-lazy';
+import { LatestBlogBanner } from '@/components/blog/latest-blog-banner';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -121,6 +122,9 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/20 rounded-full mix-blend-screen filter blur-3xl animate-float opacity-20 pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#00DC82]/10 rounded-full mix-blend-screen filter blur-3xl animate-pulse-glow opacity-10 pointer-events-none" />
       </section>
+
+      {/* Latest Blog Article Banner - Compact Top Section */}
+      <LatestBlogBanner locale={locale} />
 
       {/* Featured Tools Grid - Modern Cards */}
       <section className="section bg-gradient-to-b from-slate-950 to-slate-900 content-auto">

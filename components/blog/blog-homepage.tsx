@@ -123,7 +123,7 @@ export function BlogHomepage({
                 placeholder={translate('blog_search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="w-full px-6 py-2.5 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
               />
               <Search
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"

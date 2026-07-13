@@ -19,7 +19,8 @@ interface LocaleBlogArticlePageProps {
 
 export async function generateStaticParams() {
   const params: Array<{ locale: string; slug: string }> = [];
-  const locales: Locale[] = ['nl', 'es', 'de'];
+  // Include ALL supported locales including English
+  const locales: Locale[] = ['en', 'nl', 'es', 'de'];
 
   allBlogArticles.forEach((article) => {
     locales.forEach((locale) => {
@@ -51,16 +52,33 @@ export async function generateMetadata({
   const articleTranslations = article.translations[locale as Locale] || article.translations.en;
   const { publishedAt, updatedAt } = article;
 
+  // Proper canonical path: English uses /blog/, other locales use /[locale]/blog/
   const canonicalPath = locale === 'en' ? article.seo.canonicalPath : `/${locale}${article.seo.canonicalPath}`;
+
+  // Map locale to proper OpenGraph locale format
+  const localeMap: Record<Locale, string> = {
+    en: 'en_US',
+    nl: 'nl_NL',
+    es: 'es_ES',
+    de: 'de_DE',
+  };
+
+  // Generate proper hreflang alternates including all 4 languages
+  const hrefLangAlternates: Record<string, string> = {
+    'en': `${SITE_URL}${article.seo.canonicalPath}`,
+    'nl': `${SITE_URL}/nl${article.seo.canonicalPath}`,
+    'es': `${SITE_URL}/es${article.seo.canonicalPath}`,
+    'de': `${SITE_URL}/de${article.seo.canonicalPath}`,
+  };
 
   return {
     title: articleTranslations.metaTitle,
     description: articleTranslations.metaDescription,
-    keywords: [articleTranslations.keyword, 'screen testing', 'monitor testing'],
+    keywords: [articleTranslations.keyword, 'screen testing', 'monitor testing', 'display testing'],
     authors: [{ name: 'TestAScreen Team' }],
     alternates: {
       canonical: `${SITE_URL}${canonicalPath}`,
-      languages: generateHrefLangAlternates(article.seo.canonicalPath),
+      languages: hrefLangAlternates,
     },
     openGraph: {
       title: articleTranslations.metaTitle,
@@ -70,13 +88,14 @@ export async function generateMetadata({
       authors: ['TestAScreen'],
       publishedTime: new Date(publishedAt).toISOString(),
       modifiedTime: new Date(updatedAt).toISOString(),
-      locale: locale,
+      locale: localeMap[locale as Locale],
       tags: [articleTranslations.keyword, 'display', 'monitor', 'screen'],
     },
     twitter: {
       card: 'summary_large_image',
       title: articleTranslations.metaTitle,
       description: articleTranslations.metaDescription,
+      creator: '@testscreen',
     },
   };
 }
@@ -112,10 +131,21 @@ export default function LocaleBlogArticlePage({
 
   const canonicalPath = locale === 'en' ? article.seo.canonicalPath : `/${locale}${article.seo.canonicalPath}`;
 
-  // Generate Article Schema
+  // Proper locale format for schema.org
+  const schemaLocaleMap: Record<Locale, string> = {
+    en: 'en-US',
+    nl: 'nl-NL',
+    es: 'es-ES',
+    de: 'de-DE',
+  };
+
+  const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+
+  // Generate Article Schema with proper canonical URL and all required fields
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': schemaType,
+    '@id': canonicalUrl,
     headline: articleTranslations.title,
     description: articleTranslations.metaDescription,
     image: `${SITE_URL}/og-image.png`,
@@ -131,10 +161,16 @@ export default function LocaleBlogArticlePage({
       name: 'TestAScreen',
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/favicon.svg`,
+        url: `${SITE_URL}/logo.png`,
       },
     },
-    inLanguage: locale,
+    inLanguage: schemaLocaleMap[locale as Locale],
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      name: 'TestAScreen',
+      url: SITE_URL,
+    },
   };
 
   // Generate FAQ Schema if applicable
@@ -153,6 +189,32 @@ export default function LocaleBlogArticlePage({
           })),
         }
       : null;
+
+  // Breadcrumb schema for better navigation in search results
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: locale === 'en' ? 'Home' : locale === 'nl' ? 'Startpagina' : locale === 'es' ? 'Inicio' : 'Startseite',
+        item: SITE_URL + (locale === 'en' ? '' : `/${locale}`),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${SITE_URL}${locale === 'en' ? '/blog' : `/${locale}/blog`}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: articleTranslations.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
 
   const breadcrumbLabels: Partial<Record<Locale, { home: string; blog: string }>> = {
     en: { home: 'Home', blog: 'Blog' },
@@ -190,6 +252,12 @@ export default function LocaleBlogArticlePage({
         id="article-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        suppressHydrationWarning
+      />
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         suppressHydrationWarning
       />
       {faqSchema && (

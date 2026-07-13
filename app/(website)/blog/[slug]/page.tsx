@@ -37,30 +37,39 @@ export async function generateMetadata({
   const enSeo = seo;
   const enTranslations = translations.en;
 
+  // Generate proper hreflang alternates for all 4 languages
+  const hrefLangAlternates: Record<string, string> = {
+    'en': `${SITE_URL}${enSeo.canonicalPath}`,
+    'nl': `${SITE_URL}/nl${enSeo.canonicalPath}`,
+    'es': `${SITE_URL}/es${enSeo.canonicalPath}`,
+    'de': `${SITE_URL}/de${enSeo.canonicalPath}`,
+  };
+
   return {
-    title: enSeo.metaTitleEn,
-    description: enSeo.metaDescriptionEn,
-    keywords: [enSeo.keywordEn, 'screen testing', 'monitor testing'],
+    title: enTranslations.metaTitle,
+    description: enTranslations.metaDescription,
+    keywords: [enTranslations.keyword, 'screen testing', 'monitor testing', 'display testing'],
     authors: [{ name: 'TestAScreen Team' }],
     alternates: {
       canonical: `${SITE_URL}${enSeo.canonicalPath}`,
-      languages: generateHrefLangAlternates(enSeo.canonicalPath),
+      languages: hrefLangAlternates,
     },
     openGraph: {
-      title: enSeo.metaTitleEn,
-      description: enSeo.metaDescriptionEn,
+      title: enTranslations.metaTitle,
+      description: enTranslations.metaDescription,
       type: 'article',
       url: `${SITE_URL}${enSeo.canonicalPath}`,
       authors: ['TestAScreen'],
       publishedTime: new Date(publishedAt).toISOString(),
       modifiedTime: new Date(updatedAt).toISOString(),
       locale: 'en_US',
-      tags: [enSeo.keywordEn, 'display', 'monitor', 'screen'],
+      tags: [enTranslations.keyword, 'display', 'monitor', 'screen'],
     },
     twitter: {
       card: 'summary_large_image',
-      title: enSeo.metaTitleEn,
-      description: enSeo.metaDescriptionEn,
+      title: enTranslations.metaTitle,
+      description: enTranslations.metaDescription,
+      creator: '@testscreen',
     },
   };
 }
@@ -87,10 +96,13 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
   
   const relatedArticles = getRelatedArticles(article.id, 3);
 
-  // Generate Article Schema
+  const canonicalUrl = `${SITE_URL}${seo.canonicalPath}`;
+
+  // Generate Article Schema with proper canonical URL and all required fields
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': schemaType,
+    '@id': canonicalUrl,
     headline: enTranslations.title,
     description: enTranslations.metaDescription,
     image: `${SITE_URL}/og-image.png`,
@@ -106,9 +118,42 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
       name: 'TestAScreen',
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/favicon.svg`,
+        url: `${SITE_URL}/logo.png`,
       },
     },
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      name: 'TestAScreen',
+      url: SITE_URL,
+    },
+  };
+
+  // Generate Breadcrumb Schema for better navigation in search results
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${SITE_URL}/blog`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: enTranslations.title,
+        item: canonicalUrl,
+      },
+    ],
   };
 
   // Generate FAQ Schema if applicable
@@ -153,6 +198,12 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
         id="article-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        suppressHydrationWarning
+      />
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         suppressHydrationWarning
       />
       {faqSchema && (
