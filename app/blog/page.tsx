@@ -1,4 +1,4 @@
-// app/(website)/blog/page.tsx - English blog homepage
+// app/blog/page.tsx - English blog homepage
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { BlogHomepage } from '@/components/blog/blog-homepage';

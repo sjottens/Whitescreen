@@ -76,7 +76,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/${userLocale}${pathname}`, request.url));
   }
 
-  // 5. Rewrite root paths to [locale] route with locale=en
+  // 5. Skip rewrite for /blog and /blog/* (handled by app/blog/ directly)
+  // This allows /blog and /blog/[slug] pages with Metadata to be served directly
+  if (pathname === '/blog' || pathname.startsWith('/blog/')) {
+    return NextResponse.next();
+  }
+
+  // 6. Rewrite root paths to [locale] route with locale=en
   // This allows /white-screen, /tools, etc. to work as English pages
   // The [locale] layout will receive 'en' from this rewrite
   return NextResponse.rewrite(new URL(`/en${pathname}`, request.url));

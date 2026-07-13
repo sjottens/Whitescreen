@@ -127,9 +127,9 @@ export function BlogHomepage({
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
           <p className="text-xl text-blue-100 mb-8">{subtitle}</p>
 
-          {/* Search Box */}
-          <div className="max-w-lg mx-auto">
-            <div className="relative">
+          {/* Search Box - Fixed height to prevent CLS */}
+          <div className="max-w-lg mx-auto h-[48px] flex items-center">
+            <div className="relative w-full">
               <input
                 type="search"
                 placeholder={translate('blog_search_placeholder')}
@@ -146,9 +146,9 @@ export function BlogHomepage({
         </div>
       </section>
 
-      {/* Active Filter Display */}
-      {selectedCategory && (
-        <section className="bg-blue-50 px-4 py-4 border-b border-blue-200">
+      {/* Active Filter Display - Min height to prevent CLS when hidden */}
+      <section className={`px-4 transition-all duration-200 ${selectedCategory ? 'bg-blue-50 py-4 border-b border-blue-200' : 'py-0 h-0 overflow-hidden'}`}>
+        {selectedCategory && (
           <div className="container">
             <div className="flex items-center gap-3">
               <span className="text-sm font-semibold text-gray-700">
@@ -169,8 +169,8 @@ export function BlogHomepage({
               </div>
             </div>
           </div>
-        </section>
-      )}
+        )}
+      </section>
 
       {/* Latest Articles or Filtered Results */}
       {(selectedCategory ? allCategoryArticles.length > 0 : filteredLatestArticles.length > 0) && (
@@ -193,29 +193,31 @@ export function BlogHomepage({
         </section>
       )}
 
-      {/* Featured Articles - Only shown if no filter */}
-      {!selectedCategory && displayedFeaturedArticles.length > 0 && (
-        <section className="container py-16">
-          <h2 className="text-3xl font-bold mb-8">
-            {translate('blog_featured_articles')}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedFeaturedArticles.map((article) => (
-              <BlogArticleCard
-                key={article.slug}
-                {...article}
-                category={article.cluster}
-                featured={article.featured}
-                locale={locale}
-              />
-            ))}
+      {/* Featured Articles - Hidden with CSS instead of conditional to prevent CLS */}
+      <section className={`transition-opacity duration-300 ${!selectedCategory && displayedFeaturedArticles.length > 0 ? 'opacity-100 visible' : 'opacity-0 invisible h-0 absolute'}`}>
+        {displayedFeaturedArticles.length > 0 && (
+          <div className="container py-16">
+            <h2 className="text-3xl font-bold mb-8">
+              {translate('blog_featured_articles')}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayedFeaturedArticles.map((article) => (
+                <BlogArticleCard
+                  key={article.slug}
+                  {...article}
+                  category={article.cluster}
+                  featured={article.featured}
+                  locale={locale}
+                />
+              ))}
+            </div>
           </div>
-        </section>
-      )}
+        )}
+      </section>
 
-      {/* Categories Section - Hidden when filter is active */}
-      {!selectedCategory && (
-        <section className="bg-gray-50 px-4 py-16">
+      {/* Categories Section - Hidden with CSS when filter is active */}
+      <section className={`px-4 transition-opacity duration-300 ${!selectedCategory ? 'bg-gray-50 py-16 opacity-100 visible' : 'opacity-0 invisible h-0 absolute'}`}>
+        {!selectedCategory && (
           <div className="container">
             <h2 className="text-3xl font-bold mb-8">{translate('blog_browse_by_category')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -251,8 +253,8 @@ export function BlogHomepage({
               })}
             </div>
           </div>
-        </section>
-      )}
+        )}
+      </section>
 
       {/* No Results Message */}
       {selectedCategory && allCategoryArticles.length === 0 && (

@@ -1,4 +1,4 @@
-// app/(website)/blog/[slug]/page.tsx - English blog article page
+// app/blog/[slug]/page.tsx - English blog article page
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
