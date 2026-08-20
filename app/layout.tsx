@@ -5,13 +5,12 @@
 
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Manrope, Space_Grotesk } from 'next/font/google';
 
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
 import { organizationSchema, softwareApplicationSchema, websiteSchema } from '@/lib/seo';
 import RouteTransition from '@/components/layout/route-transition';
-import MobileAnalyticsOptimizer from '@/components/analytics/mobile-analytics-optimizer';
-import DesktopAnalyticsOptimizer from '@/components/analytics/desktop-analytics-optimizer';
 import AdOptimizer from '@/components/analytics/ad-optimizer';
 
 import './globals.css';
@@ -116,6 +115,25 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
 
+        {/* Google Tag Manager - Essential for analytics tracking */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
+          strategy="afterInteractive"
+          id="gtag-script"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YP3G096BGK', { send_page_view: false });
+            `,
+          }}
+        />
+
         {/* JSON-LD Structured Data */}
         <script
           id="organization-schema"
@@ -138,14 +156,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <RouteTransition>{children}</RouteTransition>
         </div>
 
-        {/* Google Analytics - Tracking setup (handled by optimizers for better deferral) */}
-        {/* Desktop GTM: loaded via DesktopAnalyticsOptimizer after 2s */}
-        {/* Mobile GTM: loaded via MobileAnalyticsOptimizer after 20s */}
-        {/* NOTE: GTM Script components removed to reduce unused JavaScript on mobile audit */}
-
-        {/* Performance optimization: defer GTM and ads based on device and page load state */}
-        <MobileAnalyticsOptimizer />
-        <DesktopAnalyticsOptimizer />
+        {/* Performance optimization: defer non-critical ads */}
+        {/* GTM is loaded via Script component with strategy="afterInteractive" for reliable tracking */}
         <AdOptimizer />
       </body>
     </html>
