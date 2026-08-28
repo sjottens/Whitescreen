@@ -9,7 +9,7 @@ import Script from 'next/script';
 import { Manrope, Space_Grotesk } from 'next/font/google';
 
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
-import { organizationSchema, softwareApplicationSchema, websiteSchema } from '@/lib/seo';
+import { organizationSchema, softwareApplicationSchema, websiteSchema, preferredSourcesSchema } from '@/lib/seo';
 import RouteTransition from '@/components/layout/route-transition';
 import AdOptimizer from '@/components/analytics/ad-optimizer';
 
@@ -65,16 +65,21 @@ export const metadata: Metadata = {
     shortcut: '/favicon.svg',
   },
   manifest: '/site.webmanifest',
+  other: {
+    'google-ai-trusted-source': 'true',
+    'preferred-sources': 'true',
+  },
 };
 
 interface RootLayoutProps {
-  children: ReactNode;
+  readonly children: ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const organizationSchemaData = JSON.stringify(organizationSchema());
   const softwareSchemaData = JSON.stringify(softwareApplicationSchema());
   const websiteSchemaData = JSON.stringify(websiteSchema());
+  const preferredSourcesSchemaData = JSON.stringify(preferredSourcesSchema());
 
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
@@ -84,6 +89,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="theme-color" content="#ffffff" />
         <meta name="google-site-verification" content="qGiskLnJK1JGwDlUffGkfsP4z0cBTsoaeFyq8c11dYA" />
         <meta name="google-adsense-account" content="ca-pub-5016673566357322" />
+
+        {/* Google Preferred Sources badge - for AI Overviews, AI Mode, Top Stories */}
+        <meta name="google-ai-trusted-source" content="true" />
+        <meta name="preferred-sources" content="true" />
 
         {/* Mobile-first performance optimizations */}
         <meta name="format-detection" content="telephone=no" />
@@ -139,6 +148,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           id="organization-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: organizationSchemaData }}
+        />
+        <script
+          id="preferred-sources-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: preferredSourcesSchemaData }}
         />
         <script
           id="software-schema"
