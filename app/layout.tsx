@@ -84,98 +84,102 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
-        {/* CRITICAL: Performance Entry Sanitizer - MUST run BEFORE ANY analytics */}
+        {/* CRITICAL: PerformanceObserver Defensifier - Prevent GA4 crashes without mutating data */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                // Repair function - fixes entries instead of filtering them out
-                function repairEntry(e) {
-                  if (!e || typeof e !== 'object') return null;
-                  // Ensure entry has startTime property
-                  if (!('startTime' in e)) {
-                    try { e.startTime = 0; } catch (err) {}
-                  }
-                  // Ensure startTime is a number
-                  if (typeof e.startTime !== 'number') {
-                    try { e.startTime = 0; } catch (err) {}
-                  }
-                  return e;
-                }
+                // Only process if PerformanceObserver exists
+                if (!window.PerformanceObserver) return;
                 
-                // Override performance.getEntries
-                if (window.performance && window.performance.getEntries) {
-                  var originalGetEntries = window.performance.getEntries;
-                  window.performance.getEntries = function() {
-                    try {
-                      var entries = originalGetEntries.call(this);
+                var OriginalPO = window.PerformanceObserver;
+                var DEBUG = false; // Set to true for troubleshooting
+                
+                // Create a wrapper that filters entries at point-of-use
+                // This prevents GA4 from accessing entries with undefined/invalid startTime
+                // WITHOUT mutating performance entries (which are read-only anyway)
+                window.PerformanceObserver = function(userCallback) {
+                  var wrappedCallback = function(list) {
+                    // Intercept the getEntries() call that GA4 makes
+                    var origGetEntries = list.getEntries.bind(list);
+                    var origTakeRecords = list.takeRecords.bind(list);
+                    
+                    // Override getEntries to filter out bad entries before GA4 processes them
+                    list.getEntries = function() {
+                      var entries = origGetEntries();
                       if (!Array.isArray(entries)) return [];
-                      var repaired = [];
+                      
+                      // Check for bad entries before filtering
+                      var badEntries = [];
+                      var filteredEntries = [];
+                      
                       for (var i = 0; i < entries.length; i++) {
-                        var fixed = repairEntry(entries[i]);
-                        if (fixed !== null) repaired.push(fixed);
+                        var entry = entries[i];
+                        if (entry && typeof entry.startTime === 'number') {
+                          filteredEntries.push(entry);
+                        } else {
+                          badEntries.push({
+                            type: entry ? entry.entryType : 'unknown',
+                            startTime: entry ? entry.startTime : null
+                          });
+                        }
                       }
-                      return repaired;
-                    } catch (err) {
-                      return [];
-                    }
-                  };
-                }
-                
-                // Override performance.getEntriesByType
-                if (window.performance && window.performance.getEntriesByType) {
-                  var originalGetEntriesByType = window.performance.getEntriesByType;
-                  window.performance.getEntriesByType = function(type) {
-                    try {
-                      var entries = originalGetEntriesByType.call(this, type);
+                      
+                      if (DEBUG && badEntries.length > 0) {
+                        console.log('[GA4-Defensifier] Filtered out bad entries:', badEntries);
+                      }
+                      
+                      return filteredEntries;
+                    };
+                    
+                    // Same for takeRecords
+                    list.takeRecords = function() {
+                      var entries = origTakeRecords();
                       if (!Array.isArray(entries)) return [];
-                      var repaired = [];
+                      
+                      var badEntries = [];
+                      var filteredEntries = [];
+                      
                       for (var i = 0; i < entries.length; i++) {
-                        var fixed = repairEntry(entries[i]);
-                        if (fixed !== null) repaired.push(fixed);
+                        var entry = entries[i];
+                        if (entry && typeof entry.startTime === 'number') {
+                          filteredEntries.push(entry);
+                        } else {
+                          badEntries.push({
+                            type: entry ? entry.entryType : 'unknown',
+                            startTime: entry ? entry.startTime : null
+                          });
+                        }
                       }
-                      return repaired;
+                      
+                      if (DEBUG && badEntries.length > 0) {
+                        console.log('[GA4-Defensifier] Filtered takeRecords:', badEntries);
+                      }
+                      
+                      return filteredEntries;
+                    };
+                    
+                    // Call the original GA4 callback with the safe list
+                    try {
+                      userCallback(list);
                     } catch (err) {
-                      return [];
+                      // Log errors for debugging
+                      if (DEBUG) {
+                        console.log('[GA4-Defensifier] Callback error:', err.message);
+                      }
                     }
                   };
-                }
+                  
+                  if (DEBUG) {
+                    console.log('[GA4-Defensifier] Wrapping PerformanceObserver for GA4');
+                  }
+                  
+                  // Return an observer that uses our wrapped callback
+                  return new OriginalPO(wrappedCallback);
+                };
                 
-                // Override PerformanceObserver
-                if (window.PerformanceObserver) {
-                  var OriginalPO = window.PerformanceObserver;
-                  window.PerformanceObserver = function(callback) {
-                    this.observer = new OriginalPO(function(list) {
-                      try {
-                        var originalGetEntries = list.getEntries.bind(list);
-                        list.getEntries = function() {
-                          var entries = originalGetEntries();
-                          if (!Array.isArray(entries)) return [];
-                          var repaired = [];
-                          for (var i = 0; i < entries.length; i++) {
-                            var fixed = repairEntry(entries[i]);
-                            if (fixed !== null) repaired.push(fixed);
-                          }
-                          return repaired;
-                        };
-                        callback(list);
-                      } catch (err) {}
-                    });
-                  };
-                  window.PerformanceObserver.prototype.observe = function(o) { return this.observer.observe(o); };
-                  window.PerformanceObserver.prototype.disconnect = function() { return this.observer.disconnect(); };
-                  window.PerformanceObserver.prototype.takeRecords = function() {
-                    var r = this.observer.takeRecords();
-                    if (!Array.isArray(r)) return [];
-                    var repaired = [];
-                    for (var i = 0; i < r.length; i++) {
-                      var fixed = repairEntry(r[i]);
-                      if (fixed !== null) repaired.push(fixed);
-                    }
-                    return repaired;
-                  };
-                  window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
-                }
+                // Preserve static properties
+                window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
               })();
             `,
           }}
