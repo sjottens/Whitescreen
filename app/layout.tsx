@@ -125,83 +125,129 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* Performance Entry Sanitizer - Runs BEFORE any analytics script */}
+        {/* Performance Entry Sanitizer + Error Suppression - BEFORE Google Analytics */}
         <script
           id="perf-sanitizer"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                // Override performance.getEntries to filter bad entries
+                var hasError = false;
+                
+                // Global error handler to catch and suppress startTime errors
+                window.addEventListener('error', function(event) {
+                  if (event.message && event.message.indexOf('startTime') > -1) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    hasError = true;
+                    return true;
+                  }
+                }, true);
+                
+                // Strict filter function
+                function isValidEntry(e) {
+                  return !!(
+                    e && 
+                    typeof e === 'object' && 
+                    'startTime' in e && 
+                    typeof e.startTime === 'number' &&
+                    e.startTime >= 0
+                  );
+                }
+                
+                // Override performance.getEntries
                 if (window.performance && window.performance.getEntries) {
                   var originalGetEntries = window.performance.getEntries;
                   window.performance.getEntries = function() {
                     try {
                       var entries = originalGetEntries.call(this);
                       if (!Array.isArray(entries)) return [];
-                      return entries.filter(function(e) {
-                        return e && typeof e === 'object' && 'startTime' in e && typeof e.startTime === 'number';
-                      });
+                      var valid = [];
+                      for (var i = 0; i < entries.length; i++) {
+                        if (isValidEntry(entries[i])) {
+                          valid.push(entries[i]);
+                        }
+                      }
+                      return valid;
                     } catch (err) {
                       return [];
                     }
                   };
                 }
                 
-                // Override performance.getEntriesByType to filter bad entries
+                // Override performance.getEntriesByType
                 if (window.performance && window.performance.getEntriesByType) {
                   var originalGetEntriesByType = window.performance.getEntriesByType;
                   window.performance.getEntriesByType = function(type) {
                     try {
                       var entries = originalGetEntriesByType.call(this, type);
                       if (!Array.isArray(entries)) return [];
-                      return entries.filter(function(e) {
-                        return e && typeof e === 'object' && 'startTime' in e && typeof e.startTime === 'number';
-                      });
+                      var valid = [];
+                      for (var i = 0; i < entries.length; i++) {
+                        if (isValidEntry(entries[i])) {
+                          valid.push(entries[i]);
+                        }
+                      }
+                      return valid;
                     } catch (err) {
                       return [];
                     }
                   };
                 }
                 
-                // Wrap PerformanceObserver callback to sanitize entries
+                // Override PerformanceObserver
                 if (window.PerformanceObserver) {
                   var OriginalPO = window.PerformanceObserver;
                   window.PerformanceObserver = function(callback) {
-                    var self = this;
-                    var safeCallback = function(list) {
+                    var wrappedCallback = function(list) {
                       try {
-                        // Create a safe list object that filters bad entries
-                        var originalGetEntries = list.getEntries.bind(list);
-                        var safeList = Object.create(list);
-                        
-                        safeList.getEntries = function() {
-                          var entries = originalGetEntries();
-                          if (!Array.isArray(entries)) return [];
-                          return entries.filter(function(e) {
-                            return e && typeof e === 'object' && 'startTime' in e && typeof e.startTime === 'number';
-                          });
+                        // Create safe wrapper
+                        var originalList = {
+                          getEntries: list.getEntries.bind(list),
+                          getEntriesByName: list.getEntriesByName.bind(list),
+                          getEntriesByType: list.getEntriesByType.bind(list)
                         };
                         
-                        var sanitizedEntries = safeList.getEntries();
-                        if (sanitizedEntries.length === 0) return; // Skip if no valid entries
+                        // Replace getEntries with filtered version
+                        list.getEntries = function() {
+                          var entries = originalList.getEntries();
+                          if (!Array.isArray(entries)) return [];
+                          var valid = [];
+                          for (var i = 0; i < entries.length; i++) {
+                            if (isValidEntry(entries[i])) {
+                              valid.push(entries[i]);
+                            }
+                          }
+                          return valid;
+                        };
                         
-                        callback(safeList);
+                        // Skip if no valid entries
+                        if (list.getEntries().length === 0) return;
+                        
+                        callback(list);
                       } catch (err) {
-                        // Silently fail - don't let this break GA
+                        // Silent fail
                       }
                     };
                     
-                    this.observer = new OriginalPO(safeCallback);
+                    this.observer = new OriginalPO(wrappedCallback);
                   };
                   
-                  window.PerformanceObserver.prototype.observe = function(options) {
-                    return this.observer.observe(options);
+                  window.PerformanceObserver.prototype.observe = function(opts) {
+                    return this.observer.observe(opts);
                   };
                   window.PerformanceObserver.prototype.disconnect = function() {
                     return this.observer.disconnect();
                   };
                   window.PerformanceObserver.prototype.takeRecords = function() {
-                    return this.observer.takeRecords();
+                    var records = this.observer.takeRecords();
+                    if (!Array.isArray(records)) return [];
+                    var valid = [];
+                    for (var i = 0; i < records.length; i++) {
+                      if (isValidEntry(records[i])) {
+                        valid.push(records[i]);
+                      }
+                    }
+                    return valid;
                   };
                   window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
                 }
