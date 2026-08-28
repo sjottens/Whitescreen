@@ -96,6 +96,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         {/* Mobile-first performance optimizations */}
         <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
@@ -135,10 +136,38 @@ export default function RootLayout({ children }: RootLayoutProps) {
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-YP3G096BGK', { send_page_view: false });
+              try {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-YP3G096BGK', { send_page_view: false });
+              } catch (error) {
+                console.debug('[GTM] Init error:', error);
+              }
+            `,
+          }}
+        />
+
+        {/* Global error handler for third-party scripts (Google Analytics, ads, etc.) */}
+        <script
+          id="error-handler"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('error', function(e) {
+                if (e.message && e.message.includes('startTime')) {
+                  console.debug('[Error Handler] Suppressed performance timing error');
+                  return true;
+                }
+              }, true);
+              
+              if (window.addEventListener) {
+                window.addEventListener('unhandledrejection', function(e) {
+                  if (e.reason && (e.reason.message || '').includes('startTime')) {
+                    console.debug('[Error Handler] Suppressed async performance error');
+                    e.preventDefault();
+                  }
+                });
+              }
             `,
           }}
         />
