@@ -125,66 +125,86 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* PerformanceObserver Polyfill - Must run BEFORE Google Analytics loads */}
+        {/* Performance Entry Sanitizer - Runs BEFORE any analytics script */}
         <script
-          id="perf-polyfill"
+          id="perf-sanitizer"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                if (!window.PerformanceObserver) return;
-                
-                var OriginalPO = window.PerformanceObserver;
-                var wrappedObservers = [];
-                
-                function PerformanceObserverWrapper(callback) {
-                  var self = this;
-                  this.originalCallback = callback;
-                  
-                  // Wrap the callback to filter entries
-                  this.wrappedCallback = function(list) {
+                // Override performance.getEntries to filter bad entries
+                if (window.performance && window.performance.getEntries) {
+                  var originalGetEntries = window.performance.getEntries;
+                  window.performance.getEntries = function() {
                     try {
-                      var entries = list.getEntries();
-                      var validEntries = entries.filter(function(e) {
-                        return e && typeof e === 'object' && 'startTime' in e;
+                      var entries = originalGetEntries.call(this);
+                      if (!Array.isArray(entries)) return [];
+                      return entries.filter(function(e) {
+                        return e && typeof e === 'object' && 'startTime' in e && typeof e.startTime === 'number';
                       });
-                      
-                      if (validEntries.length === 0) return;
-                      
-                      // Create a wrapper list with only valid entries
-                      var wrappedList = {
-                        getEntries: function() { return validEntries; },
-                        getEntriesByName: function(name) {
-                          return validEntries.filter(function(e) { return e.name === name; });
-                        },
-                        getEntriesByType: function(type) {
-                          return validEntries.filter(function(e) { return e.entryType === type; });
-                        }
-                      };
-                      
-                      self.originalCallback(wrappedList);
                     } catch (err) {
-                      // Silently fail to prevent breaking GA
+                      return [];
                     }
                   };
-                  
-                  this.observer = new OriginalPO(this.wrappedCallback);
-                  wrappedObservers.push(this);
                 }
                 
-                PerformanceObserverWrapper.prototype.observe = function(options) {
-                  return this.observer.observe(options);
-                };
+                // Override performance.getEntriesByType to filter bad entries
+                if (window.performance && window.performance.getEntriesByType) {
+                  var originalGetEntriesByType = window.performance.getEntriesByType;
+                  window.performance.getEntriesByType = function(type) {
+                    try {
+                      var entries = originalGetEntriesByType.call(this, type);
+                      if (!Array.isArray(entries)) return [];
+                      return entries.filter(function(e) {
+                        return e && typeof e === 'object' && 'startTime' in e && typeof e.startTime === 'number';
+                      });
+                    } catch (err) {
+                      return [];
+                    }
+                  };
+                }
                 
-                PerformanceObserverWrapper.prototype.disconnect = function() {
-                  return this.observer.disconnect();
-                };
-                
-                PerformanceObserverWrapper.prototype.takeRecords = function() {
-                  return this.observer.takeRecords();
-                };
-                
-                window.PerformanceObserver = PerformanceObserverWrapper;
-                window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
+                // Wrap PerformanceObserver callback to sanitize entries
+                if (window.PerformanceObserver) {
+                  var OriginalPO = window.PerformanceObserver;
+                  window.PerformanceObserver = function(callback) {
+                    var self = this;
+                    var safeCallback = function(list) {
+                      try {
+                        // Create a safe list object that filters bad entries
+                        var originalGetEntries = list.getEntries.bind(list);
+                        var safeList = Object.create(list);
+                        
+                        safeList.getEntries = function() {
+                          var entries = originalGetEntries();
+                          if (!Array.isArray(entries)) return [];
+                          return entries.filter(function(e) {
+                            return e && typeof e === 'object' && 'startTime' in e && typeof e.startTime === 'number';
+                          });
+                        };
+                        
+                        var sanitizedEntries = safeList.getEntries();
+                        if (sanitizedEntries.length === 0) return; // Skip if no valid entries
+                        
+                        callback(safeList);
+                      } catch (err) {
+                        // Silently fail - don't let this break GA
+                      }
+                    };
+                    
+                    this.observer = new OriginalPO(safeCallback);
+                  };
+                  
+                  window.PerformanceObserver.prototype.observe = function(options) {
+                    return this.observer.observe(options);
+                  };
+                  window.PerformanceObserver.prototype.disconnect = function() {
+                    return this.observer.disconnect();
+                  };
+                  window.PerformanceObserver.prototype.takeRecords = function() {
+                    return this.observer.takeRecords();
+                  };
+                  window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
+                }
               })();
             `,
           }}
