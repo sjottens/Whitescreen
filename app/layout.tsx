@@ -125,23 +125,67 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* Performance API Polyfill - Must run BEFORE Google Analytics loads */}
+        {/* PerformanceObserver Polyfill - Must run BEFORE Google Analytics loads */}
         <script
           id="perf-polyfill"
           dangerouslySetInnerHTML={{
             __html: `
-              if (window.performance && window.performance.getEntriesByType) {
-                var originalGetEntries = window.performance.getEntriesByType;
-                window.performance.getEntriesByType = function(type) {
-                  try {
-                    var entries = originalGetEntries.call(this, type);
-                    if (!Array.isArray(entries)) return [];
-                    return entries.filter(function(e) { return e && e.startTime !== undefined; });
-                  } catch (e) {
-                    return [];
-                  }
+              (function() {
+                if (!window.PerformanceObserver) return;
+                
+                var OriginalPO = window.PerformanceObserver;
+                var wrappedObservers = [];
+                
+                function PerformanceObserverWrapper(callback) {
+                  var self = this;
+                  this.originalCallback = callback;
+                  
+                  // Wrap the callback to filter entries
+                  this.wrappedCallback = function(list) {
+                    try {
+                      var entries = list.getEntries();
+                      var validEntries = entries.filter(function(e) {
+                        return e && typeof e === 'object' && 'startTime' in e;
+                      });
+                      
+                      if (validEntries.length === 0) return;
+                      
+                      // Create a wrapper list with only valid entries
+                      var wrappedList = {
+                        getEntries: function() { return validEntries; },
+                        getEntriesByName: function(name) {
+                          return validEntries.filter(function(e) { return e.name === name; });
+                        },
+                        getEntriesByType: function(type) {
+                          return validEntries.filter(function(e) { return e.entryType === type; });
+                        }
+                      };
+                      
+                      self.originalCallback(wrappedList);
+                    } catch (err) {
+                      // Silently fail to prevent breaking GA
+                    }
+                  };
+                  
+                  this.observer = new OriginalPO(this.wrappedCallback);
+                  wrappedObservers.push(this);
+                }
+                
+                PerformanceObserverWrapper.prototype.observe = function(options) {
+                  return this.observer.observe(options);
                 };
-              }
+                
+                PerformanceObserverWrapper.prototype.disconnect = function() {
+                  return this.observer.disconnect();
+                };
+                
+                PerformanceObserverWrapper.prototype.takeRecords = function() {
+                  return this.observer.takeRecords();
+                };
+                
+                window.PerformanceObserver = PerformanceObserverWrapper;
+                window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
+              })();
             `,
           }}
         />
