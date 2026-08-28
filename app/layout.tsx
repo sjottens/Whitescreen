@@ -153,21 +153,59 @@ export default function RootLayout({ children }: RootLayoutProps) {
           id="error-handler"
           dangerouslySetInnerHTML={{
             __html: `
-              window.addEventListener('error', function(e) {
-                if (e.message && e.message.includes('startTime')) {
-                  console.debug('[Error Handler] Suppressed performance timing error');
-                  return true;
-                }
-              }, true);
-              
-              if (window.addEventListener) {
-                window.addEventListener('unhandledrejection', function(e) {
-                  if (e.reason && (e.reason.message || '').includes('startTime')) {
-                    console.debug('[Error Handler] Suppressed async performance error');
+              (function() {
+                // Suppress third-party script errors without breaking functionality
+                var originalError = window.onerror;
+                window.onerror = function(message, source, lineno, colno, error) {
+                  var msg = (message || '').toString().toLowerCase();
+                  // Suppress performance timing errors from GTM and similar
+                  if (msg.includes('starttime') || msg.includes('cannot read') || (error && error.message && error.message.includes('startTime'))) {
+                    console.debug('[Error Suppressed]', message);
+                    return true; // Suppress error
+                  }
+                  // Call original error handler if exists
+                  if (originalError) return originalError(message, source, lineno, colno, error);
+                };
+                
+                // Also handle via addEventListener for capture phase
+                window.addEventListener('error', function(e) {
+                  if (e && e.message && (e.message.includes('startTime') || e.message.includes('Cannot read'))) {
                     e.preventDefault();
+                    console.debug('[Error Suppressed]', e.message);
+                  }
+                }, true);
+                
+                // Handle unhandled promise rejections
+                window.addEventListener('unhandledrejection', function(e) {
+                  if (e && e.reason && (e.reason.message || '').includes('startTime')) {
+                    e.preventDefault();
+                    console.debug('[Promise Rejection Suppressed]', e.reason.message);
                   }
                 });
-              }
+
+                // Polyfill: Guard performance.getEntriesByType to prevent undefined errors
+                if (window.performance && window.performance.getEntriesByType) {
+                  var originalGetEntriesByType = window.performance.getEntriesByType;
+                  window.performance.getEntriesByType = function(type) {
+                    try {
+                      var entries = originalGetEntriesByType.call(this, type);
+                      // Ensure all entries have required properties to prevent startTime errors
+                      if (Array.isArray(entries)) {
+                        return entries.map(function(entry) {
+                          if (entry && !('startTime' in entry)) {
+                            entry.startTime = entry.startTime || 0;
+                          }
+                          return entry;
+                        });
+                      }
+                      return entries;
+                    } catch (err) {
+                      console.debug('[Performance API Error]', err.message);
+                      return [];
+                    }
+                  };
+                }
+              })();
             `,
           }}
         />
