@@ -84,6 +84,105 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
+        {/* CRITICAL: Performance Entry Sanitizer - MUST run BEFORE ANY analytics */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Filter function for valid performance entries
+                function isValidEntry(e) {
+                  return !!(
+                    e && 
+                    typeof e === 'object' && 
+                    'startTime' in e && 
+                    typeof e.startTime === 'number' &&
+                    e.startTime >= 0
+                  );
+                }
+                
+                // Override performance.getEntries FIRST
+                if (window.performance && window.performance.getEntries) {
+                  var originalGetEntries = window.performance.getEntries;
+                  window.performance.getEntries = function() {
+                    try {
+                      var entries = originalGetEntries.call(this);
+                      if (!Array.isArray(entries)) return [];
+                      var valid = [];
+                      for (var i = 0; i < entries.length; i++) {
+                        if (isValidEntry(entries[i])) valid.push(entries[i]);
+                      }
+                      return valid;
+                    } catch (err) {
+                      return [];
+                    }
+                  };
+                }
+                
+                // Override performance.getEntriesByType
+                if (window.performance && window.performance.getEntriesByType) {
+                  var originalGetEntriesByType = window.performance.getEntriesByType;
+                  window.performance.getEntriesByType = function(type) {
+                    try {
+                      var entries = originalGetEntriesByType.call(this, type);
+                      if (!Array.isArray(entries)) return [];
+                      var valid = [];
+                      for (var i = 0; i < entries.length; i++) {
+                        if (isValidEntry(entries[i])) valid.push(entries[i]);
+                      }
+                      return valid;
+                    } catch (err) {
+                      return [];
+                    }
+                  };
+                }
+                
+                // Override PerformanceObserver
+                if (window.PerformanceObserver) {
+                  var OriginalPO = window.PerformanceObserver;
+                  window.PerformanceObserver = function(callback) {
+                    this.observer = new OriginalPO(function(list) {
+                      try {
+                        var originalGetEntries = list.getEntries.bind(list);
+                        list.getEntries = function() {
+                          var entries = originalGetEntries();
+                          if (!Array.isArray(entries)) return [];
+                          var valid = [];
+                          for (var i = 0; i < entries.length; i++) {
+                            if (isValidEntry(entries[i])) valid.push(entries[i]);
+                          }
+                          return valid;
+                        };
+                        if (list.getEntries().length > 0) callback(list);
+                      } catch (err) {}
+                    });
+                  };
+                  window.PerformanceObserver.prototype.observe = function(o) { return this.observer.observe(o); };
+                  window.PerformanceObserver.prototype.disconnect = function() { return this.observer.disconnect(); };
+                  window.PerformanceObserver.prototype.takeRecords = function() {
+                    var r = this.observer.takeRecords();
+                    if (!Array.isArray(r)) return [];
+                    var v = [];
+                    for (var i = 0; i < r.length; i++) {
+                      if (isValidEntry(r[i])) v.push(r[i]);
+                    }
+                    return v;
+                  };
+                  window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
+                }
+                
+                // Global error handler for any remaining startTime errors
+                window.addEventListener('error', function(event) {
+                  if (event && event.message && event.message.indexOf('startTime') > -1) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return true;
+                  }
+                }, true);
+              })();
+            `,
+          }}
+        />
+
         {/* Meta tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#ffffff" />
@@ -124,137 +223,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
-
-        {/* Performance Entry Sanitizer + Error Suppression - BEFORE Google Analytics */}
-        <script
-          id="perf-sanitizer"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var hasError = false;
-                
-                // Global error handler to catch and suppress startTime errors
-                window.addEventListener('error', function(event) {
-                  if (event.message && event.message.indexOf('startTime') > -1) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    hasError = true;
-                    return true;
-                  }
-                }, true);
-                
-                // Strict filter function
-                function isValidEntry(e) {
-                  return !!(
-                    e && 
-                    typeof e === 'object' && 
-                    'startTime' in e && 
-                    typeof e.startTime === 'number' &&
-                    e.startTime >= 0
-                  );
-                }
-                
-                // Override performance.getEntries
-                if (window.performance && window.performance.getEntries) {
-                  var originalGetEntries = window.performance.getEntries;
-                  window.performance.getEntries = function() {
-                    try {
-                      var entries = originalGetEntries.call(this);
-                      if (!Array.isArray(entries)) return [];
-                      var valid = [];
-                      for (var i = 0; i < entries.length; i++) {
-                        if (isValidEntry(entries[i])) {
-                          valid.push(entries[i]);
-                        }
-                      }
-                      return valid;
-                    } catch (err) {
-                      return [];
-                    }
-                  };
-                }
-                
-                // Override performance.getEntriesByType
-                if (window.performance && window.performance.getEntriesByType) {
-                  var originalGetEntriesByType = window.performance.getEntriesByType;
-                  window.performance.getEntriesByType = function(type) {
-                    try {
-                      var entries = originalGetEntriesByType.call(this, type);
-                      if (!Array.isArray(entries)) return [];
-                      var valid = [];
-                      for (var i = 0; i < entries.length; i++) {
-                        if (isValidEntry(entries[i])) {
-                          valid.push(entries[i]);
-                        }
-                      }
-                      return valid;
-                    } catch (err) {
-                      return [];
-                    }
-                  };
-                }
-                
-                // Override PerformanceObserver
-                if (window.PerformanceObserver) {
-                  var OriginalPO = window.PerformanceObserver;
-                  window.PerformanceObserver = function(callback) {
-                    var wrappedCallback = function(list) {
-                      try {
-                        // Create safe wrapper
-                        var originalList = {
-                          getEntries: list.getEntries.bind(list),
-                          getEntriesByName: list.getEntriesByName.bind(list),
-                          getEntriesByType: list.getEntriesByType.bind(list)
-                        };
-                        
-                        // Replace getEntries with filtered version
-                        list.getEntries = function() {
-                          var entries = originalList.getEntries();
-                          if (!Array.isArray(entries)) return [];
-                          var valid = [];
-                          for (var i = 0; i < entries.length; i++) {
-                            if (isValidEntry(entries[i])) {
-                              valid.push(entries[i]);
-                            }
-                          }
-                          return valid;
-                        };
-                        
-                        // Skip if no valid entries
-                        if (list.getEntries().length === 0) return;
-                        
-                        callback(list);
-                      } catch (err) {
-                        // Silent fail
-                      }
-                    };
-                    
-                    this.observer = new OriginalPO(wrappedCallback);
-                  };
-                  
-                  window.PerformanceObserver.prototype.observe = function(opts) {
-                    return this.observer.observe(opts);
-                  };
-                  window.PerformanceObserver.prototype.disconnect = function() {
-                    return this.observer.disconnect();
-                  };
-                  window.PerformanceObserver.prototype.takeRecords = function() {
-                    var records = this.observer.takeRecords();
-                    if (!Array.isArray(records)) return [];
-                    var valid = [];
-                    for (var i = 0; i < records.length; i++) {
-                      if (isValidEntry(records[i])) {
-                        valid.push(records[i]);
-                      }
-                    }
-                    return valid;
-                  };
-                  window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
-                }
-              })();
-            `,
-          }}
-        />
 
         {/* Google Tag Manager - Essential for analytics tracking */}
         <Script
