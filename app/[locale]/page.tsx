@@ -82,7 +82,7 @@ export default async function HomePage({ params }: HomePageProps) {
             {/* CTA Buttons */}
             <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <LinkButton 
-                href={getLocalizedPath(locale, '/white-screen')} 
+                href={getLocalizedPath(locale, '/dead-pixel-test')} 
                 size="lg" 
                 variant="primary" 
                 className="sm:w-auto group"

@@ -9,6 +9,7 @@ import ToolLayout from '@/components/tools/tool-layout';
 import DeadPixelTest from '@/components/tools/dead-pixel-test';
 import GuideSection from '@/components/tools/guide-section';
 import DeadPixelIntro from '@/components/tools/dead-pixel-intro';
+import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'dead-pixel-test')!;
@@ -121,6 +122,9 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
 
       {/* Detailed Guide */}
       <GuideSection toolId="dead-pixel-test" locale={locale} />
+
+      {/* Related Reading - Blog Articles & Guides */}
+      <RelatedReading toolId="dead-pixel-test" locale={locale} />
 
       {/* Related Tools for Internal Linking & Engagement */}
       <RelatedTools currentToolId="dead-pixel-test" locale={locale} />
