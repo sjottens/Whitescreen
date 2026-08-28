@@ -89,29 +89,33 @@ export default function RootLayout({ children }: RootLayoutProps) {
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                // Filter function for valid performance entries
-                function isValidEntry(e) {
-                  return !!(
-                    e && 
-                    typeof e === 'object' && 
-                    'startTime' in e && 
-                    typeof e.startTime === 'number' &&
-                    e.startTime >= 0
-                  );
+                // Repair function - fixes entries instead of filtering them out
+                function repairEntry(e) {
+                  if (!e || typeof e !== 'object') return null;
+                  // Ensure entry has startTime property
+                  if (!('startTime' in e)) {
+                    try { e.startTime = 0; } catch (err) {}
+                  }
+                  // Ensure startTime is a number
+                  if (typeof e.startTime !== 'number') {
+                    try { e.startTime = 0; } catch (err) {}
+                  }
+                  return e;
                 }
                 
-                // Override performance.getEntries FIRST
+                // Override performance.getEntries
                 if (window.performance && window.performance.getEntries) {
                   var originalGetEntries = window.performance.getEntries;
                   window.performance.getEntries = function() {
                     try {
                       var entries = originalGetEntries.call(this);
                       if (!Array.isArray(entries)) return [];
-                      var valid = [];
+                      var repaired = [];
                       for (var i = 0; i < entries.length; i++) {
-                        if (isValidEntry(entries[i])) valid.push(entries[i]);
+                        var fixed = repairEntry(entries[i]);
+                        if (fixed !== null) repaired.push(fixed);
                       }
-                      return valid;
+                      return repaired;
                     } catch (err) {
                       return [];
                     }
@@ -125,11 +129,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     try {
                       var entries = originalGetEntriesByType.call(this, type);
                       if (!Array.isArray(entries)) return [];
-                      var valid = [];
+                      var repaired = [];
                       for (var i = 0; i < entries.length; i++) {
-                        if (isValidEntry(entries[i])) valid.push(entries[i]);
+                        var fixed = repairEntry(entries[i]);
+                        if (fixed !== null) repaired.push(fixed);
                       }
-                      return valid;
+                      return repaired;
                     } catch (err) {
                       return [];
                     }
@@ -146,13 +151,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
                         list.getEntries = function() {
                           var entries = originalGetEntries();
                           if (!Array.isArray(entries)) return [];
-                          var valid = [];
+                          var repaired = [];
                           for (var i = 0; i < entries.length; i++) {
-                            if (isValidEntry(entries[i])) valid.push(entries[i]);
+                            var fixed = repairEntry(entries[i]);
+                            if (fixed !== null) repaired.push(fixed);
                           }
-                          return valid;
+                          return repaired;
                         };
-                        if (list.getEntries().length > 0) callback(list);
+                        callback(list);
                       } catch (err) {}
                     });
                   };
@@ -161,23 +167,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
                   window.PerformanceObserver.prototype.takeRecords = function() {
                     var r = this.observer.takeRecords();
                     if (!Array.isArray(r)) return [];
-                    var v = [];
+                    var repaired = [];
                     for (var i = 0; i < r.length; i++) {
-                      if (isValidEntry(r[i])) v.push(r[i]);
+                      var fixed = repairEntry(r[i]);
+                      if (fixed !== null) repaired.push(fixed);
                     }
-                    return v;
+                    return repaired;
                   };
                   window.PerformanceObserver.supportedEntryTypes = OriginalPO.supportedEntryTypes;
                 }
-                
-                // Global error handler for any remaining startTime errors
-                window.addEventListener('error', function(event) {
-                  if (event && event.message && event.message.indexOf('startTime') > -1) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    return true;
-                  }
-                }, true);
               })();
             `,
           }}
