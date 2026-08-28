@@ -125,6 +125,27 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
 
+        {/* Performance API Polyfill - Must run BEFORE Google Analytics loads */}
+        <script
+          id="perf-polyfill"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (window.performance && window.performance.getEntriesByType) {
+                var originalGetEntries = window.performance.getEntriesByType;
+                window.performance.getEntriesByType = function(type) {
+                  try {
+                    var entries = originalGetEntries.call(this, type);
+                    if (!Array.isArray(entries)) return [];
+                    return entries.filter(function(e) { return e && e.startTime !== undefined; });
+                  } catch (e) {
+                    return [];
+                  }
+                };
+              }
+            `,
+          }}
+        />
+
         {/* Google Tag Manager - Essential for analytics tracking */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
@@ -136,76 +157,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              try {
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-YP3G096BGK', { send_page_view: false });
-              } catch (error) {
-                console.debug('[GTM] Init error:', error);
-              }
-            `,
-          }}
-        />
-
-        {/* Global error handler for third-party scripts (Google Analytics, ads, etc.) */}
-        <script
-          id="error-handler"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                // Suppress third-party script errors without breaking functionality
-                var originalError = window.onerror;
-                window.onerror = function(message, source, lineno, colno, error) {
-                  var msg = (message || '').toString().toLowerCase();
-                  // Suppress performance timing errors from GTM and similar
-                  if (msg.includes('starttime') || msg.includes('cannot read') || (error && error.message && error.message.includes('startTime'))) {
-                    console.debug('[Error Suppressed]', message);
-                    return true; // Suppress error
-                  }
-                  // Call original error handler if exists
-                  if (originalError) return originalError(message, source, lineno, colno, error);
-                };
-                
-                // Also handle via addEventListener for capture phase
-                window.addEventListener('error', function(e) {
-                  if (e && e.message && (e.message.includes('startTime') || e.message.includes('Cannot read'))) {
-                    e.preventDefault();
-                    console.debug('[Error Suppressed]', e.message);
-                  }
-                }, true);
-                
-                // Handle unhandled promise rejections
-                window.addEventListener('unhandledrejection', function(e) {
-                  if (e && e.reason && (e.reason.message || '').includes('startTime')) {
-                    e.preventDefault();
-                    console.debug('[Promise Rejection Suppressed]', e.reason.message);
-                  }
-                });
-
-                // Polyfill: Guard performance.getEntriesByType to prevent undefined errors
-                if (window.performance && window.performance.getEntriesByType) {
-                  var originalGetEntriesByType = window.performance.getEntriesByType;
-                  window.performance.getEntriesByType = function(type) {
-                    try {
-                      var entries = originalGetEntriesByType.call(this, type);
-                      // Ensure all entries have required properties to prevent startTime errors
-                      if (Array.isArray(entries)) {
-                        return entries.map(function(entry) {
-                          if (entry && !('startTime' in entry)) {
-                            entry.startTime = entry.startTime || 0;
-                          }
-                          return entry;
-                        });
-                      }
-                      return entries;
-                    } catch (err) {
-                      console.debug('[Performance API Error]', err.message);
-                      return [];
-                    }
-                  };
-                }
-              })();
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YP3G096BGK', { send_page_view: false });
             `,
           }}
         />
