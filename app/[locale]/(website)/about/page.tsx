@@ -1,9 +1,10 @@
-// app/[locale]/(website)/about/page.tsx - About page with multilingual SEO
+// app/[locale]/(website)/about/page.tsx - About page with multilingual SEO & LLM optimization
 
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
+import { llmOptimizedAboutPageSchema, schemaToJsonLd } from '@/lib/seo-llm-optimization';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
@@ -23,7 +24,7 @@ export async function generateMetadata(props: {
 }
 
 interface AboutPageProps {
-  params: Promise<{ locale: string }>;
+  readonly params: Promise<{ locale: string }>;
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {
@@ -58,6 +59,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+        suppressHydrationWarning
+      />
+      {/* LLM Optimization Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: schemaToJsonLd(llmOptimizedAboutPageSchema()) }}
         suppressHydrationWarning
       />
 

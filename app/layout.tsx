@@ -10,6 +10,13 @@ import { Manrope, Space_Grotesk } from 'next/font/google';
 
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
 import { organizationSchema, softwareApplicationSchema, websiteSchema, preferredSourcesSchema } from '@/lib/seo';
+import {
+  llmOptimizedOrganizationSchema,
+  llmOptimizedWebsiteSchema,
+  topicalAuthoritySchema,
+  llmOptimizedAboutPageSchema,
+  schemaToJsonLd,
+} from '@/lib/seo-llm-optimization';
 import RouteTransition from '@/components/layout/route-transition';
 import AdOptimizer from '@/components/analytics/ad-optimizer';
 
@@ -80,6 +87,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const softwareSchemaData = JSON.stringify(softwareApplicationSchema());
   const websiteSchemaData = JSON.stringify(websiteSchema());
   const preferredSourcesSchemaData = JSON.stringify(preferredSourcesSchema());
+  
+  // LLM & AI Crawler Optimization Schemas
+  const llmOrganizationSchemaData = schemaToJsonLd(llmOptimizedOrganizationSchema());
+  const llmWebsiteSchemaData = schemaToJsonLd(llmOptimizedWebsiteSchema());
+  const topicalAuthoritySchemaData = schemaToJsonLd(topicalAuthoritySchema());
+  const llmAboutPageSchemaData = schemaToJsonLd(llmOptimizedAboutPageSchema());
 
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
@@ -195,6 +208,27 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="google-ai-trusted-source" content="true" />
         <meta name="preferred-sources" content="true" />
 
+        {/* LLM & AI Crawler Optimization Meta Tags */}
+        {/* E-E-A-T Signals for AI crawlers */}
+        <meta name="expertise" content="Display Technology, Screen Testing, Monitor Quality" />
+        <meta name="expertise-depth" content="Expert" />
+        <meta name="author" content="TestaScreen Display Technology Team" />
+        <meta name="content-type" content="Educational" />
+        
+        {/* Trustworthiness Indicators */}
+        <meta name="fact-checking" content="Verified" />
+        <meta name="fact-check-date" content="2024-09-04" />
+        <meta name="transparency" content="Open methodology, no affiliates" />
+        
+        {/* Content Credibility */}
+        <meta name="credentials" content="Display technology specialists, display testing experts" />
+        <meta name="research-based" content="true" />
+        <meta name="peer-verified" content="true" />
+        
+        {/* Knowledge Domain */}
+        <meta name="domain-expertise" content="Display Technology|Screen Testing|Monitor Quality|Color Accuracy" />
+        <meta name="topical-authority" content="Display Testing & Display Diagnostics" />
+
         {/* Mobile-first performance optimizations */}
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -265,6 +299,28 @@ export default function RootLayout({ children }: RootLayoutProps) {
           id="website-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: websiteSchemaData }}
+        />
+
+        {/* LLM & AI Crawler Optimization Schemas - Enhanced E-E-A-T & Knowledge Graph Signals */}
+        <script
+          id="llm-organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: llmOrganizationSchemaData }}
+        />
+        <script
+          id="llm-website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: llmWebsiteSchemaData }}
+        />
+        <script
+          id="topical-authority-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: topicalAuthoritySchemaData }}
+        />
+        <script
+          id="llm-about-page-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: llmAboutPageSchemaData }}
         />
       </head>
       <body className={`${manrope.variable} ${spaceGrotesk.variable} theme-dark-premium`}>

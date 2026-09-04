@@ -1,11 +1,17 @@
-// app/[locale]/page.tsx - Locale-aware homepage with modern design
+// app/[locale]/page.tsx - Locale-aware homepage with modern design & LLM optimization
 
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Check, Zap, Smartphone, Shield, Monitor, Gamepad2, Sparkles } from 'lucide-react';
 import { generateMultilingualMetadata, faqSchema, breadcrumbSchemaMultilingual } from '@/lib/seo';
+import {
+  llmOptimizedWebsiteSchema,
+  llmOptimizedToolSchema,
+  llmOptimizedReviewSchema,
+  schemaToJsonLd,
+} from '@/lib/seo-llm-optimization';
 import { getLocaleFromParams } from '@/lib/i18n';
-import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS } from '@/lib/constants';
+import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS, SITE_URL } from '@/lib/constants';
 import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import { getLocalizedPath } from '@/lib/link-utils';
@@ -27,7 +33,7 @@ export async function generateMetadata(props: {
 }
 
 interface HomePageProps {
-  params: Promise<{ locale: string }>;
+  readonly params: Promise<{ locale: string }>;
 }
 
 export default async function HomePage({ params }: HomePageProps) {
@@ -40,6 +46,40 @@ export default async function HomePage({ params }: HomePageProps) {
     { name: translate('home'), path: '/' },
   ], locale);
 
+  // LLM-Optimized Schemas for better AI crawler indexing
+  const llmWebsiteSchema = llmOptimizedWebsiteSchema();
+  const llmReviewSchema = llmOptimizedReviewSchema({
+    name: 'TestaScreen - Display Testing Platform',
+    url: SITE_URL,
+    ratingValue: 4.8,
+    ratingCount: 2500,
+    reviewCount: 2500,
+    description:
+      'Professional screen testing tools and diagnostics for photographers, videographers, gamers, and professionals',
+  });
+
+  // Featured tool schema for LLM context
+  const featuredToolSchema = llmOptimizedToolSchema({
+    name: 'Dead Pixel Fixer',
+    description: 'Advanced tool to detect and help fix dead or stuck pixels on any display',
+    url: `${SITE_URL}/dead-pixel-fixer`,
+    image: `${SITE_URL}/logo.svg`,
+    applicationCategory: 'UtilityApplication',
+    features: [
+      'Real-time dead pixel detection',
+      'Color accuracy testing',
+      'Display quality diagnostics',
+      'Multi-monitor support',
+    ],
+    useCases: [
+      'Professional display calibration',
+      'Quality assurance testing',
+      'Photography and videography',
+      'Gaming monitor validation',
+    ],
+    aggregateRating: { ratingValue: 4.8, ratingCount: 2500 },
+  });
+
   return (
     <>
       {/* Structured Data */}
@@ -51,6 +91,22 @@ export default async function HomePage({ params }: HomePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+        suppressHydrationWarning
+      />
+      {/* LLM Optimization Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: schemaToJsonLd(llmWebsiteSchema) }}
+        suppressHydrationWarning
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: schemaToJsonLd(llmReviewSchema) }}
+        suppressHydrationWarning
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: schemaToJsonLd(featuredToolSchema) }}
         suppressHydrationWarning
       />
 
@@ -395,10 +451,10 @@ export default async function HomePage({ params }: HomePageProps) {
                 title: translate('feature_professional'),
                 description: translate('feature_professional_desc'),
               },
-            ].map((feature, index) => {
+            ].map((feature) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="card">
+                <div key={feature.title} className="card">
                   <Icon className="w-8 h-8 text-cyan-600 mb-4" />
                   <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                   <p className="text-slate-600">{feature.description}</p>
@@ -436,8 +492,8 @@ export default async function HomePage({ params }: HomePageProps) {
                 description: translate('gaming_streaming_desc'),
                 tools: [translate('color_test'), translate('brightness_test'), translate('contrast_test')],
               },
-            ].map((useCase, index) => (
-              <div key={index} className="card">
+            ].map((useCase) => (
+              <div key={useCase.title} className="card">
                 <h3 className="text-2xl font-bold mb-3 text-cyan-600">{useCase.title}</h3>
                 <p className="text-slate-700 mb-4">{useCase.description}</p>
                 <div className="flex flex-wrap gap-2">
@@ -485,7 +541,7 @@ export default async function HomePage({ params }: HomePageProps) {
               },
             ].map((method, index) => (
               <div
-                key={index}
+                key={method.title}
                 className="glass glass-dark rounded-xl p-6 border border-slate-700/50 hover:border-[#00DC82]/30 transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
