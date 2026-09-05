@@ -6,7 +6,7 @@ import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from './constants';
 
 export interface SchemaConfig {
   '@context': string;
-  '@type': string;
+  '@type': string | string[];
   [key: string]: any;
 }
 
