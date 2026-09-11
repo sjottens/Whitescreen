@@ -73,7 +73,14 @@ export function middleware(request: NextRequest) {
 
   // 4. Redirect non-English users to their locale, unless already on root English
   if (userLocale !== DEFAULT_LOCALE && !pathname.includes('.')) {
-    return NextResponse.redirect(new URL(`/${userLocale}${pathname}`, request.url));
+    // For the homepage, pathname is '/', so naively appending it produces
+    // '/nl/' (trailing slash). Next.js's default trailingSlash:false then
+    // issues a SECOND redirect from '/nl/' to '/nl', adding a full extra
+    // round trip to the critical request chain for every first-time
+    // non-English mobile visitor. Target '/nl' directly to skip that hop -
+    // same final URL, one less redirect.
+    const suffix = pathname === '/' ? '' : pathname;
+    return NextResponse.redirect(new URL(`/${userLocale}${suffix}`, request.url));
   }
 
   // 5. Skip rewrite for /blog and /blog/* (handled by app/blog/ directly)
