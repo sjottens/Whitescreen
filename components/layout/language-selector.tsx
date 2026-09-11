@@ -4,7 +4,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Globe } from 'lucide-react';
 import { getLocaleAlternativePath } from '@/lib/link-utils';
 import type { Locale } from '@/lib/i18n';
 import { t } from '@/lib/translations';
@@ -34,16 +34,22 @@ export default function LanguageSelector({ locale, currentPath, onSelect }: Lang
   ];
 
   const currentLanguage = languages.find((lang) => lang.locale === locale) || languages[0];
+  const hint = translate('language_selector_hint' as any) || translate('language_selector_aria' as any);
 
   return (
     <div className="relative z-[130]">
-      {/* Language Selector Button */}
+      {/* Language Selector Button - globe icon makes the "change language"
+          affordance recognizable at a glance, the title attribute surfaces
+          the hint text on hover/long-press without permanently taking up
+          nav space */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 rounded-lg border border-slate-500 bg-slate-900/90 px-3 py-2 text-sm font-medium text-slate-100 transition-colors hover:border-cyan-400 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900"
         aria-label={translate('language_selector_aria' as any)}
+        title={hint}
         aria-expanded={isOpen}
       >
+        <Globe className="h-4 w-4 text-cyan-400" aria-hidden="true" />
         <span>{currentLanguage.code}</span>
         <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -51,6 +57,10 @@ export default function LanguageSelector({ locale, currentPath, onSelect }: Lang
       {/* Dropdown Menu */}
       {isOpen && (
         <div className="absolute right-0 z-[140] mt-2 w-52 rounded-lg border border-slate-700 bg-slate-900 py-2 shadow-2xl">
+          {/* Hint label so the purpose of the list is obvious at a glance */}
+          <div className="px-4 pb-2 mb-1 border-b border-slate-700/70 text-xs font-semibold uppercase tracking-wide text-slate-400">
+            {hint}
+          </div>
           {languages.map((language) => {
             const isActive = language.locale === locale;
             const href = getLocaleAlternativePath(locale, language.locale, currentPath);
