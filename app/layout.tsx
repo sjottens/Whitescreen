@@ -19,6 +19,8 @@ import {
 } from '@/lib/seo-llm-optimization';
 import RouteTransition from '@/components/layout/route-transition';
 import AdOptimizer from '@/components/analytics/ad-optimizer';
+import { ConsentProvider } from '@/components/providers/consent-provider';
+import ConsentBanner from '@/components/legal/consent-banner';
 
 import './globals.css';
 
@@ -298,13 +300,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
       <body className={`${manrope.variable} ${spaceGrotesk.variable} theme-dark-premium`}>
-        <div className="relative z-10">
-          <RouteTransition>{children}</RouteTransition>
-        </div>
+        <ConsentProvider>
+          <div className="relative z-10">
+            <RouteTransition>{children}</RouteTransition>
+          </div>
 
-        {/* Performance optimization: defer non-critical ads */}
-        {/* GTM is loaded via Script component with strategy="afterInteractive" for reliable tracking */}
-        <AdOptimizer />
+          {/* Performance optimization: defer non-critical ads */}
+          {/* GTM is loaded via Script component with strategy="afterInteractive" for reliable tracking */}
+          <AdOptimizer />
+
+          {/* GDPR-compliant cookie consent banner */}
+          <ConsentBanner />
+        </ConsentProvider>
       </body>
     </html>
   );

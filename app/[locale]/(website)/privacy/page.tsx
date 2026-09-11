@@ -85,6 +85,27 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
           <p>
             {translate('privacy_cookies_text')}
           </p>
+          
+          <h3>Consent Banner & Cookie Management</h3>
+          <p>
+            TestaScreen implements a GDPR-compliant cookie consent system. When you first visit the site, a cookie consent banner appears at the bottom of your screen. This banner allows you to make informed decisions about cookie usage before any personalized cookies are loaded.
+          </p>
+          
+          <h4>How Our Consent System Works:</h4>
+          <ul>
+            <li><strong>Your Choice First:</strong> We ask for your consent before loading personalized advertisement cookies. You can choose to accept all, reject all, or customize your preferences.</li>
+            <li><strong>Consent Storage:</strong> Your consent choice is stored in your browser's localStorage. We do not force cookies before you consent.</li>
+            <li><strong>Necessary Cookies Only (By Default):</strong> We only set essential cookies (language preference, security) without your consent. Marketing and analytics cookies are disabled by default.</li>
+            <li><strong>Easy to Change Anytime:</strong> You can modify your consent preferences at any time by clearing your browser's localStorage or visiting the cookie banner again.</li>
+          </ul>
+          
+          <h4>Types of Cookies We Use (With Your Consent):</h4>
+          <ul>
+            <li><strong>Necessary Cookies:</strong> Language preference, security tokens. Always enabled for site functionality.</li>
+            <li><strong>Marketing Cookies:</strong> Google AdSense uses first-party and third-party cookies to display personalized advertisements. Only loaded if you consent to marketing cookies.</li>
+            <li><strong>Analytics Cookies:</strong> Google Analytics uses cookies to measure website usage and improve performance. Only loaded if you consent to analytics cookies.</li>
+            <li><strong>Preference Cookies:</strong> Remembers your selected language and theme preferences. Generally safe for all users.</li>
+          </ul>
 
           <h2>5. {translate('privacy_external_services')}</h2>
           <p>
@@ -93,17 +114,24 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
 
           <h2>5a. Advertising and Revenue</h2>
           <p>
-            TestaScreen uses Google AdSense to display advertisements on this website. These ads help fund the development and maintenance of our free tools. Google AdSense may collect information about your browsing behavior across multiple websites to show you targeted advertisements based on your interests. This is controlled by Google's privacy policy, not TestaScreen.
+            TestaScreen uses Google AdSense to display advertisements on this website. These ads help fund the development and maintenance of our free tools. 
           </p>
           <p>
-            <strong>How Google AdSense works:</strong>
+            <strong>Important:</strong> Google AdSense personalized ads are only loaded after you explicitly consent to marketing cookies through our consent banner. We do not load personalized ad-serving scripts before receiving your consent.
+          </p>
+          <p>
+            <strong>How Google AdSense works (when you consent):</strong>
           </p>
           <ul>
             <li>Google stores cookies and pixels to identify your browsing interests and preferences</li>
             <li>Ads shown are tailored to your profile, which may help you see more relevant advertisements</li>
-            <li>You can control these settings using Google's Ad Settings at myaccount.google.com/ads</li>
-            <li>You can also opt out of personalized advertising entirely through your browser privacy settings or third-party tools</li>
+            <li>You can control these settings using Google's Ad Settings at <a href="https://myaccount.google.com/ads" target="_blank" rel="noopener">myaccount.google.com/ads</a></li>
+            <li>You can also opt out of personalized advertising entirely through your browser privacy settings or third-party tools like <a href="https://optout.aboutads.info" target="_blank" rel="noopener">aboutads.info</a></li>
+            <li>You can modify your consent at any time by updating your preferences through our consent banner</li>
           </ul>
+          <p>
+            <strong>If you don't consent to marketing cookies:</strong> AdSense will display non-personalized ads. Google will still show ads, but they won't be tailored to your interests or browsing history.
+          </p>
           <p>
             TestaScreen receives a portion of revenue when you click on or view advertisements. This is our primary funding model for keeping the tools free and accessible to everyone worldwide.
           </p>
