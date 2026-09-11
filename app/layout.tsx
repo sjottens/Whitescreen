@@ -220,12 +220,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
           }}
         />
 
-        {/* Resource hints for faster third-party startup without blocking rendering */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Resource hints for third-party startup without competing for connections
+            during the critical rendering path. `preconnect` opens a full DNS+TCP+TLS
+            handshake immediately and Lighthouse's own insight warns against using more
+            than a handful at once - each one steals a connection slot from resources
+            the page actually needs right away. Measured against production: NONE of
+            fonts.googleapis.com/fonts.gstatic.com are ever requested (next/font
+            self-hosts the Manrope/Space Grotesk files at build time, so these were
+            pure dead weight), and GTM/AdSense/doubleclick are all deliberately
+            deferred (GTM loads on idle, ads load 5-20s after page load - see
+            AdOptimizer), so preconnecting to them upfront bought nothing. `dns-prefetch`
+            is cheap (DNS only, no handshake) and still gives those deferred loads a
+            head start, so it's kept for the origins that do get used eventually. */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
