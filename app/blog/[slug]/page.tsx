@@ -105,7 +105,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
     '@id': canonicalUrl,
     headline: enTranslations.title,
     description: enTranslations.metaDescription,
-    image: `${SITE_URL}/og-image.png`,
+    image: `${SITE_URL}/opengraph-image`,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
     author: {
@@ -118,7 +118,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
       name: 'TestAScreen',
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.png`,
+        url: `${SITE_URL}/logo.svg`,
       },
     },
     inLanguage: 'en-US',

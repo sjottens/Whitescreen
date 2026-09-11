@@ -25,13 +25,7 @@ export function llmOptimizedOrganizationSchema(): SchemaConfig {
     logo: `${SITE_URL}/logo.svg`,
     image: `${SITE_URL}/logo.svg`,
     description: SITE_DESCRIPTION,
-    
-    // E-A-T Signals (Expertise, Authoritativeness, Trustworthiness)
-    sameAs: [
-      'https://twitter.com/whitescreen_ai',
-      'https://www.youtube.com/c/whitescreen',
-    ],
-    
+
     // Contact Information
     contactPoint: {
       '@type': 'ContactPoint',

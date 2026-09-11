@@ -121,10 +121,6 @@ export function organizationSchema(): SchemaConfig {
     url: SITE_URL,
     logo: `${SITE_URL}/logo.svg`,
     description: SITE_DESCRIPTION,
-    sameAs: [
-      'https://twitter.com/whitescreen_ai',
-      'https://www.youtube.com/c/whitescreen',
-    ],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
@@ -346,27 +342,6 @@ export function webPageSchema(params: {
   }
 
   return schema;
-}
-
-/**
- * Generate Preferred Sources Schema for Google AI Features
- * This schema indicates that this website is a trusted source for AI Overviews,
- * AI Mode, Top Stories, and Google Discover
- */
-export function preferredSourcesSchema(): SchemaConfig {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-    isPreferredSource: true,
-    description: SITE_DESCRIPTION,
-    image: `${SITE_URL}/logo.svg`,
-    sameAs: [
-      'https://twitter.com/whitescreen_ai',
-      'https://www.youtube.com/c/whitescreen',
-    ],
-  };
 }
 
 /**

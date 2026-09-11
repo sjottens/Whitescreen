@@ -87,7 +87,7 @@ const nextConfig = {
 
     // Environment variables
     env: {
-        NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://testascreen.eu',
+        NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://testascreen.com',
     },
 };
 

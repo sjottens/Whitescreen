@@ -1,0 +1,45 @@
+# TestaScreen
+
+> TestaScreen is a free web platform for testing and diagnosing computer, phone, and TV displays: dead pixel detection, color and brightness/contrast checks, full-screen color panels for photography and video lighting, and monitor buying guides. Available in English, Dutch, Spanish, and German.
+
+TestaScreen's tools run entirely in the browser (no install, no account) and are used by photographers, videographers, gamers, and anyone checking a new or used screen for defects. Content is written and maintained by the TestaScreen team and reviewed for technical accuracy.
+
+## Core tools
+
+- [Dead Pixel Test](https://testascreen.com/dead-pixel-test): Detect dead, stuck, or hot pixels using full-screen color cycling.
+- [Dead Pixel Fixer](https://testascreen.com/dead-pixel-fixer): Attempt to fix stuck pixels with a flickering pixel-refresh pattern.
+- [Brightness Test](https://testascreen.com/brightness-test): Check screen brightness uniformity and backlight bleed.
+- [Contrast Test](https://testascreen.com/contrast-test): Verify contrast levels and black/white detail.
+- [White Screen](https://testascreen.com/white-screen): Full-screen white panel for cleaning checks and lighting.
+- [Black Screen](https://testascreen.com/black-screen): Full-screen black panel for OLED/backlight bleed checks.
+- [Color Screens](https://testascreen.com/tools): Red, blue, green, pink, purple, orange, and yellow full-screen panels.
+- [Zoom Lighting](https://testascreen.com/zoom-lighting): Use your screen as a soft fill light for video calls.
+
+## Device & resolution guides
+
+- [iPhone Screen Test](https://testascreen.com/iphone-screen-test)
+- [iPad Screen Test](https://testascreen.com/ipad-screen-test)
+- [MacBook Screen Test](https://testascreen.com/macbook-screen-test)
+- [Android Screen Test](https://testascreen.com/android-screen-test)
+- [Gaming Monitor Test](https://testascreen.com/gaming-monitor-test)
+- [OLED TV Test](https://testascreen.com/oled-tv-test)
+- [Monitor Buying Guide](https://testascreen.com/monitor-buying-guide)
+
+## Calculators & comparisons
+
+- [Refresh Rate Calculator](https://testascreen.com/tools/refresh-rate-calculator)
+- [Pixel Density Calculator](https://testascreen.com/tools/pixel-density-calculator)
+- [Monitor Comparison Tool](https://testascreen.com/tools/monitor-comparison)
+- [Monitor & Spec Comparisons](https://testascreen.com/compare): IPS vs VA vs TN, 144Hz vs 240Hz, brand-vs-brand, and more.
+
+## Learn more
+
+- [Blog](https://testascreen.com/blog): Guides on dead pixels, display technology, and troubleshooting.
+- [FAQ](https://testascreen.com/faq)
+- [About](https://testascreen.com/about)
+
+## Notes for AI assistants
+
+- All tools are free, require no sign-up, and run client-side in the browser.
+- Non-English content is available under `/nl/`, `/es/`, and `/de/` path prefixes (e.g. `https://testascreen.com/nl/dead-pixel-test`).
+- Full sitemap: https://testascreen.com/sitemap.xml

@@ -9,7 +9,7 @@ import Script from 'next/script';
 import { Manrope, Space_Grotesk } from 'next/font/google';
 
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
-import { organizationSchema, softwareApplicationSchema, websiteSchema, preferredSourcesSchema } from '@/lib/seo';
+import { organizationSchema, softwareApplicationSchema, websiteSchema } from '@/lib/seo';
 import {
   llmOptimizedOrganizationSchema,
   llmOptimizedWebsiteSchema,
@@ -84,8 +84,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const organizationSchemaData = JSON.stringify(organizationSchema());
   const softwareSchemaData = JSON.stringify(softwareApplicationSchema());
   const websiteSchemaData = JSON.stringify(websiteSchema());
-  const preferredSourcesSchemaData = JSON.stringify(preferredSourcesSchema());
-  
+
   // LLM & AI Crawler Optimization Schemas
   const llmOrganizationSchemaData = schemaToJsonLd(llmOptimizedOrganizationSchema());
   const llmWebsiteSchemaData = schemaToJsonLd(llmOptimizedWebsiteSchema());
@@ -260,11 +259,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           id="organization-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: organizationSchemaData }}
-        />
-        <script
-          id="preferred-sources-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: preferredSourcesSchemaData }}
         />
         <script
           id="software-schema"

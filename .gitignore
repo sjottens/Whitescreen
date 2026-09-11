@@ -14,6 +14,14 @@ coverage/
 out/
 build/
 dist/
+*.tsbuildinfo
+
+# Build/debug artifacts (should never be committed)
+build*.log
+build*.txt
+lh-*.json
+lh-*.html
+lighthouse-*.html
 
 # Environment variables
 .env

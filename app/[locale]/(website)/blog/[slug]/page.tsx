@@ -148,7 +148,7 @@ export default function LocaleBlogArticlePage({
     '@id': canonicalUrl,
     headline: articleTranslations.title,
     description: articleTranslations.metaDescription,
-    image: `${SITE_URL}/og-image.png`,
+    image: `${SITE_URL}/opengraph-image`,
     datePublished: publishedAt,
     dateModified: updatedAt,
     author: {
@@ -161,7 +161,7 @@ export default function LocaleBlogArticlePage({
       name: 'TestAScreen',
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.png`,
+        url: `${SITE_URL}/logo.svg`,
       },
     },
     inLanguage: schemaLocaleMap[locale as Locale],

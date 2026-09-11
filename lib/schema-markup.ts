@@ -161,7 +161,7 @@ export function generateOrganizationSchema() {
     '@type': 'Organization',
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/logo.svg`,
     description: 'Professional screen testing information and display resources for professionals',
     sameAs: [
       // Add social media URLs as they become available

@@ -307,7 +307,7 @@ export function generateMonitorModelContent(
     en: {
       title: `${brand} ${modelName} Monitor Test - Display Quality & Color Accuracy`,
       metaDescription: `Comprehensive ${brand} ${modelName} (${modelSpecs}) display test. Check color accuracy, dead pixels, brightness, and monitor performance instantly.`,
-      introText: `Testing a specific monitor model matters. Every panel is different, and this test reveals what the {{brand}} {{modelName}} can actually do. Whether you're verifying it works out of the box, checking a warranty issue, or just curious about the quality you paid for—load this up and see for yourself.`,
+      introText: `Testing a specific monitor model matters. Every panel is different, and this test reveals what the {{brand}} {{modelName}} can actually do. Whether you're verifying it works out of the box, checking a warranty issue, or just curious about the quality you paid for, load this up and see for yourself.`,
       faqs: [
         {
           question: `Why test the {{brand}} {{modelName}} specifically?`,

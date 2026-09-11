@@ -153,7 +153,7 @@ export default function ContrastTestIntro({ locale }: ContrastTestIntroProps) {
         <div className="bg-blue-950/30 border border-blue-500/50 rounded-lg p-6 backdrop-blur">
           <h2 className="text-2xl font-bold text-white mb-3">♿ Accessibility Matters</h2>
           <p className="text-slate-300 mb-3">
-            Following WCAG contrast guidelines isn't just for compliance—it improves readability for everyone. Proper contrast helps users with low vision, color blindness, and those viewing in bright conditions.
+            Following WCAG contrast guidelines isn't just for compliance, it improves readability for everyone. Proper contrast helps users with low vision, color blindness, and those viewing in bright conditions.
           </p>
           <p className="text-slate-300 text-sm">
             Learn more: WCAG 2.1 Level AAA guidelines at w3.org

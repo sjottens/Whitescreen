@@ -86,7 +86,7 @@ export default async function MonitorBuyingGuidePage({
               <li><strong>1080p (1920×1080):</strong> Full HD, standard for 21-24" monitors. Good for everyday computing and gaming. Common, affordable, efficient for frame rates.</li>
               <li><strong>1440p (2560×1440):</strong> QHD (Quad HD). Popular for 27" gaming monitors. Sharp detail, demanding on graphics cards. Balances sharpness and performance.</li>
               <li><strong>4K (3840×2160):</strong> Ultra HD. Extremely sharp at 27" and larger. Requires powerful GPU. Best for content creation and professional work.</li>
-              <li><strong>Ultrawide (3440×1440):</strong> 34-38" aspect ratio 21:9. Immersive for gaming and productivity. More width than height—excellent for multitasking.</li>
+              <li><strong>Ultrawide (3440×1440):</strong> 34-38" aspect ratio 21:9. Immersive for gaming and productivity. More width than height, excellent for multitasking.</li>
             </ul>
 
             <p><strong>Rule of thumb:</strong> Resolution matters more at larger monitor sizes. At 24 inches, 1080p looks sharp. At 27 inches, 1440p is more comfortable. Above 27 inches, 4K is ideal.</p>
@@ -101,7 +101,7 @@ export default async function MonitorBuyingGuidePage({
 
             <p><strong>Key point:</strong> Higher refresh rates only help if your GPU can achieve those frame rates. A 144Hz monitor is wasted on a gaming PC that only delivers 60 fps.</p>
 
-            <h3>Response Time: 1ms, 2ms, 5ms—Does It Matter?</h3>
+            <h3>Response Time: 1ms, 2ms, 5ms, Does It Matter?</h3>
             <p>Response time measures how quickly pixels change color (in milliseconds). Faster is better for gaming:</p>
             <ul>
               <li><strong>1ms:</strong> Fastest possible. Competitive gaming advantage, especially esports.</li>
@@ -114,7 +114,7 @@ export default async function MonitorBuyingGuidePage({
             <p><strong>IPS (In-Plane Switching):</strong> Best color accuracy and consistency at viewing angles. Professional standard. Slightly slower response time. Great for photography, video editing, and general use.</p>
             <p><strong>VA (Vertical Alignment):</strong> Excellent contrast ratio with deep blacks. Color accuracy varies at angles. Good gaming choice balancing colors and contrast.</p>
             <p><strong>TN (Twisted Nematic):</strong> Fastest response times. Most affordable. Poor color accuracy and viewing angles. Specialty: competitive esports.</p>
-            <p><strong>OLED:</strong> Self-emissive pixels—perfect blacks, incredible contrast. Best color and brightness uniformity. Burn-in risk with static images. Premium pricing.</p>
+            <p><strong>OLED:</strong> Self-emissive pixels, perfect blacks, incredible contrast. Best color and brightness uniformity. Burn-in risk with static images. Premium pricing.</p>
 
             <h3>Color Accuracy: sRGB, Adobe RGB, and DCI-P3</h3>
             <ul>
@@ -195,7 +195,7 @@ export default async function MonitorBuyingGuidePage({
 
             <h2>Conclusion</h2>
             <p>
-              The "best" monitor doesn't exist—the best monitor is the one that matches your specific needs, budget, and use case. By understanding these specifications and using our testing tools, you'll make an informed decision and avoid common buying mistakes. Take your time, research brands, and verify monitor performance after purchase to ensure you get years of quality viewing.
+              The "best" monitor doesn't exist, the best monitor is the one that matches your specific needs, budget, and use case. By understanding these specifications and using our testing tools, you'll make an informed decision and avoid common buying mistakes. Take your time, research brands, and verify monitor performance after purchase to ensure you get years of quality viewing.
             </p>
           </div>
         </div>

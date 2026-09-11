@@ -98,7 +98,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
     },
   ];
 
-  const faqSchema = generateFAQSchema(faqData, `https://testascreen.eu${TOOL_CONFIG.path}`);
+  const faqSchema = generateFAQSchema(faqData, `https://testascreen.com${TOOL_CONFIG.path}`);
 
   return (
     <>

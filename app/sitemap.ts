@@ -6,6 +6,7 @@ import { generateHrefLangAlternates, LOCALES, DEFAULT_LOCALE, getCanonicalUrl } 
 import { getMonitorBrandSlugs } from '@/lib/monitor-brands';
 import { getComparisonSlugs } from '@/lib/comparisons';
 import { COLOR_TOOLS, SCREEN_VARIANTS } from '@/lib/constants';
+import { allBlogArticles } from '@/lib/blog-content';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
@@ -20,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/cookies', changeFrequency: 'yearly' as const, priority: 0.5 },
     { path: '/terms', changeFrequency: 'yearly' as const, priority: 0.5 },
     { path: '/faq', changeFrequency: 'monthly' as const, priority: 0.8 },
+    { path: '/blog', changeFrequency: 'weekly' as const, priority: 0.85 },
   ];
 
   // Generate sitemap entries for each page across all locales
@@ -266,6 +268,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
           },
         });
       });
+    });
+  });
+
+  // Add blog articles (served at the root /blog/[slug] path, English only)
+  allBlogArticles.forEach((article) => {
+    sitemapEntries.push({
+      url: `${SITE_URL}/blog/${article.slug}`,
+      lastModified: article.updatedAt || article.publishedAt || now,
+      changeFrequency: 'monthly' as const,
+      priority: article.featured ? 0.75 : 0.65,
     });
   });
 

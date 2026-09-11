@@ -395,11 +395,11 @@ export const additionalPixelProblemArticles: BlogArticle[] = [
             'Step 6: Run and Monitor Progress',
             'Step 7: Check Results'
           ],
-          content: 'First, identify the exact location of your stuck pixel by viewing solid color backgrounds. Next, select a repair mode: RGB (standard), RGB+White+Black (aggressive), or Random (varied stimulation). Adjust the speed slider—faster speeds (70-100) provide more intense stimulation. Click "Start Repair" in the tool and enable fullscreen mode for best results. Let the tool run for 10-30 minutes while monitoring the FPS counter. After the session, press Stop and check if the pixel has cleared. You may need to restart your display for changes to take effect.',
+          content: 'First, identify the exact location of your stuck pixel by viewing solid color backgrounds. Next, select a repair mode: RGB (standard), RGB+White+Black (aggressive), or Random (varied stimulation). Adjust the speed slider, faster speeds (70-100) provide more intense stimulation. Click "Start Repair" in the tool and enable fullscreen mode for best results. Let the tool run for 10-30 minutes while monitoring the FPS counter. After the session, press Stop and check if the pixel has cleared. You may need to restart your display for changes to take effect.',
         },
         {
           h2: 'Understanding Repair Modes: Which One to Choose',
-          content: 'The RGB mode cycles through red, green, and blue—ideal for most stuck pixels on standard displays. RGB+White+Black adds white (full brightness) and black (no brightness) cycles, providing maximum electrical stimulation. Random mode offers completely unpredictable color changes, which some users find more effective for stubborn pixels. Try different modes in our pixel fixer tool if one mode doesn\'t work after 20 minutes—switch to another for a fresh approach.',
+          content: 'The RGB mode cycles through red, green, and blue, ideal for most stuck pixels on standard displays. RGB+White+Black adds white (full brightness) and black (no brightness) cycles, providing maximum electrical stimulation. Random mode offers completely unpredictable color changes, which some users find more effective for stubborn pixels. Try different modes in our pixel fixer tool if one mode doesn\'t work after 20 minutes, switch to another for a fresh approach.',
         },
         {
           h2: 'Speed Settings and Optimization',
@@ -407,7 +407,7 @@ export const additionalPixelProblemArticles: BlogArticle[] = [
         },
         {
           h2: 'LCD vs OLED: Does Pixel Fixer Work on All Displays?',
-          content: 'LCD screens respond well to pixel fixers because their architecture makes transistor-level issues amenable to electrical stimulation. OLED displays are self-emissive and respond more unpredictably—some users report excellent results while others see minimal improvement. Regardless of display type, running the fixer is safe and won\'t damage your screen.',
+          content: 'LCD screens respond well to pixel fixers because their architecture makes transistor-level issues amenable to electrical stimulation. OLED displays are self-emissive and respond more unpredictably, some users report excellent results while others see minimal improvement. Regardless of display type, running the fixer is safe and won\'t damage your screen.',
         },
         {
           h2: 'What If Your Pixel Doesn\'t Fix?',
@@ -415,14 +415,14 @@ export const additionalPixelProblemArticles: BlogArticle[] = [
         },
         {
           h2: 'Pro Tips for Maximum Success Rate',
-          content: 'Act quickly—stuck pixels are most responsive within 48 hours of first appearing. Use fullscreen mode to eliminate browser UI interference. Run longer sessions (20-30 minutes) rather than multiple short ones. Ensure your room is reasonably cool to prevent display heat buildup. Test on fresh power cycles. If using a laptop, plug in power and disable sleep mode. Keep the fixer window focused and avoid switching tabs.',
+          content: 'Act quickly, stuck pixels are most responsive within 48 hours of first appearing. Use fullscreen mode to eliminate browser UI interference. Run longer sessions (20-30 minutes) rather than multiple short ones. Ensure your room is reasonably cool to prevent display heat buildup. Test on fresh power cycles. If using a laptop, plug in power and disable sleep mode. Keep the fixer window focused and avoid switching tabs.',
         },
         {
           h2: 'Is It Safe to Run a Pixel Fixer?',
-          content: 'Yes, completely safe. Pixel fixers operate within normal display parameters—they simply send standard video signals to your panel. Modern monitors and TVs are engineered to handle continuous operation and color cycling. The tool won\'t damage your display, and there\'s no risk of accelerating hardware failure.',
+          content: 'Yes, completely safe. Pixel fixers operate within normal display parameters, they simply send standard video signals to your panel. Modern monitors and TVs are engineered to handle continuous operation and color cycling. The tool won\'t damage your display, and there\'s no risk of accelerating hardware failure.',
         },
       ],
-      conclusion: 'Dead pixel fixers offer an easy, free way to attempt stuck pixel repair before resorting to warranty claims or hardware replacement. While success rates are modest (10-40%), the low risk and zero cost make it worth trying. Use our free tool with multiple modes and settings to optimize your chances. Start today and see if your stuck pixel responds to stimulation—you might recover a valuable display without spending a dime.',
+      conclusion: 'Dead pixel fixers offer an easy, free way to attempt stuck pixel repair before resorting to warranty claims or hardware replacement. While success rates are modest (10-40%), the low risk and zero cost make it worth trying. Use our free tool with multiple modes and settings to optimize your chances. Start today and see if your stuck pixel responds to stimulation, you might recover a valuable display without spending a dime.',
     },
     translations: {
       en: {
