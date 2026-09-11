@@ -235,12 +235,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Explicit manifest link to prevent locale-relative fetching */}
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* Google Tag Manager - Essential for analytics tracking */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
-          strategy="afterInteractive"
-          id="gtag-script"
-        />
+        {/* Google Tag Manager - Essential for analytics tracking
+            The dataLayer/gtag stub is tiny and runs afterInteractive so any
+            gtag() call queues correctly from the start. The actual gtag.js
+            library (~165KB, ~250ms of main-thread blocking on mobile) is
+            loaded with strategy="lazyOnload" so it fetches/executes during
+            browser idle time after the page is interactive, instead of
+            competing with hydration for the main thread. Queued dataLayer
+            events are processed as soon as the library arrives, so no
+            tracking data is lost - pageviews just fire a bit later. */}
         <Script
           id="gtag-init"
           strategy="afterInteractive"
@@ -252,6 +255,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
               gtag('config', 'G-YP3G096BGK', { send_page_view: false });
             `,
           }}
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
+          strategy="lazyOnload"
+          id="gtag-script"
         />
 
         {/* JSON-LD Structured Data */}

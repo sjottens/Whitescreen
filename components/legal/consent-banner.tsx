@@ -25,15 +25,16 @@ export default function ConsentBanner() {
   // Show banner only if user hasn't explicitly consented yet
   useEffect(() => {
     if (!isInitialized) return;
-    
+
     // Check if user has previously made a consent choice
     const hasExplicitConsent = localStorage.getItem(CONSENT_STORAGE_KEY) !== null;
-    
-    // Show banner if no explicit consent has been recorded
+
+    // Show banner as soon as we know consent is required. The previous
+    // artificial 500ms delay here was directly inflating mobile LCP: this
+    // modal is large enough to become the page's LCP element, so any delay
+    // before it paints is a delay added straight to the LCP metric.
     if (!hasExplicitConsent) {
-      // Small delay to ensure page is loaded before showing banner
-      const timer = setTimeout(() => setShowBanner(true), 500);
-      return () => clearTimeout(timer);
+      setShowBanner(true);
     }
   }, [isInitialized]);
 
