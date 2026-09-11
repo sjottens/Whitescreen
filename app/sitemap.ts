@@ -67,6 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'yellow-screen',
     // Test tools
     'dead-pixel-test',
+    'dead-pixel-fixer',
     'brightness-test',
     'contrast-test',
     'zoom-lighting',

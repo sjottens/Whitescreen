@@ -1,12 +1,15 @@
 'use client';
 
-import { AlertCircle, CheckCircle, XCircle } from 'lucide-react';
+import Link from 'next/link';
+import { AlertCircle, ArrowRight, CheckCircle, XCircle } from 'lucide-react';
+import { getLocalizedPath } from '@/lib/link-utils';
 
 interface DeadPixelIntroProps {
   locale: string;
 }
 
 export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
+  const fixerHref = getLocalizedPath(locale as any, '/dead-pixel-fixer');
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
       <div className="container">
@@ -69,11 +72,17 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
               <p className="text-slate-300 mb-4">
                 Pixels "stuck" in the ON position, displaying a single color (usually red, green, or blue). They may respond to physical pressure or heat.
               </p>
-              <ul className="space-y-2 text-slate-400">
+              <ul className="space-y-2 text-slate-400 mb-4">
                 <li>• Appear as colored dots (RGB)</li>
                 <li>• Sometimes fixable with tools/methods</li>
                 <li>• Less common but more noticeable</li>
               </ul>
+              <Link
+                href={fixerHref}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+              >
+                Try our Dead Pixel Fixer tool <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
         </div>
@@ -199,7 +208,7 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
             {[
               {
                 q: 'Can dead pixels be fixed?',
-                a: 'Dead pixels are usually permanent hardware failures. Stuck pixels sometimes respond to software fixes or physical pressure, but dead pixels cannot be repaired.'
+                a: 'Dead pixels are usually permanent hardware failures and cannot be repaired. Stuck pixels are different - they sometimes respond to software fixes or physical pressure. Not sure which one you have? Our Dead Pixel Fixer tool below can help attempt a repair.'
               },
               {
                 q: 'How many dead pixels are acceptable?',
@@ -233,6 +242,22 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
           <p className="text-slate-400 text-sm">
             Common manufacturers: Dell, LG, ASUS, BenQ, Samsung, HP, AOC, MSI
           </p>
+        </div>
+
+        {/* Related Tool Callout - links to the Dead Pixel Fixer for stuck-pixel repair attempts */}
+        <div className="mt-8 bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/30 rounded-lg p-8 backdrop-blur flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <h2 className="text-2xl font-bold text-white mb-2">Found a stuck pixel, not a dead one?</h2>
+            <p className="text-slate-300">
+              Stuck pixels (colored dots that stay red, green, or blue) can sometimes be repaired. Our free Dead Pixel Fixer flashes rapid colors to try to unstick them.
+            </p>
+          </div>
+          <Link
+            href={fixerHref}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-200 hover:scale-105 whitespace-nowrap"
+          >
+            Try Dead Pixel Fixer <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
     </section>

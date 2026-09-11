@@ -19,10 +19,16 @@ export function generateMetadata(params: MetadataParams): Metadata {
   const url = `${SITE_URL}${path}`;
 
   return {
-    title: `${title} | ${SITE_NAME}`,
+    // Plain title, unsuffixed: the root layout's `title.template`
+    // ("%s | TestaScreen") applies the site-name suffix exactly once.
+    // Appending it here too produced "Page Title | TestaScreen | TestaScreen"
+    // in the actual <title> tag across the site.
+    title,
     description: description.slice(0, 160),
     keywords: keywords?.join(', '),
     openGraph: {
+      // Open Graph/Twitter titles are NOT covered by the title template
+      // mechanism, so they still need the suffix appended explicitly here.
       title: `${title} | ${SITE_NAME}`,
       description: description.slice(0, 160),
       url,
@@ -67,10 +73,16 @@ export function generateMultilingualMetadata(params: MultilingualMetadataParams)
   const alternateLanguages = generateHrefLangAlternates(path);
 
   return {
-    title: `${title} | ${SITE_NAME}`,
+    // Plain title, unsuffixed: the root layout's `title.template`
+    // ("%s | TestaScreen") applies the site-name suffix exactly once.
+    // Appending it here too produced "Page Title | TestaScreen | TestaScreen"
+    // in the actual <title> tag across every page using this helper.
+    title,
     description: description.slice(0, 160),
     keywords: keywords?.join(', '),
     openGraph: {
+      // Open Graph/Twitter titles are NOT covered by the title template
+      // mechanism, so they still need the suffix appended explicitly here.
       title: `${title} | ${SITE_NAME}`,
       description: description.slice(0, 160),
       url: canonicalUrl,

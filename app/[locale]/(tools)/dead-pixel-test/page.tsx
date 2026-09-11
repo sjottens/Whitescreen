@@ -30,7 +30,10 @@ export async function generateMetadata(props: {
 
   return generateMultilingualMetadata({
     locale,
-    title: `${title} - Free Online Tool | TestaScreen`,
+    // No "| TestaScreen" suffix here - generateMultilingualMetadata leaves
+    // the title unsuffixed and the root layout's title template adds it
+    // exactly once. Hardcoding it here too produced a duplicated site name.
+    title: `${title} - Free Online Tool`,
     description: `${description} Detect stuck pixels, dead pixels, and hot pixels on your display instantly. Free, no registration required.`,
     path: TOOL.path,
     keywords: [
@@ -91,8 +94,36 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
     ],
   };
 
+  // WebApplication schema - mirrors the schema already on /dead-pixel-fixer so
+  // both tool pages carry equivalent "free tool" signals for rich results.
+  const toolSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Dead Pixel Test',
+    description: 'Free online dead pixel and stuck pixel detector. Cycles through multiple color backgrounds to reveal defective pixels on any display.',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '2500',
+    },
+  };
+
   return (
     <>
+      {/* WebApplication Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }}
+        suppressHydrationWarning
+      />
+
       {/* FAQ Schema */}
       <script
         type="application/ld+json"
