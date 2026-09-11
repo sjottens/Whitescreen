@@ -72,10 +72,6 @@ export const metadata: Metadata = {
     shortcut: '/favicon.svg',
   },
   manifest: '/site.webmanifest',
-  other: {
-    'google-ai-trusted-source': 'true',
-    'preferred-sources': 'true',
-  },
 };
 
 interface RootLayoutProps {
@@ -204,30 +200,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="google-site-verification" content="qGiskLnJK1JGwDlUffGkfsP4z0cBTsoaeFyq8c11dYA" />
         <meta name="google-adsense-account" content="ca-pub-5016673566357322" />
 
-        {/* Google Preferred Sources badge - for AI Overviews, AI Mode, Top Stories */}
-        <meta name="google-ai-trusted-source" content="true" />
-        <meta name="preferred-sources" content="true" />
-
-        {/* LLM & AI Crawler Optimization Meta Tags */}
-        {/* E-E-A-T Signals for AI crawlers */}
-        <meta name="expertise" content="Display Technology, Screen Testing, Monitor Quality" />
-        <meta name="expertise-depth" content="Expert" />
-        <meta name="author" content="TestaScreen Display Technology Team" />
-        <meta name="content-type" content="Educational" />
-        
-        {/* Trustworthiness Indicators */}
-        <meta name="fact-checking" content="Verified" />
-        <meta name="fact-check-date" content="2024-09-04" />
-        <meta name="transparency" content="Open methodology, no affiliates" />
-        
-        {/* Content Credibility */}
-        <meta name="credentials" content="Display technology specialists, display testing experts" />
-        <meta name="research-based" content="true" />
-        <meta name="peer-verified" content="true" />
-        
-        {/* Knowledge Domain */}
-        <meta name="domain-expertise" content="Display Technology|Screen Testing|Monitor Quality|Color Accuracy" />
-        <meta name="topical-authority" content="Display Testing & Display Diagnostics" />
+        {/* Content Last Verified */}
+        <meta name="last-modified" content="2026-09-11" />
 
         {/* Mobile-first performance optimizations */}
         <meta name="format-detection" content="telephone=no" />
