@@ -61,8 +61,8 @@ export default function ConsentBanner() {
       <div className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm" />
 
       {/* Consent Banner Modal */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6">
-        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-2xl border border-slate-200">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div className="w-full max-w-2xl max-h-full overflow-y-auto my-auto bg-white rounded-lg shadow-2xl border border-slate-200">
           {/* Header */}
           <div className="p-6 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-blue-50">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
