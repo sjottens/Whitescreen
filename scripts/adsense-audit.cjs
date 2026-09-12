@@ -10,6 +10,7 @@ const path = require('path');
 const ROOT = process.cwd();
 const LAYOUT_PATH = path.join(ROOT, 'app', 'layout.tsx');
 const NEXT_CONFIG_PATH = path.join(ROOT, 'next.config.js');
+const AD_OPTIMIZER_PATH = path.join(ROOT, 'components', 'analytics', 'ad-optimizer.tsx');
 
 function read(filePath) {
   if (!fs.existsSync(filePath)) {
@@ -29,16 +30,21 @@ function main() {
 
   const layout = read(LAYOUT_PATH);
   const nextConfig = read(NEXT_CONFIG_PATH);
+  const adOptimizer = read(AD_OPTIMIZER_PATH);
 
   // Required AdSense head setup.
   assertContains(layout, 'name="google-adsense-account"', 'AdSense account meta tag', errors);
-  assertContains(layout, 'pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322', 'AdSense script src', errors);
-  assertContains(layout, '<script', 'head script tag', errors);
 
-  // Ensure we are not using next/script for adsbygoogle loader (it can add framework attrs).
-  if (layout.includes('id="adsense-loader"')) {
-    errors.push('Found legacy next/script AdSense loader (id="adsense-loader"). Use plain head <script> for AdSense.');
-  }
+  // The adsbygoogle.js loader itself is injected at runtime by AdOptimizer
+  // (interaction-or-idle-timeout, gated on marketing consent) rather than a
+  // static <script> in layout.tsx - that's deliberate, it keeps the loader
+  // off the critical path for Core Web Vitals/Lighthouse. Check it there.
+  assertContains(
+    adOptimizer,
+    'pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322',
+    'AdSense script src in AdOptimizer',
+    errors
+  );
 
   // Required CSP domains for AdSense request lifecycle.
   const requiredScriptSrc = [
@@ -55,6 +61,7 @@ function main() {
   const requiredFrameSrc = [
     'https://pagead2.googlesyndication.com',
     'https://ep2.adtrafficquality.google',
+    'https://googleads.g.doubleclick.net',
   ];
 
   for (const domain of requiredScriptSrc) {

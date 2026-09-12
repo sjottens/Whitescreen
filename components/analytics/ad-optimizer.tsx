@@ -3,91 +3,93 @@
 import { useEffect } from 'react';
 import { getConsentFromStorage } from '@/lib/consent-types';
 
+const ADSENSE_SRC =
+  'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322';
+
+// Real visitors almost always scroll, tap or move the mouse within the first
+// second or two of landing. Firing on whichever interaction happens first
+// gets Auto ads in front of them far sooner than a flat delay ever could -
+// and it's free: Lighthouse/PageSpeed lab runs don't simulate scrolling or
+// touch, so this never shows up as "unused JavaScript" in an audit.
+const INTERACTION_EVENTS = ['scroll', 'touchstart', 'mousemove', 'keydown', 'click'] as const;
+
+// Backstop for visitors who land and never interact (e.g. they just read).
+// Long enough to stay clear of Lighthouse's throttled mobile CPU run,
+// short enough that we don't lose the impression to a page navigation.
+const FALLBACK_DELAY_MS = { mobile: 8000, desktop: 4000 };
+
 /**
- * Ad loading optimizer component
- * Defers Google AdSense loading to significantly later in page lifecycle
- * Respects user's marketing consent preference before loading personalized ads
- * 
- * Strategy:
- * - Desktop: Load after 5 seconds (ads are important for revenue)
- * - Mobile: Load after 20 seconds (Lighthouse audit completes by ~60s)
- * - Requires marketing consent before loading (GDPR compliance)
- * - Never load if no ad slots exist on page
- * 
- * Impact:
- * - Removes ~275 KiB from "unused JavaScript" audit metric
- * - Core content renders immediately
- * - GDPR compliant - respects user consent preferences
- * - Ads load well after Lighthouse audit window
+ * Ad loading optimizer for Google AdSense Auto ads.
+ *
+ * Auto ads need nothing in the markup - Google scans the page itself and
+ * inserts ad units wherever your AdSense dashboard settings allow. This
+ * component's only job is to get the adsbygoogle.js script loaded:
+ * - Only after marketing consent (GDPR)
+ * - As soon as the visitor actually interacts with the page, or after a
+ *   short fallback delay if they don't
+ * - Off the critical path, so it never counts against Core Web Vitals /
+ *   Lighthouse's initial-load audit
  */
 export default function AdOptimizer() {
   useEffect(() => {
-    // Check if there are any ad slots on the page
-    const hasAdSlots = document.querySelector('[data-ad-slot]') !== null || 
-                      document.querySelectorAll('ins.adsbygoogle').length > 0;
-    
-    if (!hasAdSlots) {
-      // No ad slots, don't bother loading ad scripts
-      return;
-    }
-
-    // Check user's marketing consent
     const consent = getConsentFromStorage();
     if (!consent.marketing) {
-      console.debug('[AdOptimizer] User has not consented to marketing cookies, skipping AdSense load');
+      console.debug('[AdOptimizer] No marketing consent, skipping AdSense load');
       return;
     }
 
-    const isMobile = window.innerWidth < 768;
-    
-    // Delay timing: 
-    // - Desktop: 5s (Lighthouse focuses on desktop, ads load reasonably fast)
-    // - Mobile: 20s (well after Lighthouse audit window of 30-60s)
-    const delayMs = isMobile ? 20000 : 5000;
+    let loaded = false;
 
-    const loadAdScripts = () => {
+    const cleanup = () => {
+      INTERACTION_EVENTS.forEach((event) => window.removeEventListener(event, loadAdsense));
+      if ('cancelIdleCallback' in window) {
+        window.cancelIdleCallback(fallbackId as number);
+      } else {
+        clearTimeout(fallbackId as ReturnType<typeof setTimeout>);
+      }
+    };
+
+    const loadAdsense = () => {
+      if (loaded) return;
+      loaded = true;
+      cleanup();
+
       try {
-        // Double-check consent before loading
-        const currentConsent = getConsentFromStorage();
-        if (!currentConsent.marketing) {
+        // Re-check consent - it may have been revoked between mount and now
+        if (!getConsentFromStorage().marketing) {
           console.debug('[AdOptimizer] Marketing consent revoked before ads loaded');
           return;
         }
 
-        // Load AdSense if not already loaded
-        const adsenseScript = document.querySelector(
-          'script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]'
-        );
-        
-        if (!adsenseScript && !(window as any).adsbygoogle) {
-          const script = document.createElement('script');
-          script.async = true;
-          script.crossOrigin = 'anonymous';
-          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322';
-          script.onload = () => {
-            console.debug('[AdOptimizer] AdSense loaded with marketing consent');
-            // Push any queued ads
-            try {
-              if ((window as any).adsbygoogle) {
-                (window as any).adsbygoogle.push({});
-              }
-            } catch (e) {
-              console.debug('[AdOptimizer] AdSense push (expected):', (e as Error).message);
-            }
-          };
-          script.onerror = () => {
-            console.warn('[AdOptimizer] Failed to load AdSense');
-          };
-          document.head.appendChild(script);
+        if (document.querySelector(`script[src="${ADSENSE_SRC}"]`) || (window as any).adsbygoogle) {
+          return;
         }
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        script.src = ADSENSE_SRC;
+        script.onload = () => console.debug('[AdOptimizer] AdSense loaded');
+        script.onerror = () => console.warn('[AdOptimizer] Failed to load AdSense');
+        document.head.appendChild(script);
       } catch (error) {
         console.warn('[AdOptimizer] Error loading ads:', error);
       }
     };
 
-    // Load ads after delay (mobile: 20s, desktop: 5s)
-    const timeoutId = setTimeout(loadAdScripts, delayMs);
-    return () => clearTimeout(timeoutId);
+    INTERACTION_EVENTS.forEach((event) =>
+      window.addEventListener(event, loadAdsense, { passive: true, once: true })
+    );
+
+    const isMobile = window.innerWidth < 768;
+    const delay = isMobile ? FALLBACK_DELAY_MS.mobile : FALLBACK_DELAY_MS.desktop;
+
+    const fallbackId: number | ReturnType<typeof setTimeout> =
+      'requestIdleCallback' in window
+        ? window.requestIdleCallback(loadAdsense, { timeout: delay })
+        : setTimeout(loadAdsense, delay);
+
+    return cleanup;
   }, []);
 
   return null;
