@@ -62,7 +62,11 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
     locale
   );
 
-  // FAQ Schema for SEO
+  // FAQ Schema for SEO - kept word-for-word identical to the visible FAQ
+  // rendered by <DeadPixelIntro> below. These previously drifted (schema had
+  // 3 different questions than the 4 shown on the page), which is exactly
+  // what Google's structured-data guidelines flag as a mismatch between
+  // markup and visible content.
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -72,7 +76,7 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
         name: 'Can dead pixels be fixed?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Dead pixels are usually permanent hardware failures. Stuck pixels sometimes respond to software fixes or physical pressure, but dead pixels cannot be repaired.',
+          text: 'Dead pixels are usually permanent hardware failures and cannot be repaired. Stuck pixels are different - they sometimes respond to software fixes or physical pressure. Not sure which one you have? Our Dead Pixel Fixer tool below can help attempt a repair.',
         },
       },
       {
@@ -85,10 +89,18 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
       },
       {
         '@type': 'Question',
-        name: 'How do I find dead pixels on my display?',
+        name: 'Is this test accurate?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Use a color-cycling dead pixel test like ours. Clean your screen, start the test, and look carefully for spots that do not match the background color on each test screen.',
+          text: 'Yes, this is a comprehensive color-cycling test that makes defective pixels highly visible. It is the most effective method for detecting dead and stuck pixels.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why do I need fullscreen mode?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Fullscreen mode ensures you are testing the entire display surface and eliminates distractions from the browser UI.',
         },
       },
     ],
@@ -108,11 +120,9 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
       price: '0',
       priceCurrency: 'USD',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '2500',
-    },
+    // aggregateRating intentionally omitted - there is no review-collection
+    // feature behind this tool, so a star rating here would be fabricated
+    // structured data. See lib/seo.ts for the fuller note.
   };
 
   return (

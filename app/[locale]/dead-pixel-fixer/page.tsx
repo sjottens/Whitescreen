@@ -214,11 +214,9 @@ export default function DeadPixelFixerPage() {
               price: '0',
               priceCurrency: 'USD',
             },
-            aggregateRating: {
-              '@type': 'AggregateRating',
-              ratingValue: '4.8',
-              ratingCount: '1250',
-            },
+            // aggregateRating intentionally omitted - there is no review-
+            // collection feature behind this tool, so a star rating here
+            // would be fabricated structured data.
           }),
         }}
       />
@@ -597,7 +595,7 @@ export default function DeadPixelFixerPage() {
                   name: 'Can a dead pixel be repaired?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Dead pixels cannot be repaired with software tools. Stuck pixels (showing color) sometimes respond to pixel fixer tools with 10-40% success rates.',
+                    text: 'Dead pixels cannot be repaired with software tools. Stuck pixels (showing color) sometimes respond to pixel fixer tools, though results vary by pixel and panel type and are not guaranteed.',
                   },
                 },
                 {
@@ -613,7 +611,7 @@ export default function DeadPixelFixerPage() {
                   name: 'Is a stuck pixel permanent?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Not necessarily. Stuck pixels can sometimes be repaired within 48 hours with 10-40% success rate.',
+                    text: 'Not necessarily. Stuck pixels can sometimes be repaired, and tend to respond best when treated soon after they appear, but a fix is not guaranteed.',
                   },
                 },
               ],

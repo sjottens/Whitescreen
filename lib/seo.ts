@@ -179,13 +179,11 @@ export function softwareApplicationSchema(): SchemaConfig {
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '2500',
-      bestRating: '5',
-      worstRating: '1',
-    },
+    // NOTE: aggregateRating was removed here (and from every other schema
+    // helper in this codebase) - it was a hardcoded 4.8/2500 with no real
+    // review-collection feature behind it anywhere in the product, which is
+    // exactly what Google's structured-data guidelines treat as spam. Only
+    // add this back once a genuine review system exists to source it from.
   };
 }
 
@@ -500,14 +498,12 @@ export function generateEEATMetadata(
       'Color Accuracy',
       'Professional Imaging',
     ],
-    expertiseLevel: 'Expert',
-    authorCredentials: [
-      'Display Technology Specialists',
-      'Display Testing Experts',
-      'Monitor Quality Consultants',
-    ],
-    authorBio:
-      'TestaScreen is a collective of display technology experts dedicated to providing accurate, unbiased information about screen testing and monitor quality. Built on 10+ years of combined expertise in display technology and consumer electronics.',
+    // NOTE: previously hardcoded 'Expert' plus invented credentials
+    // ("Display Technology Specialists", "10+ years of combined expertise")
+    // that aren't backed by any named, verifiable person or team bio on the
+    // site. Left unset here rather than asserted - populate authorCredentials
+    // and authorBio from real, sourced information when this is wired up.
+    expertiseLevel: 'Intermediate',
     datePublished: today,
     dateModified: today,
     factChecked: true,

@@ -22,6 +22,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/terms', changeFrequency: 'yearly' as const, priority: 0.5 },
     { path: '/faq', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/blog', changeFrequency: 'weekly' as const, priority: 0.85 },
+    // These five pages existed and were linked from navigation/other pages
+    // but were missing from this generator entirely, so they were never
+    // being told to Google as pages to crawl.
+    { path: '/monitor-test', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/monitor-buying-guide', changeFrequency: 'monthly' as const, priority: 0.85 },
+    { path: '/gaming-monitor-test', changeFrequency: 'monthly' as const, priority: 0.85 },
+    { path: '/oled-tv-test', changeFrequency: 'monthly' as const, priority: 0.8 },
+    { path: '/device-tests', changeFrequency: 'monthly' as const, priority: 0.75 },
   ];
 
   // Generate sitemap entries for each page across all locales

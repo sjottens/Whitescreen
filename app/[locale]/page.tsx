@@ -7,7 +7,6 @@ import { generateMultilingualMetadata, faqSchema, breadcrumbSchemaMultilingual }
 import {
   llmOptimizedWebsiteSchema,
   llmOptimizedToolSchema,
-  llmOptimizedReviewSchema,
   schemaToJsonLd,
 } from '@/lib/seo-llm-optimization';
 import { getLocaleFromParams } from '@/lib/i18n';
@@ -48,15 +47,11 @@ export default async function HomePage({ params }: HomePageProps) {
 
   // LLM-Optimized Schemas for better AI crawler indexing
   const llmWebsiteSchema = llmOptimizedWebsiteSchema();
-  const llmReviewSchema = llmOptimizedReviewSchema({
-    name: 'TestaScreen - Display Testing Platform',
-    url: SITE_URL,
-    ratingValue: 4.8,
-    ratingCount: 2500,
-    reviewCount: 2500,
-    description:
-      'Professional screen testing tools and diagnostics for photographers, videographers, gamers, and professionals',
-  });
+  // NOTE: a llmOptimizedReviewSchema() call previously lived here, injecting
+  // a hardcoded 4.8-star / 2,500-review AggregateRating with no real
+  // review-collection feature anywhere in the product. Removed - see
+  // lib/seo-llm-optimization.ts for the full note. Re-add once real reviews
+  // exist to source it from.
 
   // Featured tool schema for LLM context
   const featuredToolSchema = llmOptimizedToolSchema({
@@ -77,7 +72,7 @@ export default async function HomePage({ params }: HomePageProps) {
       'Photography and videography',
       'Gaming monitor validation',
     ],
-    aggregateRating: { ratingValue: 4.8, ratingCount: 2500 },
+    // aggregateRating intentionally omitted - see note above.
   });
 
   return (
@@ -97,11 +92,6 @@ export default async function HomePage({ params }: HomePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: schemaToJsonLd(llmWebsiteSchema) }}
-        suppressHydrationWarning
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: schemaToJsonLd(llmReviewSchema) }}
         suppressHydrationWarning
       />
       <script

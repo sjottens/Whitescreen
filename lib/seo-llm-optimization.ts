@@ -57,16 +57,12 @@ export function llmOptimizedOrganizationSchema(): SchemaConfig {
       '@type': 'Continent',
       name: 'Europe',
     },
-    
-    // Ratings and Reviews Aggregate
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '2500',
-      bestRating: '5',
-      worstRating: '1',
-      reviewCount: '2500',
-    },
+
+    // NOTE: aggregateRating was removed here - it was a hardcoded 4.8/2500
+    // with no real review-collection feature behind it anywhere in the
+    // product (and inconsistent with the different hardcoded counts other
+    // schema helpers in this codebase used, which was itself a sign these
+    // were placeholder values). Re-add only once genuine reviews exist.
 
     // Searchable Properties for AI Indexing
     searchable: true,
@@ -167,12 +163,12 @@ export function topicalAuthoritySchema(): SchemaConfig {
       'Video Production',
     ],
 
-    // Content Depth Indicator
-    contentRating: {
-      '@type': 'ContentRating',
-      ratingValue: 'Expert',
-      ratingExplanation: 'Comprehensive, well-researched content with technical depth',
-    },
+    // NOTE: a `contentRating` block previously lived here with
+    // ratingValue: 'Expert' - schema.org's ContentRating expects a rating
+    // scale value (e.g. a maturity/advisory rating), not a free-text quality
+    // claim, so this was invalid structured data that would fail Google's
+    // Rich Results Test outright. Removed rather than replaced with a
+    // differently-invalid value.
   };
 }
 
@@ -260,14 +256,9 @@ export function llmOptimizedArticleSchema(params: {
     // Keywords for topical relevance
     keywords: keywords?.join(', '),
 
-    // Aggregate Rating
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '150',
-      bestRating: '5',
-      worstRating: '1',
-    },
+    // NOTE: aggregateRating (previously a hardcoded 4.8/150 - a third,
+    // different placeholder count from the ones used elsewhere in this
+    // codebase) was removed. There's no real review system behind it.
 
     // Fact-checking and credibility
     speakable: {
