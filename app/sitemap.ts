@@ -76,6 +76,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Test tools
     'dead-pixel-test',
     'dead-pixel-fixer',
+    'backlight-bleed-test',
     'brightness-test',
     'contrast-test',
     'zoom-lighting',

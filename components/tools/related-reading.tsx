@@ -101,6 +101,20 @@ const toolBlogMapping: Record<string, RelatedReadingItem[]> = {
       intent: 'guide',
     },
   ],
+  'backlight-bleed-test': [
+    {
+      title: 'What Is a Screen Uniformity Test? Complete Guide',
+      slug: 'what-is-screen-uniformity-test',
+      description: 'Understand screen uniformity testing and how it relates to backlight consistency across the panel.',
+      intent: 'guide',
+    },
+    {
+      title: 'Best Ways to Test a New Monitor: Complete Checklist',
+      slug: 'best-ways-to-test-a-new-monitor',
+      description: 'The full checklist for testing a new monitor, including when to return it, not just backlight bleed.',
+      intent: 'guide',
+    },
+  ],
 };
 
 export default function RelatedReading({ toolId, locale, items, customTitle }: RelatedReadingProps) {

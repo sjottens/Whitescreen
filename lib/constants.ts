@@ -195,6 +195,19 @@ export const TEST_TOOLS = [
     searchVolume: 540,
     difficulty: 26,
   },
+  {
+    id: 'backlight-bleed-test',
+    nameKey: 'backlight_bleed_test',
+    path: '/backlight-bleed-test',
+    descriptionKey: 'backlight_bleed_test_desc',
+    keywords: [
+      'backlight bleed test',
+      'IPS glow test',
+      'monitor backlight bleed',
+      'check monitor for light bleed',
+      'IPS glow vs backlight bleed',
+    ],
+  },
 ];
 
 // Screen variants for programmatic SEO (Phase 1)

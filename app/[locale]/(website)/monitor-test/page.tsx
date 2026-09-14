@@ -59,6 +59,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
   // careful buyer would run them - dead pixels first, then uniformity/
   // backlight, then brightness/contrast, then the rest of the color set.
   const dead_pixel = TEST_TOOLS.find((t) => t.id === 'dead-pixel-test')!;
+  const backlightBleed = TEST_TOOLS.find((t) => t.id === 'backlight-bleed-test')!;
   const brightness = TEST_TOOLS.find((t) => t.id === 'brightness-test')!;
   const contrast = TEST_TOOLS.find((t) => t.id === 'contrast-test')!;
   const white = COLOR_TOOLS.find((c) => c.id === 'white-screen')!;
@@ -68,6 +69,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
     { path: dead_pixel.path, nameKey: dead_pixel.nameKey, descKey: dead_pixel.descriptionKey },
     { path: white.path, nameKey: white.nameKey, descKey: white.descriptionKey },
     { path: black.path, nameKey: black.nameKey, descKey: black.descriptionKey },
+    { path: backlightBleed.path, nameKey: backlightBleed.nameKey, descKey: backlightBleed.descriptionKey },
     { path: brightness.path, nameKey: brightness.nameKey, descKey: brightness.descriptionKey },
     { path: contrast.path, nameKey: contrast.nameKey, descKey: contrast.descriptionKey },
   ];

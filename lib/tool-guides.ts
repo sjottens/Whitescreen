@@ -14,6 +14,44 @@ export type ToolGuide = {
 
 export const TOOL_GUIDES: Record<string, ToolGuide> = {
   // Test Tools
+  'backlight-bleed-test': {
+    whatIs:
+      'Backlight bleed is light escaping around the edges or corners of an LCD panel where the backlight should be fully blocked by the liquid crystal layer - it shows up as bright patches or streaks against a black screen, usually worst in dark rooms. IPS glow is a different, related phenomenon specific to IPS panels: a soft haze near the corners caused by the IPS layer itself, not a defect, that changes intensity as your viewing angle changes. This tool fills your screen with pure black so both are easy to spot; the guide below explains how to tell them apart.',
+    sections: [
+      {
+        title: 'Backlight Bleed vs. IPS Glow',
+        items: [
+          'Backlight bleed: sharp, localized bright spots or streaks that stay in the same place and shape as you move your head - a hardware defect, present on any LCD panel type (IPS, VA, TN)',
+          'IPS glow: a broader, softer haze concentrated in the corners that shifts in shape or intensity as your viewing angle changes - a known characteristic of IPS panels, not a defect',
+          'The quickest test: sit directly in front of the screen, then slowly move your head side to side. Light that moves or changes with your angle is glow. Light that stays fixed in place and shape is bleed.',
+          'Some bleed is normal on almost every LCD monitor to a small degree - the question is how much, and whether it is visible during normal (non-black-screen) use.',
+        ],
+      },
+      {
+        title: 'How to Test Properly',
+        items: [
+          'Dim the room - backlight bleed is far more visible in low ambient light, which is also when it is most likely to bother you in practice (movies, gaming at night)',
+          'Let the display run for at least 15-20 minutes before judging - panels can show more bleed when cold, especially in colder rooms',
+          'Set brightness to a realistic level (30-50%), not maximum - bleed is easiest to see at low-to-mid brightness, but testing at 100% overstates how visible it will be in normal use',
+          'View from a normal, centered seating distance first, then check corners up close for anything the fullscreen view didn\'t reveal',
+        ],
+      },
+    ],
+    tips: [
+      'Check all four corners and edges systematically, not just the one that first catches your eye',
+      'Photograph the screen from a fixed position if you plan to compare before/after a warranty exchange - phone cameras often exaggerate bleed, so use it for documentation, not diagnosis',
+      'Re-test after the panel has fully warmed up; a monitor tested cold, straight out of the box, will often look worse than it does after 20 minutes',
+      'Compare against a second, known-good display of the same model if you can - manufacturing variance means two units of the same monitor can differ',
+    ],
+    shortcuts: [
+      { key: 'F', description: 'Toggle fullscreen mode' },
+      { key: 'G', description: 'Toggle corner guide markers' },
+      { key: 'Esc', description: 'Exit fullscreen' },
+    ],
+    proTip:
+      'A small amount of bleed in the corners, visible only on a black screen in a dark room, is normal on most LCD monitors and is not usually a warranty case. Bleed that is visible during regular content (dark movie scenes, game loading screens) in a normally-lit room is a much stronger case for a return or exchange - document it and check your return window before it closes.',
+  },
+
   'brightness-test': {
     whatIs:
       'A brightness test evaluates your monitor\'s ability to display different levels of brightness accurately. This tool helps you identify issues with monitor brightness uniformity, detect dead pixels, assess color accuracy, and measure contrast ratio performance. It\'s essential for professional color work, photo editing, and quality assurance.',
