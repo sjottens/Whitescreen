@@ -155,22 +155,10 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
                     <td className="px-6 py-4 text-slate-700">{comparisonData.item3.type}</td>
                   )}
                 </tr>
-                <tr className="border-b border-slate-200 hover:bg-slate-50">
-                  <td className="px-6 py-4 font-semibold text-slate-900">
-                    {translate('compare_popularity_label' as any)}
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">
-                    {comparisonData.item1.searchVolume} {translate('compare_monthly_searches_label' as any)}
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">
-                    {comparisonData.item2.searchVolume} {translate('compare_monthly_searches_label' as any)}
-                  </td>
-                  {comparisonData.item3 && (
-                    <td className="px-6 py-4 text-slate-700">
-                      {comparisonData.item3.searchVolume} {translate('compare_monthly_searches_label' as any)}
-                    </td>
-                  )}
-                </tr>
+                {/* A "Popularity: X monthly searches" row previously lived
+                    here, sourced from a hardcoded searchVolume field in
+                    lib/comparisons.ts. Those numbers were never pulled from
+                    real search data - removed rather than shown as fact. */}
               </tbody>
             </table>
           </div>
