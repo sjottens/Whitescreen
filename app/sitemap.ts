@@ -1,11 +1,10 @@
 // app/sitemap.ts - Dynamic multilingual sitemap generation for SEO
 
 import { MetadataRoute } from 'next';
-import { SITE_URL } from '@/lib/constants';
+import { SITE_URL, COLOR_TOOLS, SCREEN_VARIANTS } from '@/lib/constants';
 import { generateHrefLangAlternates, LOCALES, DEFAULT_LOCALE, getCanonicalUrl } from '@/lib/i18n';
 import { getMonitorBrandSlugs } from '@/lib/monitor-brands';
 import { getComparisonSlugs } from '@/lib/comparisons';
-import { COLOR_TOOLS, SCREEN_VARIANTS } from '@/lib/constants';
 import { allBlogArticles } from '@/lib/blog-content';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -77,6 +76,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'dead-pixel-test',
     'dead-pixel-fixer',
     'backlight-bleed-test',
+    'monitor-response-time-test',
     'brightness-test',
     'contrast-test',
     'zoom-lighting',

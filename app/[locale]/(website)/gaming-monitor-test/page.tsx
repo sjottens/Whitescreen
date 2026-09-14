@@ -79,6 +79,7 @@ export default async function GamingMonitorTestPage({ params }: { params: Promis
             <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('recommended_tests')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
+                { path: '/monitor-response-time-test', title: 'Response Time & Ghosting Test', desc: 'Spot ghosting, overshoot, and check your overdrive setting' },
                 { path: '/screen/red-screen/oled', title: 'Red OLED', desc: 'Color accuracy for gaming' },
                 { path: '/screen/white-screen/4k', title: 'White 4K', desc: '4K resolution display test' },
                 { path: '/brightness-test', title: 'Brightness Test', desc: 'Maximum brightness verification' },

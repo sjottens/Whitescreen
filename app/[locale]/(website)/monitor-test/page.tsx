@@ -62,6 +62,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
   const backlightBleed = TEST_TOOLS.find((t) => t.id === 'backlight-bleed-test')!;
   const brightness = TEST_TOOLS.find((t) => t.id === 'brightness-test')!;
   const contrast = TEST_TOOLS.find((t) => t.id === 'contrast-test')!;
+  const responseTime = TEST_TOOLS.find((t) => t.id === 'response-time-test')!;
   const white = COLOR_TOOLS.find((c) => c.id === 'white-screen')!;
   const black = COLOR_TOOLS.find((c) => c.id === 'black-screen')!;
 
@@ -72,6 +73,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
     { path: backlightBleed.path, nameKey: backlightBleed.nameKey, descKey: backlightBleed.descriptionKey },
     { path: brightness.path, nameKey: brightness.nameKey, descKey: brightness.descriptionKey },
     { path: contrast.path, nameKey: contrast.nameKey, descKey: contrast.descriptionKey },
+    { path: responseTime.path, nameKey: responseTime.nameKey, descKey: responseTime.descriptionKey },
   ];
 
   // FAQ schema mirrors the visible "what a browser test can/can't tell

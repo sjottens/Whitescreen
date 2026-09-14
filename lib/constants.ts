@@ -208,6 +208,19 @@ export const TEST_TOOLS = [
       'IPS glow vs backlight bleed',
     ],
   },
+  {
+    id: 'response-time-test',
+    nameKey: 'response_time_test',
+    path: '/monitor-response-time-test',
+    descriptionKey: 'response_time_test_desc',
+    keywords: [
+      'monitor response time test',
+      'ghosting test',
+      'monitor ghosting test',
+      'motion blur test',
+      'pixel response time',
+    ],
+  },
 ];
 
 // Screen variants for programmatic SEO (Phase 1)

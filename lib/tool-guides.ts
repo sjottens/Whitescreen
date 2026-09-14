@@ -52,6 +52,42 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       'A small amount of bleed in the corners, visible only on a black screen in a dark room, is normal on most LCD monitors and is not usually a warranty case. Bleed that is visible during regular content (dark movie scenes, game loading screens) in a normally-lit room is a much stronger case for a return or exchange - document it and check your return window before it closes.',
   },
 
+  'response-time-test': {
+    whatIs:
+      "This test moves a striped block across the screen so you can visually check for ghosting (a trailing smear behind moving objects) and motion blur. It's a visual check, not a measurement device - true pixel response time in milliseconds requires a high-speed camera or dedicated test hardware, which a browser cannot replicate. Use this to spot an obvious problem or compare settings, not to verify a manufacturer's millisecond spec.",
+    sections: [
+      {
+        title: 'Ghosting vs. Motion Blur',
+        items: [
+          'Ghosting: a distinct, repeated trailing edge or double image behind a moving object - usually a pixel response time issue (the panel is too slow to fully switch color between frames)',
+          'Motion blur: a smoother, more uniform smear across the whole moving object - common on any sample-and-hold display (most LCD/OLED monitors) and reduced by higher refresh rates, not just faster pixels',
+          'Overshoot / inverse ghosting: a bright or dark halo that leads ahead of the moving object rather than trailing behind it - usually means the overdrive (OD) setting is too aggressive',
+        ],
+      },
+      {
+        title: 'What Actually Affects What You See',
+        items: [
+          'Overdrive (OD) setting in your monitor\'s on-screen menu - usually labeled Off/Normal/Fast/Extreme - trades ghosting for overshoot risk as you increase it',
+          'Refresh rate vs. your GPU\'s actual frame rate - a 144Hz panel displaying a 60 FPS game will not look as smooth as the refresh rate alone suggests',
+          'Panel technology - budget VA panels are typically the slowest for dark-transition ghosting; modern IPS and TN panels are usually faster, though this varies significantly by model and price tier',
+        ],
+      },
+    ],
+    tips: [
+      'Test at a few different speeds - a monitor can look fine at slow speeds and still show ghosting at fast ones',
+      'Try each overdrive setting in your monitor\'s menu while this test runs, and pick the one with the least visible ghosting and overshoot combined - most monitors ship with a sub-optimal default',
+      'Compare against a phone or second monitor if you have one - it is easy to misjudge motion artifacts without a reference point',
+      'A completely clean, trail-free result at high speed is not realistic on most LCD monitors - judge relative severity, not perfection',
+    ],
+    shortcuts: [
+      { key: 'Space', description: 'Pause / resume motion' },
+      { key: '1 / 2 / 3', description: 'Slow / medium / fast speed' },
+      { key: 'F', description: 'Toggle fullscreen mode' },
+    ],
+    proTip:
+      "If you see ghosting, check your monitor's overdrive/OD setting before assuming the panel is defective - this single setting is the most common fixable cause of visible ghosting, and it's free to change.",
+  },
+
   'brightness-test': {
     whatIs:
       'A brightness test evaluates your monitor\'s ability to display different levels of brightness accurately. This tool helps you identify issues with monitor brightness uniformity, detect dead pixels, assess color accuracy, and measure contrast ratio performance. It\'s essential for professional color work, photo editing, and quality assurance.',

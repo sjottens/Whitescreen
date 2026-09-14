@@ -115,6 +115,20 @@ const toolBlogMapping: Record<string, RelatedReadingItem[]> = {
       intent: 'guide',
     },
   ],
+  'response-time-test': [
+    {
+      title: 'Gaming Monitor Optimization: Settings for Competitive Advantage',
+      slug: 'gaming-monitor-optimization-guide',
+      description: 'Covers overdrive settings, refresh rate, and response time - the settings that actually affect ghosting.',
+      intent: 'guide',
+    },
+    {
+      title: 'Best Ways to Test a New Monitor: Complete Checklist',
+      slug: 'best-ways-to-test-a-new-monitor',
+      description: 'The full checklist for testing a new monitor, including a fast-object ghosting check.',
+      intent: 'guide',
+    },
+  ],
 };
 
 export default function RelatedReading({ toolId, locale, items, customTitle }: RelatedReadingProps) {
