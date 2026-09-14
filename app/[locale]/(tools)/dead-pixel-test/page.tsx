@@ -1,8 +1,11 @@
 // app/[locale]/(tools)/dead-pixel-test/page.tsx - SEO-optimized dead pixel test page
 
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowRight, Monitor } from 'lucide-react';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
+import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { TEST_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
@@ -160,6 +163,24 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
       >
         <DeadPixelTest locale={locale as any} />
       </ToolLayout>
+
+      {/* Flagship-to-pillar link: dead-pixel-test is the flagship page,
+          /monitor-test is the full testing hub it should feed into. */}
+      <div className="container">
+        <Link
+          href={getLocalizedPath(locale, '/monitor-test')}
+          className="group flex items-center justify-between gap-4 my-8 rounded-xl border border-blue-200 bg-blue-50 px-6 py-5 hover:border-blue-300 hover:bg-blue-100/60 transition-colors"
+        >
+          <div className="flex items-center gap-3">
+            <Monitor className="w-5 h-5 text-blue-600 flex-shrink-0" />
+            <p className="text-sm md:text-base text-slate-700">{translate('dead_pixel_test_pillar_banner' as any)}</p>
+          </div>
+          <span className="flex items-center gap-1 text-sm font-semibold text-blue-600 whitespace-nowrap">
+            {translate('dead_pixel_test_pillar_banner_cta' as any)}
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </span>
+        </Link>
+      </div>
 
       {/* Detailed Guide */}
       <GuideSection toolId="dead-pixel-test" locale={locale} />

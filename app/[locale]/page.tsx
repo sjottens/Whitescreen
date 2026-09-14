@@ -229,6 +229,28 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
+      {/* Monitor Test Pillar Banner - routes homepage traffic to the full
+          testing hub, not just the two individual tools featured above */}
+      <section className="py-10 bg-slate-950 border-y border-slate-800/60">
+        <div className="container">
+          <Link
+            href={getLocalizedPath(locale, '/monitor-test')}
+            className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-900/60 px-6 py-5 hover:border-[#00DC82]/50 transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-[#00DC82] uppercase tracking-wide mb-1">
+                {translate('monitor_test_hub_tests_title' as any)}
+              </p>
+              <p className="text-slate-300">{translate('monitor_test_hub_intro' as any)}</p>
+            </div>
+            <span className="flex items-center gap-2 text-white font-semibold whitespace-nowrap">
+              {translate('monitor_test_badge' as any)}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Link>
+        </div>
+      </section>
+
       {/* Dead Pixel Fixer Banner - Premium CTA */}
       <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 content-auto">
         {/* Animated background effects */}

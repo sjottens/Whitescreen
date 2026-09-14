@@ -901,6 +901,8 @@ export const translations = {
     "monitor_test_hub_card_gaming_desc": "Refresh rate, ghosting, and response-time checks for competitive play.",
     "monitor_test_hub_card_buying_guide": "Monitor Buying Guide",
     "monitor_test_hub_card_buying_guide_desc": "What to check before you buy a monitor - and before you return one.",
+    "dead_pixel_test_pillar_banner": "This is one part of testing a display. See our full Monitor Test for color, brightness, contrast, and uniformity checks too.",
+    "dead_pixel_test_pillar_banner_cta": "Open the full Monitor Test",
     "monitor_test_back_all_tools": "Back to All Resources",
     "privacy_legal_email_label": "Email",
     "privacy_legal_email": "legal@testascreen.com",
