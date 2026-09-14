@@ -34,7 +34,7 @@ export function BlogArticleLayout({
   publishedAt,
   updatedAt,
   readingTimeMinutes,
-  author = 'TestAScreen Team',
+  author = 'TestAScreen Editorial Team',
   breadcrumbs,
   tableOfContents,
   children,

@@ -81,6 +81,16 @@ export interface BlogArticle {
     context: string;
   }>;
   
+  // Editorial attribution. Optional and falls back to a team byline when
+  // unset - previously there was no field here at all, so there was
+  // nowhere to attach a byline even for articles that do have a specific
+  // writer or reviewer. Add a real name (no invented credentials) when one
+  // is known for a given article.
+  author?: {
+    name: string;
+    role?: string;
+  };
+
   // Metadata
   publishedAt: string;
   updatedAt: string;

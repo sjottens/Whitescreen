@@ -75,7 +75,7 @@ export async function generateMetadata({
     title: articleTranslations.metaTitle,
     description: articleTranslations.metaDescription,
     keywords: [articleTranslations.keyword, 'screen testing', 'monitor testing', 'display testing'],
-    authors: [{ name: 'TestAScreen Team' }],
+    authors: [{ name: article.author?.name || 'TestAScreen Editorial Team' }],
     alternates: {
       canonical: `${SITE_URL}${canonicalPath}`,
       languages: hrefLangAlternates,
@@ -151,11 +151,19 @@ export default function LocaleBlogArticlePage({
     image: `${SITE_URL}/opengraph-image`,
     datePublished: publishedAt,
     dateModified: updatedAt,
-    author: {
-      '@type': 'Organization',
-      name: 'TestAScreen',
-      url: SITE_URL,
-    },
+    // Use a named Person author when one is set on the article; otherwise
+    // fall back to Organization authorship rather than inventing a name.
+    author: article.author
+      ? {
+          '@type': 'Person',
+          name: article.author.name,
+          ...(article.author.role ? { jobTitle: article.author.role } : {}),
+        }
+      : {
+          '@type': 'Organization',
+          name: 'TestAScreen',
+          url: SITE_URL,
+        },
     publisher: {
       '@type': 'Organization',
       name: 'TestAScreen',
@@ -277,6 +285,7 @@ export default function LocaleBlogArticlePage({
         publishedAt={publishedAt}
         updatedAt={updatedAt}
         readingTimeMinutes={article.readingTimeMinutes}
+        author={article.author?.name}
         breadcrumbs={breadcrumbs}
         relatedArticles={relatedPreview}
         locale={locale}
