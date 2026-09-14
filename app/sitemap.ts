@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // being told to Google as pages to crawl.
     { path: '/monitor-test', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/monitor-buying-guide', changeFrequency: 'monthly' as const, priority: 0.85 },
+    { path: '/how-to-test-a-monitor-before-returning', changeFrequency: 'monthly' as const, priority: 0.85 },
     { path: '/gaming-monitor-test', changeFrequency: 'monthly' as const, priority: 0.85 },
     { path: '/oled-tv-test', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/device-tests', changeFrequency: 'monthly' as const, priority: 0.75 },

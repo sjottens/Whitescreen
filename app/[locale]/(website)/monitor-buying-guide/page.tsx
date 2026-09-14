@@ -167,12 +167,22 @@ export default async function MonitorBuyingGuidePage({
             <p><strong>Confusing response time with input lag:</strong> Response time is pixel color change speed, not system input latency.</p>
 
             <h2>Testing Your Monitor After Purchase</h2>
-            <p>After buying, verify your monitor meets specifications using our free testing tools:</p>
+            <p>
+              After buying, verify your monitor meets specifications using our free testing tools - ideally the
+              same day it arrives, while you can still return it if something&apos;s wrong. Our{' '}
+              <Link href={getLocalizedPath(locale, '/how-to-test-a-monitor-before-returning')} className="text-blue-600 hover:underline">
+                complete pre-return checklist
+              </Link>{' '}
+              walks through every step in order; the individual tools are also linked below:
+            </p>
             <ul>
+              <li><Link href={getLocalizedPath(locale, '/dead-pixel-test')} className="text-blue-600 hover:underline">Dead pixel test</Link> - Check for dead and stuck pixels</li>
+              <li><Link href={getLocalizedPath(locale, '/backlight-bleed-test')} className="text-blue-600 hover:underline">Backlight bleed test</Link> - Check for light leak and IPS glow</li>
               <li><Link href={getLocalizedPath(locale, '/white-screen')} className="text-blue-600 hover:underline">White screen test</Link> - Check uniformity and backlight issues</li>
               <li><Link href={getLocalizedPath(locale, '/black-screen')} className="text-blue-600 hover:underline">Black screen test</Link> - Check dead pixels and contrast</li>
               <li><Link href={getLocalizedPath(locale, '/brightness-test')} className="text-blue-600 hover:underline">Brightness test</Link> - Verify brightness levels and gamma</li>
               <li><Link href={getLocalizedPath(locale, '/contrast-test')} className="text-blue-600 hover:underline">Contrast test</Link> - Verify contrast ratio and WCAG compliance</li>
+              <li><Link href={getLocalizedPath(locale, '/monitor-response-time-test')} className="text-blue-600 hover:underline">Response time & ghosting test</Link> - Check motion clarity, especially for gaming monitors</li>
             </ul>
 
             <h2>Monitor Brands and Quality Tiers</h2>

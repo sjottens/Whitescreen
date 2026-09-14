@@ -2,7 +2,7 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Monitor, CheckCircle2, AlertTriangle, Gamepad2, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Monitor, CheckCircle2, AlertTriangle, Gamepad2, ShoppingCart, ClipboardCheck } from 'lucide-react';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { LinkButton } from '@/components/ui/button';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual, faqSchema } from '@/lib/seo';
@@ -197,6 +197,24 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
                     {translate('monitor_test_hub_card_buying_guide' as any)}
                   </h3>
                   <p className="text-sm text-slate-600 mt-1">{translate('monitor_test_hub_card_buying_guide_desc' as any)}</p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-blue-400 group-hover:text-blue-600 transition-colors flex-shrink-0 mt-1" />
+              </div>
+            </Link>
+
+            {/* Test-before-returning guide - the clearest linkable-asset
+                opportunity found in this niche's SERP research */}
+            <Link
+              href={getLocalizedPath(locale, '/how-to-test-a-monitor-before-returning')}
+              className="group card p-5 hover:shadow-lg transition-all hover:border-blue-300"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1">
+                  <ClipboardCheck className="w-4 h-4 text-blue-500 mb-2" />
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                    {translate('monitor_test_hub_card_returning' as any)}
+                  </h3>
+                  <p className="text-sm text-slate-600 mt-1">{translate('monitor_test_hub_card_returning_desc' as any)}</p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-blue-400 group-hover:text-blue-600 transition-colors flex-shrink-0 mt-1" />
               </div>
