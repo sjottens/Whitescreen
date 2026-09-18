@@ -17,20 +17,24 @@ export function middleware(request: NextRequest) {
   const preferredLocaleCookie = request.cookies.get('preferred-locale')?.value;
 
   // 1. Check if already has non-English locale prefix
-  const matchedLocalePrefix = SUPPORTED_LOCALES.find(
+  const hasLocalePrefix = SUPPORTED_LOCALES.some(
     (locale) =>
       locale !== DEFAULT_LOCALE &&
       (pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
   );
 
-  if (matchedLocalePrefix) {
-    const response = NextResponse.next();
-    response.cookies.set('preferred-locale', matchedLocalePrefix, {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 365,
-      sameSite: 'lax',
-    });
-    return response;
+  if (hasLocalePrefix) {
+    // Deliberately NOT setting the preferred-locale cookie here. This used
+    // to write a 1-year cookie on every visit to a prefixed URL, including
+    // ones the visitor was auto-redirected to below purely from a header
+    // guess - one ambiguous Accept-Language parse and a visitor was
+    // silently locked into that language for a year with no visible cause
+    // ("was on English, clicked a link, suddenly Spanish"). Explicit choice
+    // is handled entirely client-side by LanguageSelector (which writes
+    // this same cookie on an actual click) - landing on a prefixed URL by
+    // any other means (redirect, direct link, bookmark) no longer creates
+    // lasting stickiness, it just serves that URL's content as normal.
+    return NextResponse.next();
   }
 
   // 2. REJECT /en/ prefix (prevent duplicate content)
@@ -62,12 +66,31 @@ export function middleware(request: NextRequest) {
   }
 
   if (!isCrawler && !cookieLocale) {
-    const [primaryLang] = acceptLanguage.split(',')[0].split('-');
-    const localeMatch = SUPPORTED_LOCALES.find(
-      (locale) => locale === primaryLang && locale !== DEFAULT_LOCALE
-    );
-    if (localeMatch) {
-      userLocale = localeMatch;
+    // Parse by quality value, not by textual order. The previous version
+    // just grabbed the first comma-separated entry regardless of its q=
+    // weight, so a header like "es;q=0.5,en;q=0.9" (a browser that mainly
+    // wants English but also accepts Spanish) resolved to Spanish - wrong,
+    // and with the old code this single misparse got baked into a 1-year
+    // cookie on the next request. That cookie behavior is fixed above; this
+    // fixes the misparse itself.
+    // Find the single BEST-matching supported locale overall (English
+    // included), then only redirect if that top pick isn't English - not
+    // "find the best non-English match regardless of rank", which was the
+    // bug in an earlier version of this fix: "es;q=0.5,en;q=0.9" has to
+    // resolve to English (it's the higher-quality entry), not Spanish.
+    const bestMatch = acceptLanguage
+      .split(',')
+      .map((entry) => {
+        const [tag, ...params] = entry.trim().split(';');
+        const qParam = params.find((p) => p.trim().startsWith('q='));
+        const quality = qParam ? Number.parseFloat(qParam.trim().slice(2)) : 1;
+        return { primary: tag.trim().split('-')[0].toLowerCase(), quality: Number.isNaN(quality) ? 1 : quality };
+      })
+      .sort((a, b) => b.quality - a.quality)
+      .find((entry) => SUPPORTED_LOCALES.includes(entry.primary as any));
+
+    if (bestMatch && bestMatch.primary !== DEFAULT_LOCALE) {
+      userLocale = bestMatch.primary as typeof DEFAULT_LOCALE;
     }
   }
 
