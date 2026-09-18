@@ -33,6 +33,37 @@ const nextConfig = {
     // React strict mode
     reactStrictMode: true,
 
+    // Redirects - consolidate duplicate device-test URLs onto their
+    // canonical pages. /device-tests/{iphone,macbook,oled-tv,gaming-monitor}
+    // rendered the same content as /iphone-screen-test etc. at a second URL,
+    // which is a real duplicate-content risk even though nothing links to
+    // the /device-tests/* sub-paths internally. /device-tests itself (the
+    // index page) is unaffected and keeps linking to the canonical URLs.
+    async redirects() {
+        return [
+            {
+                source: '/:locale(nl|es|de)?/device-tests/iphone',
+                destination: '/:locale(nl|es|de)?/iphone-screen-test',
+                permanent: true,
+            },
+            {
+                source: '/:locale(nl|es|de)?/device-tests/macbook',
+                destination: '/:locale(nl|es|de)?/macbook-screen-test',
+                permanent: true,
+            },
+            {
+                source: '/:locale(nl|es|de)?/device-tests/oled-tv',
+                destination: '/:locale(nl|es|de)?/oled-tv-test',
+                permanent: true,
+            },
+            {
+                source: '/:locale(nl|es|de)?/device-tests/gaming-monitor',
+                destination: '/:locale(nl|es|de)?/gaming-monitor-test',
+                permanent: true,
+            },
+        ];
+    },
+
     // Headers for SEO & Performance
     async headers() {
         return [{
