@@ -14,7 +14,6 @@ import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS, SITE_URL } from '@/lib/constants';
 import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import { getLocalizedPath } from '@/lib/link-utils';
-import ModernHeroBackground from '@/components/ui/modern-hero-background-lazy';
 import { LatestBlogBanner } from '@/components/blog/latest-blog-banner';
 
 export async function generateMetadata(props: {
@@ -100,11 +99,15 @@ export default async function HomePage({ params }: HomePageProps) {
         suppressHydrationWarning
       />
 
-      {/* Hero Section - Modern Design */}
-      <section className="relative overflow-hidden py-20 md:py-32">
-        <ModernHeroBackground />
-        
-        {/* Gradient overlays for depth - positioned below particles */}
+      {/* Hero Section - Modern Design. Previously rendered a Three.js/GSAP
+          particle canvas (<ModernHeroBackground>) here - removed for speed.
+          It was lazy-loaded but still cost real main-thread time to init
+          and run once it mounted, which was directly delaying Largest
+          Contentful Paint (the h1/p in this section) on mobile in
+          production. The gradient background + CSS-only glowing orbs
+          below give the same visual mood for zero JS/WebGL cost. */}
+      <section className="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-950">
+        {/* Gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/30 to-slate-950 pointer-events-none -z-20" />
         
         <div className="container relative z-10">
