@@ -14,9 +14,26 @@ interface MetadataParams {
   keywords?: string[];
 }
 
+// A plain description.slice(0, 160) cuts mid-word whenever the description
+// runs past the limit (e.g. "...refresh rates, and optim"), which is what
+// was happening on every page using this helper - broken-looking text in
+// search snippets and social previews. This trims back to the last whole
+// word instead.
+function truncateDescription(description: string, maxLength = 160): string {
+  if (description.length <= maxLength) return description;
+  const cut = description.slice(0, maxLength);
+  const lastSpace = cut.lastIndexOf(' ');
+  let trimmed = (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd();
+  while (trimmed.length > 0 && ',;:.'.includes(trimmed[trimmed.length - 1])) {
+    trimmed = trimmed.slice(0, -1).trimEnd();
+  }
+  return trimmed + '...';
+}
+
 export function generateMetadata(params: MetadataParams): Metadata {
   const { title, description, path, ogImage, canonical, noindex, keywords } = params;
   const url = `${SITE_URL}${path}`;
+  const trimmedDescription = truncateDescription(description);
 
   return {
     // Plain title, unsuffixed: the root layout's `title.template`
@@ -24,13 +41,13 @@ export function generateMetadata(params: MetadataParams): Metadata {
     // Appending it here too produced "Page Title | TestaScreen | TestaScreen"
     // in the actual <title> tag across the site.
     title,
-    description: description.slice(0, 160),
+    description: trimmedDescription,
     keywords: keywords?.join(', '),
     openGraph: {
       // Open Graph/Twitter titles are NOT covered by the title template
       // mechanism, so they still need the suffix appended explicitly here.
       title: `${title} | ${SITE_NAME}`,
-      description: description.slice(0, 160),
+      description: trimmedDescription,
       url,
       type: 'website',
       siteName: SITE_NAME,
@@ -49,7 +66,7 @@ export function generateMetadata(params: MetadataParams): Metadata {
     twitter: {
       card: 'summary_large_image',
       title: `${title} | ${SITE_NAME}`,
-      description: description.slice(0, 160),
+      description: trimmedDescription,
       images: ogImage ? [ogImage] : undefined,
     },
     robots: noindex ? 'noindex, nofollow' : 'index, follow',
@@ -71,6 +88,7 @@ export function generateMultilingualMetadata(params: MultilingualMetadataParams)
   const { title, description, path, ogImage, noindex, keywords, locale } = params;
   const canonicalUrl = getCanonicalUrl(locale, path);
   const alternateLanguages = generateHrefLangAlternates(path);
+  const trimmedDescription = truncateDescription(description);
 
   return {
     // Plain title, unsuffixed: the root layout's `title.template`
@@ -78,13 +96,13 @@ export function generateMultilingualMetadata(params: MultilingualMetadataParams)
     // Appending it here too produced "Page Title | TestaScreen | TestaScreen"
     // in the actual <title> tag across every page using this helper.
     title,
-    description: description.slice(0, 160),
+    description: trimmedDescription,
     keywords: keywords?.join(', '),
     openGraph: {
       // Open Graph/Twitter titles are NOT covered by the title template
       // mechanism, so they still need the suffix appended explicitly here.
       title: `${title} | ${SITE_NAME}`,
-      description: description.slice(0, 160),
+      description: trimmedDescription,
       url: canonicalUrl,
       type: 'website',
       siteName: SITE_NAME,
@@ -104,7 +122,7 @@ export function generateMultilingualMetadata(params: MultilingualMetadataParams)
     twitter: {
       card: 'summary_large_image',
       title: `${title} | ${SITE_NAME}`,
-      description: description.slice(0, 160),
+      description: trimmedDescription,
       images: ogImage ? [ogImage] : undefined,
     },
     robots: noindex ? 'noindex, nofollow' : 'index, follow',
