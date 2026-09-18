@@ -13,29 +13,19 @@ export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
       <div className="container">
-        {/* Main Intro */}
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 gradient-text">
-            Dead Pixel Test & Detector
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl leading-relaxed mb-6">
-            Use our free dead pixel detector to identify stuck pixels, dead pixels, and hot pixels on your display. This comprehensive test cycles through multiple color backgrounds to make defective pixels highly visible.
-          </p>
-
-          {/* Quick Stats */}
-          <div className="grid md:grid-cols-3 gap-4 mb-8">
-            <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
-              <div className="text-emerald-400 font-bold text-2xl mb-1">100%</div>
-              <p className="text-slate-300 text-sm">Free to Use</p>
-            </div>
-            <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
-              <div className="text-emerald-400 font-bold text-2xl mb-1">16 Colors</div>
-              <p className="text-slate-300 text-sm">Comprehensive Detection</p>
-            </div>
-            <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
-              <div className="text-emerald-400 font-bold text-2xl mb-1">Instant</div>
-              <p className="text-slate-300 text-sm">Results in Seconds</p>
-            </div>
+        {/* Quick Stats */}
+        <div className="grid md:grid-cols-3 gap-4 mb-12">
+          <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
+            <div className="text-emerald-400 font-bold text-2xl mb-1">100%</div>
+            <p className="text-slate-300 text-sm">Free to Use</p>
+          </div>
+          <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
+            <div className="text-emerald-400 font-bold text-2xl mb-1">16 Colors</div>
+            <p className="text-slate-300 text-sm">Comprehensive Detection</p>
+          </div>
+          <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
+            <div className="text-emerald-400 font-bold text-2xl mb-1">Instant</div>
+            <p className="text-slate-300 text-sm">Results in Seconds</p>
           </div>
         </div>
 

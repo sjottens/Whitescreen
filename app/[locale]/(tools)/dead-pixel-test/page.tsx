@@ -11,6 +11,7 @@ import { TEST_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import DeadPixelTest from '@/components/tools/dead-pixel-test';
 import GuideSection from '@/components/tools/guide-section';
+import DeadPixelHero from '@/components/tools/dead-pixel-hero';
 import DeadPixelIntro from '@/components/tools/dead-pixel-intro';
 import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
@@ -109,6 +110,39 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
     ],
   };
 
+  // HowTo Schema - kept word-for-word identical to the visible "How to Use
+  // This Dead Pixel Test" steps rendered by <DeadPixelIntro> below, for the
+  // same reason the FAQ schema above mirrors its visible FAQ: structured
+  // data that doesn't match on-page content is what Google's guidelines flag.
+  const howToSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Use This Dead Pixel Test',
+    description: 'Test your display for dead, stuck, and hot pixels using a color-cycling fullscreen test.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Clean Your Screen',
+        text: 'Use a soft, lint-free cloth to gently clean your screen. Remove any dust or smudges.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Start the Test',
+        text: 'Click "Start Test" and press F11 for fullscreen mode (recommended for best results).',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Look Carefully',
+        text: "Spend 10-15 seconds on each color. Look for spots that don't match the background color.",
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Document Issues',
+        text: 'Take photos of any dead pixels found. Note their location for warranty claims.',
+      },
+    ],
+  };
+
   // WebApplication schema - mirrors the schema already on /dead-pixel-fixer so
   // both tool pages carry equivalent "free tool" signals for rich results.
   const toolSchema = {
@@ -144,6 +178,13 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
         suppressHydrationWarning
       />
 
+      {/* HowTo Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        suppressHydrationWarning
+      />
+
       {/* Breadcrumb Schema */}
       <script
         type="application/ld+json"
@@ -151,8 +192,11 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
         suppressHydrationWarning
       />
 
-      {/* SEO-Optimized Intro Section */}
-      <DeadPixelIntro locale={locale} />
+      {/* Compact header - test starts immediately below, no scrolling
+          required. The full educational explainer (what are dead pixels,
+          how to use, FAQ, warranty) moved below the tool - see
+          <DeadPixelIntro> further down. */}
+      <DeadPixelHero locale={locale} />
 
       {/* Interactive Tool */}
       <ToolLayout
@@ -181,6 +225,11 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
           </span>
         </Link>
       </div>
+
+      {/* Full educational explainer - what are dead/stuck pixels, how to
+          use this test, FAQ, warranty info. Now below the tool so it adds
+          SEO depth without delaying the test itself. */}
+      <DeadPixelIntro locale={locale} />
 
       {/* Detailed Guide */}
       <GuideSection toolId="dead-pixel-test" locale={locale} />
