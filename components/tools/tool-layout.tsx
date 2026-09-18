@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Wrench, ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { LinkButton } from '@/components/ui/button';
 import { t } from '@/lib/translations';
@@ -69,6 +69,23 @@ export default function ToolLayout({
               {children}
             </div>
           </div>
+
+          {/* Dead Pixel Fixer cross-link - shown on every tool page so
+              anyone who spots a stuck pixel while testing has an obvious
+              next step. */}
+          <Link
+            href={getLocalizedPath(locale, '/dead-pixel-fixer')}
+            className="group mb-16 flex items-center justify-between gap-4 rounded-xl border border-cyan-200 bg-cyan-50 px-6 py-5 hover:border-cyan-300 hover:bg-cyan-100/60 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <Wrench className="w-5 h-5 text-cyan-600 flex-shrink-0" />
+              <p className="text-sm md:text-base text-slate-700">{translate('dead_pixel_fixer')}</p>
+            </div>
+            <span className="flex items-center gap-1 text-sm font-semibold text-cyan-600 whitespace-nowrap">
+              {translate('featured_tool_cta')}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Link>
 
           {/* Tool Information */}
           <div className="space-y-12">

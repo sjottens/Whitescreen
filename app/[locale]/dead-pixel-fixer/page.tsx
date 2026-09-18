@@ -242,39 +242,6 @@ export default function DeadPixelFixerPage() {
           </p>
         </div>
 
-        {/* Divider */}
-        <div className="my-8 border-t border-slate-700/50" />
-        {/* Quick Start Guide - BEFORE Canvas */}
-        <div className="mb-16 p-8 bg-gradient-to-r from-[#00DC82]/10 to-cyan-500/10 border border-[#00DC82]/30 rounded-xl">
-          <h2 className="text-3xl font-bold mb-6 text-white">{t(locale as any)('dead_pixel_fixer_how_to_title')}</h2>
-          <p className="text-lg text-slate-300 leading-relaxed mb-8">
-            {t(locale as any)('dead_pixel_fixer_how_to_intro')}
-          </p>
-          <ol className="list-decimal list-inside space-y-4 text-slate-300 mb-8">
-            <li className="text-base">
-              {t(locale as any)('dead_pixel_fixer_step1')}
-            </li>
-            <li className="text-base">
-              {t(locale as any)('dead_pixel_fixer_step2')}
-            </li>
-            <li className="text-base">
-              {t(locale as any)('dead_pixel_fixer_step3')}
-            </li>
-            <li className="text-base">
-              {t(locale as any)('dead_pixel_fixer_step4')}
-            </li>
-            <li className="text-base">
-              {t(locale as any)('dead_pixel_fixer_step5')}
-            </li>
-            <li className="text-base">
-              {t(locale as any)('dead_pixel_fixer_step6')}
-            </li>
-          </ol>
-          <p className="text-slate-300 italic">
-            💡 <strong>{t(locale as any)('dead_pixel_fixer_pro_tip')}</strong>
-          </p>
-        </div>
-
         {/* Canvas Area */}
         <div className="mb-8">
           <div
@@ -420,6 +387,39 @@ export default function DeadPixelFixerPage() {
               <strong>{t(locale as any)('dead_pixel_fixer_pro_tip')}</strong>
             </div>
           </div>
+        </div>
+
+        {/* Quick Start Guide - moved below the tool so the tool itself is
+            the first thing users interact with, matching the same
+            above-the-fold-tool pattern used on /dead-pixel-test. */}
+        <div className="mb-16 p-8 bg-gradient-to-r from-[#00DC82]/10 to-cyan-500/10 border border-[#00DC82]/30 rounded-xl">
+          <h2 className="text-3xl font-bold mb-6 text-white">{t(locale as any)('dead_pixel_fixer_how_to_title')}</h2>
+          <p className="text-lg text-slate-300 leading-relaxed mb-8">
+            {t(locale as any)('dead_pixel_fixer_how_to_intro')}
+          </p>
+          <ol className="list-decimal list-inside space-y-4 text-slate-300 mb-8">
+            <li className="text-base">
+              {t(locale as any)('dead_pixel_fixer_step1')}
+            </li>
+            <li className="text-base">
+              {t(locale as any)('dead_pixel_fixer_step2')}
+            </li>
+            <li className="text-base">
+              {t(locale as any)('dead_pixel_fixer_step3')}
+            </li>
+            <li className="text-base">
+              {t(locale as any)('dead_pixel_fixer_step4')}
+            </li>
+            <li className="text-base">
+              {t(locale as any)('dead_pixel_fixer_step5')}
+            </li>
+            <li className="text-base">
+              {t(locale as any)('dead_pixel_fixer_step6')}
+            </li>
+          </ol>
+          <p className="text-slate-300 italic">
+            💡 <strong>{t(locale as any)('dead_pixel_fixer_pro_tip')}</strong>
+          </p>
         </div>
 
         {/* SEO Content Section */}

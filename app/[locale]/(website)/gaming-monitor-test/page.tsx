@@ -84,6 +84,7 @@ export default async function GamingMonitorTestPage({ params }: { params: Promis
                 { path: '/screen/white-screen/4k', title: 'White 4K', desc: '4K resolution display test' },
                 { path: '/brightness-test', title: 'Brightness Test', desc: 'Maximum brightness verification' },
                 { path: '/contrast-test', title: 'Contrast Test', desc: 'High contrast ratio check' },
+                { path: '/dead-pixel-fixer', title: translate('dead_pixel_fixer'), desc: 'Found a stuck pixel? Try to fix it' },
               ].map((test) => (
                 <Link
                   key={test.path}

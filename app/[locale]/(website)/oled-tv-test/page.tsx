@@ -83,6 +83,7 @@ export default async function OLEDTVTestPage({ params }: { params: Promise<{ loc
                 { path: '/screen/black-screen/fullscreen', title: 'Black Screen', desc: 'OLED black level verification' },
                 { path: '/screen/white-screen/4k', title: 'White 4K', desc: 'Brightness and white point test' },
                 { path: '/dead-pixel-test', title: 'Dead Pixel Test', desc: 'Check for pixel defects' },
+                { path: '/dead-pixel-fixer', title: translate('dead_pixel_fixer'), desc: 'Found a stuck pixel? Try to fix it' },
               ].map((test) => (
                 <Link
                   key={test.path}

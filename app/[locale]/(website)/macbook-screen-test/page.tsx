@@ -83,6 +83,7 @@ export default async function MacBookTestPage({ params }: { params: Promise<{ lo
                 { path: '/screen/blue-screen/fullscreen', title: 'Blue Screen', desc: 'Check blue channel on Retina display' },
                 { path: '/screen/white-screen/4k', title: 'White 4K', desc: 'Full brightness and uniformity test' },
                 { path: '/contrast-test', title: 'Contrast Test', desc: 'MacBook contrast ratio evaluation' },
+                { path: '/dead-pixel-fixer', title: translate('dead_pixel_fixer'), desc: 'Found a stuck pixel? Try to fix it' },
               ].map((test) => (
                 <Link
                   key={test.path}

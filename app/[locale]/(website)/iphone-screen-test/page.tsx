@@ -83,6 +83,7 @@ export default async function IPhoneTestPage({ params }: { params: Promise<{ loc
                 { path: '/screen/blue-screen/fullscreen', title: 'Blue Screen', desc: 'Check blue channel consistency' },
                 { path: '/screen/green-screen/fullscreen', title: 'Green Screen', desc: 'Verify green display uniformity' },
                 { path: '/screen/white-screen/fullscreen', title: 'White Screen', desc: 'Overall brightness and color accuracy' },
+                { path: '/dead-pixel-fixer', title: translate('dead_pixel_fixer'), desc: 'Found a stuck pixel? Try to fix it' },
               ].map((test) => (
                 <Link
                   key={test.path}

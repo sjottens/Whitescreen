@@ -180,6 +180,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
                 { path: '/screen/white-screen/fullscreen', title: 'White Full Screen', icon: '⚪' },
                 { path: '/screen/black-screen/fullscreen', title: 'Black Full Screen', icon: '⚫' },
                 { path: '/brightness-test', title: 'Brightness Test', icon: '☀️' },
+                { path: '/dead-pixel-fixer', title: translate('dead_pixel_fixer' as any), icon: '🔧' },
               ].map((test) => (
                 <Link
                   key={test.path}

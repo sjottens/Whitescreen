@@ -209,13 +209,24 @@ export default async function ScreenVariantPage(props: PageProps) {
 
         {/* Display Test Area */}
         <section className="mb-12">
-          <ScreenDisplay 
+          <ScreenDisplay
             color={colorTool.color || '#FFFFFF'}
             colorId={colorTool.id}
             title={translate(colorTool.nameKey as any)}
             locale={locale as any}
           />
         </section>
+
+        {/* Dead Pixel Fixer cross-link */}
+        <a
+          href={getLocalizedPath(locale as any, '/dead-pixel-fixer')}
+          className="group mb-12 flex items-center justify-between gap-4 rounded-lg border border-blue-200 bg-blue-50 px-6 py-5 hover:border-blue-300 hover:bg-blue-100/60 transition-colors"
+        >
+          <p className="text-sm md:text-base text-slate-700">🔧 {translate('dead_pixel_fixer' as any)}</p>
+          <span className="text-sm font-semibold text-blue-600 whitespace-nowrap group-hover:translate-x-1 transition-transform">
+            {translate('featured_tool_cta' as any)} →
+          </span>
+        </a>
 
         {/* Features Grid */}
         {content.features.length > 0 && (
