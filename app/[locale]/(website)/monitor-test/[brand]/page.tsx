@@ -9,6 +9,7 @@ import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
 import { MONITOR_BRANDS, getMonitorBrandSlugs } from '@/lib/monitor-brands';
+import { getMonitorBrandContent } from '@/lib/monitor-brand-content';
 
 /**
  * Generate static params for all monitor brands across all locales
@@ -60,6 +61,21 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
     return <div>{translate('monitor_brand_not_found' as any)}</div>;
   }
 
+  // Unique per-page content (panel tech, common issues, warranty, 3 FAQs)
+  // that replaces the old shared-across-all-pages FAQ, translated for all
+  // 4 site locales - see lib/monitor-brand-content/index.ts. Falls back to
+  // the old generic FAQ keys only if a locale+slug combination is somehow
+  // missing (shouldn't happen - every slug has all 4 locales), so nothing
+  // breaks if a new slug is ever added without content yet.
+  const content = getMonitorBrandContent(locale, brand);
+  const faqs = content
+    ? content.faqs
+    : [
+        { q: translate('monitor_faq_1_q' as any), a: translate('monitor_faq_1_a' as any) },
+        { q: translate('monitor_faq_2_q' as any), a: translate('monitor_faq_2_a' as any) },
+        { q: translate('monitor_faq_3_q' as any), a: translate('monitor_faq_3_a' as any) },
+      ];
+
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
       { name: translate('home'), path: '/' },
@@ -69,11 +85,31 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
     locale as any
   );
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+        suppressHydrationWarning
+      />
+
+      {/* FAQ Schema - kept identical to the visible FAQ rendered below */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         suppressHydrationWarning
       />
 
@@ -109,6 +145,30 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
             </div>
           </div>
 
+          {/* Panel Technology & Common Issues - unique per-page content,
+              not shared boilerplate. Only rendered where we have it (see
+              lib/monitor-brand-content.ts). */}
+          {content && (
+            <div className="mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="card p-6">
+                <h2 className="text-xl font-bold mb-3">Panel Technology</h2>
+                <p className="text-slate-700 leading-relaxed text-sm">{content.panelTech}</p>
+              </div>
+              <div className="card p-6">
+                <h2 className="text-xl font-bold mb-3">What to Check For</h2>
+                <p className="text-slate-700 leading-relaxed text-sm">{content.commonIssues}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Warranty Info */}
+          {content && (
+            <div className="mb-12 bg-cyan-50 border border-cyan-200 rounded-lg p-6">
+              <h2 className="text-xl font-bold mb-3">Dead Pixel Warranty Policy</h2>
+              <p className="text-slate-700 leading-relaxed text-sm">{content.warranty}</p>
+            </div>
+          )}
+
           {/* Monitor Tests Grid */}
           <div className="mb-12">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('monitor_tests')}</h2>
@@ -133,37 +193,23 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
             </div>
           </div>
 
-          {/* FAQs */}
+          {/* FAQs - brand/category-specific when available (see
+              lib/monitor-brand-content.ts), falls back to the generic
+              3 questions for locales without dedicated content yet. */}
           <div className="mb-12">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('faq')}</h2>
             <div className="space-y-4">
-              <details className="group card cursor-pointer p-6">
-                <summary className="flex items-center justify-between font-semibold">
-                  {translate('monitor_faq_1_q' as any)}
-                  <span className="group-open:rotate-180 transition-transform">↓</span>
-                </summary>
-                <p className="mt-4 text-slate-600 leading-relaxed">
-                  {translate('monitor_faq_1_a' as any)}
-                </p>
-              </details>
-              <details className="group card cursor-pointer p-6">
-                <summary className="flex items-center justify-between font-semibold">
-                  {translate('monitor_faq_2_q' as any)}
-                  <span className="group-open:rotate-180 transition-transform">↓</span>
-                </summary>
-                <p className="mt-4 text-slate-600 leading-relaxed">
-                  {translate('monitor_faq_2_a' as any)}
-                </p>
-              </details>
-              <details className="group card cursor-pointer p-6">
-                <summary className="flex items-center justify-between font-semibold">
-                  {translate('monitor_faq_3_q' as any)}
-                  <span className="group-open:rotate-180 transition-transform">↓</span>
-                </summary>
-                <p className="mt-4 text-slate-600 leading-relaxed">
-                  {translate('monitor_faq_3_a' as any)}
-                </p>
-              </details>
+              {faqs.map((faq) => (
+                <details key={faq.q} className="group card cursor-pointer p-6">
+                  <summary className="flex items-center justify-between font-semibold">
+                    {faq.q}
+                    <span className="group-open:rotate-180 transition-transform">↓</span>
+                  </summary>
+                  <p className="mt-4 text-slate-600 leading-relaxed">
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
             </div>
           </div>
 
