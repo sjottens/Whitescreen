@@ -7,6 +7,7 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { Manrope, Space_Grotesk } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
 import { organizationSchema, softwareApplicationSchema, websiteSchema } from '@/lib/seo';
@@ -320,6 +321,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {/* GDPR-compliant cookie consent banner */}
           <ConsentBanner />
         </ConsentProvider>
+
+        {/* Vercel Web Analytics - cookieless, so it runs outside the consent gate */}
+        <Analytics />
       </body>
     </html>
   );
