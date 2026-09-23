@@ -70,6 +70,8 @@ export default async function RedScreenPage({ params }: { params: Promise<{ loca
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
         <ScreenDisplay color="#FF0000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>

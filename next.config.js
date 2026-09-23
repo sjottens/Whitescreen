@@ -123,6 +123,13 @@ const nextConfig = {
                 source: '/:locale(nl|es|de)/:path*',
                 headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
             },
+            // Vercel also serves every deployment on *.vercel.app - keep that
+            // mirror of the site out of the index.
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: '(?<host>.*)\\.vercel\\.app' }],
+                headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+            },
             // Cache static assets
             {
                 source: '/fonts/:path*',

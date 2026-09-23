@@ -16,7 +16,7 @@ export async function generateMetadata(props: {
   return generateMultilingualMetadata({
     locale,
     title: 'Complete Monitor Buying Guide | Display Technology Explained',
-    description: 'Expert guide to choosing the right monitor for gaming, work, or content creation. Learn about refresh rates, panel types, resolution, and specifications.',
+    description: 'A practical guide to choosing the right monitor for gaming, work, or content creation. Learn about refresh rates, panel types, resolution, and specifications.',
     path: '/monitor-buying-guide',
     keywords: [
       'monitor buying guide',

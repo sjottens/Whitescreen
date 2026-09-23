@@ -70,6 +70,8 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
         <ScreenDisplay color="#800080" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>

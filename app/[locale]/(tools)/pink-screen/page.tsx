@@ -70,6 +70,8 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
         <ScreenDisplay color="#FF1493" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>

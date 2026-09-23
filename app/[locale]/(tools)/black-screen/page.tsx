@@ -85,6 +85,8 @@ export default async function BlackScreenPage({ params }: PageProps) {
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
         <ScreenDisplay color="#000000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>

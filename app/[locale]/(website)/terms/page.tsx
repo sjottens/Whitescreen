@@ -100,7 +100,7 @@ export default async function TermsPage({ params }: TermsPageProps) {
           <p>
             {translate('terms_contact_text')}
             <br />
-            <strong>{translate('terms_email_label' as any)}</strong> {translate('terms_email_value' as any)}
+            <strong>{translate('terms_email_label' as any)}</strong> <a href={getLocalizedPath(locale, '/contact')} className="text-cyan-700 underline">{translate('terms_email_value' as any)}</a>
           </p>
 
           <hr className="my-12" />

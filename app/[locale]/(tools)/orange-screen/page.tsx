@@ -70,6 +70,8 @@ export default async function OrangeScreenPage({ params }: { params: Promise<{ l
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
         <ScreenDisplay color="#FFA500" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>

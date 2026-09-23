@@ -80,7 +80,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
               write1: 'Include your device, browser, and operating system.',
               write2: 'Describe which page you used and where it failed.',
               write3: 'Attach a screenshot or short video if possible.',
-              legalNotice: 'For legal or privacy requests, use the privacy contact channel for formal processing.',
+              legalNotice: 'For legal or privacy requests, use this same form and start your message with "Privacy" or "Legal".',
             };
 
   const breadcrumbs = breadcrumbSchemaMultilingual(

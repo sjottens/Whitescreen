@@ -70,6 +70,8 @@ export default async function YellowScreenPage({ params }: { params: Promise<{ l
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
         <ScreenDisplay color="#FFFF00" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>

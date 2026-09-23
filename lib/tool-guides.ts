@@ -160,7 +160,6 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     shortcuts: [
       { key: 'F', description: 'Toggle fullscreen mode' },
-      { key: 'Space', description: 'Cycle through contrast patterns' },
       { key: 'Arrow Keys', description: 'Adjust contrast values' },
       { key: 'R', description: 'Reset to default values' },
     ],
@@ -200,9 +199,9 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     shortcuts: [
       { key: 'F', description: 'Toggle fullscreen mode' },
-      { key: 'Space', description: 'Cycle to next color' },
-      { key: 'Arrow Keys', description: 'Navigate between test colors' },
-      { key: 'R', description: 'Reset to first color' },
+      { key: 'Space', description: 'Start/stop auto-cycling colors (in fullscreen)' },
+      { key: 'Arrow Keys', description: 'Previous / next test color (in fullscreen)' },
+      { key: 'Esc', description: 'Exit fullscreen' },
     ],
     proTip:
       'Document any dead pixels with photos including the pixel location on screen. Most manufacturers have warranty policies that cover a small number of dead pixels (typically 0-8 depending on the brand). Keep your documentation for warranty claims.',
@@ -508,40 +507,39 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
 
   'zoom-lighting': {
     whatIs:
-      'A zoom and lighting test helps evaluate your monitor\'s ability to maintain color and brightness consistency across different zoom levels and lighting conditions. Useful for testing viewing angles, brightness uniformity, and color stability.',
+      'A bright, evenly lit screen makes a surprisingly good soft fill light for video calls: it sits right in front of your face, it is diffuse, and you can change its color. This tool turns a second monitor, laptop or tablet into that light - pick a color temperature, set the brightness, and go fullscreen.',
     sections: [
       {
-        title: 'Test Modes',
+        title: 'Choosing a Color Temperature',
         items: [
-          'Zoom Test: Test display at various magnification levels',
-          'Lighting Test: Simulate different ambient lighting conditions',
-          'Angle Test: Check viewing angle performance',
-          'Brightness Levels: Test at different brightness settings',
+          'Warm (~2700K): matches typical home bulbs and flatters skin tones in the evening',
+          'Soft white (~4000K): a neutral middle ground that works in most rooms',
+          'Daylight (~5500K): matches a window during the day, so light from both sides blends',
+          'Cool (~6500K): matches most office LED panels and bright overcast daylight',
         ],
       },
       {
-        title: 'What to Look For',
+        title: 'Where to Put the Screen',
         items: [
-          'Color Shift: Changes in color at different angles',
-          'Brightness Fade: Decreased brightness at viewing angles',
-          'Banding: Color banding at high zoom levels',
-          'Artifacts: Display artifacts under different conditions',
+          'Height: at or slightly above eye level - light from below looks unnatural',
+          'Angle: 30-45 degrees off to one side gives shape to your face; straight on flattens it',
+          'Distance: closer is brighter and softer; move it back if you see a bright reflection in glasses',
+          'Background: keep the room a little darker than your face so the camera exposes for you',
         ],
       },
     ],
     tips: [
-      'Test from extreme viewing angles for best results',
-      'Zoom in to 100% to check pixel-level performance',
-      'Simulate real-world lighting conditions',
-      'Take note of how colors shift with angle',
+      'Match the preset to the strongest other light in the room so colors do not clash',
+      'Turn the screen brightness itself up to maximum and use the slider to dim',
+      'If you wear glasses, raise the light and tilt it slightly down to move the reflection out of frame',
+      'Close other windows on the light screen so nothing else glows on your face',
     ],
     shortcuts: [
       { key: 'F', description: 'Toggle fullscreen mode' },
-      { key: 'Space', description: 'Cycle through test patterns' },
-      { key: '+/-', description: 'Adjust zoom level' },
-      { key: 'R', description: 'Reset to default' },
+      { key: 'Space', description: 'Toggle fullscreen mode' },
+      { key: 'Esc', description: 'Exit fullscreen' },
     ],
     proTip:
-      'IPS panels have better viewing angles than VA or TN, but all displays show some color shift. Extreme angles (>60°) may show noticeable color changes - this is usually normal depending on panel type.',
+      'A laptop screen alone is rarely enough in a dark room, but combined with a window or a desk lamp on the other side it removes harsh shadows. Most webcams also look noticeably sharper once your face is well lit, because they no longer have to boost gain.',
   },
 };

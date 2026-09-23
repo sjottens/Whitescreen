@@ -75,6 +75,8 @@ export default async function BlueScreenPage({ params }: { params: Promise<{ loc
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
         <ScreenDisplay color="#0000FF" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>

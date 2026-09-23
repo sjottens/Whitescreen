@@ -29,8 +29,7 @@ export function llmOptimizedOrganizationSchema(): SchemaConfig {
     // Contact Information
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'Customer Support',
-      email: 'support@testascreen.com',
+      contactType: 'Customer Support',
       url: `${SITE_URL}/contact`,
       areaServed: ['NL', 'EN', 'ES', 'DE', 'EU'],
       availableLanguage: ['en', 'nl', 'es', 'de'],

@@ -7,6 +7,7 @@ import { t } from '@/lib/translations';
 import { SPECIAL_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import GuideSection from '@/components/tools/guide-section';
+import VideoCallLight from '@/components/tools/video-call-light';
 
 const TOOL = SPECIAL_TOOLS.find((t) => t.id === 'zoom-lighting')!;
 
@@ -59,13 +60,9 @@ export default async function ZoomLightingPage({ params }: { params: Promise<{ l
         features={translatedFeatures}
         useCases={translatedUseCases}
         locale={locale}
+        showScreenControls
       >
-        <section className="section">
-          <div className="container">
-            <h2>{translate('zoom_lighting_heading' as any)}</h2>
-            <p>{translate('zoom_lighting_description_long' as any)}</p>
-          </div>
-        </section>
+        <VideoCallLight />
       </ToolLayout>
       <GuideSection toolId="zoom-lighting" locale={locale as any} />
     </>

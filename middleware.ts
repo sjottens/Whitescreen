@@ -52,49 +52,21 @@ export function middleware(request: NextRequest) {
     return response;
   }
 
-  // 3. Get user's preferred locale for root paths
-  const acceptLanguage = request.headers.get('accept-language') ?? '';
-  const isCrawler = /bot|crawl|spider|googlebot|bingbot|scraper/i.test(
-    request.headers.get('user-agent') ?? ''
-  );
-
+  // 3. Only an explicit language choice (the cookie LanguageSelector sets
+  // on click) sends a visitor to a localized URL. There is deliberately no
+  // Accept-Language guessing and no user-agent check any more: the old code
+  // skipped the redirect for anything that looked like a bot, so Googlebot
+  // saw the English page it indexed while human visitors with a Dutch,
+  // Spanish or German browser got bounced to a different (noindexed) URL -
+  // the "sneaky redirect" / cloaking pattern in Google's spam policies.
+  // Everyone now gets the URL they asked for unless they chose otherwise.
   let userLocale = DEFAULT_LOCALE;
-
   const cookieLocale = SUPPORTED_LOCALES.find((locale) => locale === preferredLocaleCookie);
   if (cookieLocale) {
     userLocale = cookieLocale;
   }
 
-  if (!isCrawler && !cookieLocale) {
-    // Parse by quality value, not by textual order. The previous version
-    // just grabbed the first comma-separated entry regardless of its q=
-    // weight, so a header like "es;q=0.5,en;q=0.9" (a browser that mainly
-    // wants English but also accepts Spanish) resolved to Spanish - wrong,
-    // and with the old code this single misparse got baked into a 1-year
-    // cookie on the next request. That cookie behavior is fixed above; this
-    // fixes the misparse itself.
-    // Find the single BEST-matching supported locale overall (English
-    // included), then only redirect if that top pick isn't English - not
-    // "find the best non-English match regardless of rank", which was the
-    // bug in an earlier version of this fix: "es;q=0.5,en;q=0.9" has to
-    // resolve to English (it's the higher-quality entry), not Spanish.
-    const bestMatch = acceptLanguage
-      .split(',')
-      .map((entry) => {
-        const [tag, ...params] = entry.trim().split(';');
-        const qParam = params.find((p) => p.trim().startsWith('q='));
-        const quality = qParam ? Number.parseFloat(qParam.trim().slice(2)) : 1;
-        return { primary: tag.trim().split('-')[0].toLowerCase(), quality: Number.isNaN(quality) ? 1 : quality };
-      })
-      .sort((a, b) => b.quality - a.quality)
-      .find((entry) => SUPPORTED_LOCALES.includes(entry.primary as any));
-
-    if (bestMatch && bestMatch.primary !== DEFAULT_LOCALE) {
-      userLocale = bestMatch.primary as typeof DEFAULT_LOCALE;
-    }
-  }
-
-  // 4. Redirect non-English users to their locale, unless already on root English
+  // 4. Send visitors who explicitly picked another language to that version
   if (userLocale !== DEFAULT_LOCALE && !pathname.includes('.')) {
     // For the homepage, pathname is '/', so naively appending it produces
     // '/nl/' (trailing slash). Next.js's default trailingSlash:false then

@@ -70,6 +70,8 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
         <ScreenDisplay color="#00FF00" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>

@@ -178,16 +178,14 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             <br />
             {translate('privacy_dpa_company_name')}
             <br />
-            {translate('privacy_legal_email_label' as any)}: {translate('privacy_legal_email' as any)}
+            {translate('privacy_legal_email_label' as any)}: <a href={getLocalizedPath(locale, '/contact')} className="text-cyan-700 underline">{translate('privacy_legal_email' as any)}</a>
           </p>
 
           <h2>13. {translate('privacy_contact')}</h2>
           <p>
             {translate('privacy_contact_full_text')}
             <br />
-            <strong>{translate('privacy_contact_email_label' as any)}:</strong> {translate('privacy_contact_email' as any)}
-            <br />
-            <strong>{translate('privacy_dpo_label' as any)}:</strong> {translate('privacy_dpo_email' as any)}
+            <strong>{translate('privacy_contact_email_label' as any)}:</strong> <a href={getLocalizedPath(locale, '/contact')} className="text-cyan-700 underline">{translate('privacy_contact_email' as any)}</a>
           </p>
 
           <hr className="my-8" />

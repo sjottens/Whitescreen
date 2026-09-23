@@ -169,7 +169,7 @@ export function generateOrganizationSchema() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
-      email: 'support@testascreen.com',
+      url: `${SITE_URL}/contact`,
       availableLanguage: ['en', 'nl', 'es', 'de']
     }
   };

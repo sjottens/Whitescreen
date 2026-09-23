@@ -19,6 +19,10 @@ interface ToolLayoutProps {
   features?: string[];
   useCases?: string[];
   faqs?: Array<{ question: string; answer: string }>;
+  /** Full-screen color panel controls (F/Space fullscreen, Esc) - only true for ScreenDisplay-style tools. */
+  showScreenControls?: boolean;
+  /** Tool has PNG download (Ctrl+S). */
+  hasDownload?: boolean;
 }
 
 export default function ToolLayout({
@@ -31,6 +35,8 @@ export default function ToolLayout({
   features = [],
   useCases = [],
   faqs = [],
+  showScreenControls = false,
+  hasDownload = false,
 }: ToolLayoutProps) {
   const translate = t(locale);
 
@@ -96,6 +102,7 @@ export default function ToolLayout({
             </div>
 
             {/* How to Use */}
+            {showScreenControls && (
             <div>
               <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('how_to_use')}</h2>
               <ol className="space-y-4 text-lg text-slate-700">
@@ -117,14 +124,17 @@ export default function ToolLayout({
                   </span>
                   <span>{translate('step_3')}</span>
                 </li>
+                {hasDownload && (
                 <li className="flex gap-4">
                   <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
                     4
                   </span>
                   <span>{translate('step_4')}</span>
                 </li>
+                )}
               </ol>
             </div>
+            )}
 
             {/* Features */}
             {features.length > 0 && (
@@ -158,6 +168,7 @@ export default function ToolLayout({
             )}
 
             {/* Keyboard Shortcuts */}
+            {showScreenControls && (
             <div>
               <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('keyboard_shortcuts')}</h2>
               <div className="bg-slate-50 rounded-lg p-6">
@@ -171,13 +182,16 @@ export default function ToolLayout({
                     <span className="text-slate-600">{translate('exit_fullscreen')}:</span>
                     <kbd className="bg-white border border-slate-200 rounded px-2 py-1">ESC</kbd>
                   </div>
+                  {hasDownload && (
                   <div className="flex justify-between">
                     <span className="text-slate-600">{translate('download_shortcut')}:</span>
                     <kbd className="bg-white border border-slate-200 rounded px-2 py-1">Ctrl+S</kbd>
                   </div>
+                  )}
                 </div>
               </div>
             </div>
+            )}
 
             {/* Related Tools */}
             {relatedTools.length > 0 && (

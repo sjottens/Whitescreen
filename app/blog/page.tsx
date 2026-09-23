@@ -10,7 +10,7 @@ import { t } from '@/lib/translations';
 export const metadata: Metadata = {
   title: 'Screen Testing Blog | Free Display Testing Guides',
   description:
-    'Learn about screen testing, dead pixels, color accuracy, monitor diagnostics, and display troubleshooting. Expert guides for monitor buyers and IT professionals.',
+    'Learn about screen testing, dead pixels, color accuracy, monitor diagnostics, and display troubleshooting. Practical guides for monitor buyers and IT professionals.',
   keywords: [
     'screen testing blog',
     'monitor testing guide',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Screen Testing Blog | Free Display Testing Guides',
     description:
-      'Learn about screen testing, dead pixels, color accuracy, monitor diagnostics, and display troubleshooting. Expert guides and tutorials.',
+      'Learn about screen testing, dead pixels, color accuracy, monitor diagnostics, and display troubleshooting. Practical guides and tutorials.',
     type: 'website',
     url: `${SITE_URL}/blog`,
     locale: 'en_US',

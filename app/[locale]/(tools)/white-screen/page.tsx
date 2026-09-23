@@ -81,6 +81,8 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
         useCases={translatedUseCases}
         relatedTools={relatedTools}
         locale={locale}
+        showScreenControls
+        hasDownload
       >
           <ScreenDisplay color="#FFFFFF" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
