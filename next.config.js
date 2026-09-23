@@ -39,29 +39,31 @@ const nextConfig = {
     // which is a real duplicate-content risk even though nothing links to
     // the /device-tests/* sub-paths internally. /device-tests itself (the
     // index page) is unaffected and keeps linking to the canonical URLs.
+    //
+    // /screen/[color]/[variant] were templated near-duplicates of the colour
+    // tool pages (only the colour name changed, 144 URLs across locales) and
+    // got the site rejected by AdSense as low-value content. They're folded
+    // back into the real tool pages.
+    //
+    // Each rule is emitted twice (with and without a locale prefix) because
+    // an optional `:locale?` in the destination 500s when it's absent.
     async redirects() {
-        return [
-            {
-                source: '/:locale(nl|es|de)?/device-tests/iphone',
-                destination: '/:locale(nl|es|de)?/iphone-screen-test',
-                permanent: true,
-            },
-            {
-                source: '/:locale(nl|es|de)?/device-tests/macbook',
-                destination: '/:locale(nl|es|de)?/macbook-screen-test',
-                permanent: true,
-            },
-            {
-                source: '/:locale(nl|es|de)?/device-tests/oled-tv',
-                destination: '/:locale(nl|es|de)?/oled-tv-test',
-                permanent: true,
-            },
-            {
-                source: '/:locale(nl|es|de)?/device-tests/gaming-monitor',
-                destination: '/:locale(nl|es|de)?/gaming-monitor-test',
-                permanent: true,
-            },
+        const rules = [
+            ['/device-tests/iphone', '/iphone-screen-test'],
+            ['/device-tests/macbook', '/macbook-screen-test'],
+            ['/device-tests/oled-tv', '/oled-tv-test'],
+            ['/device-tests/gaming-monitor', '/gaming-monitor-test'],
+            ['/screen/:color(white-screen|black-screen|red-screen|blue-screen|green-screen|pink-screen|purple-screen|orange-screen|yellow-screen|zoom-lighting)/:variant*', '/:color'],
+            ['/screen/:path*', '/tools'],
         ];
+        return rules.flatMap(([source, destination]) => [
+            { source, destination, permanent: true },
+            {
+                source: `/:locale(nl|es|de)${source}`,
+                destination: `/:locale${destination}`,
+                permanent: true,
+            },
+        ]);
     },
 
     // Headers for SEO & Performance
