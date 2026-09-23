@@ -34,7 +34,7 @@ export function BlogArticleLayout({
   publishedAt,
   updatedAt,
   readingTimeMinutes,
-  author = 'TestAScreen Editorial Team',
+  author = 'TestaScreen',
   breadcrumbs,
   tableOfContents,
   children,
@@ -128,12 +128,6 @@ export function BlogArticleLayout({
               </div>
             )}
             <div className="text-sm">{readingTimeMinutes} {translate('blog_layout_min_read_suffix' as any)}</div>
-          </div>
-
-          {/* Article Stats */}
-          <div className="flex gap-4 text-sm text-gray-500">
-            <span>📖 {readingTimeMinutes} minute read</span>
-            <span>⏱️ Updated {formatDate(updatedAt)}</span>
           </div>
         </div>
       </div>

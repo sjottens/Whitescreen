@@ -42,7 +42,7 @@ export const additionalPixelProblemArticles: BlogArticle[] = [
         },
         {
           h2: 'Speed Settings and Optimization',
-          content: 'Speed settings range from 1 (very slow) to 100 (very fast). Slower speeds (1-30) are gentler on your display but provide less aggressive stimulation. Medium speeds (40-60) offer a balanced approach suitable for most situations. Faster speeds (70-100) deliver intense electrical signals and work better for older or more resistant stuck pixels. Monitor your device temperature, and if it gets hot, reduce speed or take breaks.',
+          content: 'Speed settings range from 1 (very slow) to 100 (very fast). Slower speeds (1-30) are gentler on your display but provide less aggressive stimulation. Medium speeds (40-60) offer a balanced approach suitable for most situations. Faster speeds (70-100) change the colors more often; they don\'t change the voltage the panel uses. Monitor your device temperature, and if it gets hot, reduce speed or take breaks.',
         },
         {
           h2: 'LCD vs OLED: Does Pixel Fixer Work on All Displays?',
@@ -54,11 +54,11 @@ export const additionalPixelProblemArticles: BlogArticle[] = [
         },
         {
           h2: 'Pro Tips for Maximum Success Rate',
-          content: 'Act quickly, stuck pixels are most responsive within 48 hours of first appearing. Use fullscreen mode to eliminate browser UI interference. Run longer sessions (20-30 minutes) rather than multiple short ones. Ensure your room is reasonably cool to prevent display heat buildup. Test on fresh power cycles. If using a laptop, plug in power and disable sleep mode. Keep the fixer window focused and avoid switching tabs.',
+          content: 'Act quickly, stuck pixels are most responsive within 48 hours of first appearing. Use fullscreen mode to eliminate browser UI interference. Run longer sessions (20-30 minutes) rather than multiple short ones. Don\'t stare at the flashing area while it runs. If using a laptop, plug in power and disable sleep mode. Keep the fixer window focused and avoid switching tabs.',
         },
         {
           h2: 'Is It Safe to Run a Pixel Fixer?',
-          content: 'Yes, completely safe. Pixel fixers operate within normal display parameters, they simply send standard video signals to your panel. Modern monitors and TVs are engineered to handle continuous operation and color cycling. The tool won\'t damage your display, and there\'s no risk of accelerating hardware failure.',
+          content: 'For the screen, yes: pixel fixers only send ordinary video signals, and monitors are built for continuous operation. For people, rapidly flashing colors are a real concern - they can trigger seizures in people with photosensitive epilepsy. Don\'t watch the flashing area, and don\'t run the fixer if you or anyone in the room is photosensitive.',
         },
       ],
       conclusion: 'Dead pixel fixers offer an easy, free way to attempt stuck pixel repair before resorting to warranty claims or hardware replacement. Success is not guaranteed, but the low risk and zero cost make it worth trying. Use our free tool with multiple modes and settings to optimize your chances. Start today and see if your stuck pixel responds to stimulation, you might recover a valuable display without spending a dime.',
@@ -360,22 +360,22 @@ export const additionalPixelProblemArticles: BlogArticle[] = [
       },
     ],
     publishedAt: '2026-06-18',
-    updatedAt: '2026-06-18',
+    updatedAt: '2026-09-23',
     readingTimeMinutes: 12,
     featured: false,
     schemaType: 'HowTo',
     faqItems: [
       {
         question: 'How long does it take to fix a stuck pixel?',
-        answer: 'Most stuck pixels respond within 10-30 minutes of continuous color flashing. If there\'s no change after 30 minutes, the pixel may not be repairable by software.',
+        answer: 'If it works at all, it usually works within 10-30 minutes of flashing. If there\'s no change after a few sessions, the pixel is probably not fixable by software.',
       },
       {
         question: 'What\'s the success rate of pixel fixers?',
-        answer: 'There is no reliable published success rate - it sometimes works and sometimes does not. Older or very new stuck pixels respond better than mid-aged ones. True dead pixels cannot be fixed by software.',
+        answer: 'There is no reliable published success rate - it sometimes works and sometimes does not. Pixels that got stuck recently seem to respond more often than ones that have been stuck for a long time. True dead pixels cannot be fixed by software.',
       },
       {
         question: 'Can I damage my monitor using a pixel fixer?',
-        answer: 'No, pixel fixers are completely safe. They operate within normal display parameters and simply cycle through standard video colors.',
+        answer: 'No - it only sends normal video signals. The risk is to people, not the screen: the rapid flashing can trigger seizures in people with photosensitive epilepsy, so don\'t look at it while it runs.',
       },
       {
         question: 'Do I need fullscreen mode?',

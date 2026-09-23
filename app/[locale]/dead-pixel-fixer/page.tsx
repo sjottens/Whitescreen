@@ -7,6 +7,7 @@ import { getLocalizedPath, parseLocalePath } from '@/lib/link-utils';
 import { LOCALES } from '@/lib/i18n';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { t } from '@/lib/translations';
+import PhotosensitivityWarning from '@/components/tools/photosensitivity-warning';
 
 type RepairMode = 'rgb' | 'rgbwb' | 'random';
 
@@ -330,6 +331,7 @@ export default function DeadPixelFixerPage() {
             {/* Right Column - Controls */}
             <div className="flex flex-col justify-between">
               <div className="space-y-3">
+                <PhotosensitivityWarning locale={locale} />
                 <button
                   onClick={handleStart}
                   disabled={isRunning}

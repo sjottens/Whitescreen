@@ -5,6 +5,7 @@ import { Maximize2, RotateCcw, Play, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/translations';
 import type { Locale } from '@/lib/i18n';
+import PhotosensitivityWarning from '@/components/tools/photosensitivity-warning';
 
 type TestMode = 'desktop' | 'mobile';
 type DisplayMode = 'gradient' | 'ladder' | 'bars' | 'flicker';
@@ -44,6 +45,9 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
   const [customBrightness, setCustomBrightness] = useState(100);
   const [flickerSpeed, setFlickerSpeed] = useState(60);
   const [showBlack, setShowBlack] = useState(true);
+  // Full-screen black/white flashing: nothing flashes until the viewer has
+  // read the photosensitivity warning and chosen to start.
+  const [flickerAcknowledged, setFlickerAcknowledged] = useState(false);
   const screenRef = useRef<HTMLDivElement>(null);
   const autoCycleRef = useRef<NodeJS.Timeout>();
   const flickerRef = useRef<NodeJS.Timeout>();
@@ -134,7 +138,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
 
   // Flicker effect - runs only when displayMode is 'flicker'
   useEffect(() => {
-    if (displayMode !== 'flicker') {
+    if (displayMode !== 'flicker' || !flickerAcknowledged) {
       if (flickerRef.current) clearInterval(flickerRef.current);
       return;
     }
@@ -146,7 +150,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
     return () => {
       if (flickerRef.current) clearInterval(flickerRef.current);
     };
-  }, [displayMode, flickerSpeed]);
+  }, [displayMode, flickerSpeed, flickerAcknowledged]);
 
   // Keyboard controls
   useEffect(() => {
@@ -226,6 +230,21 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
 
   // Render flicker pattern for monitor flicker detection
   const renderFlicker = () => {
+    if (!flickerAcknowledged) {
+      return (
+        <div className="w-full h-full flex items-center justify-center bg-slate-100 p-6">
+          <PhotosensitivityWarning locale={locale}>
+            <button
+              type="button"
+              onClick={() => setFlickerAcknowledged(true)}
+              className="mt-3 rounded-lg bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
+            >
+              I understand - start flicker test
+            </button>
+          </PhotosensitivityWarning>
+        </div>
+      );
+    }
     return (
       <div
         className="w-full h-full flex flex-col items-center justify-center transition-colors duration-75"

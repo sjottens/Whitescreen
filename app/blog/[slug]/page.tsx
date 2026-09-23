@@ -2,7 +2,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getBlogArticleBySlug, getRelatedArticles, allBlogArticles } from '@/lib/blog-content';
+import { getBlogArticleBySlug, getRelatedArticles, allBlogArticles, getBlogToolPath } from '@/lib/blog-content';
 import { BlogArticleLayout } from '@/components/blog/blog-article-layout';
 import { generateHrefLangAlternates } from '@/lib/i18n';
 import { SITE_URL } from '@/lib/constants';
@@ -92,6 +92,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
     ...cta,
     context: enTranslations.toolCTAs?.[i]?.context || cta.context,
   }));
+  const inlineCta = displayToolCTAs.find((cta) => cta.placement === 'within-content');
   const displayFaqItems = enTranslations.faqItems || enFaqItems;
   
   const relatedArticles = getRelatedArticles(article.id, 3);
@@ -239,21 +240,6 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
             <div key={index} id={`section-${index}`}>
               <h2 className="text-3xl font-bold mt-12 mb-6">{section.h2}</h2>
 
-              {/* Subheadings */}
-              {section.h3s && section.h3s.length > 0 && (
-                <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold text-gray-700 mb-2">
-                    {sectionLabels.inThisSection}
-                  </h3>
-                  <ul className="space-y-1">
-                    {section.h3s.map((h3, i) => (
-                      <li key={i} className="text-sm text-gray-600">
-                        {h3}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
 
               {/* Section Content */}
               <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
@@ -268,13 +254,13 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
                       {translate('blog_inline_cta_title' as any)}
                     </h3>
                     <p className="text-blue-800 text-sm mb-4">
-                      {displayToolCTAs[0]?.context}
+                      {inlineCta?.context}
                     </p>
                     <Link
-                      href="/tools"
+                      href={getBlogToolPath(inlineCta?.toolSlug)}
                       className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
                     >
-                      {translate('blog_inline_cta_button' as any)}
+                      {inlineCta?.toolName || translate('blog_inline_cta_button' as any)} →
                     </Link>
                   </div>
                 )}
