@@ -3,7 +3,6 @@
 import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/constants';
 import { generateHrefLangAlternates, LOCALES, DEFAULT_LOCALE, getCanonicalUrl } from '@/lib/i18n';
-import { getMonitorBrandSlugs } from '@/lib/monitor-brands';
 import { getComparisonSlugs } from '@/lib/comparisons';
 import { allBlogArticles } from '@/lib/blog-content';
 
@@ -83,14 +82,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'zoom-lighting',
     // Device-specific tests
     'iphone-screen-test',
-    'ipad-screen-test',
     'macbook-screen-test',
-    'android-screen-test',
-    // Resolution-specific tests
-    '1080p-screen-test',
-    '2k-screen-test',
-    '4k-screen-test',
-    '8k-screen-test',
   ];
 
   tools.forEach((toolId) => {
@@ -151,37 +143,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
         alternates: {
           languages: generateHrefLangAlternates(path),
-        },
-      });
-    });
-  });
-
-  // Add dynamic monitor brand pages
-  const monitorBrands = getMonitorBrandSlugs();
-
-  monitorBrands.forEach((brand) => {
-    const brandPath = `/monitor-test/${brand}`;
-
-    // Add default locale entry
-    sitemapEntries.push({
-      url: getCanonicalUrl(DEFAULT_LOCALE, brandPath),
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-      alternates: {
-        languages: generateHrefLangAlternates(brandPath),
-      },
-    });
-
-    // Add non-default locale entries
-    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
-      sitemapEntries.push({
-        url: getCanonicalUrl(locale, brandPath),
-        lastModified: now,
-        changeFrequency: 'monthly' as const,
-        priority: 0.8,
-        alternates: {
-          languages: generateHrefLangAlternates(brandPath),
         },
       });
     });

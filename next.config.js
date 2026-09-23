@@ -55,6 +55,10 @@ const nextConfig = {
             ['/device-tests/gaming-monitor', '/gaming-monitor-test'],
             ['/screen/:color(white-screen|black-screen|red-screen|blue-screen|green-screen|pink-screen|purple-screen|orange-screen|yellow-screen|zoom-lighting)/:variant*', '/:color'],
             ['/screen/:path*', '/tools'],
+            // 41 per-brand/per-variant landing pages (lg_4k, gaming_240hz...)
+            // that all funnelled into the same tests - flagged by Google as
+            // doorway pages. The /monitor-test pillar covers them all.
+            ['/monitor-test/:brand+', '/monitor-test'],
         ];
         return rules.flatMap(([source, destination]) => [
             { source, destination, permanent: true },

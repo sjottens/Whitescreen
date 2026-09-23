@@ -61,23 +61,8 @@ export default function Footer({ locale }: FooterProps) {
             <h4 className="text-white font-semibold mb-4">{translate('monitor_tests')}</h4>
             <ul className="space-y-2 list-none pl-0 marker:hidden">
               <li>
-                <Link href={getLocalizedPath(locale, '/monitor-test/asus')} className="text-white hover:text-blue-400 transition-colors text-sm">
-                  {translate('monitor_asus')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getLocalizedPath(locale, '/monitor-test/lg')} className="text-white hover:text-red-400 transition-colors text-sm">
-                  {translate('monitor_lg')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getLocalizedPath(locale, '/monitor-test/samsung')} className="text-white hover:text-cyan-400 transition-colors text-sm">
-                  {translate('monitor_samsung')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getLocalizedPath(locale, '/monitor-test/dell')} className="text-white hover:text-purple-400 transition-colors text-sm">
-                  {translate('monitor_dell')}
+                <Link href={getLocalizedPath(locale, '/monitor-test')} className="text-white hover:text-blue-400 transition-colors text-sm">
+                  {translate('monitor_tests')}
                 </Link>
               </li>
             </ul>

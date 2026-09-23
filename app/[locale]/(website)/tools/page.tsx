@@ -134,68 +134,18 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
         </div>
       </section>
 
-      {/* Monitor Brand Tests */}
+      {/* Monitor Tests */}
       <section className="section">
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('monitor_tests')}</h2>
-          <p className="text-slate-600 text-lg mb-8">
-            {translate('resources_monitor_intro')}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link
-              href={getLocalizedPath(locale, '/monitor-test/asus')}
-              className="card group hover:shadow-lg transition-all border-l-4 border-blue-500"
-            >
-              <Monitor className="w-8 h-8 text-blue-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">{translate('monitor_asus')}</h3>
-              <p className="text-slate-600 text-sm">{translate('monitor_asus_description')}</p>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/monitor-test/lg')}
-              className="card group hover:shadow-lg transition-all border-l-4 border-red-500"
-            >
-              <Monitor className="w-8 h-8 text-red-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">{translate('monitor_lg')}</h3>
-              <p className="text-slate-600 text-sm">{translate('monitor_lg_description')}</p>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/monitor-test/samsung')}
-              className="card group hover:shadow-lg transition-all border-l-4 border-cyan-500"
-            >
-              <Monitor className="w-8 h-8 text-cyan-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">{translate('monitor_samsung')}</h3>
-              <p className="text-slate-600 text-sm">{translate('monitor_samsung_description')}</p>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/monitor-test/dell')}
-              className="card group hover:shadow-lg transition-all border-l-4 border-purple-500"
-            >
-              <Monitor className="w-8 h-8 text-purple-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">{translate('monitor_dell')}</h3>
-              <p className="text-slate-600 text-sm">{translate('monitor_dell_description')}</p>
-            </Link>
-          </div>
-
-          {/* CTA for more brands */}
-          <div className="mt-12 p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200 text-center">
-            <p className="text-slate-700 mb-4">
-              <strong>{translate('resources_monitor_support_title')}</strong> {translate('resources_monitor_support_desc')}
-            </p>
-            <p className="text-sm text-slate-600 mb-6">
-              {translate('resources_monitor_url_hint')} <code className="bg-white px-2 py-1 rounded">/monitor-test/benq</code>, 
-              <code className="bg-white px-2 py-1 rounded ml-2">/monitor-test/alienware</code>.
-            </p>
-            <LinkButton
-              href={getLocalizedPath(locale, '/monitor-test/benq')}
-              variant="primary"
-              size="lg"
-            >
-              {translate('resources_browse_more_brands')} <ArrowRight className="w-5 h-5 ml-2" />
-            </LinkButton>
-          </div>
+          <Link
+            href={getLocalizedPath(locale, '/monitor-test')}
+            className="card group hover:shadow-lg transition-all border-l-4 border-blue-500 flex items-center gap-4"
+          >
+            <Monitor className="w-8 h-8 text-blue-600 shrink-0" />
+            <span className="text-xl font-bold flex-1">{translate('monitor_tests')}</span>
+            <ArrowRight className="w-5 h-5 text-blue-600" />
+          </Link>
         </div>
       </section>
 

@@ -28,7 +28,8 @@ export function getLocaleUrl(locale: Locale, path: string = ''): string {
     return `${SITE_URL}${cleanPath}`;
   }
   
-  return `${SITE_URL}/${locale}${cleanPath}`;
+  // '/nl/' 308s to '/nl' - don't hand Google a canonical that redirects.
+  return `${SITE_URL}/${locale}${cleanPath === '/' ? '' : cleanPath}`;
 }
 
 /**

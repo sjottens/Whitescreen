@@ -333,55 +333,10 @@ export default async function HomePage({ params }: HomePageProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Monitor Brand Tests */}
-            <Link
-              href={getLocalizedPath(locale, '/monitor-test/asus')}
-              className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500"
-            >
-              <Monitor className="w-8 h-8 text-blue-600 mb-3" />
-              <h3 className="text-lg font-bold mb-2">{translate('monitor_asus')}</h3>
-              <p className="text-slate-600 text-sm mb-4">{translate('monitor_asus_description')}</p>
-              <div className="flex items-center text-blue-600 font-semibold text-sm">
-                {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
-              </div>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/monitor-test/lg')}
-              className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-red-500"
-            >
-              <Monitor className="w-8 h-8 text-red-600 mb-3" />
-              <h3 className="text-lg font-bold mb-2">{translate('monitor_lg')}</h3>
-              <p className="text-slate-600 text-sm mb-4">{translate('monitor_lg_description')}</p>
-              <div className="flex items-center text-red-600 font-semibold text-sm">
-                {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
-              </div>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/monitor-test/samsung')}
-              className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-cyan-500"
-            >
-              <Monitor className="w-8 h-8 text-cyan-600 mb-3" />
-              <h3 className="text-lg font-bold mb-2">{translate('monitor_samsung')}</h3>
-              <p className="text-slate-600 text-sm mb-4">{translate('monitor_samsung_description')}</p>
-              <div className="flex items-center text-cyan-600 font-semibold text-sm">
-                {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
-              </div>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/monitor-test/dell')}
-              className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-purple-500"
-            >
-              <Monitor className="w-8 h-8 text-purple-600 mb-3" />
-              <h3 className="text-lg font-bold mb-2">{translate('monitor_dell')}</h3>
-              <p className="text-slate-600 text-sm mb-4">{translate('monitor_dell_description')}</p>
-              <div className="flex items-center text-purple-600 font-semibold text-sm">
-                {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
-              </div>
-            </Link>
+          <div className="text-center">
+            <LinkButton href={getLocalizedPath(locale, '/monitor-test')} variant="primary" size="lg">
+              {translate('monitor_tests')} <ArrowRight className="w-5 h-5 ml-2" />
+            </LinkButton>
           </div>
 
           {/* Device Tests Grid */}

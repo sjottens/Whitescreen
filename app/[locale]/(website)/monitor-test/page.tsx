@@ -9,7 +9,6 @@ import { generateMultilingualMetadata, breadcrumbSchemaMultilingual, faqSchema }
 import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
-import { getMonitorBrandsSorted } from '@/lib/monitor-brands';
 import { TEST_TOOLS, COLOR_TOOLS } from '@/lib/constants';
 
 export async function generateStaticParams() {
@@ -44,7 +43,6 @@ interface MonitorTestPageProps {
 export default async function MonitorTestPage({ params }: MonitorTestPageProps) {
   const locale = await getLocaleFromParams(params);
   const translate = t(locale);
-  const brands = getMonitorBrandsSorted();
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
@@ -244,37 +242,6 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
               </div>
               <p className="text-sm text-slate-600 leading-relaxed">{translate('monitor_test_hub_limits_cant_text' as any)}</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Brand directory - relocated below the actual testing content it
-          used to be the whole page. Still fully indexable, just no longer
-          competing with the pillar content above for the "monitor test"
-          query's search intent. */}
-      <section className="section">
-        <div className="container">
-          <h2 className="text-3xl font-bold mb-3 text-slate-900">{translate('monitor_test_hub_brands_title' as any)}</h2>
-          <p className="text-slate-600 mb-8">{translate('monitor_test_hub_brands_intro' as any)}</p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {brands.map((brand) => (
-              <Link
-                key={brand.id}
-                href={getLocalizedPath(locale, `/monitor-test/${brand.id}`)}
-                className="group card p-4 hover:shadow-lg transition-all hover:border-blue-300"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                      {translate(brand.nameKey as any)}
-                    </h3>
-                    <p className="text-sm text-slate-600 mt-1">{translate(brand.descriptionKey as any)}</p>
-                  </div>
-                  <div className="text-blue-400 group-hover:text-blue-600 transition-colors">→</div>
-                </div>
-              </Link>
-            ))}
           </div>
         </div>
       </section>
