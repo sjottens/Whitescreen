@@ -8,7 +8,6 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
-import ColorScreenIntro from '@/components/tools/color-screen-intro';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'green-screen')!;
@@ -55,20 +54,6 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
     translate('feature_free_no_registration'),
   ];
 
-  const faqs = [
-    {
-      question: translate('tool_faq_1_q' as any),
-      answer: translate('tool_faq_1_a' as any),
-    },
-    {
-      question: translate('tool_faq_2_q' as any),
-      answer: translate('tool_faq_2_a' as any),
-    },
-    {
-      question: translate('tool_faq_3_q' as any),
-      answer: translate('tool_faq_3_a' as any),
-    },
-  ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'green-screen').slice(0, 2).map((t) => ({
     name: translate(t.nameKey as any),
@@ -78,26 +63,11 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
 
   return (
     <>
-      <ColorScreenIntro 
-        locale={locale} 
-        colorName="green" 
-        colorHex="#00FF00" 
-        colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Green channel testing and response curves', fr: 'Test du canal vert et courbes de réponse' },
-          { en: 'Green pixel defect detection', fr: 'Détection des défauts de pixels verts' },
-          { en: 'Chroma key green screen for video production', fr: 'Écran vert chroma key pour production vidéo' },
-          { en: 'Color separation and accuracy verification', fr: 'Vérification de la séparation et de la précision des couleurs' },
-          { en: 'Professional lighting reference', fr: 'Référence professionnelle d\'éclairage' },
-          { en: 'Color calibration and balance testing', fr: 'Test d\'étalonnage et d\'équilibre des couleurs' }
-        ]}
-      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
-        faqs={faqs}
         relatedTools={relatedTools}
         locale={locale}
       >

@@ -4,13 +4,12 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { Monitor, Smartphone, Gamepad2, ArrowRight } from 'lucide-react';
+import { Monitor, ArrowRight } from 'lucide-react';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
-import { getComparisonData } from '@/lib/comparisons';
 import { LinkButton } from '@/components/ui/button';
 
 export async function generateMetadata(props: {
@@ -34,9 +33,6 @@ interface ToolsPageProps {
 export default async function ToolsPage({ params }: ToolsPageProps) {
   const locale = await getLocaleFromParams(params);
   const translate = t(locale);
-  const brandComparisonSlugs = ['asus-vs-lg', 'asus-vs-dell', 'lg-vs-samsung'];
-  const specComparisonSlugs = ['ips-vs-va-vs-tn', '144hz-vs-240hz', 'curved-vs-flat'];
-  const deviceComparisonSlugs = ['ps5-vs-xbox-series-x', 'ultrawide-vs-dual-monitor'];
 
   const breadcrumbs = breadcrumbSchemaMultilingual(
     [
@@ -121,13 +117,6 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
               >
                 <h3 className="text-xl font-bold mb-2">{translate(tool.nameKey as any)}</h3>
                 <p className="text-slate-600 text-sm mb-4">{translate(tool.descriptionKey as any)}</p>
-                <div className="flex flex-wrap gap-2">
-                  {tool.keywords.slice(0, 2).map((keyword) => (
-                    <span key={keyword} className="px-2 py-1 bg-cyan-100 text-cyan-800 rounded text-xs">
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
               </Link>
             ))}
           </div>
@@ -146,53 +135,6 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
             <span className="text-xl font-bold flex-1">{translate('monitor_tests')}</span>
             <ArrowRight className="w-5 h-5 text-blue-600" />
           </Link>
-        </div>
-      </section>
-
-      {/* Device-Specific Tests */}
-      <section className="section-alt">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('device_tests_title')}</h2>
-          <p className="text-slate-600 text-lg mb-8">
-            {translate('resources_device_intro')}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Link
-              href={getLocalizedPath(locale, '/iphone-screen-test')}
-              className="card group hover:shadow-lg transition-all border-l-4 border-gray-500"
-            >
-              <Smartphone className="w-8 h-8 text-gray-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">{translate('iphone_test')}</h3>
-              <p className="text-slate-600 text-sm">{translate('iphone_test_description')}</p>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/macbook-screen-test')}
-              className="card group hover:shadow-lg transition-all border-l-4 border-slate-500"
-            >
-              <Smartphone className="w-8 h-8 text-slate-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">{translate('macbook_test')}</h3>
-              <p className="text-slate-600 text-sm">{translate('macbook_test_description')}</p>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/gaming-monitor-test')}
-              className="card group hover:shadow-lg transition-all border-l-4 border-orange-500"
-            >
-              <Gamepad2 className="w-8 h-8 text-orange-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">{translate('gaming_monitor_test')}</h3>
-              <p className="text-slate-600 text-sm">{translate('gaming_monitor_test_description')}</p>
-            </Link>
-
-            <Link
-              href={getLocalizedPath(locale, '/oled-tv-test')}
-              className="card group hover:shadow-lg transition-all border-l-4 border-indigo-500"
-            >
-              <Monitor className="w-8 h-8 text-indigo-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">{translate('oled_tv_test')}</h3>
-              <p className="text-slate-600 text-sm">{translate('oled_tv_test_description')}</p>
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -243,78 +185,6 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
         </div>
       </section>
 
-      {/* Comparison Guides */}
-      <section className="section-alt">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">🔄 {translate('compare_page_title')}</h2>
-          <p className="text-slate-600 text-lg mb-8">
-            {translate('compare_page_description')}
-          </p>
-          
-          {/* Brand Comparisons */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold mb-6">{translate('compare_brand_section_title' as any)}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {brandComparisonSlugs.map((slug) => {
-                const comparison = getComparisonData(slug);
-                if (!comparison) return null;
-                return (
-                  <Link
-                    key={slug}
-                    href={getLocalizedPath(locale, `/compare/${slug}`)}
-                    className="card hover:shadow-lg transition-all p-4 border-l-4 border-blue-500"
-                  >
-                    <h4 className="font-semibold text-slate-900 mb-2">{translate(comparison.titleKey as any)}</h4>
-                    <p className="text-sm text-slate-600">{translate(comparison.descriptionKey as any)}</p>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Spec Comparisons */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold mb-6">{translate('compare_spec_section_title' as any)}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {specComparisonSlugs.map((slug) => {
-                const comparison = getComparisonData(slug);
-                if (!comparison) return null;
-                return (
-                  <Link
-                    key={slug}
-                    href={getLocalizedPath(locale, `/compare/${slug}`)}
-                    className="card hover:shadow-lg transition-all p-4 border-l-4 border-green-500"
-                  >
-                    <h4 className="font-semibold text-slate-900 mb-2">{translate(comparison.titleKey as any)}</h4>
-                    <p className="text-sm text-slate-600">{translate(comparison.descriptionKey as any)}</p>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Device Comparisons */}
-          <div>
-            <h3 className="text-xl font-bold mb-6">{translate('compare_device_section_title' as any)}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {deviceComparisonSlugs.map((slug) => {
-                const comparison = getComparisonData(slug);
-                if (!comparison) return null;
-                return (
-                  <Link
-                    key={slug}
-                    href={getLocalizedPath(locale, `/compare/${slug}`)}
-                    className="card hover:shadow-lg transition-all p-4 border-l-4 border-orange-500"
-                  >
-                    <h4 className="font-semibold text-slate-900 mb-2">{translate(comparison.titleKey as any)}</h4>
-                    <p className="text-sm text-slate-600">{translate(comparison.descriptionKey as any)}</p>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

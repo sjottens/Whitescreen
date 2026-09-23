@@ -68,33 +68,6 @@ export default function Footer({ locale }: FooterProps) {
             </ul>
           </div>
 
-          {/* Device Tests Section */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">{translate('device_tests_title')}</h4>
-            <ul className="space-y-2 list-none pl-0 marker:hidden">
-              <li>
-                <Link href={getLocalizedPath(locale, '/iphone-screen-test')} className="text-white hover:text-gray-400 transition-colors text-sm">
-                  {translate('iphone_test')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getLocalizedPath(locale, '/macbook-screen-test')} className="text-white hover:text-slate-400 transition-colors text-sm">
-                  {translate('macbook_test')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getLocalizedPath(locale, '/gaming-monitor-test')} className="text-white hover:text-orange-400 transition-colors text-sm">
-                  {translate('gaming_monitor_test')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getLocalizedPath(locale, '/oled-tv-test')} className="text-white hover:text-indigo-400 transition-colors text-sm">
-                  {translate('oled_tv_test')}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Resources Section */}
           <div>
             <h4 className="text-white font-semibold mb-4">{translate('support_title')}</h4>

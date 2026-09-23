@@ -8,7 +8,6 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
-import ColorScreenIntro from '@/components/tools/color-screen-intro';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'purple-screen')!;
@@ -55,20 +54,6 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
     translate('feature_free_no_registration'),
   ];
 
-  const faqs = [
-    {
-      question: translate('tool_faq_1_q' as any),
-      answer: translate('tool_faq_1_a' as any),
-    },
-    {
-      question: translate('tool_faq_2_q' as any),
-      answer: translate('tool_faq_2_a' as any),
-    },
-    {
-      question: translate('tool_faq_3_q' as any),
-      answer: translate('tool_faq_3_a' as any),
-    },
-  ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'purple-screen').slice(0, 2).map((t) => ({
     name: translate(t.nameKey as any),
@@ -78,26 +63,11 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
 
   return (
     <>
-      <ColorScreenIntro 
-        locale={locale} 
-        colorName="purple" 
-        colorHex="#800080" 
-        colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Deep color saturation and accuracy testing', fr: 'Test de saturation profonde et de précision des couleurs' },
-          { en: 'Mid-tone color accuracy verification', fr: 'Vérification de la précision des couleurs de tons moyens' },
-          { en: 'Combined red and blue channel testing', fr: 'Test combiné des canaux rouge et bleu' },
-          { en: 'Video production color grading reference', fr: 'Référence d\'étalonnage des couleurs pour production vidéo' },
-          { en: 'Professional lighting reference', fr: 'Référence professionnelle d\'éclairage' },
-          { en: 'Color calibration and balance testing', fr: 'Test d\'étalonnage et d\'équilibre des couleurs' }
-        ]}
-      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
-        faqs={faqs}
         relatedTools={relatedTools}
         locale={locale}
       >

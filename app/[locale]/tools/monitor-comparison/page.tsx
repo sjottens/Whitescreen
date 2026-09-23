@@ -4,7 +4,6 @@
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import MonitorComparisonTool from '@/components/tools/monitor-comparison-tool';
-import InformationalContent from '@/components/tools/informational-content';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
@@ -74,7 +73,6 @@ export default async function MonitorComparisonPage({
       <section className="section">
         <div className="container max-w-6xl">
           <MonitorComparisonTool />
-          <InformationalContent locale={locale} topic="monitor-comparison" />
         </div>
       </section>
     </>

@@ -168,7 +168,7 @@ export default async function MonitorTestPage({ params }: MonitorTestPageProps) 
             {/* Gaming monitor test - distinct card, not part of the numbered
                 sequence, since it targets a different (gaming) intent. */}
             <Link
-              href={getLocalizedPath(locale, '/gaming-monitor-test')}
+              href={getLocalizedPath(locale, '/monitor-response-time-test')}
               className="group card p-5 hover:shadow-lg transition-all hover:border-blue-300"
             >
               <div className="flex items-start justify-between gap-3">

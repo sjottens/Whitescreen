@@ -70,12 +70,17 @@ export function BlogHomepage({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
-  // Read category from URL on mount
+  // Read category and search query from URL on mount. ?query= is the
+  // SearchAction target declared in the WebSite schema, so it must work.
   useEffect(() => {
     setMounted(true);
     const categoryParam = searchParams.get('category');
     if (categoryParam) {
       setSelectedCategory(categoryParam);
+    }
+    const queryParam = searchParams.get('query');
+    if (queryParam) {
+      setSearchQuery(queryParam);
     }
   }, [searchParams]);
 

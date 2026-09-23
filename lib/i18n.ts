@@ -8,6 +8,12 @@ export type Locale = 'en' | 'nl' | 'es' | 'de';
 export const LOCALES: Locale[] = ['en', 'nl', 'es', 'de'];
 export const DEFAULT_LOCALE: Locale = 'en';
 
+// Locales offered to search engines (sitemap, hreflang). nl/es/de are still
+// served to visitors but sent with X-Robots-Tag: noindex (next.config.js)
+// until they're fully translated - roughly 35-50% of their UI strings were
+// still English, which reads as low-value duplicates of the English pages.
+export const INDEXED_LOCALES: Locale[] = ['en'];
+
 // Language metadata
 export const LOCALE_METADATA: Record<Locale, { name: string; nativeName: string; hreflang: string }> = {
   en: { name: 'English', nativeName: 'English', hreflang: 'en' },
@@ -39,7 +45,7 @@ export function getLocaleUrl(locale: Locale, path: string = ''): string {
 export function generateHrefLangAlternates(path: string) {
   const alternates: Record<string, string> = {};
 
-  LOCALES.forEach((locale) => {
+  INDEXED_LOCALES.forEach((locale) => {
     alternates[LOCALE_METADATA[locale].hreflang] = getLocaleUrl(locale, path);
   });
 

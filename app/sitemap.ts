@@ -2,8 +2,7 @@
 
 import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/constants';
-import { generateHrefLangAlternates, LOCALES, DEFAULT_LOCALE, getCanonicalUrl } from '@/lib/i18n';
-import { getComparisonSlugs } from '@/lib/comparisons';
+import { generateHrefLangAlternates, INDEXED_LOCALES, DEFAULT_LOCALE, getCanonicalUrl } from '@/lib/i18n';
 import { allBlogArticles } from '@/lib/blog-content';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -20,15 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/terms', changeFrequency: 'yearly' as const, priority: 0.5 },
     { path: '/faq', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/blog', changeFrequency: 'weekly' as const, priority: 0.85 },
-    // These five pages existed and were linked from navigation/other pages
+    // These pages existed and were linked from navigation/other pages
     // but were missing from this generator entirely, so they were never
     // being told to Google as pages to crawl.
     { path: '/monitor-test', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/monitor-buying-guide', changeFrequency: 'monthly' as const, priority: 0.85 },
     { path: '/how-to-test-a-monitor-before-returning', changeFrequency: 'monthly' as const, priority: 0.85 },
-    { path: '/gaming-monitor-test', changeFrequency: 'monthly' as const, priority: 0.85 },
-    { path: '/oled-tv-test', changeFrequency: 'monthly' as const, priority: 0.8 },
-    { path: '/device-tests', changeFrequency: 'monthly' as const, priority: 0.75 },
   ];
 
   // Generate sitemap entries for each page across all locales
@@ -47,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
 
     // For non-default locales, add entries under /locale/ prefix
-    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
+    INDEXED_LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
       sitemapEntries.push({
         url: getCanonicalUrl(locale, page.path),
         lastModified: now,
@@ -80,9 +76,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'brightness-test',
     'contrast-test',
     'zoom-lighting',
-    // Device-specific tests
-    'iphone-screen-test',
-    'macbook-screen-test',
   ];
 
   tools.forEach((toolId) => {
@@ -100,7 +93,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
 
     // Add non-default locale entries
-    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
+    INDEXED_LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
       sitemapEntries.push({
         url: getCanonicalUrl(locale, toolPath),
         lastModified: now,
@@ -135,7 +128,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
 
     // Add non-default locale entries
-    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
+    INDEXED_LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
       sitemapEntries.push({
         url: getCanonicalUrl(locale, path),
         lastModified: now,
@@ -143,37 +136,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
         alternates: {
           languages: generateHrefLangAlternates(path),
-        },
-      });
-    });
-  });
-
-  // Add dynamic comparison pages
-  const comparisons = getComparisonSlugs();
-
-  comparisons.forEach((comparison) => {
-    const comparisonPath = `/compare/${comparison}`;
-
-    // Add default locale entry
-    sitemapEntries.push({
-      url: getCanonicalUrl(DEFAULT_LOCALE, comparisonPath),
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-      alternates: {
-        languages: generateHrefLangAlternates(comparisonPath),
-      },
-    });
-
-    // Add non-default locale entries
-    LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).forEach((locale) => {
-      sitemapEntries.push({
-        url: getCanonicalUrl(locale, comparisonPath),
-        lastModified: now,
-        changeFrequency: 'monthly' as const,
-        priority: 0.8,
-        alternates: {
-          languages: generateHrefLangAlternates(comparisonPath),
         },
       });
     });

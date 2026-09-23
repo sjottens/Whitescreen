@@ -8,7 +8,6 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
-import ColorScreenIntro from '@/components/tools/color-screen-intro';
 import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
 
@@ -67,20 +66,6 @@ export default async function BlackScreenPage({ params }: PageProps) {
     translate('feature_free_no_registration'),
   ];
 
-  const faqs = [
-    {
-      question: translate('tool_faq_1_q' as any),
-      answer: translate('tool_faq_1_a' as any),
-    },
-    {
-      question: translate('tool_faq_2_q' as any),
-      answer: translate('tool_faq_2_a' as any),
-    },
-    {
-      question: translate('tool_faq_3_q' as any),
-      answer: translate('tool_faq_3_a' as any),
-    },
-  ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'black-screen').slice(0, 2).map((t) => ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -91,20 +76,6 @@ export default async function BlackScreenPage({ params }: PageProps) {
 
   return (
     <>
-      <ColorScreenIntro 
-        locale={locale} 
-        colorName="black" 
-        colorHex="#000000" 
-        colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Dead pixel detection on dark backgrounds', fr: 'Détection des pixels morts sur fonds sombres' },
-          { en: 'Testing contrast and visibility', fr: 'Test du contraste et de la visibilité' },
-          { en: 'Dark scene rendering verification', fr: 'Vérification du rendu des scènes sombres' },
-          { en: 'Screen uniformity in black levels', fr: 'Uniformité de l\'écran aux niveaux de noir' },
-          { en: 'Video production lighting reference', fr: 'Référence d\'éclairage pour production vidéo' },
-          { en: 'OLED burn-in prevention testing', fr: 'Test de prévention du burn-in OLED' }
-        ]}
-      />
       <ToolLayout
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         title={translate(TOOL.nameKey as any)}
@@ -112,7 +83,6 @@ export default async function BlackScreenPage({ params }: PageProps) {
         description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
-        faqs={faqs}
         relatedTools={relatedTools}
         locale={locale}
       >

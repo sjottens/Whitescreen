@@ -460,7 +460,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
               <kbd className="bg-white px-2 py-1 rounded border">F</kbd> - {translate('brightness_fullscreen_button' as any)}
             </div>
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">{translate('tool_layout_space_key' as any)}</kbd> - {translate('brightness_auto_cycle_button' as any)}
+              <kbd className="bg-white px-2 py-1 rounded border">Space</kbd> - {translate('brightness_auto_cycle_button' as any)}
             </div>
             <div>
               <kbd className="bg-white px-2 py-1 rounded border">←/→</kbd> - {translate('brightness_navigate_label' as any)}

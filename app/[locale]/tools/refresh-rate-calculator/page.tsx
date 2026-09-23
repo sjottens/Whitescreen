@@ -4,7 +4,6 @@
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import RefreshRateCalculator from '@/components/tools/refresh-rate-calculator';
-import InformationalContent from '@/components/tools/informational-content';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
@@ -109,7 +108,6 @@ export default async function RefreshRateCalculatorPage({ params }: RefreshRateC
             </p>
           </div>
 
-          <InformationalContent locale={locale} topic="refresh-rate" />
         </div>
       </section>
     </>

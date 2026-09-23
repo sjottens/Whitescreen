@@ -23,13 +23,9 @@ export default function RelatedTools({ currentToolId, locale }: RelatedToolsProp
     <section className="bg-gradient-to-b from-slate-900 to-slate-950 py-16 md:py-20">
       <div className="container">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
-          {translate('browse_all_resources').includes('{count}')
-            ? translate('browse_all_resources').replace('{count}', 'All')
-            : 'Explore More Tools'}
+          {translate('related_tools')}
         </h2>
-        <p className="text-xl text-slate-300 text-center mb-12 max-w-2xl mx-auto">
-          {translate('features_subtitle')}
-        </p>
+        <div className="mb-12" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           {relatedTools.map((tool) => (
@@ -52,15 +48,6 @@ export default function RelatedTools({ currentToolId, locale }: RelatedToolsProp
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/30 to-blue-500/30" />
                 )}
 
-                {/* Icon or text overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">📊</div>
-                    <span className="text-white font-bold text-xs text-center block px-2">
-                      {translate(tool.nameKey as any)}
-                    </span>
-                  </div>
-                </div>
               </div>
 
               <div className="p-4">
@@ -84,7 +71,7 @@ export default function RelatedTools({ currentToolId, locale }: RelatedToolsProp
             href={getLocalizedPath(locale, '/tools')}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-200 hover:scale-105"
           >
-            {translate('browse_all_resources').replace('{count}', 'All')}
+            {translate('resources')}
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

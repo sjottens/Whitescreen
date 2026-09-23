@@ -8,7 +8,6 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
-import ColorScreenIntro from '@/components/tools/color-screen-intro';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'blue-screen')!;
@@ -57,20 +56,6 @@ export default async function BlueScreenPage({ params }: { params: Promise<{ loc
     translate('feature_free_no_registration'),
   ];
 
-  const faqs = [
-    {
-      question: translate('tool_faq_1_q' as any),
-      answer: translate('tool_faq_1_a' as any),
-    },
-    {
-      question: translate('tool_faq_2_q' as any),
-      answer: translate('tool_faq_2_a' as any),
-    },
-    {
-      question: translate('tool_faq_3_q' as any),
-      answer: translate('tool_faq_3_a' as any),
-    },
-  ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'blue-screen').slice(0, 2).map((t) => ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -81,20 +66,6 @@ export default async function BlueScreenPage({ params }: { params: Promise<{ loc
 
   return (
     <>
-      <ColorScreenIntro 
-        locale={locale} 
-        colorName="blue" 
-        colorHex="#0000FF" 
-        colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Blue channel testing and response curves', fr: 'Test du canal bleu et courbes de réponse' },
-          { en: 'Blue pixel defect detection', fr: 'Détection des défauts de pixels bleus' },
-          { en: 'Chroma key blue screen for video production', fr: 'Écran bleu chroma key pour production vidéo' },
-          { en: 'Color separation and accuracy verification', fr: 'Vérification de la séparation et de la précision des couleurs' },
-          { en: 'Professional lighting and color reference', fr: 'Référence d\'éclairage et de couleur professionnels' },
-          { en: 'Color calibration and balance testing', fr: 'Test d\'étalonnage et d\'équilibre des couleurs' }
-        ]}
-      />
       <ToolLayout
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         title={translate(TOOL.nameKey as any)}
@@ -102,7 +73,6 @@ export default async function BlueScreenPage({ params }: { params: Promise<{ loc
         description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
-        faqs={faqs}
         relatedTools={relatedTools}
         locale={locale}
       >

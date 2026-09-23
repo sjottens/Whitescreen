@@ -8,7 +8,6 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
-import ColorScreenIntro from '@/components/tools/color-screen-intro';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'pink-screen')!;
@@ -55,20 +54,6 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
     translate('feature_free_no_registration'),
   ];
 
-  const faqs = [
-    {
-      question: translate('tool_faq_1_q' as any),
-      answer: translate('tool_faq_1_a' as any),
-    },
-    {
-      question: translate('tool_faq_2_q' as any),
-      answer: translate('tool_faq_2_a' as any),
-    },
-    {
-      question: translate('tool_faq_3_q' as any),
-      answer: translate('tool_faq_3_a' as any),
-    },
-  ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'pink-screen').slice(0, 2).map((t) => ({
     name: translate(t.nameKey as any),
@@ -78,26 +63,11 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
 
   return (
     <>
-      <ColorScreenIntro 
-        locale={locale} 
-        colorName="pink" 
-        colorHex="#FF1493" 
-        colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Light color rendering and accuracy testing', fr: 'Test du rendu et de la précision des couleurs claires' },
-          { en: 'Tonal gradation and mid-tone accuracy', fr: 'Gradation tonale et précision des tons moyens' },
-          { en: 'Soft lighting reference for photography', fr: 'Référence d\'éclairage doux en photographie' },
-          { en: 'Color balance in vibrant tones', fr: 'Équilibre des couleurs dans les tons vibrants' },
-          { en: 'Display quality and uniformity verification', fr: 'Vérification de la qualité et de l\'uniformité de l\'affichage' },
-          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
-        ]}
-      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
-        faqs={faqs}
         relatedTools={relatedTools}
         locale={locale}
       >

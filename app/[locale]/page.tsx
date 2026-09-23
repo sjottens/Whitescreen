@@ -39,7 +39,6 @@ export default async function HomePage({ params }: HomePageProps) {
   const translate = t(locale);
 
   // Schema data
-  const faqData = faqSchema(FAQ_ITEMS);
   const breadcrumbs = breadcrumbSchemaMultilingual([
     { name: translate('home'), path: '/' },
   ], locale);
@@ -55,21 +54,17 @@ export default async function HomePage({ params }: HomePageProps) {
   // Featured tool schema for LLM context
   const featuredToolSchema = llmOptimizedToolSchema({
     name: 'Dead Pixel Fixer',
-    description: 'Advanced tool to detect and help fix dead or stuck pixels on any display',
+    description: 'Free browser tool that flashes rapidly changing colors over a stuck pixel to try to unstick it',
     url: `${SITE_URL}/dead-pixel-fixer`,
     image: `${SITE_URL}/logo.svg`,
     applicationCategory: 'UtilityApplication',
     features: [
-      'Real-time dead pixel detection',
-      'Color accuracy testing',
-      'Display quality diagnostics',
-      'Multi-monitor support',
+      'RGB, RGB + white/black and random flashing modes',
+      'Fullscreen mode',
+      'Adjustable flashing speed',
     ],
     useCases: [
-      'Professional display calibration',
-      'Quality assurance testing',
-      'Photography and videography',
-      'Gaming monitor validation',
+      'Trying to unstick a stuck pixel before a warranty claim',
     ],
     // aggregateRating intentionally omitted - see note above.
   });
@@ -77,11 +72,6 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
-        suppressHydrationWarning
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
@@ -112,12 +102,6 @@ export default async function HomePage({ params }: HomePageProps) {
         
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#00DC82]/10 border border-[#00DC82]/30 mb-8 animate-fade-in-down">
-              <Sparkles className="w-4 h-4 text-[#00DC82]" />
-              <span className="text-sm font-semibold text-[#00DC82]">Modern • Award-Worthy • Next Generation</span>
-            </div>
-
             {/* Main Heading */}
             <h1 className="hero-title text-[2rem] md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
               <span className="block text-white">{translate('hero_title')}</span>
@@ -339,146 +323,8 @@ export default async function HomePage({ params }: HomePageProps) {
             </LinkButton>
           </div>
 
-          {/* Device Tests Grid */}
-          <div className="mt-12">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">{translate('device_tests_title')}</h3>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                {translate('home_device_tests_intro' as any)}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Link
-                href={getLocalizedPath(locale, '/iphone-screen-test')}
-                className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-gray-500"
-              >
-                <Smartphone className="w-8 h-8 text-gray-600 mb-3" />
-                <h3 className="text-lg font-bold mb-2">{translate('iphone_test')}</h3>
-                <p className="text-slate-600 text-sm mb-4">{translate('iphone_test_description')}</p>
-                <div className="flex items-center text-gray-600 font-semibold text-sm">
-                  {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
-                </div>
-              </Link>
-
-              <Link
-                href={getLocalizedPath(locale, '/macbook-screen-test')}
-                className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-slate-500"
-              >
-                <Smartphone className="w-8 h-8 text-slate-600 mb-3" />
-                <h3 className="text-lg font-bold mb-2">{translate('macbook_test')}</h3>
-                <p className="text-slate-600 text-sm mb-4">{translate('macbook_test_description')}</p>
-                <div className="flex items-center text-slate-600 font-semibold text-sm">
-                  {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
-                </div>
-              </Link>
-
-              <Link
-                href={getLocalizedPath(locale, '/gaming-monitor-test')}
-                className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-orange-500"
-              >
-                <Gamepad2 className="w-8 h-8 text-orange-700 mb-3" />
-                <h3 className="text-lg font-bold mb-2">{translate('gaming_monitor_test')}</h3>
-                <p className="text-slate-600 text-sm mb-4">{translate('gaming_monitor_test_description')}</p>
-                <div className="flex items-center text-orange-700 font-semibold text-sm">
-                  {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
-                </div>
-              </Link>
-
-              <Link
-                href={getLocalizedPath(locale, '/oled-tv-test')}
-                className="group card hover:shadow-lg transition-all duration-300 border-l-4 border-indigo-500"
-              >
-                <Monitor className="w-8 h-8 text-indigo-600 mb-3" />
-                <h3 className="text-lg font-bold mb-2">{translate('oled_tv_test')}</h3>
-                <p className="text-slate-600 text-sm mb-4">{translate('oled_tv_test_description')}</p>
-                <div className="flex items-center text-indigo-600 font-semibold text-sm">
-                  {translate('test_now')} <ArrowRight className="w-4 h-4 ml-2" />
-                </div>
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
-      <section className="section-alt content-auto">
-        <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">{translate('features_title')}</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Zap,
-                title: translate('feature_instant'),
-                description: translate('feature_instant_desc'),
-              },
-              {
-                icon: Smartphone,
-                title: translate('feature_comprehensive'),
-                description: translate('feature_comprehensive_desc'),
-              },
-              {
-                icon: Shield,
-                title: translate('feature_professional'),
-                description: translate('feature_professional_desc'),
-              },
-            ].map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <div key={feature.title} className="card">
-                  <Icon className="w-8 h-8 text-cyan-600 mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-slate-600">{feature.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section className="section content-auto">
-        <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">{translate('use_cases_title')}</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: translate('display_testing_title'),
-                description: translate('display_testing_desc'),
-                tools: [translate('dead_pixel_test'), translate('color_accuracy_test'), translate('screen_uniformity_test')],
-              },
-              {
-                title: translate('photography_lighting_title'),
-                description: translate('photography_lighting_desc'),
-                tools: [translate('white_screen'), translate('color_screens'), translate('zoom_lighting')],
-              },
-              {
-                title: translate('video_production_title'),
-                description: translate('video_production_desc'),
-                tools: [translate('green_screen'), translate('blue_screen'), translate('brightness_test')],
-              },
-              {
-                title: translate('gaming_streaming_title'),
-                description: translate('gaming_streaming_desc'),
-                tools: [translate('color_test'), translate('brightness_test'), translate('contrast_test')],
-              },
-            ].map((useCase) => (
-              <div key={useCase.title} className="card">
-                <h3 className="text-2xl font-bold mb-3 text-cyan-600">{useCase.title}</h3>
-                <p className="text-slate-700 mb-4">{useCase.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {useCase.tools.map((tool) => (
-                    <span key={tool} className="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* How to Fix Dead Pixels Section */}
       <section className="section bg-gradient-to-r from-slate-900 to-slate-950 content-auto">
         <div className="container">
@@ -619,45 +465,6 @@ export default async function HomePage({ params }: HomePageProps) {
             </Link>
           </div>
 
-          {/* Comparisons Callout */}
-          <div className="mt-12 rounded-2xl border border-cyan-500/30 bg-slate-950/90 p-8 shadow-2xl shadow-cyan-950/40">
-            <div className="text-center mb-6">
-              <h3 className="text-3xl font-bold mb-3 text-slate-100 break-all">📊 {translate('compare_page_title')}</h3>
-              <p className="text-slate-300 mb-6">
-                {translate('home_compare_callout_desc' as any)}
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link
-                href={getLocalizedPath(locale, '/compare/ips-vs-va-vs-tn')}
-                className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-center transition-all hover:border-cyan-400 hover:bg-slate-800"
-              >
-                <p className="font-semibold text-cyan-300">IPS vs VA vs TN</p>
-                <p className="text-xs text-slate-300">{translate('home_compare_panel_types' as any)}</p>
-              </Link>
-              <Link
-                href={getLocalizedPath(locale, '/compare/144hz-vs-240hz')}
-                className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-center transition-all hover:border-cyan-400 hover:bg-slate-800"
-              >
-                <p className="font-semibold text-cyan-300">144Hz vs 240Hz</p>
-                <p className="text-xs text-slate-300">{translate('home_compare_refresh_rates' as any)}</p>
-              </Link>
-              <Link
-                href={getLocalizedPath(locale, '/compare/asus-vs-lg')}
-                className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-center transition-all hover:border-cyan-400 hover:bg-slate-800"
-              >
-                <p className="font-semibold text-cyan-300">ASUS vs LG</p>
-                <p className="text-xs text-slate-300">{translate('home_compare_brands' as any)}</p>
-              </Link>
-              <Link
-                href={getLocalizedPath(locale, '/tools')}
-                className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-center transition-all hover:border-cyan-400 hover:bg-slate-800"
-              >
-                <p className="font-semibold text-cyan-300">{translate('home_compare_see_all' as any)}</p>
-                <p className="text-xs text-slate-300">{translate('home_compare_count_label' as any)}</p>
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 

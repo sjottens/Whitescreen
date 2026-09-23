@@ -10,7 +10,7 @@ interface ResponseTimeIntroProps {
 
 export default function ResponseTimeIntro({ locale }: ResponseTimeIntroProps) {
   const monitorTestHref = getLocalizedPath(locale as any, '/monitor-test');
-  const gamingHref = getLocalizedPath(locale as any, '/gaming-monitor-test');
+  const gamingHref = getLocalizedPath(locale as any, '/monitor-buying-guide');
 
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
@@ -137,7 +137,7 @@ export default function ResponseTimeIntro({ locale }: ResponseTimeIntroProps) {
             href={gamingHref}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
           >
-            Gaming Monitor Test Guide <ArrowRight className="w-3.5 h-3.5" />
+            Monitor Buying Guide <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>

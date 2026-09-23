@@ -8,7 +8,6 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
-import ColorScreenIntro from '@/components/tools/color-screen-intro';
 import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
 
@@ -66,20 +65,6 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
     translate('feature_free_no_registration'),
   ];
 
-  const faqs = [
-    {
-      question: translate('tool_faq_1_q' as any),
-      answer: translate('tool_faq_1_a' as any),
-    },
-    {
-      question: translate('tool_faq_2_q' as any),
-      answer: translate('tool_faq_2_a' as any),
-    },
-    {
-      question: translate('tool_faq_3_q' as any),
-      answer: translate('tool_faq_3_a' as any),
-    },
-  ];
 
   const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'white-screen').slice(0, 2).map((t) => ({
     name: translate(t.nameKey as any),
@@ -89,26 +74,11 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
 
   return (
     <>
-      <ColorScreenIntro 
-        locale={locale} 
-        colorName="white" 
-        colorHex="#FFFFFF" 
-        colorLabel={translate(TOOL.nameKey as any)}
-        useCases={[
-          { en: 'Display testing and uniformity checks', fr: 'Test d\'affichage et vérification d\'uniformité' },
-          { en: 'Screen cleaning and dust detection', fr: 'Nettoyage d\'écran et détection de poussière' },
-          { en: 'Photography fill lighting', fr: 'Éclairage d\'appoint en photographie' },
-          { en: 'Brightness and flicker testing', fr: 'Test de luminosité et de scintillement' },
-          { en: 'Backlight bleeding detection', fr: 'Détection des fuites de rétroéclairage' },
-          { en: 'Professional color calibration', fr: 'Étalonnage professionnel des couleurs' }
-        ]}
-      />
       <ToolLayout
         title={translate(TOOL.nameKey as any)}
         description={translate(TOOL.descriptionKey as any)}
         features={translatedFeatures}
         useCases={translatedUseCases}
-        faqs={faqs}
         relatedTools={relatedTools}
         locale={locale}
       >
