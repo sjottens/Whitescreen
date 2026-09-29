@@ -1,6 +1,7 @@
 // app/[locale]/tools/pixel-density-calculator/page.tsx
 // Calculate pixel density and DPI for any screen
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import PixelDensityCalculator from '@/components/tools/pixel-density-calculator';
@@ -77,7 +78,7 @@ export default async function PixelDensityCalculatorPage({ params }: PixelDensit
       {/* Calculator */}
       <section className="section">
         <div className="container max-w-4xl">
-          <PixelDensityCalculator />
+          <PixelDensityCalculator strings={getClientStrings('pixelDensityCalculator', 'en')} />
 
           {/* Info Section */}
           <div className="mt-12 prose prose-lg max-w-none">

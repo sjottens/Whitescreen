@@ -1,6 +1,7 @@
 // app/[locale]/tools/monitor-comparison/page.tsx
 // Compare monitor specifications side by side
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import MonitorComparisonTool from '@/components/tools/monitor-comparison-tool';
@@ -72,7 +73,7 @@ export default async function MonitorComparisonPage({
       {/* Tool */}
       <section className="section">
         <div className="container max-w-6xl">
-          <MonitorComparisonTool />
+          <MonitorComparisonTool strings={getClientStrings('monitorComparisonTool', 'en')} />
         </div>
       </section>
     </>

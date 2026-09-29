@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { t } from '@/lib/translations';
+import type { ClientStrings } from '@/lib/client-strings';
 import type { Locale } from '@/lib/i18n';
 
 interface GPUSpec {
@@ -17,6 +17,7 @@ interface CPUSpec {
 
 interface RefreshRateCalculatorProps {
   locale?: Locale;
+  strings: ClientStrings<'refreshRateCalculator'>;
 }
 
 const GPU_OPTIONS: GPUSpec[] = [
@@ -55,8 +56,8 @@ const CPU_OPTIONS: CPUSpec[] = [
   { name: 'AMD Ryzen 5 5500', tier: 'entry' },
 ];
 
-export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalculatorProps) {
-  const translate = t(locale);
+export default function RefreshRateCalculator({ strings }: RefreshRateCalculatorProps) {
+  const translate = (key: keyof ClientStrings<'refreshRateCalculator'>) => strings[key];
   const [selectedGPU, setSelectedGPU] = useState<GPUSpec | null>(GPU_OPTIONS[0]);
   const [selectedCPU, setSelectedCPU] = useState<CPUSpec | null>(CPU_OPTIONS[0]);
   const [recommendation, setRecommendation] = useState<number>(60);
@@ -105,7 +106,7 @@ export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalc
       {/* GPU Selection */}
       <div className="mb-8">
         <label className="block text-sm font-semibold text-slate-900 mb-3">
-          {translate('refresh_rate_gpu_label' as any)}
+          {translate('refresh_rate_gpu_label')}
         </label>
         <select
           value={selectedGPU?.name || ''}
@@ -115,7 +116,7 @@ export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalc
           }}
           className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black"
         >
-          <option value="">{translate('refresh_rate_gpu_placeholder' as any)}</option>
+          <option value="">{translate('refresh_rate_gpu_placeholder')}</option>
           {GPU_OPTIONS.map((gpu) => (
             <option key={gpu.name} value={gpu.name}>
               {gpu.name}
@@ -127,7 +128,7 @@ export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalc
       {/* CPU Selection */}
       <div className="mb-8">
         <label className="block text-sm font-semibold text-slate-900 mb-3">
-          {translate('refresh_rate_cpu_label' as any)}
+          {translate('refresh_rate_cpu_label')}
         </label>
         <select
           value={selectedCPU?.name || ''}
@@ -137,7 +138,7 @@ export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalc
           }}
           className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black"
         >
-          <option value="">{translate('refresh_rate_cpu_placeholder' as any)}</option>
+          <option value="">{translate('refresh_rate_cpu_placeholder')}</option>
           {CPU_OPTIONS.map((cpu) => (
             <option key={cpu.name} value={cpu.name}>
               {cpu.name}
@@ -148,7 +149,7 @@ export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalc
 
       {/* Recommendation */}
       <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-lg border-2 border-blue-200">
-        <p className="text-sm font-semibold text-slate-800 mb-2">{translate('refresh_rate_recommended_label' as any)}</p>
+        <p className="text-sm font-semibold text-slate-800 mb-2">{translate('refresh_rate_recommended_label')}</p>
         <p className={`text-6xl font-bold mb-4 ${getColorClass(recommendation)}`}>
           {recommendation}Hz
         </p>
@@ -156,7 +157,7 @@ export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalc
 
         {/* Monitor Options */}
         <div className="mt-6 pt-6 border-t border-slate-200">
-          <p className="text-sm font-semibold text-slate-900 mb-4">{translate('refresh_rate_monitor_recommendations_label' as any)}</p>
+          <p className="text-sm font-semibold text-slate-900 mb-4">{translate('refresh_rate_monitor_recommendations_label')}</p>
           <div className="space-y-2 text-sm">
             {recommendation >= 240 && (
               <div className="flex items-center gap-2">
@@ -188,14 +189,14 @@ export default function RefreshRateCalculator({ locale = 'en' }: RefreshRateCalc
 
       {/* Tips */}
       <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
-        <h3 className="font-semibold text-slate-900 mb-3">💡 {translate('refresh_rate_tips_title' as any)}</h3>
+        <h3 className="font-semibold text-slate-900 mb-3">💡 {translate('refresh_rate_tips_title')}</h3>
         <ul className="space-y-2 text-sm text-slate-800 font-medium">
           <li>
-            {translate('refresh_rate_tip_1' as any)}
+            {translate('refresh_rate_tip_1')}
           </li>
-          <li>{translate('refresh_rate_tip_2' as any)}</li>
-          <li>{translate('refresh_rate_tip_3' as any)}</li>
-          <li>{translate('refresh_rate_tip_4' as any)}</li>
+          <li>{translate('refresh_rate_tip_2')}</li>
+          <li>{translate('refresh_rate_tip_3')}</li>
+          <li>{translate('refresh_rate_tip_4')}</li>
         </ul>
       </div>
     </div>

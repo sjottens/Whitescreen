@@ -1,6 +1,7 @@
 // app/[locale]/tools/refresh-rate-calculator/page.tsx
 // Interactive tool to calculate optimal refresh rate for gaming
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import RefreshRateCalculator from '@/components/tools/refresh-rate-calculator';
@@ -77,7 +78,7 @@ export default async function RefreshRateCalculatorPage({ params }: RefreshRateC
       {/* Calculator */}
       <section className="section">
         <div className="container max-w-4xl">
-          <RefreshRateCalculator />
+          <RefreshRateCalculator strings={getClientStrings('refreshRateCalculator', 'en')} />
 
           {/* Info Section */}
           <div className="mt-12 prose prose-lg max-w-none">
