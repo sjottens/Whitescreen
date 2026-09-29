@@ -1,4 +1,10 @@
 // lib/translations.ts - Multilingual translations (English, Dutch, Spanish, German)
+//
+// Server components only. Importing this from a 'use client' file would ship
+// the whole dictionary (all four languages, ~130 kB gzipped) to every visitor,
+// so the build fails instead. Client components get their strings as props:
+// see lib/client-strings.ts and lib/ui-strings.ts.
+import 'server-only';
 
 export const translations = {
   "en": {
