@@ -142,7 +142,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   // Hardware tests (English only - no locale variants exist)
-  ['/mic-test', '/keyboard-test', '/click-speed-test'].forEach((path) => {
+  ['/mic-test', '/keyboard-test', '/webcam-test', '/click-speed-test'].forEach((path) => {
     sitemapEntries.push({
       url: getCanonicalUrl(DEFAULT_LOCALE, path),
       lastModified: now,
