@@ -7,17 +7,17 @@ import { useState } from 'react';
 import { ChevronDown, Globe } from 'lucide-react';
 import { getLocaleAlternativePath } from '@/lib/link-utils';
 import type { Locale } from '@/lib/i18n';
-import { t } from '@/lib/translations';
+import type { HeaderLabels } from '@/lib/ui-strings';
 
 interface LanguageSelectorProps {
   locale: Locale;
+  labels: Pick<HeaderLabels, 'languageAria' | 'languageHint'>;
   currentPath: string;
   onSelect?: () => void;
 }
 
-export default function LanguageSelector({ locale, currentPath, onSelect }: LanguageSelectorProps) {
+export default function LanguageSelector({ locale, labels, currentPath, onSelect }: LanguageSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const translate = t(locale);
 
   const handleSelect = (selectedLocale: Locale) => {
     // Persist explicit language choice for middleware locale redirects.
@@ -34,7 +34,7 @@ export default function LanguageSelector({ locale, currentPath, onSelect }: Lang
   ];
 
   const currentLanguage = languages.find((lang) => lang.locale === locale) || languages[0];
-  const hint = translate('language_selector_hint' as any) || translate('language_selector_aria' as any);
+  const hint = labels.languageHint;
 
   return (
     <div className="relative z-[130]">
@@ -45,7 +45,7 @@ export default function LanguageSelector({ locale, currentPath, onSelect }: Lang
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 rounded-lg border border-slate-500 bg-slate-900/90 px-3 py-2 text-sm font-medium text-slate-100 transition-colors hover:border-cyan-400 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900"
-        aria-label={translate('language_selector_aria' as any)}
+        aria-label={labels.languageAria}
         title={hint}
         aria-expanded={isOpen}
       >

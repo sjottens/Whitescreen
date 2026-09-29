@@ -6,13 +6,13 @@ import { ArrowLeft, ArrowRight, Monitor, CheckCircle2, AlertTriangle, Gamepad2, 
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { LinkButton } from '@/components/ui/button';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual, faqSchema } from '@/lib/seo';
-import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { TEST_TOOLS, COLOR_TOOLS } from '@/lib/constants';
 
 export async function generateStaticParams() {
-  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
+  return LOCALES.map((locale) => ({
     locale,
   }));
 }

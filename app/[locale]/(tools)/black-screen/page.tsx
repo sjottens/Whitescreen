@@ -2,7 +2,7 @@
 
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
-import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
 import { t } from '@/lib/translations';
 import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
@@ -18,7 +18,7 @@ const TOOL = COLOR_TOOLS.find((t) => t.id === 'black-screen')!;
  * English pages serve at root (/black-screen), other locales at /locale/black-screen
  */
 export async function generateStaticParams() {
-  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
+  return LOCALES.map((locale) => ({
     locale,
   }));
 }

@@ -2,7 +2,7 @@
 
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
-import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
 import { t } from '@/lib/translations';
 import { SPECIAL_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
@@ -12,7 +12,7 @@ import VideoCallLight from '@/components/tools/video-call-light';
 const TOOL = SPECIAL_TOOLS.find((t) => t.id === 'zoom-lighting')!;
 
 export async function generateStaticParams() {
-  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
+  return LOCALES.map((locale) => ({
     locale,
   }));
 }

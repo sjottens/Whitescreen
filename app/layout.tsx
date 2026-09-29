@@ -22,6 +22,7 @@ import RouteTransition from '@/components/layout/route-transition';
 import AdOptimizer from '@/components/analytics/ad-optimizer';
 import { ConsentProvider } from '@/components/providers/consent-provider';
 import ConsentBanner from '@/components/legal/consent-banner';
+import { getConsentStrings } from '@/lib/ui-strings';
 
 import './globals.css';
 
@@ -319,7 +320,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <AdOptimizer />
 
           {/* GDPR-compliant cookie consent banner */}
-          <ConsentBanner />
+          <ConsentBanner strings={getConsentStrings()} />
         </ConsentProvider>
 
         {/* Vercel Web Analytics - cookieless, so it runs outside the consent gate */}

@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Monitor } from 'lucide-react';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
-import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { t } from '@/lib/translations';
 import { TEST_TOOLS } from '@/lib/constants';
@@ -19,7 +19,7 @@ import RelatedTools from '@/components/tools/related-tools';
 const TOOL = TEST_TOOLS.find((t) => t.id === 'dead-pixel-test')!;
 
 export async function generateStaticParams() {
-  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
+  return LOCALES.map((locale) => ({
     locale,
   }));
 }

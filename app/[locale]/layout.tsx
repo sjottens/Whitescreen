@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { getLocaleFromParams, LOCALES, DEFAULT_LOCALE } from '@/lib/i18n';
+import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
 
 interface LocaleLayoutProps {
   children: ReactNode;
@@ -12,13 +12,14 @@ interface LocaleLayoutProps {
 }
 
 /**
- * Generate static params for all supported locales EXCEPT the default locale
- * English pages are served at root (e.g., /about), not /en/about
- * This prevents duplicate content issues: only /nl/about, /es/about, etc. are generated
- * Tells Next.js to pre-render pages for nl, es, de (NOT en)
+ * Pre-render every locale, English included. English is served at the root
+ * (/about) through a middleware rewrite to /en/about, so /en/* has to be
+ * built too - leaving it out made the only indexed language render on
+ * demand after every deploy. No duplicate content: the public /en/* URL
+ * still 301s to the root in middleware.
  */
 export function generateStaticParams() {
-  return LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
+  return LOCALES.map((locale) => ({
     locale,
   }));
 }

@@ -7,13 +7,14 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { getLocalizedPath, parseLocalePath } from '@/lib/link-utils';
-import { t } from '@/lib/translations';
 import { HARDWARE_TOOLS, ENGLISH_ONLY_PATHS } from '@/lib/hardware-tools';
 import LanguageSelector from './language-selector';
 import type { Locale } from '@/lib/i18n';
+import type { HeaderLabels } from '@/lib/ui-strings';
 
 interface NavigationProps {
   locale: Locale;
+  labels: HeaderLabels;
 }
 
 // The hardware tests are English-only pages, so they're linked without a
@@ -21,10 +22,9 @@ interface NavigationProps {
 const toolHref = (locale: Locale, path: string, id: string) =>
   id === 'screen-test' ? getLocalizedPath(locale, path) : path;
 
-export default function Navigation({ locale }: NavigationProps) {
+export default function Navigation({ locale, labels }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const translate = t(locale);
 
   // Extract the clean path without locale prefix
   const [, cleanPath] = parseLocalePath(pathname);
@@ -51,18 +51,18 @@ export default function Navigation({ locale }: NavigationProps) {
           Pixel Fixer
         </Link>
         <Link href={getLocalizedPath(locale, '/blog')} className="nav-link-premium focus-ring">
-          {translate('blog')}
+          {labels.blog}
         </Link>
 
         {/* Language Selector */}
-        {!englishOnly && <LanguageSelector locale={locale} currentPath={cleanPath} />}
+        {!englishOnly && <LanguageSelector locale={locale} labels={labels} currentPath={cleanPath} />}
       </nav>
 
       {/* Mobile Navigation Toggle */}
       <button
         className="xl:hidden rounded-lg p-2 text-slate-100 transition-colors hover:bg-slate-800 hover:text-white focus-ring"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label={translate('navigation_toggle_menu_aria' as any)}
+        aria-label={labels.menuAria}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
       >
@@ -97,17 +97,17 @@ export default function Navigation({ locale }: NavigationProps) {
               </li>
               <li className="mb-0">
                 <Link href={getLocalizedPath(locale, '/blog')} className={mobileLink} onClick={() => setIsOpen(false)}>
-                  {translate('blog')}
+                  {labels.blog}
                 </Link>
               </li>
               <li className="mb-0">
                 <Link href={getLocalizedPath(locale, '/about')} className={mobileLink} onClick={() => setIsOpen(false)}>
-                  {translate('about')}
+                  {labels.about}
                 </Link>
               </li>
               <li className="mb-0">
                 <Link href={getLocalizedPath(locale, '/contact')} className={mobileLink} onClick={() => setIsOpen(false)}>
-                  {translate('contact')}
+                  {labels.contact}
                 </Link>
               </li>
             </ul>
@@ -118,7 +118,7 @@ export default function Navigation({ locale }: NavigationProps) {
 
                 {/* Language Selector - Mobile */}
                 <div className="px-4 py-3">
-                  <LanguageSelector locale={locale} currentPath={cleanPath} onSelect={() => setIsOpen(false)} />
+                  <LanguageSelector locale={locale} labels={labels} currentPath={cleanPath} onSelect={() => setIsOpen(false)} />
                 </div>
               </>
             )}
