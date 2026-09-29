@@ -1,25 +1,31 @@
-import { LinkButton } from '@/components/ui/button';
-import { t } from '@/lib/translations';
+// app/not-found.tsx - 404 page. Rendered by the root layout only, so it
+// brings its own header and footer.
 
-export const metadata = {
-  title: '404 - Not Found',
-  description: 'Resource not found.',
+import type { Metadata } from 'next';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
+import ToolCards from '@/components/hardware/tool-cards';
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  robots: { index: false, follow: true },
 };
 
 export default function NotFound() {
-  const translate = t('en');
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white px-4">
-      <div className="text-center">
-        <h1 className="text-6xl font-bold text-blue-600 mb-4">404</h1>
-        <h2 className="text-3xl font-semibold text-slate-900 mb-4">{translate('not_found_title' as any)}</h2>
-        <p className="text-lg text-slate-600 mb-8">
-          {translate('not_found_description' as any)}
-        </p>
-        <LinkButton href="/" variant="primary" size="lg">
-          {translate('go_home_button' as any)}
-        </LinkButton>
-      </div>
+    <div className="flex min-h-screen flex-col">
+      <Header locale="en" />
+      <div className="h-[72px] md:h-[76px]" aria-hidden="true" />
+      <main id="main-content" className="flex-1">
+        <div className="container py-12 md:py-20">
+          <h1 className="mb-4 animate-none text-3xl md:text-5xl lg:text-5xl">This page doesn&apos;t exist</h1>
+          <p className="mb-8 max-w-2xl text-lg text-slate-300">
+            The link might be old, or there&apos;s a typo in the address. Here&apos;s what you can test instead:
+          </p>
+          <ToolCards headingLevel="h2" />
+        </div>
+      </main>
+      <Footer locale="en" />
     </div>
   );
 }

@@ -15,6 +15,7 @@ import { t } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import { getLocalizedPath } from '@/lib/link-utils';
 import { LatestBlogBanner } from '@/components/blog/latest-blog-banner';
+import ToolCards from '@/components/hardware/tool-cards';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -154,6 +155,20 @@ export default async function HomePage({ params }: HomePageProps) {
         {/* Animated gradient orbs */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/20 rounded-full mix-blend-screen filter blur-3xl animate-float opacity-20 pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#00DC82]/10 rounded-full mix-blend-screen filter blur-3xl animate-pulse-glow opacity-10 pointer-events-none" />
+      </section>
+
+      {/* All tests - the five hardware tests */}
+      <section aria-labelledby="all-tests-heading" className="py-12 md:py-16">
+        <div className="container">
+          <h2 id="all-tests-heading" className="mb-3 text-3xl md:text-4xl">
+            All tests
+          </h2>
+          <p className="mb-8 max-w-2xl text-slate-300">
+            Quick, free checks for the hardware you use every day. No downloads, no sign-up, and nothing leaves your
+            browser.
+          </p>
+          <ToolCards />
+        </div>
       </section>
 
       {/* Latest Blog Article Banner - Compact Top Section */}

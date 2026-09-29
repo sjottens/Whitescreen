@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { SITE_NAME, COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
 import { getLocalizedPath } from '@/lib/link-utils';
+import { HARDWARE_TOOLS } from '@/lib/hardware-tools';
 import { t } from '@/lib/translations';
 import type { Locale } from '@/lib/i18n';
 
@@ -50,6 +51,20 @@ export default function Footer({ locale }: FooterProps) {
                 <li key={tool.id}>
                   <Link href={getLocalizedPath(locale, tool.path)} className="text-white hover:text-slate-100 transition-colors text-sm">
                     {translate(tool.nameKey as any)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Hardware tests (English-only pages, so no locale prefix) */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Hardware tests</h4>
+            <ul className="space-y-2 list-none pl-0 marker:hidden">
+              {HARDWARE_TOOLS.filter((tool) => tool.id !== 'screen-test').map((tool) => (
+                <li key={tool.id}>
+                  <Link href={tool.path} className="text-white hover:text-slate-100 transition-colors text-sm">
+                    {tool.name}
                   </Link>
                 </li>
               ))}

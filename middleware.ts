@@ -8,6 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { LOCALES } from '@/lib/i18n';
+import { ENGLISH_ONLY_PATHS } from '@/lib/hardware-tools';
 
 const SUPPORTED_LOCALES = LOCALES;
 const DEFAULT_LOCALE = 'en';
@@ -66,8 +67,9 @@ export function middleware(request: NextRequest) {
     userLocale = cookieLocale;
   }
 
-  // 4. Send visitors who explicitly picked another language to that version
-  if (userLocale !== DEFAULT_LOCALE && !pathname.includes('.')) {
+  // 4. Send visitors who explicitly picked another language to that version.
+  // The hardware tests exist in English only, so they're never redirected.
+  if (userLocale !== DEFAULT_LOCALE && !pathname.includes('.') && !ENGLISH_ONLY_PATHS.has(pathname)) {
     // For the homepage, pathname is '/', so naively appending it produces
     // '/nl/' (trailing slash). Next.js's default trailingSlash:false then
     // issues a SECOND redirect from '/nl/' to '/nl', adding a full extra

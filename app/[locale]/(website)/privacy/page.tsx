@@ -136,6 +136,20 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             TestaScreen receives a portion of revenue when you click on or view advertisements. This is our primary funding model for keeping the tools free and accessible to everyone worldwide.
           </p>
 
+          <h2 id="hardware-tests">6. Microphone, camera and keyboard tests</h2>
+          <p>
+            Our microphone, webcam and keyboard tests run entirely in your browser. Audio, video and keystrokes are processed on your own device and are never uploaded, recorded on our servers, or shared with anyone.
+          </p>
+          <p>
+            Your browser asks for permission before a test can use your microphone or camera. You can withdraw that permission at any time through the settings in your browser's address bar. The microphone and camera switch off as soon as you stop the test or leave the page.
+          </p>
+          <p>
+            A short recording made with the Mic Test, or a snapshot made with the Webcam Test, exists only in your browser's memory. It disappears when you refresh or close the page, unless you choose to download it yourself.
+          </p>
+          <p>
+            The Click Speed Test stores your best score in your browser's local storage, on your device only. You can remove it by clearing your browser data.
+          </p>
+
           <h2>7. {translate('privacy_gdpr_rights')}</h2>
           <p>
             {translate('privacy_gdpr_rights_text')}
