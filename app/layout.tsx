@@ -111,10 +111,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 // This prevents GA4 from accessing entries with undefined/invalid startTime
                 // WITHOUT mutating performance entries (which are read-only anyway)
                 window.PerformanceObserver = function(userCallback) {
-                  var wrappedCallback = function(list) {
+                  var wrappedCallback = function(list, observer) {
                     // Intercept the getEntries() call that GA4 makes
                     var origGetEntries = list.getEntries.bind(list);
-                    var origTakeRecords = list.takeRecords.bind(list);
                     
                     // Override getEntries to filter out bad entries before GA4 processes them
                     list.getEntries = function() {
@@ -144,36 +143,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
                       return filteredEntries;
                     };
                     
-                    // Same for takeRecords
-                    list.takeRecords = function() {
-                      var entries = origTakeRecords();
-                      if (!Array.isArray(entries)) return [];
-                      
-                      var badEntries = [];
-                      var filteredEntries = [];
-                      
-                      for (var i = 0; i < entries.length; i++) {
-                        var entry = entries[i];
-                        if (entry && typeof entry.startTime === 'number') {
-                          filteredEntries.push(entry);
-                        } else {
-                          badEntries.push({
-                            type: entry ? entry.entryType : 'unknown',
-                            startTime: entry ? entry.startTime : null
-                          });
-                        }
-                      }
-                      
-                      if (DEBUG && badEntries.length > 0) {
-                        console.log('[GA4-Defensifier] Filtered takeRecords:', badEntries);
-                      }
-                      
-                      return filteredEntries;
-                    };
-                    
                     // Call the original GA4 callback with the safe list
                     try {
-                      userCallback(list);
+                      userCallback(list, observer);
                     } catch (err) {
                       // Log errors for debugging
                       if (DEBUG) {
