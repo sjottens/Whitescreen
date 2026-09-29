@@ -8,18 +8,20 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, Grid3x3, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { t, type Locale } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
+import type { ClientStrings } from '@/lib/client-strings';
 
 interface BacklightBleedDisplayProps {
   locale?: Locale;
+  strings: ClientStrings<'backlightBleedDisplay'>;
 }
 
-export default function BacklightBleedDisplay({ locale = 'en' }: BacklightBleedDisplayProps) {
+export default function BacklightBleedDisplay({ strings }: BacklightBleedDisplayProps) {
   const [isFullscreenActive, setIsFullscreenActive] = useState(false);
   const [showGuides, setShowGuides] = useState(true);
   const [hintDismissed, setHintDismissed] = useState(false);
   const screenRef = useRef<HTMLDivElement>(null);
-  const translate = t(locale);
+  const translate = (key: keyof ClientStrings<'backlightBleedDisplay'>) => strings[key];
 
   const handleFullscreen = useCallback(async () => {
     if (!document.fullscreenElement && screenRef.current) {

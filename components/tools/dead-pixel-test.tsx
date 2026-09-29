@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { t } from '@/lib/translations';
+import type { ClientStrings } from '@/lib/client-strings';
 import type { Locale } from '@/lib/i18n';
 
 type TestMode = 'desktop' | 'mobile';
@@ -36,8 +36,8 @@ const ASPECT_RATIOS: { ratio: AspectRatio; label: string }[] = [
   { ratio: '4:3', label: 'iPad/Tablets' },
 ];
 
-export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
-  const translate = t(locale);
+export default function DeadPixelTest({ strings }: { locale?: Locale; strings: ClientStrings<'deadPixelTest'> }) {
+  const translate = (key: keyof ClientStrings<'deadPixelTest'>) => strings[key];
   const [testMode, setTestMode] = useState<TestMode>('desktop');
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -317,7 +317,7 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
         `}
         role="button"
         tabIndex={0}
-        aria-label={translate('dead_pixel_start_fullscreen_aria' as any)}
+        aria-label={translate('dead_pixel_start_fullscreen_aria')}
         onKeyDown={(e) => {
           if (!effectiveFullscreen && (e.key === 'Enter' || e.key === ' ')) {
             e.preventDefault();
@@ -356,7 +356,7 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
             <Maximize2 className="w-12 h-12 opacity-40 text-slate-400 mx-auto" />
             <p className="text-slate-600 font-medium text-center mt-4">
               <strong>{currentColor.name}</strong><br />
-              {translate('dead_pixel_click_fullscreen_hint' as any)}
+              {translate('dead_pixel_click_fullscreen_hint')}
             </p>
           </div>
         )}
@@ -373,7 +373,7 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
                   setIsAutoCycling(false);
                 }}
               >
-                ← {translate('dead_pixel_previous_button' as any)}
+                ← {translate('dead_pixel_previous_button')}
               </Button>
               <Button
                 variant="secondary"
@@ -383,7 +383,7 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
                   setIsAutoCycling(false);
                 }}
               >
-                {translate('dead_pixel_next_button' as any)} →
+                {translate('dead_pixel_next_button')} →
               </Button>
               <Button
                 variant="secondary"
@@ -392,7 +392,7 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
                   setIsAutoCycling(!isAutoCycling);
                 }}
               >
-                {isAutoCycling ? translate('dead_pixel_stop_button' as any) : translate('dead_pixel_start_button' as any)} {translate('dead_pixel_auto_cycle_label' as any)}
+                {isAutoCycling ? translate('dead_pixel_stop_button') : translate('dead_pixel_start_button')} {translate('dead_pixel_auto_cycle_label')}
               </Button>
               <Button
                 variant="secondary"
@@ -401,11 +401,11 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
                   toggleFullscreen();
                 }}
               >
-                {translate('dead_pixel_exit_button' as any)} (ESC)
+                {translate('dead_pixel_exit_button')} (ESC)
               </Button>
             </div>
             <p className="text-center text-white drop-shadow-lg text-sm">
-              {translate('dead_pixel_keyboard_hint' as any)}
+              {translate('dead_pixel_keyboard_hint')}
             </p>
           </div>
         )}
@@ -421,21 +421,21 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
               onClick={() => setTestMode('desktop')}
               size="lg"
             >
-              {translate('dead_pixel_desktop_test_button' as any)}
+              {translate('dead_pixel_desktop_test_button')}
             </Button>
             <Button
               variant={testMode === 'mobile' ? 'primary' : 'outline'}
               onClick={() => setTestMode('mobile')}
               size="lg"
             >
-              {translate('dead_pixel_mobile_test_button' as any)}
+              {translate('dead_pixel_mobile_test_button')}
             </Button>
           </div>
 
           {/* Aspect ratio selector */}
           {testMode === 'mobile' && (
             <div className="mb-6 p-4 bg-white border border-slate-200 rounded-lg">
-              <p className="text-sm font-medium text-slate-700 mb-3">{translate('dead_pixel_aspect_ratio_label' as any)}</p>
+              <p className="text-sm font-medium text-slate-700 mb-3">{translate('dead_pixel_aspect_ratio_label')}</p>
               <div className="flex flex-wrap gap-2">
                 {ASPECT_RATIOS.map((item) => (
                   <Button
@@ -457,13 +457,13 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
             <div className="flex gap-3 flex-wrap">
               <Button onClick={toggleFullscreen} variant="primary" size="lg">
                 <Maximize2 className="w-5 h-5 mr-2" />
-                {translate('dead_pixel_start_test_button' as any)}
+                {translate('dead_pixel_start_test_button')}
               </Button>
             </div>
 
             {/* Color display */}
             <div className="bg-white rounded-lg p-6 border border-slate-200">
-              <p className="text-sm font-medium text-slate-600 mb-3">{translate('dead_pixel_current_color_label' as any)}</p>
+              <p className="text-sm font-medium text-slate-600 mb-3">{translate('dead_pixel_current_color_label')}</p>
               <div className="flex items-center gap-6">
                 <div
                   style={{ backgroundColor: currentColor.hex }}
@@ -472,14 +472,14 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
                 <div>
                   <p className="text-3xl font-bold text-slate-900">{currentColor.name}</p>
                   <p className="text-lg text-slate-600 font-mono mt-2">{currentColor.hex}</p>
-                  <p className="text-sm text-slate-500 font-mono">{translate('dead_pixel_rgb_label' as any)}: {currentColor.rgb}</p>
+                  <p className="text-sm text-slate-500 font-mono">{translate('dead_pixel_rgb_label')}: {currentColor.rgb}</p>
                 </div>
               </div>
             </div>
 
             {/* Color palette */}
             <div className="bg-white rounded-lg p-6 border border-slate-200">
-              <p className="text-sm font-medium text-slate-600 mb-4">{translate('dead_pixel_test_colors_label' as any)}</p>
+              <p className="text-sm font-medium text-slate-600 mb-4">{translate('dead_pixel_test_colors_label')}</p>
               <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
                 {TEST_COLORS.map((color, i) => (
                   <button
@@ -490,7 +490,7 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
                     }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}
-                    aria-label={`${translate('dead_pixel_select_color_prefix' as any)} ${color.name}`}
+                    aria-label={`${translate('dead_pixel_select_color_prefix')} ${color.name}`}
                   >
                     {currentColorIndex === i && (
                       <span className={`text-sm font-bold flex items-center justify-center h-full ${
@@ -511,21 +511,21 @@ export default function DeadPixelTest({ locale = 'en' }: { locale?: Locale }) {
                 variant="outline"
                 size="lg"
               >
-                ← {translate('dead_pixel_previous_color_button' as any)}
+                ← {translate('dead_pixel_previous_color_button')}
               </Button>
               <Button
                 onClick={() => setCurrentColorIndex((prev) => (prev + 1) % TEST_COLORS.length)}
                 variant="outline"
                 size="lg"
               >
-                {translate('dead_pixel_next_color_button' as any)} →
+                {translate('dead_pixel_next_color_button')} →
               </Button>
             </div>
 
             {/* Instructions */}
             <div className="bg-cyan-50 rounded-lg p-4 border border-cyan-200">
               <p className="text-sm text-slate-700">
-                <strong>{translate('dead_pixel_how_to_test_label' as any)}:</strong> {translate('dead_pixel_how_to_test_text' as any)}
+                <strong>{translate('dead_pixel_how_to_test_label')}:</strong> {translate('dead_pixel_how_to_test_text')}
               </p>
             </div>
           </div>

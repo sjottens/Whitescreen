@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/pink-screen/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -73,7 +74,7 @@ export default async function PinkScreenPage({ params }: { params: Promise<{ loc
         showScreenControls
         hasDownload
       >
-        <ScreenDisplay color="#FF1493" title={translate(TOOL.nameKey as any)} locale={locale} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay', locale)} color="#FF1493" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="pink-screen" locale={locale as any} />
       <RelatedTools currentToolId="pink-screen" locale={locale as any} />

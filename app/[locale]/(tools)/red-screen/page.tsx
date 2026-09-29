@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/red-screen/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -73,7 +74,7 @@ export default async function RedScreenPage({ params }: { params: Promise<{ loca
         showScreenControls
         hasDownload
       >
-        <ScreenDisplay color="#FF0000" title={translate(TOOL.nameKey as any)} locale={locale} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay', locale)} color="#FF0000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="red-screen" locale={locale as any} />
       <RelatedTools currentToolId="red-screen" locale={locale as any} />

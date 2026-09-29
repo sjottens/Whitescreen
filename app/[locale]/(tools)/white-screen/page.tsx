@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/white-screen/page.tsx - White screen tool page with multilingual SEO
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -84,10 +85,10 @@ export default async function WhiteScreenPage({ params }: WhiteScreenPageProps) 
         showScreenControls
         hasDownload
       >
-          <ScreenDisplay color="#FFFFFF" title={translate(TOOL.nameKey as any)} locale={locale} />
+          <ScreenDisplay strings={getClientStrings('screenDisplay', locale)} color="#FFFFFF" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="white-screen" locale={locale as any} />
-      <RelatedReading toolId="white-screen" locale={locale} />
+      <RelatedReading strings={getClientStrings('relatedReading', locale)} toolId="white-screen" locale={locale} />
       <RelatedTools currentToolId="white-screen" locale={locale as any} />
     </>
   );

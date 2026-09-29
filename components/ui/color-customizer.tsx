@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { t } from '@/lib/translations';
+import type { ClientStrings } from '@/lib/client-strings';
 import type { Locale } from '@/lib/i18n';
 
 interface ColorCustomizerProps {
@@ -11,15 +11,16 @@ interface ColorCustomizerProps {
   defaultColor: string;
   onColorChange: (color: string) => void;
   locale?: Locale;
+  strings: ClientStrings<'colorCustomizer'>;
 }
 
 export function ColorCustomizer({
   colorId,
   defaultColor,
   onColorChange,
-  locale = 'en',
+  strings,
 }: ColorCustomizerProps) {
-  const translate = t(locale);
+  const translate = (key: keyof ClientStrings<'colorCustomizer'>) => strings[key];
   const [baseColor, setBaseColor] = useState(defaultColor);
   const [customColor, setCustomColor] = useState(defaultColor);
   const [hexInput, setHexInput] = useState(defaultColor);
@@ -235,7 +236,7 @@ export function ColorCustomizer({
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-3 px-4 bg-gradient-to-r from-slate-100 to-slate-50 hover:from-slate-200 hover:to-slate-100 border border-slate-300 rounded-lg font-semibold text-slate-800 transition-all text-center"
       >
-        {isOpen ? `▼ ${translate('color_customizer_toggle' as any)}` : `▶ ${translate('color_customizer_toggle' as any)}`}
+        {isOpen ? `▼ ${translate('color_customizer_toggle')}` : `▶ ${translate('color_customizer_toggle')}`}
       </button>
 
       {/* Customizer panel */}
@@ -244,7 +245,7 @@ export function ColorCustomizer({
           {/* Tone slider */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-3">
-              {translate('color_customizer_tone_label' as any)}
+              {translate('color_customizer_tone_label')}
             </label>
             <div className="space-y-2">
               <input
@@ -256,9 +257,9 @@ export function ColorCustomizer({
                 className="w-full h-2 bg-gradient-to-r from-black to-white rounded-lg appearance-none cursor-pointer accent-cyan-600"
               />
               <div className="flex justify-between text-xs text-slate-500">
-                <span>{translate('color_customizer_darker' as any)}</span>
+                <span>{translate('color_customizer_darker')}</span>
                 <span className="font-semibold text-slate-700">{tone}%</span>
-                <span>{translate('color_customizer_lighter' as any)}</span>
+                <span>{translate('color_customizer_lighter')}</span>
               </div>
             </div>
           </div>
@@ -266,7 +267,7 @@ export function ColorCustomizer({
           {/* Color picker */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-3">
-              {translate('color_customizer_picker_label' as any)}
+              {translate('color_customizer_picker_label')}
             </label>
             <input
               type="color"
@@ -279,7 +280,7 @@ export function ColorCustomizer({
           {/* Hex code */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">
-              {translate('color_customizer_hex_label' as any)}
+              {translate('color_customizer_hex_label')}
             </label>
             <div className="flex gap-2">
               <input
@@ -300,7 +301,7 @@ export function ColorCustomizer({
           {/* RGB values */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-3">
-              {translate('color_customizer_rgb_label' as any)}
+              {translate('color_customizer_rgb_label')}
             </label>
             <div className="grid grid-cols-3 gap-3">
               {(['r', 'g', 'b'] as const).map((channel) => (
@@ -329,7 +330,7 @@ export function ColorCustomizer({
             className="w-full"
           >
             <RotateCcw className="w-4 h-4 mr-2" />
-            {translate('color_customizer_reset_button' as any)}
+            {translate('color_customizer_reset_button')}
           </Button>
         </div>
       )}

@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Maximize2, RotateCcw, Copy, Check } from 'lucide-react';
-import { t } from '@/lib/translations';
+import type { ClientStrings } from '@/lib/client-strings';
 import type { Locale } from '@/lib/i18n';
 
 type TestMode = 'wcag-ladder' | 'text-readability' | 'pattern' | 'custom-pair';
@@ -140,10 +140,11 @@ const VISION_FILTERS: Record<VisionMode, { name: string }> = {
 
 interface ContrastTestProps {
   locale?: Locale;
+  strings: ClientStrings<'contrastTest'>;
 }
 
-export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
-  const translate = t(locale);
+export default function ContrastTest({ strings }: ContrastTestProps) {
+  const translate = (key: keyof ClientStrings<'contrastTest'>) => strings[key];
   const [testMode, setTestMode] = useState<TestMode>('wcag-ladder');
   const [currentPairIndex, setCurrentPairIndex] = useState(0);
   const [visionMode, setVisionMode] = useState<VisionMode>('normal');
@@ -258,7 +259,7 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
             >
               <div className="text-center max-w-2xl">
                 <p className="text-4xl font-bold mb-4" style={{ color: transformedFG }}>
-                  {translate('contrast_test_title' as any)}
+                  {translate('contrast_test_title')}
                 </p>
                 <p className="text-2xl mb-2" style={{ color: transformedFG }}>
                   Ratio: {pair.ratio.toFixed(2)}:1
@@ -296,13 +297,13 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
         <div className="max-w-4xl space-y-8">
           <div>
             <h1 className="text-5xl font-bold mb-4" style={{ color: transformedFG }}>
-              {translate('contrast_readability_test_title' as any)}
+              {translate('contrast_readability_test_title')}
             </h1>
             <p className="text-2xl leading-relaxed" style={{ color: transformedFG }}>
-              {translate('contrast_readability_text' as any)} <strong>{currentPair.ratio.toFixed(2)}:1</strong>.
+              {translate('contrast_readability_text')} <strong>{currentPair.ratio.toFixed(2)}:1</strong>.
             </p>
             <p className="text-lg mt-6" style={{ color: transformedFG }}>
-              {translate('contrast_readability_small_text_hint' as any)}
+              {translate('contrast_readability_small_text_hint')}
             </p>
           </div>
 
@@ -369,13 +370,13 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center">
               <p className="text-3xl font-bold mb-4" style={{ color: transformedFG }}>
-                {translate('contrast_pattern_title' as any)}
+                {translate('contrast_pattern_title')}
               </p>
               <p className="text-xl mb-4" style={{ color: transformedFG }}>
                 Ratio: {currentPair.ratio.toFixed(2)}:1
               </p>
               <p className="text-sm" style={{ color: transformedFG }}>
-                {translate('contrast_pattern_hint' as any)}
+                {translate('contrast_pattern_hint')}
               </p>
             </div>
           </div>
@@ -400,9 +401,9 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
                 color: transformedCustomFG,
               }}
             >
-              <h2 className="text-4xl font-bold mb-4">{translate('contrast_custom_pair_title' as any)}</h2>
-              <p className="text-2xl mb-6">{translate('contrast_custom_pair_text' as any)}</p>
-              <p className="text-lg">{translate('contrast_ratio_label' as any)}: {customRatio.toFixed(2)}:1</p>
+              <h2 className="text-4xl font-bold mb-4">{translate('contrast_custom_pair_title')}</h2>
+              <p className="text-2xl mb-6">{translate('contrast_custom_pair_text')}</p>
+              <p className="text-lg">{translate('contrast_ratio_label')}: {customRatio.toFixed(2)}:1</p>
             </div>
           </div>
         </div>
@@ -410,7 +411,7 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
         {/* Controls */}
         <div className="flex-1 bg-slate-100 p-8 flex flex-col justify-center space-y-6 overflow-auto max-h-screen">
           <div>
-            <label className="block font-bold mb-2">{translate('contrast_foreground_label' as any)}</label>
+            <label className="block font-bold mb-2">{translate('contrast_foreground_label')}</label>
             <div className="flex gap-3 items-center">
               <input
                 type="color"
@@ -424,14 +425,14 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
                   onClick={() => copyToClipboard(customFG, 'FG')}
                   className="text-xs text-blue-600 hover:underline flex items-center gap-1"
                 >
-                  {copiedText === 'FG' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />} {translate('contrast_copy_button' as any)}
+                  {copiedText === 'FG' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />} {translate('contrast_copy_button')}
                 </button>
               </div>
             </div>
           </div>
 
           <div>
-            <label className="block font-bold mb-2">{translate('contrast_background_label' as any)}</label>
+            <label className="block font-bold mb-2">{translate('contrast_background_label')}</label>
             <div className="flex gap-3 items-center">
               <input
                 type="color"
@@ -445,14 +446,14 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
                   onClick={() => copyToClipboard(customBG, 'BG')}
                   className="text-xs text-blue-600 hover:underline flex items-center gap-1"
                 >
-                  {copiedText === 'BG' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />} {translate('contrast_copy_button' as any)}
+                  {copiedText === 'BG' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />} {translate('contrast_copy_button')}
                 </button>
               </div>
             </div>
           </div>
 
           <div className="bg-white p-4 rounded-lg space-y-2">
-            <p className="font-bold">{translate('contrast_ratio_label' as any)}: {customRatio.toFixed(2)}:1</p>
+            <p className="font-bold">{translate('contrast_ratio_label')}: {customRatio.toFixed(2)}:1</p>
             <div className="space-y-2 text-sm">
               <p className={customWCAGAA ? 'text-green-700' : 'text-red-700'}>
                 {customWCAGAA ? '✓' : '✗'} WCAG AA (4.5:1)
@@ -503,7 +504,7 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
               testMode === 'wcag-ladder' ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {translate('contrast_mode_wcag_ladder' as any)}
+            {translate('contrast_mode_wcag_ladder')}
           </button>
           <button
             onClick={() => setTestMode('text-readability')}
@@ -511,7 +512,7 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
               testMode === 'text-readability' ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {translate('contrast_mode_readability' as any)}
+            {translate('contrast_mode_readability')}
           </button>
           <button
             onClick={() => setTestMode('pattern')}
@@ -519,7 +520,7 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
               testMode === 'pattern' ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {translate('contrast_mode_patterns' as any)}
+            {translate('contrast_mode_patterns')}
           </button>
           <button
             onClick={() => setTestMode('custom-pair')}
@@ -527,13 +528,13 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
               testMode === 'custom-pair' ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {translate('contrast_mode_custom_pair' as any)}
+            {translate('contrast_mode_custom_pair')}
           </button>
         </div>
 
         {/* Vision Mode Selection */}
         <div className="space-y-2">
-          <label className="font-semibold text-slate-700 text-sm">{translate('contrast_vision_simulation_label' as any)}</label>
+          <label className="font-semibold text-slate-700 text-sm">{translate('contrast_vision_simulation_label')}</label>
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
             {Object.entries(VISION_FILTERS).map(([key, filter]) => (
               <button
@@ -548,13 +549,13 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
             ))}
           </div>
           <p className="text-xs text-slate-600">
-            💡 {translate('contrast_vision_hint' as any)}
+            💡 {translate('contrast_vision_hint')}
           </p>
         </div>
 
         {/* Debug: Show color transformation */}
         <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
-          <p className="font-semibold text-slate-700 text-xs">{translate('contrast_color_transformation_label' as any)}</p>
+          <p className="font-semibold text-slate-700 text-xs">{translate('contrast_color_transformation_label')}</p>
           <div className="space-y-2">
             {testMode === 'custom-pair' ? (
               <>
@@ -626,7 +627,7 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
         {(testMode === 'wcag-ladder' || testMode === 'text-readability' || testMode === 'pattern') && (
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="font-semibold text-slate-700 text-sm">{translate('contrast_pair_label' as any)}</label>
+              <label className="font-semibold text-slate-700 text-sm">{translate('contrast_pair_label')}</label>
               <span className="text-xs text-slate-600">
                 {currentPairIndex + 1} / {WCAG_CONTRAST_PAIRS.length}
               </span>
@@ -655,20 +656,20 @@ export default function ContrastTest({ locale = 'en' }: ContrastTestProps) {
             }}
             className="p-3 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-medium transition-all text-sm flex items-center justify-center gap-2"
           >
-            <RotateCcw className="w-4 h-4" /> {translate('contrast_reset_button' as any)}
+            <RotateCcw className="w-4 h-4" /> {translate('contrast_reset_button')}
           </button>
 
           <button
             onClick={toggleFullscreen}
             className="p-3 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-medium transition-all text-sm flex items-center justify-center gap-2"
           >
-            <Maximize2 className="w-4 h-4" /> {translate('contrast_fullscreen_button' as any)}
+            <Maximize2 className="w-4 h-4" /> {translate('contrast_fullscreen_button')}
           </button>
         </div>
 
         {/* Keyboard Shortcuts */}
         <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-          <p className="font-semibold text-slate-700 mb-2 text-sm">{translate('contrast_shortcuts_label' as any)}</p>
+          <p className="font-semibold text-slate-700 mb-2 text-sm">{translate('contrast_shortcuts_label')}</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 text-xs text-slate-600">
             <div>
               <kbd className="bg-white px-1.5 py-0.5 rounded border">F</kbd> - Fullscreen

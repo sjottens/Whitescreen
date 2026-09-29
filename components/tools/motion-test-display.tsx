@@ -8,7 +8,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, Pause, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { t, type Locale } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
+import type { ClientStrings } from '@/lib/client-strings';
 
 type Speed = 'slow' | 'medium' | 'fast';
 type Background = 'black' | 'white' | 'gray';
@@ -20,9 +21,10 @@ const BG_COLOR: Record<Background, string> = { black: '#000000', white: '#FFFFFF
 
 interface MotionTestDisplayProps {
   locale?: Locale;
+  strings: ClientStrings<'motionTestDisplay'>;
 }
 
-export default function MotionTestDisplay({ locale = 'en' }: MotionTestDisplayProps) {
+export default function MotionTestDisplay({ strings }: MotionTestDisplayProps) {
   const [isFullscreenActive, setIsFullscreenActive] = useState(false);
   const [isRunning, setIsRunning] = useState(true);
   const [speed, setSpeed] = useState<Speed>('medium');
@@ -35,7 +37,7 @@ export default function MotionTestDisplay({ locale = 'en' }: MotionTestDisplayPr
   const animationRef = useRef<number | null>(null);
   const speedRef = useRef<Speed>('medium');
 
-  const translate = t(locale);
+  const translate = (key: keyof ClientStrings<'motionTestDisplay'>) => strings[key];
 
   useEffect(() => {
     speedRef.current = speed;

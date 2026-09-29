@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/green-screen/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -73,7 +74,7 @@ export default async function GreenScreenPage({ params }: { params: Promise<{ lo
         showScreenControls
         hasDownload
       >
-        <ScreenDisplay color="#00FF00" title={translate(TOOL.nameKey as any)} locale={locale} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay', locale)} color="#00FF00" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="green-screen" locale={locale as any} />
       <RelatedTools currentToolId="green-screen" locale={locale as any} />

@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/purple-screen/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -73,7 +74,7 @@ export default async function PurpleScreenPage({ params }: { params: Promise<{ l
         showScreenControls
         hasDownload
       >
-        <ScreenDisplay color="#800080" title={translate(TOOL.nameKey as any)} locale={locale} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay', locale)} color="#800080" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="purple-screen" locale={locale as any} />
       <RelatedTools currentToolId="purple-screen" locale={locale as any} />

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, RotateCcw, Play, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { t } from '@/lib/translations';
+import type { ClientStrings } from '@/lib/client-strings';
 import type { Locale } from '@/lib/i18n';
 import PhotosensitivityWarning from '@/components/tools/photosensitivity-warning';
 
@@ -33,10 +33,11 @@ const GRAY_LEVELS: GrayLevel[] = [
 
 interface BrightnessTestProps {
   locale?: Locale;
+  strings: ClientStrings<'brightnessTest'>;
 }
 
-export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
-  const translate = t(locale);
+export default function BrightnessTest({ locale = 'en', strings }: BrightnessTestProps) {
+  const translate = (key: keyof ClientStrings<'brightnessTest'>) => strings[key];
   const [testMode, setTestMode] = useState<TestMode>('desktop');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('ladder');
   const [currentLevelIndex, setCurrentLevelIndex] = useState(5); // Start at 50%
@@ -179,9 +180,9 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
     return (
       <div className="w-full h-full bg-gradient-to-r from-black to-white flex flex-col items-center justify-center">
         <div className="text-white text-center drop-shadow-lg">
-          <p className="text-2xl font-bold mb-2">{translate('brightness_gradient_test_title' as any)}</p>
-          <p className="text-lg">{translate('brightness_gradient_test_subtitle' as any)}</p>
-          <p className="text-sm mt-4 opacity-80">{translate('brightness_gradient_test_hint' as any)}</p>
+          <p className="text-2xl font-bold mb-2">{translate('brightness_gradient_test_title')}</p>
+          <p className="text-lg">{translate('brightness_gradient_test_subtitle')}</p>
+          <p className="text-sm mt-4 opacity-80">{translate('brightness_gradient_test_hint')}</p>
         </div>
       </div>
     );
@@ -251,10 +252,10 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
         style={{ backgroundColor: showBlack ? '#000000' : '#FFFFFF' }}
       >
         <div className={`text-center drop-shadow-lg ${showBlack ? 'text-white' : 'text-black'}`}>
-          <p className="text-2xl font-bold mb-2">{translate('brightness_flicker_test_title' as any)}</p>
+          <p className="text-2xl font-bold mb-2">{translate('brightness_flicker_test_title')}</p>
           <p className="text-lg mb-4">{flickerSpeed} Hz</p>
           <p className="text-sm opacity-80">
-            {showBlack ? translate('brightness_black_label' as any) : translate('brightness_white_label' as any)} - {translate('brightness_flicker_test_hint' as any)}
+            {showBlack ? translate('brightness_black_label') : translate('brightness_white_label')} - {translate('brightness_flicker_test_hint')}
           </p>
         </div>
       </div>
@@ -303,7 +304,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {translate('brightness_mode_ladder' as any)}
+            {translate('brightness_mode_ladder')}
           </button>
           <button
             onClick={() => setDisplayMode('gradient')}
@@ -313,7 +314,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {translate('brightness_mode_gradient' as any)}
+            {translate('brightness_mode_gradient')}
           </button>
           <button
             onClick={() => setDisplayMode('bars')}
@@ -323,7 +324,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {translate('brightness_mode_bars' as any)}
+            {translate('brightness_mode_bars')}
           </button>
           <button
             onClick={() => setDisplayMode('flicker')}
@@ -333,7 +334,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {translate('brightness_mode_flicker' as any)}
+            {translate('brightness_mode_flicker')}
           </button>
         </div>
 
@@ -341,7 +342,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
         {displayMode === 'ladder' && (
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="font-semibold text-slate-700">{translate('brightness_gray_navigation_label' as any)}</label>
+              <label className="font-semibold text-slate-700">{translate('brightness_gray_navigation_label')}</label>
               <span className="text-sm text-slate-600">
                 {currentLevelIndex + 1} / {GRAY_LEVELS.length}
               </span>
@@ -371,7 +372,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <label htmlFor="brightness" className="font-semibold text-slate-700">
-              {translate('brightness_display_opacity_label' as any)}
+              {translate('brightness_display_opacity_label')}
             </label>
             <span className="text-sm font-mono text-slate-600">{customBrightness}%</span>
           </div>
@@ -384,7 +385,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
             onChange={(e) => setCustomBrightness(Number(e.target.value))}
             className="w-full"
           />
-          <p className="text-xs text-slate-500">{translate('brightness_display_opacity_hint' as any)}</p>
+          <p className="text-xs text-slate-500">{translate('brightness_display_opacity_hint')}</p>
         </div>
 
         {/* Flicker Speed Control (for flicker mode) */}
@@ -392,7 +393,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <label htmlFor="flicker" className="font-semibold text-slate-700">
-                {translate('brightness_flicker_frequency_label' as any)}
+                {translate('brightness_flicker_frequency_label')}
               </label>
               <span className="text-sm font-mono text-slate-600">{flickerSpeed} Hz</span>
             </div>
@@ -406,7 +407,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
               onChange={(e) => setFlickerSpeed(Number(e.target.value))}
               className="w-full"
             />
-            <p className="text-xs text-slate-500">{translate('brightness_flicker_frequency_hint' as any)}</p>
+            <p className="text-xs text-slate-500">{translate('brightness_flicker_frequency_hint')}</p>
           </div>
         )}
 
@@ -420,11 +421,11 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
             >
               {isAutoCycling ? (
                 <>
-                  <Pause className="w-4 h-4" /> {translate('brightness_pause_button' as any)}
+                  <Pause className="w-4 h-4" /> {translate('brightness_pause_button')}
                 </>
               ) : (
                 <>
-                  <Play className="w-4 h-4" /> {translate('brightness_auto_cycle_button' as any)}
+                  <Play className="w-4 h-4" /> {translate('brightness_auto_cycle_button')}
                 </>
               )}
             </Button>
@@ -440,11 +441,11 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
             variant="outline"
             className="gap-2"
           >
-            <RotateCcw className="w-4 h-4" /> {translate('brightness_reset_button' as any)}
+            <RotateCcw className="w-4 h-4" /> {translate('brightness_reset_button')}
           </Button>
 
           <Button onClick={toggleFullscreen} variant="outline" className="gap-2">
-            <Maximize2 className="w-4 h-4" /> {translate('brightness_fullscreen_button' as any)}
+            <Maximize2 className="w-4 h-4" /> {translate('brightness_fullscreen_button')}
           </Button>
 
           <div className="flex gap-2 col-span-2 md:col-span-1">
@@ -456,7 +457,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              {translate('brightness_desktop_button' as any)}
+              {translate('brightness_desktop_button')}
             </button>
             <button
               onClick={() => setTestMode('mobile')}
@@ -466,7 +467,7 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              {translate('brightness_mobile_button' as any)}
+              {translate('brightness_mobile_button')}
             </button>
           </div>
         </div>
@@ -476,16 +477,16 @@ export default function BrightnessTest({ locale = 'en' }: BrightnessTestProps) {
           <p className="font-semibold text-slate-700 mb-2">{translate('keyboard_shortcuts')}</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-slate-600">
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">F</kbd> - {translate('brightness_fullscreen_button' as any)}
+              <kbd className="bg-white px-2 py-1 rounded border">F</kbd> - {translate('brightness_fullscreen_button')}
             </div>
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">Space</kbd> - {translate('brightness_auto_cycle_button' as any)}
+              <kbd className="bg-white px-2 py-1 rounded border">Space</kbd> - {translate('brightness_auto_cycle_button')}
             </div>
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">←/→</kbd> - {translate('brightness_navigate_label' as any)}
+              <kbd className="bg-white px-2 py-1 rounded border">←/→</kbd> - {translate('brightness_navigate_label')}
             </div>
             <div>
-              <kbd className="bg-white px-2 py-1 rounded border">R</kbd> - {translate('brightness_reset_button' as any)}
+              <kbd className="bg-white px-2 py-1 rounded border">R</kbd> - {translate('brightness_reset_button')}
             </div>
           </div>
         </div>

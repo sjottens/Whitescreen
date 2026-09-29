@@ -3,6 +3,7 @@
 // /backlight-bleed-test: dedicated intro, honest schema, FAQ synced to the
 // visible page.
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -145,12 +146,12 @@ export default async function ResponseTimeTestPage({ params }: { params: Promise
         locale={locale}
         toolName={translate(TOOL.nameKey as any)}
       >
-        <MotionTestDisplay locale={locale as any} />
+        <MotionTestDisplay strings={getClientStrings('motionTestDisplay', locale)} locale={locale as any} />
       </ToolLayout>
 
       <GuideSection toolId="response-time-test" locale={locale} />
 
-      <RelatedReading toolId="response-time-test" locale={locale} />
+      <RelatedReading strings={getClientStrings('relatedReading', locale)} toolId="response-time-test" locale={locale} />
 
       <RelatedTools currentToolId="response-time-test" locale={locale} />
     </>

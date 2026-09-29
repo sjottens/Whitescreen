@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/blue-screen/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -78,7 +79,7 @@ export default async function BlueScreenPage({ params }: { params: Promise<{ loc
         showScreenControls
         hasDownload
       >
-        <ScreenDisplay color="#0000FF" title={translate(TOOL.nameKey as any)} locale={locale} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay', locale)} color="#0000FF" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="blue-screen" locale={locale as any} />
       <RelatedTools currentToolId="blue-screen" locale={locale as any} />

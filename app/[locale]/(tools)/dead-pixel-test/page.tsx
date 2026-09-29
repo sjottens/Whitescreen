@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/dead-pixel-test/page.tsx - SEO-optimized dead pixel test page
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Monitor } from 'lucide-react';
@@ -205,7 +206,7 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
         locale={locale}
         toolName={translate(TOOL.nameKey as any)}
       >
-        <DeadPixelTest locale={locale as any} />
+        <DeadPixelTest strings={getClientStrings('deadPixelTest', locale)} locale={locale as any} />
       </ToolLayout>
 
       {/* Flagship-to-pillar link: dead-pixel-test is the flagship page,
@@ -235,7 +236,7 @@ export default async function DeadPixelTestPage({ params }: { params: Promise<{ 
       <GuideSection toolId="dead-pixel-test" locale={locale} />
 
       {/* Related Reading - Blog Articles & Guides */}
-      <RelatedReading toolId="dead-pixel-test" locale={locale} />
+      <RelatedReading strings={getClientStrings('relatedReading', locale)} toolId="dead-pixel-test" locale={locale} />
 
       {/* Related Tools for Internal Linking & Engagement */}
       <RelatedTools currentToolId="dead-pixel-test" locale={locale} />

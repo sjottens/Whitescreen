@@ -6,16 +6,18 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, Download, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ColorCustomizer } from '@/components/ui/color-customizer';
-import { t, type Locale } from '@/lib/translations';
+import type { Locale } from '@/lib/i18n';
+import type { ClientStrings } from '@/lib/client-strings';
 
 interface ScreenDisplayProps {
   color: string;
   colorId?: string;
   title?: string;
   locale?: Locale;
+  strings: ClientStrings<'screenDisplay'>;
 }
 
-export default function ScreenDisplay({ color, colorId, title, locale = 'en' }: ScreenDisplayProps) {
+export default function ScreenDisplay({ color, colorId, title, strings }: ScreenDisplayProps) {
   const [displayColor, setDisplayColor] = useState(color);
   const [resolution, setResolution] = useState<'native' | 'custom'>('native');
   const [customWidth, setCustomWidth] = useState('1920');
@@ -24,7 +26,7 @@ export default function ScreenDisplay({ color, colorId, title, locale = 'en' }: 
   const [isFullscreenActive, setIsFullscreenActive] = useState(false);
   const screenRef = useRef<HTMLDivElement>(null);
 
-  const translate = t(locale);
+  const translate = (key: keyof ClientStrings<'screenDisplay'>) => strings[key];
 
   // Presets for common resolutions
   const resolutionPresets = [
@@ -140,7 +142,7 @@ export default function ScreenDisplay({ color, colorId, title, locale = 'en' }: 
         onClick={handleFullscreen}
         role="button"
         tabIndex={0}
-        aria-label={translate('screen_display_fullscreen_aria' as any)}
+        aria-label={translate('screen_display_fullscreen_aria')}
       >
         <div className="w-full h-full flex items-center justify-center relative">
           {/* Fullscreen exit button - only show when in fullscreen */}
@@ -193,6 +195,7 @@ export default function ScreenDisplay({ color, colorId, title, locale = 'en' }: 
         {/* Color Customizer */}
         {colorId && (
           <ColorCustomizer
+            strings={strings}
             colorId={colorId}
             defaultColor={color}
             onColorChange={setDisplayColor}

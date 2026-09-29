@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/brightness-test/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -54,10 +55,10 @@ export default async function BrightnessTestPage({ params }: { params: Promise<{
         locale={locale}
         toolName={translate(TOOL.nameKey as any)}
       >
-        <BrightnessTest locale={locale as any} />
+        <BrightnessTest strings={getClientStrings('brightnessTest', locale)} locale={locale as any} />
       </ToolLayout>
       <GuideSection toolId="brightness-test" locale={locale as any} />
-      <RelatedReading toolId="brightness-test" locale={locale} />
+      <RelatedReading strings={getClientStrings('relatedReading', locale)} toolId="brightness-test" locale={locale} />
       <RelatedTools currentToolId="brightness-test" locale={locale as any} />
     </>
   );

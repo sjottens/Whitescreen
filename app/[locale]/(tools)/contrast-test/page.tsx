@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/contrast-test/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -54,10 +55,10 @@ export default async function ContrastTestPage({ params }: { params: Promise<{ l
         locale={locale}
         toolName={translate(TOOL.nameKey as any)}
       >
-        <ContrastTest locale={locale as any} />
+        <ContrastTest strings={getClientStrings('contrastTest', locale)} locale={locale as any} />
       </ToolLayout>
       <GuideSection toolId="contrast-test" locale={locale as any} />
-      <RelatedReading toolId="contrast-test" locale={locale} />
+      <RelatedReading strings={getClientStrings('relatedReading', locale)} toolId="contrast-test" locale={locale} />
       <RelatedTools currentToolId="contrast-test" locale={locale as any} />
     </>
   );

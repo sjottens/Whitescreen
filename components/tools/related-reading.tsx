@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { BookOpen, ArrowRight } from 'lucide-react';
-import { t } from '@/lib/translations';
+import type { ClientStrings } from '@/lib/client-strings';
 import { getLocalizedPath } from '@/lib/link-utils';
 import type { Locale } from '@/lib/i18n';
 
@@ -16,6 +16,7 @@ interface RelatedReadingItem {
 interface RelatedReadingProps {
   toolId: string;
   locale: Locale;
+  strings: ClientStrings<'relatedReading'>;
   items?: RelatedReadingItem[];
   customTitle?: string;
 }
@@ -131,8 +132,8 @@ const toolBlogMapping: Record<string, RelatedReadingItem[]> = {
   ],
 };
 
-export default function RelatedReading({ toolId, locale, items, customTitle }: RelatedReadingProps) {
-  const translate = t(locale);
+export default function RelatedReading({ toolId, locale, items, customTitle, strings }: RelatedReadingProps) {
+  const translate = (key: keyof ClientStrings<'relatedReading'>) => strings[key];
 
   // Use provided items or look up from mapping
   const articles = items || toolBlogMapping[toolId] || [];

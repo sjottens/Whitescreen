@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/orange-screen/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -73,7 +74,7 @@ export default async function OrangeScreenPage({ params }: { params: Promise<{ l
         showScreenControls
         hasDownload
       >
-        <ScreenDisplay color="#FFA500" title={translate(TOOL.nameKey as any)} locale={locale} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay', locale)} color="#FFA500" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="orange-screen" locale={locale as any} />
       <RelatedTools currentToolId="orange-screen" locale={locale as any} />

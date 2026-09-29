@@ -3,6 +3,7 @@
 // dedicated intro with real methodology, guide section, honest schema (no
 // fabricated ratings), and FAQ schema kept in sync with the visible FAQ.
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -150,14 +151,14 @@ export default async function BacklightBleedTestPage({ params }: { params: Promi
         locale={locale}
         toolName={translate(TOOL.nameKey as any)}
       >
-        <BacklightBleedDisplay locale={locale as any} />
+        <BacklightBleedDisplay strings={getClientStrings('backlightBleedDisplay', locale)} locale={locale as any} />
       </ToolLayout>
 
       {/* Detailed Guide */}
       <GuideSection toolId="backlight-bleed-test" locale={locale} />
 
       {/* Related Reading - Blog Articles & Guides */}
-      <RelatedReading toolId="backlight-bleed-test" locale={locale} />
+      <RelatedReading strings={getClientStrings('relatedReading', locale)} toolId="backlight-bleed-test" locale={locale} />
 
       {/* Related Tools for Internal Linking & Engagement */}
       <RelatedTools currentToolId="backlight-bleed-test" locale={locale} />

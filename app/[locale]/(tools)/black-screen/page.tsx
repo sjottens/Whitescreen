@@ -1,5 +1,6 @@
 // app/[locale]/(tools)/black-screen/page.tsx
 
+import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
 import { generateMultilingualMetadata, breadcrumbSchemaMultilingual } from '@/lib/seo';
 import { getLocaleFromParams, LOCALES } from '@/lib/i18n';
@@ -88,10 +89,10 @@ export default async function BlackScreenPage({ params }: PageProps) {
         showScreenControls
         hasDownload
       >
-        <ScreenDisplay color="#000000" title={translate(TOOL.nameKey as any)} locale={locale} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay', locale)} color="#000000" title={translate(TOOL.nameKey as any)} locale={locale} />
       </ToolLayout>
       <GuideSection toolId="black-screen" locale={locale as any} />
-      <RelatedReading toolId="black-screen" locale={locale} />
+      <RelatedReading strings={getClientStrings('relatedReading', locale)} toolId="black-screen" locale={locale} />
       <RelatedTools currentToolId="black-screen" locale={locale as any} />
     </>
   );
