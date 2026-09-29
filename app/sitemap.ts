@@ -141,6 +141,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
+  // Hardware tests (English only - no locale variants exist)
+  ['/click-speed-test'].forEach((path) => {
+    sitemapEntries.push({
+      url: getCanonicalUrl(DEFAULT_LOCALE, path),
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    });
+  });
+
   // Add blog articles (served at the root /blog/[slug] path, English only)
   allBlogArticles.forEach((article) => {
     sitemapEntries.push({
