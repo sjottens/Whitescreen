@@ -1,4 +1,5 @@
 // app/[locale]/(website)/blog/page.tsx - Locale-specific blog homepage
+import { getClientStrings } from '@/lib/client-strings';
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -186,7 +187,7 @@ export default function LocaleBlogPage({ params: paramsPromise }: LocaleBlogPage
 
   return (
     <Suspense fallback={<div className="w-full py-20 text-center">{translate('common_loading' as any)}</div>}>
-      <BlogHomepage
+      <BlogHomepage strings={getClientStrings('blogHomepage', locale)}
         title={titles[locale] || titles.en}
         subtitle={subtitles[locale] || subtitles.en}
         featuredArticles={featuredPreview}

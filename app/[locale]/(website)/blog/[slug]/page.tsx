@@ -1,4 +1,5 @@
 // app/[locale]/(website)/blog/[slug]/page.tsx - Locale-specific blog article page
+import { getClientStrings } from '@/lib/client-strings';
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -278,7 +279,7 @@ export default function LocaleBlogArticlePage({
         />
       )}
 
-      <BlogArticleLayout
+      <BlogArticleLayout strings={getClientStrings('blogArticleLayout', locale)}
         title={articleTranslations.title}
         metaTitle={articleTranslations.metaTitle}
         metaDescription={articleTranslations.metaDescription}

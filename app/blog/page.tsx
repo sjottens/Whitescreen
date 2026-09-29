@@ -1,4 +1,5 @@
 // app/blog/page.tsx - English blog homepage
+import { getClientStrings } from '@/lib/client-strings';
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { BlogHomepage } from '@/components/blog/blog-homepage';
@@ -114,7 +115,7 @@ export default function BlogPage() {
 
   return (
     <Suspense fallback={<div className="w-full py-20 text-center">{translate('common_loading' as any)}</div>}>
-      <BlogHomepage
+      <BlogHomepage strings={getClientStrings('blogHomepage', 'en')}
         title={translate('blog_page_title' as any)}
         subtitle={translate('blog_page_subtitle' as any)}
         featuredArticles={featuredPreview}

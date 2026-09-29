@@ -5,7 +5,7 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronUp } from 'lucide-react';
-import { t } from '@/lib/translations';
+import type { ClientStrings } from '@/lib/client-strings';
 
 interface BlogArticleLayoutProps {
   title: string;
@@ -26,6 +26,7 @@ interface BlogArticleLayoutProps {
     readingTime: number;
   }>;
   locale?: string;
+  strings: ClientStrings<'blogArticleLayout'>;
 }
 
 export function BlogArticleLayout({
@@ -40,8 +41,9 @@ export function BlogArticleLayout({
   children,
   relatedArticles,
   locale = 'en',
+  strings,
 }: BlogArticleLayoutProps) {
-  const translate = t((locale as 'en' | 'nl' | 'es' | 'de') || 'en');
+  const translate = (key: keyof ClientStrings<'blogArticleLayout'>) => strings[key];
   const [showTOC, setShowTOC] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -116,18 +118,18 @@ export function BlogArticleLayout({
           {/* Article Metadata */}
           <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-6">
             <div className="flex items-center gap-2">
-              <span className="text-sm">{translate('blog_layout_by_label' as any)}</span>
+              <span className="text-sm">{translate('blog_layout_by_label')}</span>
               <span className="font-semibold">{author}</span>
             </div>
             <div className="text-sm">
-              {translate('blog_layout_published_label' as any)}: <time>{formatDate(publishedAt)}</time>
+              {translate('blog_layout_published_label')}: <time>{formatDate(publishedAt)}</time>
             </div>
             {updatedAt !== publishedAt && (
               <div className="text-sm">
-                {translate('blog_layout_updated_label' as any)}: <time>{formatDate(updatedAt)}</time>
+                {translate('blog_layout_updated_label')}: <time>{formatDate(updatedAt)}</time>
               </div>
             )}
-            <div className="text-sm">{readingTimeMinutes} {translate('blog_layout_min_read_suffix' as any)}</div>
+            <div className="text-sm">{readingTimeMinutes} {translate('blog_layout_min_read_suffix')}</div>
           </div>
         </div>
       </div>
@@ -138,7 +140,7 @@ export function BlogArticleLayout({
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-20 bg-gray-50 rounded-lg p-6">
               <h2 className="font-bold text-lg mb-4 text-gray-900">
-                  {translate('blog_layout_toc_title' as any)}
+                  {translate('blog_layout_toc_title')}
               </h2>
               <nav className="space-y-2">
                 {tableOfContents.map((item) => (
@@ -166,7 +168,7 @@ export function BlogArticleLayout({
           {/* Related Articles */}
           {relatedArticles && relatedArticles.length > 0 && (
             <section className="mt-16 pt-16 border-t">
-              <h2 className="text-3xl font-bold mb-8">{translate('blog_layout_related_title' as any)}</h2>
+              <h2 className="text-3xl font-bold mb-8">{translate('blog_layout_related_title')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedArticles.map((article) => (
                   <Link
@@ -181,7 +183,7 @@ export function BlogArticleLayout({
                       {article.excerpt}
                     </p>
                     <span className="text-xs text-gray-500">
-                      {article.readingTime} {translate('blog_layout_min_read_suffix' as any)}
+                      {article.readingTime} {translate('blog_layout_min_read_suffix')}
                     </span>
                   </Link>
                 ))}
@@ -199,7 +201,7 @@ export function BlogArticleLayout({
               href={locale === 'en' ? '/tools' : `/${locale}/tools`}
               className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
             >
-              {translate('blog_layout_explore_tools_cta' as any)}
+              {translate('blog_layout_explore_tools_cta')}
             </Link>
           </section>
         </main>
@@ -210,7 +212,7 @@ export function BlogArticleLayout({
             <button
               onClick={scrollToTop}
               className="mb-2 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"
-              aria-label={translate('blog_layout_scroll_top_aria' as any)}
+              aria-label={translate('blog_layout_scroll_top_aria')}
             >
               <ChevronUp size={24} />
             </button>

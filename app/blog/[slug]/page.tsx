@@ -1,4 +1,5 @@
 // app/blog/[slug]/page.tsx - English blog article page
+import { getClientStrings } from '@/lib/client-strings';
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -216,7 +217,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
         />
       )}
 
-      <BlogArticleLayout
+      <BlogArticleLayout strings={getClientStrings('blogArticleLayout', 'en')}
         title={enTranslations.title}
         metaTitle={enTranslations.metaTitle}
         metaDescription={enTranslations.metaDescription}

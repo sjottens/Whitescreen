@@ -6,7 +6,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Search, ChevronRight, X } from 'lucide-react';
 import { BlogArticleCard } from './blog-article-card';
-import { t } from '@/lib/translations';
+import type { ClientStrings } from '@/lib/client-strings';
 
 interface BlogArticlePreview {
   slug: string;
@@ -31,6 +31,7 @@ interface BlogHomepageProps {
     articleCount: number;
   }>;
   locale?: string;
+  strings: ClientStrings<'blogHomepage'>;
 }
 
 const CATEGORY_COLORS: Record<string, { icon: string }> = {
@@ -62,8 +63,9 @@ export function BlogHomepage({
   allArticles,
   categories,
   locale = 'en',
+  strings,
 }: BlogHomepageProps) {
-  const translate = t(locale as 'en' | 'nl' | 'es' | 'de');
+  const translate = (key: keyof ClientStrings<'blogHomepage'>) => strings[key];
   const searchParams = useSearchParams();
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
