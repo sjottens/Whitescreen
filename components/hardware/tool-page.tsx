@@ -29,6 +29,8 @@ interface ToolPageProps {
   faqs: Faq[];
   /** Keep ad 1 at least 150px away from the tool (Click Speed Test). */
   adClearance?: boolean;
+  /** Give the tool more room than the text column (Keyboard Test). */
+  wideTool?: boolean;
 }
 
 export default function ToolPage({
@@ -43,6 +45,7 @@ export default function ToolPage({
   affiliate,
   faqs,
   adClearance = false,
+  wideTool = false,
 }: ToolPageProps) {
   const schemas = [webApplicationSchema({ name, description, path }), faqPageSchema(faqs)];
   const slots = AD_SLOTS[toolId];
@@ -57,7 +60,7 @@ export default function ToolPage({
         />
       ))}
 
-      <div className="container-sm pt-6 md:pt-10">
+      <div className={`${wideTool ? 'mx-auto max-w-5xl px-4 md:px-6' : 'container-sm'} pt-6 md:pt-10`}>
         <h1 className="mb-3 animate-none text-3xl md:text-5xl lg:text-5xl">{heading}</h1>
         <p className="mb-6 text-base text-slate-300 md:text-lg">{intro}</p>
         {tool}
