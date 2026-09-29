@@ -117,14 +117,6 @@ export default function Footer() {
           <p className="text-white text-left">
             © {currentYear} {SITE_NAME}. {translate('all_rights_reserved')} {translate('built_for')}
           </p>
-          <div className="flex gap-6">
-            <Link href="/sitemap.xml" className="text-white hover:text-slate-100 transition-colors">
-              {translate('footer_sitemap_label' as any)}
-            </Link>
-            <Link href="/robots.txt" className="text-white hover:text-slate-100 transition-colors">
-              {translate('footer_robots_label' as any)}
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

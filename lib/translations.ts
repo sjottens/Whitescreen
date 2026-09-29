@@ -944,8 +944,6 @@ const en = {
   "refresh_rate_fps_vs_hz_title": "FPS vs Refresh Rate",
   "refresh_rate_fps_vs_hz_desc": "For smooth gameplay, aim for FPS slightly above monitor refresh rate to reduce tearing and stutter.",
   "footer_brand_description": "Professional screen testing and display resources for professionals and enthusiasts.",
-  "footer_sitemap_label": "Sitemap",
-  "footer_robots_label": "Robots",
   "refresh_rate_tip_1": "Maintain FPS 10-20% above your refresh rate to avoid stuttering (for example, around 160 FPS for 144Hz).",
   "refresh_rate_tip_2": "Use G-Sync (NVIDIA) or FreeSync (AMD) to reduce tearing.",
   "refresh_rate_tip_3": "Higher resolutions (1440p and 4K) require more GPU power and can lower effective Hz targets.",
