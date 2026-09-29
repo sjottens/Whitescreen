@@ -10,6 +10,44 @@ import nodemailer from 'nodemailer';
 interface ContactPayload {
   email: string;
   message: string;
+  /** Honeypot: hidden field in the form, only bots fill it in. */
+  website?: string;
+  /** Date.now() when the form was shown. */
+  startedAt?: number;
+}
+
+// --- Spam protection -------------------------------------------------------
+// The form sends mail through a Gmail account with a daily sending limit
+// (~500/day); bot submissions used it up and broke the form for everyone.
+const MIN_FILL_TIME_MS = 3_000; // people don't fill in and send a form in under 3s
+const MAX_FORM_AGE_MS = 24 * 60 * 60 * 1000;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_MESSAGE_LENGTH = 5_000;
+const RATE_LIMIT_MAX = 3; // messages per IP address...
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // ...per hour
+
+// Per server instance only (serverless instances don't share memory), so this
+// slows down a flood rather than guaranteeing an exact limit.
+const recentSendsByIp = new Map<string, number[]>();
+
+function isRateLimited(ip: string, now: number): boolean {
+  const recent = (recentSendsByIp.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  recentSendsByIp.set(ip, recent);
+  return recent.length >= RATE_LIMIT_MAX;
+}
+
+function recordSend(ip: string, now: number) {
+  recentSendsByIp.set(ip, [...(recentSendsByIp.get(ip) ?? []), now]);
+}
+
+/** Why a submission looks automated, or null if it looks like a person. */
+function botReason(body: ContactPayload, now: number): string | null {
+  if (body.website) return 'honeypot filled';
+  if (typeof body.startedAt !== 'number' || body.startedAt <= 0) return 'no form start time';
+  const elapsed = now - body.startedAt;
+  if (elapsed < MIN_FILL_TIME_MS) return 'submitted too fast';
+  if (elapsed > MAX_FORM_AGE_MS) return 'form start time too old';
+  return null;
 }
 
 // Helper function to create transporter
@@ -41,7 +79,7 @@ export async function POST(request: NextRequest) {
     const body: ContactPayload = await request.json();
 
     // Validate input
-    if (!body.email || !body.message) {
+    if (typeof body.email !== 'string' || typeof body.message !== 'string' || !body.email || !body.message.trim()) {
       return NextResponse.json(
         { message: 'Email and message are required' },
         { status: 400 }
@@ -57,9 +95,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Rate limiting (simple in-memory, for production use Redis)
-    const clientIp = request.headers.get('x-forwarded-for') || 'unknown';
-    
+    if (body.email.length > MAX_EMAIL_LENGTH || body.message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { message: `Please keep your message under ${MAX_MESSAGE_LENGTH.toLocaleString('en-US')} characters.` },
+        { status: 400 }
+      );
+    }
+
+    const now = Date.now();
+    const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
+
+    // Bots get the normal success response, so they don't learn they were filtered.
+    const reason = botReason(body, now);
+    if (reason) {
+      console.warn(`Contact form: dropped submission (${reason})`);
+      return NextResponse.json({ message: 'Message sent successfully' }, { status: 200 });
+    }
+
+    if (isRateLimited(clientIp, now)) {
+      return NextResponse.json(
+        { message: 'You have sent several messages already. Please try again in an hour.' },
+        { status: 429 }
+      );
+    }
+    recordSend(clientIp, now);
+
     // Create transporter
     const transporter = createTransporter();
 

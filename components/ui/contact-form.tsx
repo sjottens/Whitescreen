@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface ContactFormProps {
   labels: {
@@ -18,6 +18,14 @@ export default function ContactForm({ labels }: ContactFormProps) {
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  // Spam protection (checked by /api/contact): a honeypot field real visitors
+  // never see, and the time the form was shown - bots submit instantly.
+  const [website, setWebsite] = useState('');
+  const startedAtRef = useRef(0);
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +48,8 @@ export default function ContactForm({ labels }: ContactFormProps) {
         body: JSON.stringify({
           email,
           message,
+          website,
+          startedAt: startedAtRef.current,
         }),
       });
 
@@ -62,7 +72,7 @@ export default function ContactForm({ labels }: ContactFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto">
+    <form onSubmit={handleSubmit} className="relative w-full max-w-2xl mx-auto">
       <div className="mb-6">
         <label htmlFor="email" className="block text-lg font-semibold text-slate-900 mb-2">
           {labels.emailLabel}
@@ -92,6 +102,20 @@ export default function ContactForm({ labels }: ContactFormProps) {
           className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-slate-900 placeholder-slate-700 bg-white"
           disabled={status === 'sending'}
           required
+        />
+      </div>
+
+      {/* Honeypot: hidden from people and screen readers, filled in by bots. */}
+      <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+        <label htmlFor="website">Website</label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
 
