@@ -1,15 +1,14 @@
-// lib/client-strings.ts - The translated strings each interactive (client)
+// lib/client-strings.ts - The UI strings each interactive (client)
 // component needs, picked on the server and passed down as a `strings` prop.
 //
 // Client components must never import lib/translations.ts: that ships the
-// whole dictionary (all four languages, ~130 kB gzipped) to the browser.
+// whole dictionary to the browser.
 // Client components import only the ClientStrings *type* from here.
 //
 // Adding a translate('new_key') call to a client component? Add the key to
 // its list below - TypeScript fails the build until you do.
 
-import { t } from './translations';
-import type { Locale } from './i18n';
+import { translate } from './translations';
 
 export const CLIENT_KEYS = {
   deadPixelTest: [
@@ -311,8 +310,7 @@ export const CLIENT_KEYS = {
 export type ClientComponent = keyof typeof CLIENT_KEYS;
 export type ClientStrings<C extends ClientComponent> = Record<(typeof CLIENT_KEYS)[C][number], string>;
 
-export function getClientStrings<C extends ClientComponent>(component: C, locale: Locale): ClientStrings<C> {
-  const translate = t(locale);
+export function getClientStrings<C extends ClientComponent>(component: C): ClientStrings<C> {
   return Object.fromEntries(
     CLIENT_KEYS[component].map((key: string) => [key, translate(key as never)])
   ) as ClientStrings<C>;

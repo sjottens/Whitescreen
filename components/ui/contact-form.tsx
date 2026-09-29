@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 interface ContactFormProps {
-  locale: string;
   labels: {
     emailLabel: string;
     messageLabel: string;
@@ -14,7 +13,7 @@ interface ContactFormProps {
   };
 }
 
-export default function ContactForm({ locale, labels }: ContactFormProps) {
+export default function ContactForm({ labels }: ContactFormProps) {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -41,7 +40,6 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
         body: JSON.stringify({
           email,
           message,
-          locale,
         }),
       });
 

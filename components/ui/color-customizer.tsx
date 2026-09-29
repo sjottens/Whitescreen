@@ -4,13 +4,11 @@ import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { ClientStrings } from '@/lib/client-strings';
-import type { Locale } from '@/lib/i18n';
 
 interface ColorCustomizerProps {
   colorId: string;
   defaultColor: string;
   onColorChange: (color: string) => void;
-  locale?: Locale;
   strings: ClientStrings<'colorCustomizer'>;
 }
 

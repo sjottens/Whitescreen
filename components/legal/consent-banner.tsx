@@ -4,24 +4,16 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useConsent } from '@/components/providers/consent-provider';
 import { CONSENT_STORAGE_KEY } from '@/lib/consent-types';
-import { isValidLocale, DEFAULT_LOCALE } from '@/lib/i18n';
 import type { ConsentKey, ConsentStrings } from '@/lib/ui-strings';
 
-/** strings come from the root layout (lib/ui-strings.ts) so the full dictionary stays server-side. */
+/** strings come from the root layout (lib/ui-strings.ts) so the dictionary stays server-side. */
 export default function ConsentBanner({ strings }: { strings: ConsentStrings }) {
   const { consent, acceptAll, rejectAll, updateConsent, isInitialized } = useConsent();
   const [showBanner, setShowBanner] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
-  const pathname = usePathname();
-  
-  // Extract locale from pathname
-  const segments = pathname.split('/').filter(Boolean);
-  const localeSegment = segments[0];
-  const locale = isValidLocale(localeSegment) ? localeSegment : DEFAULT_LOCALE;
-  const translate = (key: ConsentKey) => strings[locale][key];
+  const translate = (key: ConsentKey) => strings[key];
 
   // Show banner only if user hasn't explicitly consented yet
   useEffect(() => {

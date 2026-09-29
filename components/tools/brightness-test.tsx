@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, RotateCcw, Play, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { ClientStrings } from '@/lib/client-strings';
-import type { Locale } from '@/lib/i18n';
 import PhotosensitivityWarning from '@/components/tools/photosensitivity-warning';
 
 type TestMode = 'desktop' | 'mobile';
@@ -32,11 +31,10 @@ const GRAY_LEVELS: GrayLevel[] = [
 ];
 
 interface BrightnessTestProps {
-  locale?: Locale;
   strings: ClientStrings<'brightnessTest'>;
 }
 
-export default function BrightnessTest({ locale = 'en', strings }: BrightnessTestProps) {
+export default function BrightnessTest({ strings }: BrightnessTestProps) {
   const translate = (key: keyof ClientStrings<'brightnessTest'>) => strings[key];
   const [testMode, setTestMode] = useState<TestMode>('desktop');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('ladder');
@@ -234,7 +232,7 @@ export default function BrightnessTest({ locale = 'en', strings }: BrightnessTes
     if (!flickerAcknowledged) {
       return (
         <div className="w-full h-full flex items-center justify-center bg-slate-100 p-6">
-          <PhotosensitivityWarning locale={locale}>
+          <PhotosensitivityWarning>
             <button
               type="button"
               onClick={() => setFlickerAcknowledged(true)}

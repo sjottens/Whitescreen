@@ -3,7 +3,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Maximize2, RotateCcw, Copy, Check } from 'lucide-react';
 import type { ClientStrings } from '@/lib/client-strings';
-import type { Locale } from '@/lib/i18n';
 
 type TestMode = 'wcag-ladder' | 'text-readability' | 'pattern' | 'custom-pair';
 type VisionMode = 'normal' | 'deuteranopia' | 'protanopia' | 'tritanopia' | 'achromatopsia';
@@ -139,7 +138,6 @@ const VISION_FILTERS: Record<VisionMode, { name: string }> = {
 };
 
 interface ContrastTestProps {
-  locale?: Locale;
   strings: ClientStrings<'contrastTest'>;
 }
 

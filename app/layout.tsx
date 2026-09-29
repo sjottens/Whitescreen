@@ -1,6 +1,6 @@
 // app/layout.tsx - Root layout with SEO, fonts, and structure
 // NOTE: This layout provides ONLY HTML shell, styles, and scripts
-// Header/Footer are handled by app/[locale]/layout.tsx and app/(website) layouts
+// Header/Footer are handled by app/(site)/layout.tsx
 // This prevents duplicate headers/footers
 
 import { ReactNode } from 'react';
@@ -240,7 +240,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         {/* NOTE: AdSense is now loaded deferred via AdOptimizer component to improve performance */}
 
-        {/* Explicit manifest link to prevent locale-relative fetching */}
+        {/* Explicit manifest link */}
         <link rel="manifest" href="/site.webmanifest" />
 
         {/* Google Tag Manager - Essential for analytics tracking

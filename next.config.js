@@ -41,8 +41,10 @@ const nextConfig = {
     // got the site rejected by AdSense as low-value content. They're folded
     // back into the real tool pages.
     //
-    // Each rule is emitted twice (with and without a locale prefix) because
-    // an optional `:locale?` in the destination 500s when it's absent.
+    //
+    // The site used to be served in Dutch, Spanish and German under /nl, /es
+    // and /de (and English was reachable under /en). It is English-only now:
+    // every old prefixed URL goes straight to the English page in one hop.
     async redirects() {
         const rules = [
             // Thin per-device pages (~200 words each, just linking to the
@@ -69,14 +71,15 @@ const nextConfig = {
             ['/blog/broken-pixel-diagnosis-test-and-repair-methods', '/blog/can-dead-pixels-be-fixed'],
             ['/blog/dead-pixel-warranty-guide', '/how-to-test-a-monitor-before-returning'],
         ];
-        return rules.flatMap(([source, destination]) => [
-            { source, destination, permanent: true },
-            {
-                source: `/:locale(nl|es|de)${source}`,
-                destination: `/:locale${destination}`,
-                permanent: true,
-            },
-        ]);
+        const oldLocale = '/:oldLocale(nl|es|de|en)';
+        return [
+            ...rules.flatMap(([source, destination]) => [
+                { source, destination, permanent: true },
+                { source: `${oldLocale}${source}`, destination, permanent: true },
+            ]),
+            { source: oldLocale, destination: '/', permanent: true },
+            { source: `${oldLocale}/:path*`, destination: '/:path*', permanent: true },
+        ];
     },
 
     // Headers for SEO & Performance
@@ -114,16 +117,6 @@ const nextConfig = {
                         value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://rsms.me https://fonts.googleapis.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://rsms.me; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com https://rsms.me; media-src 'self' blob:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://stats.g.doubleclick.net https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://tpc.googlesyndication.com https://googleads.g.doubleclick.net; frame-src 'self' https://pagead2.googlesyndication.com https://ep2.adtrafficquality.google https://googleads.g.doubleclick.net;",
                     },
                 ],
-            },
-            // Untranslated locales: usable, but kept out of the index until
-            // fully translated (see INDEXED_LOCALES in lib/i18n.ts).
-            {
-                source: '/:locale(nl|es|de)',
-                headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
-            },
-            {
-                source: '/:locale(nl|es|de)/:path*',
-                headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
             },
             // Vercel also serves every deployment on *.vercel.app - keep that
             // mirror of the site out of the index.

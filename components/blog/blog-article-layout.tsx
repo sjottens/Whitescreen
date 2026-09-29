@@ -25,7 +25,6 @@ interface BlogArticleLayoutProps {
     excerpt: string;
     readingTime: number;
   }>;
-  locale?: string;
   strings: ClientStrings<'blogArticleLayout'>;
 }
 
@@ -40,14 +39,13 @@ export function BlogArticleLayout({
   tableOfContents,
   children,
   relatedArticles,
-  locale = 'en',
   strings,
 }: BlogArticleLayoutProps) {
   const translate = (key: keyof ClientStrings<'blogArticleLayout'>) => strings[key];
   const [showTOC, setShowTOC] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const blogBasePath = locale === 'en' ? '/blog' : `/${locale}/blog`;
+  const blogBasePath = '/blog';
 
   // Track reading progress
   useEffect(() => {
@@ -77,7 +75,7 @@ export function BlogArticleLayout({
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString(locale === 'nl' ? 'nl-NL' : 'en-US', {
+    return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -198,7 +196,7 @@ export function BlogArticleLayout({
               {translate('cta_ready_desc')}
             </p>
             <Link
-              href={locale === 'en' ? '/tools' : `/${locale}/tools`}
+              href="/tools"
               className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
             >
               {translate('blog_layout_explore_tools_cta')}

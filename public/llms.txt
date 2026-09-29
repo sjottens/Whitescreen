@@ -1,8 +1,8 @@
 # TestaScreen
 
-> TestaScreen is a free set of browser-based display tests - dead pixels, backlight bleed, response time/ghosting, brightness, contrast and full-screen color panels - plus guides on how to read the results and what to do about defects.
+> TestaScreen is a free set of browser-based hardware tests - dead pixels, backlight bleed, response time/ghosting, brightness, contrast and full-screen color panels, plus microphone, webcam, keyboard and click speed tests - with guides on how to read the results and what to do about defects.
 
-All tools run entirely in the browser (no install, no account). The site is in English; Dutch, Spanish and German versions exist under `/nl/`, `/es/` and `/de/` but are only partly translated.
+All tools run entirely in the browser (no install, no account). The site is in English.
 
 ## Tests
 
@@ -14,6 +14,13 @@ All tools run entirely in the browser (no install, no account). The site is in E
 - [Contrast Test](https://testascreen.com/contrast-test): Near-black and near-white detail checks.
 - [Color Screens](https://testascreen.com/tools): White, black, red, green, blue, pink, purple, orange and yellow full-screen panels.
 - [Zoom Lighting](https://testascreen.com/zoom-lighting): Use the screen as a soft fill light for video calls.
+
+## Hardware tests
+
+- [Mic Test](https://testascreen.com/mic-test): Live input level, waveform and a 5-second recording played back locally. Nothing is uploaded.
+- [Keyboard Test](https://testascreen.com/keyboard-test): Press every key on an ANSI or ISO layout to find dead keys, chattering and ghosting.
+- [Webcam Test](https://testascreen.com/webcam-test): Live preview with the resolution and frame rate the camera really delivers.
+- [Click Speed Test](https://testascreen.com/click-speed-test): Clicks per second over 1, 5, 10 or 30 seconds; also shows a mouse that double clicks.
 
 ## Guides
 

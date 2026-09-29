@@ -3,8 +3,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { ArrowRight, Play, Pause, Maximize2, RotateCcw, Info } from 'lucide-react';
 import Link from 'next/link';
-import { getLocalizedPath } from '@/lib/link-utils';
-import { LOCALES, type Locale } from '@/lib/i18n';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import type { ClientStrings } from '@/lib/client-strings';
 import PhotosensitivityWarning from '@/components/tools/photosensitivity-warning';
@@ -29,9 +27,9 @@ const COLORS = {
   },
 };
 
-// Interactive part of /dead-pixel-fixer. The page (app/[locale]/dead-pixel-fixer/page.tsx)
-// is a server component that passes the locale and its translated strings.
-export default function DeadPixelFixer({ locale, strings }: { locale: Locale; strings: ClientStrings<'deadPixelFixer'> }) {
+// Interactive part of /dead-pixel-fixer. The page (app/(site)/dead-pixel-fixer/page.tsx)
+// is a server component that passes the tool its strings.
+export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'deadPixelFixer'> }) {
   const translate = (key: keyof ClientStrings<'deadPixelFixer'>) => strings[key];
   const [isRunning, setIsRunning] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -219,8 +217,8 @@ export default function DeadPixelFixer({ locale, strings }: { locale: Locale; st
       {/* Breadcrumbs */}
       <Breadcrumbs
         items={[
-          { name: translate('home'), path: getLocalizedPath(locale as any, '/') },
-          { name: translate('resources'), path: getLocalizedPath(locale as any, '/tools') },
+          { name: translate('home'), path: '/' },
+          { name: translate('resources'), path: '/tools' },
           { name: translate('dead_pixel_fixer') },
         ]}
       />
@@ -325,7 +323,7 @@ export default function DeadPixelFixer({ locale, strings }: { locale: Locale; st
             {/* Right Column - Controls */}
             <div className="flex flex-col justify-between">
               <div className="space-y-3">
-                <PhotosensitivityWarning locale={locale} />
+                <PhotosensitivityWarning />
                 <button
                   onClick={handleStart}
                   disabled={isRunning}
@@ -559,11 +557,10 @@ export default function DeadPixelFixer({ locale, strings }: { locale: Locale; st
               { title: translate('explore_guides_contrast'), path: '/contrast-test', description: translate('explore_guides_contrast_desc') },
               { title: translate('explore_guides_color_screen'), path: '/white-screen', description: translate('explore_guides_color_screen_desc') },
             ].map((tool, idx) => {
-              const validLocale: any = LOCALES.includes(locale as any) ? locale : 'en';
               return (
                 <Link
                   key={idx}
-                  href={getLocalizedPath(validLocale, tool.path)}
+                  href={tool.path}
                   className="bg-slate-800 hover:bg-slate-700 transition-colors rounded-lg p-4 border border-slate-700/50 hover:border-cyan-500/50 group"
                 >
                   <h3 className="font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors">{tool.title}</h3>

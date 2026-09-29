@@ -1,19 +1,16 @@
-// components/tools/tool-layout.tsx - Reusable tool page layout component with multilingual support
+// components/tools/tool-layout.tsx - Reusable tool page layout component
 
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Wrench, ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { LinkButton } from '@/components/ui/button';
-import { t } from '@/lib/translations';
-import { getLocalizedPath } from '@/lib/link-utils';
-import type { Locale } from '@/lib/i18n';
+import { translate } from '@/lib/translations';
 
 interface ToolLayoutProps {
   title: string;
   description: string;
   children: ReactNode;
-  locale: Locale;
   toolName?: string;
   relatedTools?: Array<{ name: string; path: string; color?: string }>;
   features?: string[];
@@ -29,7 +26,6 @@ export default function ToolLayout({
   title,
   description,
   children,
-  locale,
   toolName,
   relatedTools = [],
   features = [],
@@ -38,15 +34,14 @@ export default function ToolLayout({
   showScreenControls = false,
   hasDownload = false,
 }: ToolLayoutProps) {
-  const translate = t(locale);
 
   return (
     <>
       {/* Breadcrumbs */}
       <Breadcrumbs
         items={[
-          { name: translate('home'), path: getLocalizedPath(locale, '/') },
-          { name: translate('resources'), path: getLocalizedPath(locale, '/tools') },
+          { name: translate('home'), path: '/' },
+          { name: translate('resources'), path: '/tools' },
           { name: toolName || title },
         ]}
       />
@@ -55,7 +50,7 @@ export default function ToolLayout({
       <div className="sticky top-0 z-40 bg-gradient-to-r from-blue-50 to-slate-50 border-b-2 border-blue-200 backdrop-blur-sm">
         <div className="container px-4 py-4 flex items-center justify-between">
           <LinkButton 
-            href={getLocalizedPath(locale, '/tools')} 
+            href={'/tools'} 
             variant="secondary"
             size="sm"
             className="flex items-center gap-2"
@@ -80,7 +75,7 @@ export default function ToolLayout({
               anyone who spots a stuck pixel while testing has an obvious
               next step. */}
           <Link
-            href={getLocalizedPath(locale, '/dead-pixel-fixer')}
+            href={'/dead-pixel-fixer'}
             className="group mb-16 flex items-center justify-between gap-4 rounded-xl border border-cyan-200 bg-cyan-50 px-6 py-5 hover:border-cyan-300 hover:bg-cyan-100/60 transition-colors"
           >
             <div className="flex items-center gap-3">
@@ -201,7 +196,7 @@ export default function ToolLayout({
                   {relatedTools.map((tool, index) => (
                     <Link
                       key={index}
-                      href={getLocalizedPath(locale, tool.path)}
+                      href={tool.path}
                       className="card hover:shadow-lg transition-shadow group"
                     >
                       <div className="flex items-center justify-between">

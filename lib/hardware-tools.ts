@@ -48,11 +48,6 @@ export const HARDWARE_TOOLS: HardwareTool[] = [
   },
 ];
 
-// The four new tests exist in English only: no locale redirect, no language switcher.
-export const ENGLISH_ONLY_PATHS: ReadonlySet<string> = new Set(
-  HARDWARE_TOOLS.filter((tool) => tool.id !== 'screen-test').map((tool) => tool.path)
-);
-
 // AdSense ad-unit IDs for the manual slots on the tool pages. Leave a slot
 // empty and nothing is rendered there. Auto ads must be excluded for these
 // four URLs in the AdSense dashboard, otherwise Google can still drop an ad

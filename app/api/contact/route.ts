@@ -10,7 +10,6 @@ import nodemailer from 'nodemailer';
 interface ContactPayload {
   email: string;
   message: string;
-  locale: string;
 }
 
 // Helper function to create transporter
@@ -72,7 +71,6 @@ export async function POST(request: NextRequest) {
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>From:</strong> ${sanitizeHtml(body.email)}</p>
-        <p><strong>Language:</strong> ${sanitizeHtml(body.locale)}</p>
         <p><strong>Message:</strong></p>
         <p>${sanitizeHtml(body.message).replace(/\n/g, '<br>')}</p>
         <hr>
@@ -82,7 +80,6 @@ export async function POST(request: NextRequest) {
 New Contact Form Submission
 
 From: ${body.email}
-Language: ${body.locale}
 
 Message:
 ${body.message}

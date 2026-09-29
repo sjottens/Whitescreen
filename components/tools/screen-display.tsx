@@ -6,14 +6,12 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, Download, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ColorCustomizer } from '@/components/ui/color-customizer';
-import type { Locale } from '@/lib/i18n';
 import type { ClientStrings } from '@/lib/client-strings';
 
 interface ScreenDisplayProps {
   color: string;
   colorId?: string;
   title?: string;
-  locale?: Locale;
   strings: ClientStrings<'screenDisplay'>;
 }
 

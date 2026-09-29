@@ -3,8 +3,6 @@
 import Link from 'next/link';
 import { BookOpen, ArrowRight } from 'lucide-react';
 import type { ClientStrings } from '@/lib/client-strings';
-import { getLocalizedPath } from '@/lib/link-utils';
-import type { Locale } from '@/lib/i18n';
 
 interface RelatedReadingItem {
   title: string;
@@ -15,7 +13,6 @@ interface RelatedReadingItem {
 
 interface RelatedReadingProps {
   toolId: string;
-  locale: Locale;
   strings: ClientStrings<'relatedReading'>;
   items?: RelatedReadingItem[];
   customTitle?: string;
@@ -132,7 +129,7 @@ const toolBlogMapping: Record<string, RelatedReadingItem[]> = {
   ],
 };
 
-export default function RelatedReading({ toolId, locale, items, customTitle, strings }: RelatedReadingProps) {
+export default function RelatedReading({ toolId, items, customTitle, strings }: RelatedReadingProps) {
   const translate = (key: keyof ClientStrings<'relatedReading'>) => strings[key];
 
   // Use provided items or look up from mapping
@@ -161,7 +158,7 @@ export default function RelatedReading({ toolId, locale, items, customTitle, str
           {articles.map((article) => (
             <Link
               key={article.slug}
-              href={getLocalizedPath(locale, `/blog/${article.slug}`)}
+              href={`/blog/${article.slug}`}
               className="group relative overflow-hidden rounded-xl border border-slate-700 bg-slate-900/50 backdrop-blur p-6 transition-all duration-300 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/20 hover:-translate-y-1"
             >
               {/* Intent badge */}
@@ -199,7 +196,7 @@ export default function RelatedReading({ toolId, locale, items, customTitle, str
             Browse our complete blog for in-depth guides on monitor testing, display technologies, buying guides, and troubleshooting.
           </p>
           <Link
-            href={getLocalizedPath(locale, '/blog')}
+            href={'/blog'}
             className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
           >
             Explore Full Blog

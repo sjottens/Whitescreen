@@ -1,4 +1,4 @@
-// components/layout/navigation.tsx - Main navigation with SEO-friendly links and multilingual support
+// components/layout/navigation.tsx - Main navigation (desktop from xl, menu below)
 
 'use client';
 
@@ -6,29 +6,16 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { getLocalizedPath, parseLocalePath } from '@/lib/link-utils';
-import { HARDWARE_TOOLS, ENGLISH_ONLY_PATHS } from '@/lib/hardware-tools';
-import LanguageSelector from './language-selector';
-import type { Locale } from '@/lib/i18n';
+import { HARDWARE_TOOLS } from '@/lib/hardware-tools';
 import type { HeaderLabels } from '@/lib/ui-strings';
 
 interface NavigationProps {
-  locale: Locale;
   labels: HeaderLabels;
 }
 
-// The hardware tests are English-only pages, so they're linked without a
-// locale prefix. The screen test is localized like the rest of the site.
-const toolHref = (locale: Locale, path: string, id: string) =>
-  id === 'screen-test' ? getLocalizedPath(locale, path) : path;
-
-export default function Navigation({ locale, labels }: NavigationProps) {
+export default function Navigation({ labels }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-
-  // Extract the clean path without locale prefix
-  const [, cleanPath] = parseLocalePath(pathname);
-  const englishOnly = ENGLISH_ONLY_PATHS.has(cleanPath);
 
   const mobileLink =
     'block rounded-lg px-4 py-3 text-slate-100 bg-slate-800/30 hover:bg-slate-700 hover:text-cyan-300 transition-colors focus-ring';
@@ -40,22 +27,19 @@ export default function Navigation({ locale, labels }: NavigationProps) {
         {HARDWARE_TOOLS.map((tool) => (
           <Link
             key={tool.id}
-            href={toolHref(locale, tool.path, tool.id)}
-            aria-current={cleanPath === tool.path ? 'page' : undefined}
+            href={tool.path}
+            aria-current={pathname === tool.path ? 'page' : undefined}
             className="nav-link-premium focus-ring aria-[current=page]:text-cyan-300"
           >
             {tool.name}
           </Link>
         ))}
-        <Link href={getLocalizedPath(locale, '/dead-pixel-fixer')} className="nav-link-premium focus-ring">
+        <Link href="/dead-pixel-fixer" className="nav-link-premium focus-ring">
           Pixel Fixer
         </Link>
-        <Link href={getLocalizedPath(locale, '/blog')} className="nav-link-premium focus-ring">
+        <Link href="/blog" className="nav-link-premium focus-ring">
           {labels.blog}
         </Link>
-
-        {/* Language Selector */}
-        {!englishOnly && <LanguageSelector locale={locale} labels={labels} currentPath={cleanPath} />}
       </nav>
 
       {/* Mobile Navigation Toggle */}
@@ -80,7 +64,7 @@ export default function Navigation({ locale, labels }: NavigationProps) {
             <ul className="list-none space-y-1 pl-0">
               {HARDWARE_TOOLS.map((tool) => (
                 <li key={tool.id} className="mb-0">
-                  <Link href={toolHref(locale, tool.path, tool.id)} className={mobileLink} onClick={() => setIsOpen(false)}>
+                  <Link href={tool.path} className={mobileLink} onClick={() => setIsOpen(false)}>
                     {tool.name}
                   </Link>
                 </li>
@@ -91,37 +75,26 @@ export default function Navigation({ locale, labels }: NavigationProps) {
 
             <ul className="list-none space-y-1 pl-0">
               <li className="mb-0">
-                <Link href={getLocalizedPath(locale, '/dead-pixel-fixer')} className={mobileLink} onClick={() => setIsOpen(false)}>
+                <Link href="/dead-pixel-fixer" className={mobileLink} onClick={() => setIsOpen(false)}>
                   Dead Pixel Fixer
                 </Link>
               </li>
               <li className="mb-0">
-                <Link href={getLocalizedPath(locale, '/blog')} className={mobileLink} onClick={() => setIsOpen(false)}>
+                <Link href="/blog" className={mobileLink} onClick={() => setIsOpen(false)}>
                   {labels.blog}
                 </Link>
               </li>
               <li className="mb-0">
-                <Link href={getLocalizedPath(locale, '/about')} className={mobileLink} onClick={() => setIsOpen(false)}>
+                <Link href="/about" className={mobileLink} onClick={() => setIsOpen(false)}>
                   {labels.about}
                 </Link>
               </li>
               <li className="mb-0">
-                <Link href={getLocalizedPath(locale, '/contact')} className={mobileLink} onClick={() => setIsOpen(false)}>
+                <Link href="/contact" className={mobileLink} onClick={() => setIsOpen(false)}>
                   {labels.contact}
                 </Link>
               </li>
             </ul>
-
-            {!englishOnly && (
-              <>
-                <div className="my-3 border-t border-slate-700/50" />
-
-                {/* Language Selector - Mobile */}
-                <div className="px-4 py-3">
-                  <LanguageSelector locale={locale} labels={labels} currentPath={cleanPath} onSelect={() => setIsOpen(false)} />
-                </div>
-              </>
-            )}
           </nav>
         </div>
       )}

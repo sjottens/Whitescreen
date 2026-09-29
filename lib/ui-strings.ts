@@ -2,31 +2,24 @@
 // need out of lib/translations.ts on the server.
 //
 // Only import this from server components. Importing lib/translations.ts in
-// a client component ships the entire dictionary (all four languages,
-// ~130 kB gzipped) to the browser on every page.
+// a client component would ship the entire dictionary to the browser on
+// every page.
 
-import { LOCALES, type Locale } from './i18n';
-import { t } from './translations';
+import { translate } from './translations';
 
 export interface HeaderLabels {
   blog: string;
   about: string;
   contact: string;
   menuAria: string;
-  languageAria: string;
-  languageHint: string;
 }
 
-export function getHeaderLabels(locale: Locale): HeaderLabels {
-  const translate = t(locale);
-  const languageAria = translate('language_selector_aria' as never);
+export function getHeaderLabels(): HeaderLabels {
   return {
     blog: translate('blog'),
     about: translate('about'),
     contact: translate('contact'),
     menuAria: translate('navigation_toggle_menu_aria' as never),
-    languageAria,
-    languageHint: translate('language_selector_hint' as never) || languageAria,
   };
 }
 
@@ -53,14 +46,8 @@ const CONSENT_KEYS = [
 ] as const;
 
 export type ConsentKey = (typeof CONSENT_KEYS)[number];
-export type ConsentStrings = Record<Locale, Record<ConsentKey, string>>;
+export type ConsentStrings = Record<ConsentKey, string>;
 
-/** The consent banner sits in the root layout and picks its language from the URL, so it gets all four. */
 export function getConsentStrings(): ConsentStrings {
-  return Object.fromEntries(
-    LOCALES.map((locale) => {
-      const translate = t(locale);
-      return [locale, Object.fromEntries(CONSENT_KEYS.map((key) => [key, translate(key as never)]))];
-    })
-  ) as ConsentStrings;
+  return Object.fromEntries(CONSENT_KEYS.map((key) => [key, translate(key as never)])) as ConsentStrings;
 }

@@ -2,15 +2,10 @@
 
 import Link from 'next/link';
 import { ArrowRight, Zap, Repeat, TrendingUp } from 'lucide-react';
-import { getLocalizedPath } from '@/lib/link-utils';
 
-interface ResponseTimeIntroProps {
-  locale: string;
-}
-
-export default function ResponseTimeIntro({ locale }: ResponseTimeIntroProps) {
-  const monitorTestHref = getLocalizedPath(locale as any, '/monitor-test');
-  const gamingHref = getLocalizedPath(locale as any, '/monitor-buying-guide');
+export default function ResponseTimeIntro() {
+  const monitorTestHref = '/monitor-test';
+  const gamingHref = '/monitor-buying-guide';
 
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">

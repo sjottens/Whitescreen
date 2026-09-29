@@ -2,14 +2,9 @@
 
 import Link from 'next/link';
 import { AlertCircle, ArrowRight, CheckCircle, XCircle } from 'lucide-react';
-import { getLocalizedPath } from '@/lib/link-utils';
 
-interface DeadPixelIntroProps {
-  locale: string;
-}
-
-export default function DeadPixelIntro({ locale }: DeadPixelIntroProps) {
-  const fixerHref = getLocalizedPath(locale as any, '/dead-pixel-fixer');
+export default function DeadPixelIntro() {
+  const fixerHref = '/dead-pixel-fixer';
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
       <div className="container">

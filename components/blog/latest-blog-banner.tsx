@@ -3,16 +3,8 @@
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Zap } from 'lucide-react';
 import { allBlogArticles } from '@/lib/blog-content';
-import { Locale } from '@/lib/i18n';
-import { getLocalizedPath } from '@/lib/link-utils';
-import { t } from '@/lib/translations';
 
-interface LatestBlogBannerProps {
-  locale: Locale;
-}
-
-export function LatestBlogBanner({ locale }: LatestBlogBannerProps) {
-  const translate = t(locale);
+export function LatestBlogBanner() {
   
   // Get the latest blog article (most recent by publishedAt)
   const latestArticle = [...allBlogArticles].sort((a, b) => 
@@ -21,8 +13,7 @@ export function LatestBlogBanner({ locale }: LatestBlogBannerProps) {
 
   if (!latestArticle) return null;
 
-  // Get translation for the current locale
-  const articleTranslation = latestArticle.translations[locale] || latestArticle.translations.en;
+  const articleTranslation = latestArticle.translations.en;
   const title = articleTranslation.title;
   const description = articleTranslation.metaDescription;
   
@@ -99,7 +90,7 @@ export function LatestBlogBanner({ locale }: LatestBlogBannerProps) {
           {/* Card Container */}
           <div className={`border ${style.borderColor} rounded-xl backdrop-blur-xl bg-white/5 overflow-hidden hover:border-opacity-50 transition-all duration-300 group`}>
             <Link 
-              href={getLocalizedPath(locale, `/blog/${latestArticle.slug}`)}
+              href={`/blog/${latestArticle.slug}`}
               className="block p-4 md:p-6 text-decoration-none"
             >
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-6 items-center">
@@ -146,7 +137,7 @@ export function LatestBlogBanner({ locale }: LatestBlogBannerProps) {
                     <div className="flex items-center gap-1">
                       <span className="text-white/40">•</span>
                       <time dateTime={latestArticle.publishedAt}>
-                        {new Date(latestArticle.publishedAt).toLocaleDateString(locale === 'nl' ? 'nl-NL' : locale === 'es' ? 'es-ES' : locale === 'de' ? 'de-DE' : 'en-US', {
+                        {new Date(latestArticle.publishedAt).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric'

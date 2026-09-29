@@ -1,4 +1,4 @@
-// lib/tool-guides.ts - Guide content for all tools (multilingual support via translations)
+// lib/tool-guides.ts - Guide content for all tools
 
 export type ToolGuide = {
   whatIs: string;

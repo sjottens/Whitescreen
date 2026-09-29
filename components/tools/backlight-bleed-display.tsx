@@ -8,11 +8,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, Grid3x3, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { Locale } from '@/lib/i18n';
 import type { ClientStrings } from '@/lib/client-strings';
 
 interface BacklightBleedDisplayProps {
-  locale?: Locale;
   strings: ClientStrings<'backlightBleedDisplay'>;
 }
 

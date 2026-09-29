@@ -2,11 +2,7 @@
 
 import { Contrast, Eye } from 'lucide-react';
 
-interface ContrastTestIntroProps {
-  locale: string;
-}
-
-export default function ContrastTestIntro({ locale }: ContrastTestIntroProps) {
+export default function ContrastTestIntro() {
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
       <div className="container">

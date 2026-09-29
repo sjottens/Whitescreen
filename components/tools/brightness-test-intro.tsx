@@ -2,11 +2,7 @@
 
 import { AlertCircle, Sun, Zap } from 'lucide-react';
 
-interface BrightnessTestIntroProps {
-  locale: string;
-}
-
-export default function BrightnessTestIntro({ locale }: BrightnessTestIntroProps) {
+export default function BrightnessTestIntro() {
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
       <div className="container">

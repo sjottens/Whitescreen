@@ -1,15 +1,11 @@
 'use client';
 
-interface DeadPixelHeroProps {
-  locale: string;
-}
-
 // Compact header shown above the interactive tool. Deliberately short - the
 // full "what are dead pixels / how to use / FAQ / warranty" explainer lives
 // in <DeadPixelIntro>, rendered *after* the tool, so the test itself is the
 // first thing visible on the page instead of being buried below a long
 // educational section.
-export default function DeadPixelHero({ locale: _locale }: DeadPixelHeroProps) {
+export default function DeadPixelHero() {
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-8 md:py-10">
       <div className="container">

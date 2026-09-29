@@ -20,7 +20,7 @@ export function llmOptimizedOrganizationSchema(): SchemaConfig {
     '@type': 'Organization',
     '@id': SITE_URL,
     name: SITE_NAME,
-    alternateName: 'TestAScreen',
+    alternateName: 'TestaScreen',
     url: SITE_URL,
     logo: `${SITE_URL}/logo.svg`,
     image: `${SITE_URL}/logo.svg`,
@@ -29,10 +29,9 @@ export function llmOptimizedOrganizationSchema(): SchemaConfig {
     // Contact Information
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'Customer Support',
+      contactType: 'Customer Support',
       url: `${SITE_URL}/contact`,
-      areaServed: ['NL', 'EN', 'ES', 'DE', 'EU'],
-      availableLanguage: ['en', 'nl', 'es', 'de'],
+      availableLanguage: 'en',
     },
     
     // Founder/Person for E-E-A-T
@@ -65,7 +64,7 @@ export function llmOptimizedOrganizationSchema(): SchemaConfig {
 
     // Searchable Properties for AI Indexing
     searchable: true,
-    inLanguage: ['en', 'nl', 'es', 'de'],
+    inLanguage: 'en',
   };
 }
 
@@ -81,7 +80,7 @@ export function llmOptimizedWebsiteSchema(): SchemaConfig {
     url: SITE_URL,
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
-    inLanguage: ['en', 'nl', 'es', 'de'],
+    inLanguage: 'en',
     
     // Main Entity Definition
     mainEntity: {

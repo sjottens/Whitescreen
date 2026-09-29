@@ -4,9 +4,8 @@
 
 import Logo from '@/components/ui/logo';
 import { getHeaderLabels } from '@/lib/ui-strings';
-import type { Locale } from '@/lib/i18n';
 import HeaderShell from './header-shell';
 
-export default function Header({ locale }: { locale: Locale }) {
-  return <HeaderShell locale={locale} labels={getHeaderLabels(locale)} logo={<Logo locale={locale} />} />;
+export default function Header() {
+  return <HeaderShell labels={getHeaderLabels()} logo={<Logo />} />;
 }

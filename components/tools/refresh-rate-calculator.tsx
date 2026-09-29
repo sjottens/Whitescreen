@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import type { ClientStrings } from '@/lib/client-strings';
-import type { Locale } from '@/lib/i18n';
 
 interface GPUSpec {
   name: string;
@@ -16,7 +15,6 @@ interface CPUSpec {
 }
 
 interface RefreshRateCalculatorProps {
-  locale?: Locale;
   strings: ClientStrings<'refreshRateCalculator'>;
 }
 

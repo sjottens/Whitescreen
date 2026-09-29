@@ -2,15 +2,10 @@
 
 import Link from 'next/link';
 import { Lightbulb, ArrowRight, Eye, MoveHorizontal } from 'lucide-react';
-import { getLocalizedPath } from '@/lib/link-utils';
 
-interface BacklightBleedIntroProps {
-  locale: string;
-}
-
-export default function BacklightBleedIntro({ locale }: BacklightBleedIntroProps) {
-  const monitorTestHref = getLocalizedPath(locale as any, '/monitor-test');
-  const buyingGuideHref = getLocalizedPath(locale as any, '/monitor-buying-guide');
+export default function BacklightBleedIntro() {
+  const monitorTestHref = '/monitor-test';
+  const buyingGuideHref = '/monitor-buying-guide';
 
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">

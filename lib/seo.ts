@@ -2,7 +2,6 @@
 
 import { Metadata } from 'next';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from './constants';
-import { Locale, generateHrefLangAlternates, getCanonicalUrl, getOpenGraphLocale } from './i18n';
 
 interface MetadataParams {
   title: string;
@@ -30,83 +29,48 @@ function truncateDescription(description: string, maxLength = 160): string {
   return trimmed + '...';
 }
 
-export function generateMetadata(params: MetadataParams): Metadata {
-  const { title, description, path, ogImage, canonical, noindex, keywords } = params;
-  const url = `${SITE_URL}${path}`;
-  const trimmedDescription = truncateDescription(description);
+// Google shows roughly the first 60-65 characters of a title. The site name is
+// only appended when the whole title still fits; otherwise it is dropped so
+// the descriptive part isn't cut off in search results.
+const MAX_TITLE_LENGTH = 65;
 
-  return {
-    // Plain title, unsuffixed: the root layout's `title.template`
-    // ("%s | TestaScreen") applies the site-name suffix exactly once.
-    // Appending it here too produced "Page Title | TestaScreen | TestaScreen"
-    // in the actual <title> tag across the site.
-    title,
-    description: trimmedDescription,
-    keywords: keywords?.join(', '),
-    openGraph: {
-      // Open Graph/Twitter titles are NOT covered by the title template
-      // mechanism, so they still need the suffix appended explicitly here.
-      title: `${title} | ${SITE_NAME}`,
-      description: trimmedDescription,
-      url,
-      type: 'website',
-      siteName: SITE_NAME,
-      images: ogImage
-        ? [
-            {
-              url: ogImage,
-              width: 1200,
-              height: 630,
-              alt: title,
-              type: 'image/png',
-            },
-          ]
-        : undefined,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${title} | ${SITE_NAME}`,
-      description: trimmedDescription,
-      images: ogImage ? [ogImage] : undefined,
-    },
-    robots: noindex ? 'noindex, nofollow' : 'index, follow',
-    alternates: {
-      canonical: canonical || url,
-    },
-  };
+/** Full title as it appears in search results and social previews. */
+export function fullTitle(title: string): string {
+  const branded = `${title} | ${SITE_NAME}`;
+  return branded.length <= MAX_TITLE_LENGTH ? branded : title;
 }
 
 /**
- * Generate multilingual metadata with hreflang support
- * Use this for locale-aware pages
+ * Value for Next's `title` field. The root layout's template adds
+ * " | TestaScreen", so a title that would get too long opts out with `absolute`.
  */
-interface MultilingualMetadataParams extends MetadataParams {
-  locale: Locale;
+export function titleField(title: string): Metadata['title'] {
+  return fullTitle(title) === title ? { absolute: title } : title;
 }
 
-export function generateMultilingualMetadata(params: MultilingualMetadataParams): Metadata {
-  const { title, description, path, ogImage, noindex, keywords, locale } = params;
-  const canonicalUrl = getCanonicalUrl(locale, path);
-  const alternateLanguages = generateHrefLangAlternates(path);
+/**
+ * Metadata for a page: title, description, canonical, Open Graph and Twitter.
+ * The site is English-only, so there are no hreflang alternates.
+ */
+export function pageMetadata(params: MetadataParams): Metadata {
+  const { title, description, path, ogImage, noindex, keywords } = params;
+  const canonicalUrl = `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
   const trimmedDescription = truncateDescription(description);
 
   return {
-    // Plain title, unsuffixed: the root layout's `title.template`
-    // ("%s | TestaScreen") applies the site-name suffix exactly once.
-    // Appending it here too produced "Page Title | TestaScreen | TestaScreen"
-    // in the actual <title> tag across every page using this helper.
-    title,
+    // Unsuffixed: the root layout's `title.template` ("%s | TestaScreen")
+    // applies the site name exactly once, unless the title is too long for it.
+    title: titleField(title),
     description: trimmedDescription,
     keywords: keywords?.join(', '),
     openGraph: {
-      // Open Graph/Twitter titles are NOT covered by the title template
-      // mechanism, so they still need the suffix appended explicitly here.
-      title: `${title} | ${SITE_NAME}`,
+      // Open Graph/Twitter titles are not covered by the title template.
+      title: fullTitle(title),
       description: trimmedDescription,
       url: canonicalUrl,
       type: 'website',
       siteName: SITE_NAME,
-      locale: getOpenGraphLocale(locale),
+      locale: 'en_US',
       images: ogImage
         ? [
             {
@@ -121,14 +85,13 @@ export function generateMultilingualMetadata(params: MultilingualMetadataParams)
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | ${SITE_NAME}`,
+      title: fullTitle(title),
       description: trimmedDescription,
       images: ogImage ? [ogImage] : undefined,
     },
     robots: noindex ? 'noindex, nofollow' : 'index, follow',
     alternates: {
       canonical: canonicalUrl,
-      languages: alternateLanguages,
     },
   };
 }
@@ -153,7 +116,7 @@ export function organizationSchema(): SchemaConfig {
     description: SITE_DESCRIPTION,
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'Customer Support',
+      contactType: 'Customer Support',
       url: `${SITE_URL}/contact`,
     },
   };
@@ -169,7 +132,7 @@ export function websiteSchema(): SchemaConfig {
     name: SITE_NAME,
     url: SITE_URL,
     description: SITE_DESCRIPTION,
-    inLanguage: ['en', 'nl', 'es', 'de'],
+    inLanguage: 'en',
     potentialAction: {
       '@type': 'SearchAction',
       target: `${SITE_URL}/blog?query={search_term_string}`,
@@ -236,25 +199,6 @@ export function breadcrumbSchema(
       position: index + 1,
       name: item.name,
       item: `${SITE_URL}${item.path}`,
-    })),
-  };
-}
-
-/**
- * Generate Breadcrumb Schema for multilingual pages
- */
-export function breadcrumbSchemaMultilingual(
-  items: Array<{ name: string; path: string }>,
-  locale: Locale
-): SchemaConfig {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: getCanonicalUrl(locale, item.path),
     })),
   };
 }
@@ -376,45 +320,6 @@ export function webPageSchema(params: {
  */
 export function schemaToJsonLd(schema: SchemaConfig): string {
   return JSON.stringify(schema, null, 2);
-}
-
-/**
- * Generate sitemap entry with multilingual hreflang support
- */
-export interface MultilingualSitemapEntry {
-  path: string;
-  lastmod?: string;
-  changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority?: number;
-}
-
-/**
- * Generate sitemap XML with multilingual hreflang support
- * Each URL entry includes links to alternate language versions
- */
-export function generateMultilingualSitemapXml(entries: MultilingualSitemapEntry[]): string {
-  const xmlEntries = entries
-    .map((entry) => {
-      const alternates = generateHrefLangAlternates(entry.path);
-      const locales = Object.keys(alternates);
-
-      return `  <url>
-    <loc>${alternates['en']}</loc>
-    ${entry.lastmod ? `<lastmod>${entry.lastmod}</lastmod>` : ''}
-    ${entry.changefreq ? `<changefreq>${entry.changefreq}</changefreq>` : ''}
-    ${entry.priority !== undefined ? `<priority>${entry.priority}</priority>` : ''}
-    ${locales.map((locale) => `<xhtml:link rel="alternate" hreflang="${locale}" href="${alternates[locale]}" />`).join('\n    ')}
-  </url>`;
-    })
-    .join('\n');
-
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${xmlEntries}
-</urlset>`;
-
-  return xml;
 }
 
 /**

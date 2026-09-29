@@ -1,17 +1,13 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { TEST_TOOLS, COLOR_TOOLS } from '@/lib/constants';
-import { t } from '@/lib/translations';
-import { getLocalizedPath } from '@/lib/link-utils';
-import type { Locale } from '@/lib/i18n';
+import { translate } from '@/lib/translations';
 
 interface RelatedToolsProps {
   currentToolId: string;
-  locale: Locale;
 }
 
-export default function RelatedTools({ currentToolId, locale }: RelatedToolsProps) {
-  const translate = t(locale);
+export default function RelatedTools({ currentToolId }: RelatedToolsProps) {
 
   // Get related tools (all other test tools + some color tools)
   const relatedTools = [
@@ -31,7 +27,7 @@ export default function RelatedTools({ currentToolId, locale }: RelatedToolsProp
           {relatedTools.map((tool) => (
             <Link
               key={tool.id}
-              href={getLocalizedPath(locale, tool.path)}
+              href={tool.path}
               className="group relative overflow-hidden rounded-xl border border-slate-700 bg-slate-900/50 backdrop-blur transition-all duration-300 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/20"
             >
               <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900">
@@ -68,7 +64,7 @@ export default function RelatedTools({ currentToolId, locale }: RelatedToolsProp
 
         <div className="text-center mt-12">
           <Link
-            href={getLocalizedPath(locale, '/tools')}
+            href={'/tools'}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-200 hover:scale-105"
           >
             {translate('resources')}

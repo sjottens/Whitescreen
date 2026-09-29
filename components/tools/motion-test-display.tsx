@@ -8,7 +8,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, Pause, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { Locale } from '@/lib/i18n';
 import type { ClientStrings } from '@/lib/client-strings';
 
 type Speed = 'slow' | 'medium' | 'fast';
@@ -20,7 +19,6 @@ const SPEED_PX: Record<Speed, number> = { slow: 4, medium: 9, fast: 16 };
 const BG_COLOR: Record<Background, string> = { black: '#000000', white: '#FFFFFF', gray: '#4b5563' };
 
 interface MotionTestDisplayProps {
-  locale?: Locale;
   strings: ClientStrings<'motionTestDisplay'>;
 }
 

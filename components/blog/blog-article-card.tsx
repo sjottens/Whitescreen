@@ -11,7 +11,6 @@ interface BlogArticleCardProps {
   readingTimeMinutes: number;
   category: string;
   featured?: boolean;
-  locale?: string;
 }
 
 export function BlogArticleCard({
@@ -22,18 +21,17 @@ export function BlogArticleCard({
   readingTimeMinutes,
   category,
   featured = false,
-  locale = 'en',
 }: BlogArticleCardProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString(locale === 'nl' ? 'nl-NL' : 'en-US', {
+    return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
     });
   };
 
-  const baseUrl = locale === 'en' ? '/blog' : `/${locale}/blog`;
+  const baseUrl = '/blog';
 
   return (
     <Link

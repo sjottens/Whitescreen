@@ -30,7 +30,6 @@ interface BlogHomepageProps {
     description: string;
     articleCount: number;
   }>;
-  locale?: string;
   strings: ClientStrings<'blogHomepage'>;
 }
 
@@ -62,7 +61,6 @@ export function BlogHomepage({
   latestArticles,
   allArticles,
   categories,
-  locale = 'en',
   strings,
 }: BlogHomepageProps) {
   const translate = (key: keyof ClientStrings<'blogHomepage'>) => strings[key];
@@ -86,7 +84,7 @@ export function BlogHomepage({
     }
   }, [searchParams]);
 
-  const baseUrl = locale === 'en' ? '/blog' : `/${locale}/blog`;
+  const baseUrl = '/blog';
 
   const clearFilter = () => {
     setSelectedCategory(null);
@@ -193,7 +191,6 @@ export function BlogHomepage({
                 key={article.slug}
                 {...article}
                 category={article.cluster}
-                locale={locale}
               />
             ))}
           </div>
@@ -214,7 +211,6 @@ export function BlogHomepage({
                   {...article}
                   category={article.cluster}
                   featured={article.featured}
-                  locale={locale}
                 />
               ))}
             </div>

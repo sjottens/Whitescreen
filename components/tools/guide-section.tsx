@@ -1,16 +1,13 @@
 // components/tools/guide-section.tsx - Reusable guide section component for all tools
 
 import { TOOL_GUIDES } from '@/lib/tool-guides';
-import { t } from '@/lib/translations';
-import type { Locale } from '@/lib/i18n';
+import { translate } from '@/lib/translations';
 
 interface GuideSectionProps {
   toolId: string;
-  locale?: Locale;
 }
 
-export default function GuideSection({ toolId, locale = 'en' }: GuideSectionProps) {
-  const translate = t(locale);
+export default function GuideSection({ toolId }: GuideSectionProps) {
   const guide = TOOL_GUIDES[toolId];
 
   if (!guide) {

@@ -1,0 +1,198 @@
+// app/(site)/(website)/privacy/page.tsx
+
+import { Metadata } from 'next';
+import Breadcrumbs from '@/components/layout/breadcrumbs';
+import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
+import { translate } from '@/lib/translations';
+
+export async function generateMetadata(): Promise<Metadata> {
+
+  return pageMetadata({
+    title: translate('privacy_title'),
+    description: 'How TestaScreen handles your data: which cookies we use, why the mic, webcam and keyboard tests never leave your device, and your privacy rights.',
+    path: '/privacy',
+  });
+}
+
+export default async function PrivacyPage() {
+
+  const breadcrumbs = breadcrumbSchema([
+      { name: translate('home'), path: '/' },
+      { name: translate('privacy'), path: '/privacy' },
+    ]);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+        suppressHydrationWarning
+      />
+
+      <Breadcrumbs
+        items={[
+          { name: translate('home'), path: '/' },
+          { name: translate('privacy') },
+        ]}
+      />
+
+      <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
+        <div className="container max-w-4xl">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('privacy_title')}</h1>
+          <p className="text-slate-600">Last updated: September 29, 2026</p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container max-w-3xl prose prose-lg max-w-none">
+          <h2>1. {translate('privacy_intro')}</h2>
+          <p>
+            {translate('privacy_intro_full')}
+          </p>
+
+          <h2>2. {translate('privacy_data_collection')}</h2>
+          <p>
+            {translate('privacy_data_collection_text')}
+          </p>
+
+          <h2>3. {translate('privacy_how_it_works')}</h2>
+          <p>
+            {translate('privacy_how_it_works_text')}
+          </p>
+          <ul>
+            <li>{translate('privacy_how_item_1')}</li>
+            <li>{translate('privacy_how_item_2')}</li>
+            <li>{translate('privacy_how_item_3')}</li>
+          </ul>
+
+          <h2>4. {translate('privacy_cookies')}</h2>
+          <p>
+            {translate('privacy_cookies_text')}
+          </p>
+          
+          <h3>Consent Banner & Cookie Management</h3>
+          <p>
+            TestaScreen implements a GDPR-compliant cookie consent system. When you first visit the site, a cookie consent banner appears at the bottom of your screen. This banner allows you to make informed decisions about cookie usage before any personalized cookies are loaded.
+          </p>
+          
+          <h4>How Our Consent System Works:</h4>
+          <ul>
+            <li><strong>Your Choice First:</strong> We ask for your consent before loading personalized advertisement cookies. You can choose to accept all, reject all, or customize your preferences.</li>
+            <li><strong>Consent Storage:</strong> Your consent choice is stored in your browser's localStorage. We do not force cookies before you consent.</li>
+            <li><strong>Necessary Cookies Only (By Default):</strong> We only set essential cookies (language preference, security) without your consent. Marketing and analytics cookies are disabled by default.</li>
+            <li><strong>Easy to Change Anytime:</strong> You can modify your consent preferences at any time by clearing your browser's localStorage or visiting the cookie banner again.</li>
+          </ul>
+          
+          <h4>Types of Cookies We Use (With Your Consent):</h4>
+          <ul>
+            <li><strong>Necessary Cookies:</strong> Language preference, security tokens. Always enabled for site functionality.</li>
+            <li><strong>Marketing Cookies:</strong> Google AdSense uses first-party and third-party cookies to display personalized advertisements. Only loaded if you consent to marketing cookies.</li>
+            <li><strong>Analytics Cookies:</strong> Google Analytics uses cookies to measure website usage and improve performance. Only loaded if you consent to analytics cookies.</li>
+            <li><strong>Preference Cookies:</strong> Remembers your selected language and theme preferences. Generally safe for all users.</li>
+          </ul>
+
+          <h2>5. {translate('privacy_external_services')}</h2>
+          <p>
+            {translate('privacy_external_services_text')}
+          </p>
+
+          <h2>5a. Advertising and Revenue</h2>
+          <p>
+            TestaScreen uses Google AdSense to display advertisements on this website. These ads help fund the development and maintenance of our free tools. 
+          </p>
+          <p>
+            <strong>Important:</strong> Google AdSense personalized ads are only loaded after you explicitly consent to marketing cookies through our consent banner. We do not load personalized ad-serving scripts before receiving your consent.
+          </p>
+          <p>
+            <strong>How Google AdSense works (when you consent):</strong>
+          </p>
+          <ul>
+            <li>Google stores cookies and pixels to identify your browsing interests and preferences</li>
+            <li>Ads shown are tailored to your profile, which may help you see more relevant advertisements</li>
+            <li>You can control these settings using Google's Ad Settings at <a href="https://myaccount.google.com/ads" target="_blank" rel="noopener">myaccount.google.com/ads</a></li>
+            <li>You can also opt out of personalized advertising entirely through your browser privacy settings or third-party tools like <a href="https://optout.aboutads.info" target="_blank" rel="noopener">aboutads.info</a></li>
+            <li>You can modify your consent at any time by updating your preferences through our consent banner</li>
+          </ul>
+          <p>
+            <strong>If you don't consent to marketing cookies:</strong> AdSense will display non-personalized ads. Google will still show ads, but they won't be tailored to your interests or browsing history.
+          </p>
+          <p>
+            TestaScreen receives a portion of revenue when you click on or view advertisements. This is our primary funding model for keeping the tools free and accessible to everyone worldwide.
+          </p>
+
+          <h2 id="hardware-tests">6. Microphone, camera and keyboard tests</h2>
+          <p>
+            Our microphone, webcam and keyboard tests run entirely in your browser. Audio, video and keystrokes are processed on your own device and are never uploaded, recorded on our servers, or shared with anyone.
+          </p>
+          <p>
+            Your browser asks for permission before a test can use your microphone or camera. You can withdraw that permission at any time through the settings in your browser's address bar. The microphone and camera switch off as soon as you stop the test or leave the page.
+          </p>
+          <p>
+            A short recording made with the Mic Test, or a snapshot made with the Webcam Test, exists only in your browser's memory. It disappears when you refresh or close the page, unless you choose to download it yourself.
+          </p>
+          <p>
+            The Click Speed Test stores your best score in your browser's local storage, on your device only. You can remove it by clearing your browser data.
+          </p>
+
+          <h2>7. {translate('privacy_gdpr_rights')}</h2>
+          <p>
+            {translate('privacy_gdpr_rights_text')}
+          </p>
+          <ul>
+            <li><strong>{translate('privacy_right_access')}:</strong> {translate('privacy_right_access_desc')}</li>
+            <li><strong>{translate('privacy_right_rectification')}:</strong> {translate('privacy_right_rectification_desc')}</li>
+            <li><strong>{translate('privacy_right_erasure')}:</strong> {translate('privacy_right_erasure_desc')}</li>
+            <li><strong>{translate('privacy_right_portability')}:</strong> {translate('privacy_right_portability_desc')}</li>
+            <li><strong>{translate('privacy_right_restrict')}:</strong> {translate('privacy_right_restrict_desc')}</li>
+            <li><strong>{translate('privacy_right_object')}:</strong> {translate('privacy_right_object_desc')}</li>
+          </ul>
+
+          <h2>8. {translate('privacy_data_retention')}</h2>
+          <p>
+            {translate('privacy_data_retention_text')}
+          </p>
+
+          <h2>9. {translate('privacy_security')}</h2>
+          <p>
+            {translate('privacy_security_text')}
+          </p>
+
+          <h2>10. {translate('privacy_third_parties')}</h2>
+          <p>
+            {translate('privacy_third_parties_text')}
+          </p>
+
+          <h2>11. {translate('privacy_policy_changes')}</h2>
+          <p>
+            {translate('privacy_policy_changes_text')}
+          </p>
+
+          <h2>12. {translate('privacy_dpa')}</h2>
+          <p>
+            {translate('privacy_dpa_text')}
+          </p>
+          <p>
+            <strong>{translate('privacy_dpa_contact')}:</strong>
+            <br />
+            {translate('privacy_dpa_company_name')}
+            <br />
+            {translate('privacy_legal_email_label' as any)}: <a href={'/contact'} className="text-cyan-700 underline">{translate('privacy_legal_email' as any)}</a>
+          </p>
+
+          <h2>13. {translate('privacy_contact')}</h2>
+          <p>
+            {translate('privacy_contact_full_text')}
+            <br />
+            <strong>{translate('privacy_contact_email_label' as any)}:</strong> <a href={'/contact'} className="text-cyan-700 underline">{translate('privacy_contact_email' as any)}</a>
+          </p>
+
+          <hr className="my-8" />
+
+          <p className="text-sm text-slate-600 italic">
+            {translate('privacy_disclaimer')}
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}

@@ -6,18 +6,15 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { SITE_NAME } from '@/lib/constants';
-import { getLocalizedPath } from '@/lib/link-utils';
 import Navigation from './navigation';
-import type { Locale } from '@/lib/i18n';
 import type { HeaderLabels } from '@/lib/ui-strings';
 
 interface HeaderProps {
-  locale: Locale;
   labels: HeaderLabels;
   logo: ReactNode;
 }
 
-export default function HeaderShell({ locale, labels, logo }: HeaderProps) {
+export default function HeaderShell({ labels, logo }: HeaderProps) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const lastScrollYRef = useRef(0);
 
@@ -73,7 +70,7 @@ export default function HeaderShell({ locale, labels, logo }: HeaderProps) {
       <div className="container py-4 md:py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href={getLocalizedPath(locale, '/')} className="group flex items-center gap-3 focus-ring">
+          <Link href={'/'} className="group flex items-center gap-3 focus-ring">
             {logo}
             <span className="text-xl md:text-2xl font-bold text-slate-100 transition-colors group-hover:text-cyan-300">
               {SITE_NAME}
@@ -81,7 +78,7 @@ export default function HeaderShell({ locale, labels, logo }: HeaderProps) {
           </Link>
 
           {/* Navigation */}
-          <Navigation locale={locale} labels={labels} />
+          <Navigation labels={labels} />
         </div>
       </div>
     </header>

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import type { ClientStrings } from '@/lib/client-strings';
-import type { Locale } from '@/lib/i18n';
 
 interface PixelDensityResult {
   ppi: number;
@@ -12,7 +11,6 @@ interface PixelDensityResult {
 }
 
 interface PixelDensityCalculatorProps {
-  locale?: Locale;
   strings: ClientStrings<'pixelDensityCalculator'>;
 }
 

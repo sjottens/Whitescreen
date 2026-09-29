@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import type { ClientStrings } from '@/lib/client-strings';
-import type { Locale } from '@/lib/i18n';
 
 interface Monitor {
   name: string;
@@ -18,7 +17,6 @@ interface Monitor {
 }
 
 interface MonitorComparisonToolProps {
-  locale?: Locale;
   strings: ClientStrings<'monitorComparisonTool'>;
 }
 

@@ -8,13 +8,14 @@ import ToolCards from '@/components/hardware/tool-cards';
 
 export const metadata: Metadata = {
   title: 'Page not found',
+  description: "This page doesn't exist. Try one of the free screen, microphone, keyboard, webcam and click speed tests instead.",
   robots: { index: false, follow: true },
 };
 
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header locale="en" />
+      <Header />
       <div className="h-[72px] md:h-[76px]" aria-hidden="true" />
       <main id="main-content" className="flex-1">
         <div className="container py-12 md:py-20">
@@ -25,7 +26,7 @@ export default function NotFound() {
           <ToolCards headingLevel="h2" />
         </div>
       </main>
-      <Footer locale="en" />
+      <Footer />
     </div>
   );
 }
