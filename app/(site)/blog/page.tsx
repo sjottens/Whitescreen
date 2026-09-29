@@ -1,6 +1,6 @@
 // app/blog/page.tsx - English blog homepage
 import { getClientStrings } from '@/lib/client-strings';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import { BlogHomepage } from '@/components/blog/blog-homepage';
 import { getFeaturedArticles, getBlogArticlesByCluster, allBlogArticles } from '@/lib/blog-content';
@@ -112,15 +112,14 @@ export default function BlogPage() {
   }));
 
   return (
-    <Suspense fallback={<div className="w-full py-20 text-center">{translate('common_loading' as any)}</div>}>
-      <BlogHomepage strings={getClientStrings('blogHomepage')}
-        title={translate('blog_page_title' as any)}
-        subtitle={translate('blog_page_subtitle' as any)}
-        featuredArticles={featuredPreview}
-        latestArticles={latestPreview}
-        allArticles={allArticlesPreview}
-        categories={categories}
-      />
-    </Suspense>
+    <BlogHomepage
+      strings={getClientStrings('blogHomepage')}
+      title={translate('blog_page_title' as any)}
+      subtitle={translate('blog_page_subtitle' as any)}
+      featuredArticles={featuredPreview}
+      latestArticles={latestPreview}
+      allArticles={allArticlesPreview}
+      categories={categories}
+    />
   );
 }

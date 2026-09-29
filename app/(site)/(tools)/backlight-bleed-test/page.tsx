@@ -129,7 +129,6 @@ export default async function BacklightBleedTestPage() {
 
       {/* Interactive Tool */}
       <ToolLayout
-        title={translate(TOOL.descriptionKey as any)}
         description={translate(TOOL.descriptionKey as any)}
         toolName={translate(TOOL.nameKey as any)}
       >

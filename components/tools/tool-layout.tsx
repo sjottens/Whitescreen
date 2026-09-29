@@ -8,7 +8,8 @@ import { LinkButton } from '@/components/ui/button';
 import { translate } from '@/lib/translations';
 
 interface ToolLayoutProps {
-  title: string;
+  /** Page H1. Leave out when the page already renders its own H1 (e.g. an intro/hero block). */
+  title?: string;
   description: string;
   children: ReactNode;
   toolName?: string;
@@ -42,7 +43,7 @@ export default function ToolLayout({
         items={[
           { name: translate('home'), path: '/' },
           { name: translate('resources'), path: '/tools' },
-          { name: toolName || title },
+          { name: toolName || title || '' },
         ]}
       />
 
@@ -92,7 +93,7 @@ export default function ToolLayout({
           <div className="space-y-12">
             {/* Title and Description */}
             <div>
-              <h1 className="text-5xl md:text-6xl font-bold mb-4">{title}</h1>
+              {title && <h1 className="text-5xl md:text-6xl font-bold mb-4">{title}</h1>}
               <p className="text-xl text-slate-600 leading-relaxed">{description}</p>
             </div>
 

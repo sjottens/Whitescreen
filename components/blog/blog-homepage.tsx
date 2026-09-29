@@ -1,12 +1,25 @@
 // components/blog/blog-homepage.tsx - Homepage for blog section
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Search, ChevronRight, X } from 'lucide-react';
 import { BlogArticleCard } from './blog-article-card';
 import type { ClientStrings } from '@/lib/client-strings';
+
+// Reads ?category= and ?query= and reports them to the blog homepage.
+// useSearchParams lives in this tiny component behind its own Suspense
+// boundary, so the rest of the blog (heading, article list, links) is still
+// rendered on the server instead of bailing out to client-only rendering.
+// ?query= is the SearchAction target declared in the WebSite schema.
+function UrlFilterSync({ onChange }: { onChange: (category: string | null, query: string | null) => void }) {
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    onChange(searchParams.get('category'), searchParams.get('query'));
+  }, [searchParams, onChange]);
+  return null;
+}
 
 interface BlogArticlePreview {
   slug: string;
@@ -64,25 +77,14 @@ export function BlogHomepage({
   strings,
 }: BlogHomepageProps) {
   const translate = (key: keyof ClientStrings<'blogHomepage'>) => strings[key];
-  const searchParams = useSearchParams();
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
 
-  // Read category and search query from URL on mount. ?query= is the
-  // SearchAction target declared in the WebSite schema, so it must work.
-  useEffect(() => {
-    setMounted(true);
-    const categoryParam = searchParams.get('category');
-    if (categoryParam) {
-      setSelectedCategory(categoryParam);
-    }
-    const queryParam = searchParams.get('query');
-    if (queryParam) {
-      setSearchQuery(queryParam);
-    }
-  }, [searchParams]);
+  const applyUrlFilters = useCallback((category: string | null, query: string | null) => {
+    setSelectedCategory(category);
+    if (query) setSearchQuery(query);
+  }, []);
 
   const baseUrl = '/blog';
 
@@ -120,12 +122,11 @@ export function BlogHomepage({
     ? categories.find((category) => category.id === selectedCategory)?.name
     : null;
 
-  if (!mounted) {
-    return null; // Prevent hydration mismatch
-  }
-
   return (
     <div className="bg-white">
+      <Suspense fallback={null}>
+        <UrlFilterSync onChange={applyUrlFilters} />
+      </Suspense>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white px-4 py-4">
         <div className="container text-center">

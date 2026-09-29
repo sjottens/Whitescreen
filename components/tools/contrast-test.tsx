@@ -294,9 +294,13 @@ export default function ContrastTest({ strings }: ContrastTestProps) {
       >
         <div className="max-w-4xl space-y-8">
           <div>
-            <h1 className="text-5xl font-bold mb-4" style={{ color: transformedFG }}>
+            {/* Sample text, not a page heading - the page already has its H1. */}
+            <p
+              className="text-5xl font-bold leading-tight tracking-tight mb-4"
+              style={{ color: transformedFG, fontFamily: "var(--font-space-grotesk), 'Segoe UI', sans-serif" }}
+            >
               {translate('contrast_readability_test_title')}
-            </h1>
+            </p>
             <p className="text-2xl leading-relaxed" style={{ color: transformedFG }}>
               {translate('contrast_readability_text')} <strong>{currentPair.ratio.toFixed(2)}:1</strong>.
             </p>

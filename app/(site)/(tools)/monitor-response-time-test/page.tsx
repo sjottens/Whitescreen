@@ -124,7 +124,6 @@ export default async function ResponseTimeTestPage() {
       <ResponseTimeIntro />
 
       <ToolLayout
-        title={translate(TOOL.descriptionKey as any)}
         description={translate(TOOL.descriptionKey as any)}
         toolName={translate(TOOL.nameKey as any)}
       >

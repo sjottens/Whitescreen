@@ -33,7 +33,6 @@ export default async function ContrastTestPage() {
     <>
       <ContrastTestIntro />
       <ToolLayout
-        title={translate(TOOL.descriptionKey as any)}
         description={translate(TOOL.descriptionKey as any)}
         toolName={translate(TOOL.nameKey as any)}
       >
