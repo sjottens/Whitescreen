@@ -3,13 +3,12 @@
 import ToolPage from '@/components/hardware/tool-page';
 import KeyboardTest from '@/components/hardware/keyboard-test';
 import { toolMetadata, type Faq } from '@/lib/tool-schema';
+import { PAGE_COPY } from '@/lib/page-copy';
 
-const PATH = '/keyboard-test';
-const TITLE = 'Keyboard Test – Check Every Key Online';
-const DESCRIPTION =
-  'Press every key and see which ones work. Find dead keys, double presses and ghosting in seconds. Works with laptop, mechanical and Mac keyboards.';
+const PATH = '/keyboard-test' as const;
+const DESCRIPTION = PAGE_COPY[PATH].description;
 
-export const metadata = toolMetadata({ title: TITLE, description: DESCRIPTION, path: PATH });
+export const metadata = toolMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
 const FAQS: Faq[] = [
   {

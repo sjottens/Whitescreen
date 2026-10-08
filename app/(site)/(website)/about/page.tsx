@@ -7,11 +7,11 @@ import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
 import { AUTHOR } from '@/lib/author';
 import { translate } from '@/lib/translations';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({
-    title: translate('about_title'),
-    description: translate('about_description'),
+    ...PAGE_COPY['/about'],
     path: '/about',
   });
 }

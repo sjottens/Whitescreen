@@ -7,13 +7,13 @@ import { SPECIAL_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import GuideSection from '@/components/tools/guide-section';
 import VideoCallLight from '@/components/tools/video-call-light';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const TOOL = SPECIAL_TOOLS.find((t) => t.id === 'zoom-lighting')!;
 
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({
-    title: translate(TOOL.nameKey as any),
-    description: translate(TOOL.descriptionKey as any),
+    ...PAGE_COPY['/zoom-lighting'],
     path: TOOL.path,
     keywords: TOOL.keywords,
   });

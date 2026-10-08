@@ -13,18 +13,13 @@ import BacklightBleedDisplay from '@/components/tools/backlight-bleed-display';
 import GuideSection from '@/components/tools/guide-section';
 import BacklightBleedIntro from '@/components/tools/backlight-bleed-intro';
 import RelatedTools from '@/components/tools/related-tools';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const TOOL = TEST_TOOLS.find((tool) => tool.id === 'backlight-bleed-test')!;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = translate(TOOL.nameKey as any);
-  const description = translate(TOOL.descriptionKey as any);
-
   return pageMetadata({
-    // No "| TestaScreen" suffix - the root layout's title template adds it
-    // once (see the identical note on /dead-pixel-test/page.tsx).
-    title: `${title} - Check IPS Glow & Light Leak`,
-    description: `${description}. Tells backlight bleed apart from normal IPS glow with a simple head-tilt test. Free, no download.`,
+    ...PAGE_COPY['/backlight-bleed-test'],
     path: TOOL.path,
     keywords: [
       'backlight bleed test',

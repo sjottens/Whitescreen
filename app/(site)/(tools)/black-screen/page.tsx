@@ -9,13 +9,13 @@ import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
 import RelatedTools from '@/components/tools/related-tools';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'black-screen')!;
 
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({
-    title: translate(TOOL.nameKey as any),
-    description: 'Open a pure black full screen to spot stuck or lit pixels, check for backlight bleed and IPS glow, and see how deep your display\x27s blacks really are.',
+    ...PAGE_COPY['/black-screen'],
     path: TOOL.path,
     keywords: TOOL.keywords,
   });

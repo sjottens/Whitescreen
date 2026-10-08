@@ -7,12 +7,12 @@ import Breadcrumbs from '@/components/layout/breadcrumbs';
 import PixelDensityCalculator from '@/components/tools/pixel-density-calculator';
 import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: translate('pixel_density_page_title' as any),
-    description: translate('pixel_density_page_description' as any),
+    ...PAGE_COPY['/tools/pixel-density-calculator'],
     path: '/tools/pixel-density-calculator',
     keywords: [
       translate('pixel_density_keyword_1' as any),

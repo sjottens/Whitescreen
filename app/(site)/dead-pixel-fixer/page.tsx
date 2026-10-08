@@ -7,12 +7,10 @@ import { Metadata } from 'next';
 import DeadPixelFixer from '@/components/tools/dead-pixel-fixer';
 import { getClientStrings } from '@/lib/client-strings';
 import { pageMetadata } from '@/lib/seo';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export const metadata: Metadata = pageMetadata({
-  // Targets the exact "dead pixel fixer" phrase this page needs to rank for.
-  title: 'Dead Pixel Fixer (Online) – Free Stuck Pixel Repair Tool',
-  description:
-    'Fix stuck pixels online with our free dead pixel fixer. Flash rapidly changing colors full screen to help revive stuck LCD, LED, OLED and laptop pixels.',
+  ...PAGE_COPY['/dead-pixel-fixer'],
   path: '/dead-pixel-fixer',
   keywords: [
     'dead pixel fixer',

@@ -4,12 +4,12 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: translate('privacy_title'),
-    description: 'How TestaScreen handles your data: which cookies we use, why the mic, webcam and keyboard tests never leave your device, and your privacy rights.',
+    ...PAGE_COPY['/privacy'],
     path: '/privacy',
   });
 }

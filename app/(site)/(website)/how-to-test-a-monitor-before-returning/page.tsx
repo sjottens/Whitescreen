@@ -8,15 +8,14 @@ import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { pageMetadata, breadcrumbSchema, faqSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const PAGE_PATH = '/how-to-test-a-monitor-before-returning';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: 'How to Test a New Monitor Before Returning It',
-    description:
-      'Most monitor defects only show up if you know where to look. Run this checklist before your return window closes: dead pixels, backlight bleed, uniformity, ghosting, and more.',
+    ...PAGE_COPY['/how-to-test-a-monitor-before-returning'],
     path: PAGE_PATH,
     keywords: [
       'how to test a monitor before returning',

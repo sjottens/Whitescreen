@@ -6,12 +6,12 @@ import Breadcrumbs from '@/components/layout/breadcrumbs';
 import ContactForm from '@/components/ui/contact-form';
 import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: translate('contact_title'),
-    description: translate('contact_description'),
+    ...PAGE_COPY['/contact'],
     path: '/contact',
   });
 }

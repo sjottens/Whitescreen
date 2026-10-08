@@ -10,13 +10,13 @@ import BrightnessTest from '@/components/tools/brightness-test';
 import GuideSection from '@/components/tools/guide-section';
 import BrightnessTestIntro from '@/components/tools/brightness-test-intro';
 import RelatedTools from '@/components/tools/related-tools';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'brightness-test')!;
 
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({
-    title: translate(TOOL.nameKey as any),
-    description: 'Check your display\x27s brightness steps, shadow detail and flicker with full-screen gray ladders, gradients and bar patterns. Free, in your browser.',
+    ...PAGE_COPY['/brightness-test'],
     path: TOOL.path,
     keywords: TOOL.keywords,
   });

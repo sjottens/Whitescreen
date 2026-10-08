@@ -11,13 +11,13 @@ import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
 import RelatedTools from '@/components/tools/related-tools';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'color-screen')!;
 
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({
-    title: 'Color Screen: Red, Green, Blue & Custom Full Screen',
-    description: 'Switch your screen to pure red, green, blue or any custom color to find stuck subpixels, check tint and uniformity, or download the color as a PNG.',
+    ...PAGE_COPY['/color-screen'],
     path: TOOL.path,
     keywords: TOOL.keywords,
   });

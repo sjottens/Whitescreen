@@ -10,13 +10,13 @@ import ContrastTest from '@/components/tools/contrast-test';
 import GuideSection from '@/components/tools/guide-section';
 import ContrastTestIntro from '@/components/tools/contrast-test-intro';
 import RelatedTools from '@/components/tools/related-tools';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'contrast-test')!;
 
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({
-    title: translate(TOOL.nameKey as any),
-    description: 'Test your monitor\x27s contrast and check text readability with WCAG contrast ladders, test patterns and a color blindness simulator. Free, in your browser.',
+    ...PAGE_COPY['/contrast-test'],
     path: TOOL.path,
     keywords: TOOL.keywords,
   });

@@ -13,18 +13,13 @@ import GuideSection from '@/components/tools/guide-section';
 import DeadPixelHero from '@/components/tools/dead-pixel-hero';
 import DeadPixelIntro from '@/components/tools/dead-pixel-intro';
 import RelatedTools from '@/components/tools/related-tools';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'dead-pixel-test')!;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = translate(TOOL.nameKey as any);
-
   return pageMetadata({
-    // No "| TestaScreen" suffix here - pageMetadata leaves
-    // the title unsuffixed and the root layout's title template adds it
-    // exactly once. Hardcoding it here too produced a duplicated site name.
-    title: `${title} - Free Online Tool`,
-    description: 'Find dead, stuck and hot pixels on any screen. Cycle through full-screen test colors in your browser. Free, nothing to install, works on any device.',
+    ...PAGE_COPY['/dead-pixel-test'],
     path: TOOL.path,
     keywords: [
       'dead pixel test',

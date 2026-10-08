@@ -8,12 +8,12 @@ import { LinkButton } from '@/components/ui/button';
 import { pageMetadata, breadcrumbSchema, faqSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { TEST_TOOLS, COLOR_TOOLS } from '@/lib/constants';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: translate('monitor_test_page_title' as any),
-    description: translate('monitor_test_page_description' as any),
+    ...PAGE_COPY['/monitor-test'],
     path: '/monitor-test',
     keywords: [
       translate('monitor_test_keyword_1' as any),

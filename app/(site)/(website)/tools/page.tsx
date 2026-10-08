@@ -9,12 +9,12 @@ import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
 import { LinkButton } from '@/components/ui/button';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: translate('resources_title'),
-    description: translate('resources_description'),
+    ...PAGE_COPY['/tools'],
     path: '/tools',
   });
 }

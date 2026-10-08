@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const content = {
   title: 'Cookie Policy',
@@ -45,8 +46,7 @@ const content = {
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: content.title,
-    description: content.description,
+    ...PAGE_COPY['/cookies'],
     path: '/cookies',
   });
 }

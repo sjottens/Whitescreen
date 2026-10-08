@@ -4,12 +4,12 @@ import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: 'Complete Monitor Buying Guide | Display Technology Explained',
-    description: 'A practical guide to choosing the right monitor for gaming, work, or content creation. Learn about refresh rates, panel types, resolution, and specifications.',
+    ...PAGE_COPY['/monitor-buying-guide'],
     path: '/monitor-buying-guide',
     keywords: [
       'monitor buying guide',

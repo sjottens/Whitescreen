@@ -10,14 +10,6 @@ import { Manrope, Space_Grotesk } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
-import { organizationSchema, softwareApplicationSchema, websiteSchema } from '@/lib/seo';
-import {
-  llmOptimizedOrganizationSchema,
-  llmOptimizedWebsiteSchema,
-  topicalAuthoritySchema,
-  llmOptimizedAboutPageSchema,
-  schemaToJsonLd,
-} from '@/lib/seo-llm-optimization';
 import RouteTransition from '@/components/layout/route-transition';
 import AdOptimizer from '@/components/analytics/ad-optimizer';
 import { ConsentProvider } from '@/components/providers/consent-provider';
@@ -83,16 +75,6 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const organizationSchemaData = JSON.stringify(organizationSchema());
-  const softwareSchemaData = JSON.stringify(softwareApplicationSchema());
-  const websiteSchemaData = JSON.stringify(websiteSchema());
-
-  // LLM & AI Crawler Optimization Schemas
-  const llmOrganizationSchemaData = schemaToJsonLd(llmOptimizedOrganizationSchema());
-  const llmWebsiteSchemaData = schemaToJsonLd(llmOptimizedWebsiteSchema());
-  const topicalAuthoritySchemaData = schemaToJsonLd(topicalAuthoritySchema());
-  const llmAboutPageSchemaData = schemaToJsonLd(llmOptimizedAboutPageSchema());
-
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
@@ -242,44 +224,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           id="gtag-script"
         />
 
-        {/* JSON-LD Structured Data */}
-        <script
-          id="organization-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: organizationSchemaData }}
-        />
-        <script
-          id="software-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: softwareSchemaData }}
-        />
-        <script
-          id="website-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: websiteSchemaData }}
-        />
-
-        {/* LLM & AI Crawler Optimization Schemas - Enhanced E-E-A-T & Knowledge Graph Signals */}
-        <script
-          id="llm-organization-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: llmOrganizationSchemaData }}
-        />
-        <script
-          id="llm-website-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: llmWebsiteSchemaData }}
-        />
-        <script
-          id="topical-authority-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: topicalAuthoritySchemaData }}
-        />
-        <script
-          id="llm-about-page-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: llmAboutPageSchemaData }}
-        />
       </head>
       <body className={`${manrope.variable} ${spaceGrotesk.variable} theme-dark-premium`}>
         <ConsentProvider>

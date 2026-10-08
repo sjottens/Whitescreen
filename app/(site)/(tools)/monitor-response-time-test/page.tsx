@@ -13,16 +13,13 @@ import MotionTestDisplay from '@/components/tools/motion-test-display';
 import GuideSection from '@/components/tools/guide-section';
 import ResponseTimeIntro from '@/components/tools/response-time-intro';
 import RelatedTools from '@/components/tools/related-tools';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 const TOOL = TEST_TOOLS.find((tool) => tool.id === 'response-time-test')!;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = translate(TOOL.nameKey as any);
-  const description = translate(TOOL.descriptionKey as any);
-
   return pageMetadata({
-    title: `${title} - Free Online Tool`,
-    description: `${description}. Spot ghosting, overshoot, and motion blur, and check your overdrive setting. Free, no download.`,
+    ...PAGE_COPY['/monitor-response-time-test'],
     path: TOOL.path,
     keywords: [
       'monitor response time test',

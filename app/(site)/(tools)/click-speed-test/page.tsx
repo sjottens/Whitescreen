@@ -3,13 +3,12 @@
 import ToolPage from '@/components/hardware/tool-page';
 import ClickSpeedTest from '@/components/hardware/click-speed-test';
 import { toolMetadata, type Faq } from '@/lib/tool-schema';
+import { PAGE_COPY } from '@/lib/page-copy';
 
-const PATH = '/click-speed-test';
-const TITLE = 'Click Speed Test (CPS Test) – How Fast Can You Click?';
-const DESCRIPTION =
-  'Test your clicks per second in 1, 5, 10 or 30 seconds. Track your best score, learn clicking techniques and find out if your mouse is double clicking.';
+const PATH = '/click-speed-test' as const;
+const DESCRIPTION = PAGE_COPY[PATH].description;
 
-export const metadata = toolMetadata({ title: TITLE, description: DESCRIPTION, path: PATH });
+export const metadata = toolMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
 const FAQS: Faq[] = [
   {

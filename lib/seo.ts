@@ -110,6 +110,7 @@ export function organizationSchema(): SchemaConfig {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.svg`,
@@ -129,10 +130,12 @@ export function websiteSchema(): SchemaConfig {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     inLanguage: 'en',
+    publisher: { '@id': `${SITE_URL}/#organization` },
   };
 }
 

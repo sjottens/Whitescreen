@@ -5,12 +5,12 @@ import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: translate('terms_title'),
-    description: translate('terms_acceptance_text'),
+    ...PAGE_COPY['/terms'],
     path: '/terms',
   });
 }

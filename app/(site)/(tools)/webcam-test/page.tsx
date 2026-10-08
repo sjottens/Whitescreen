@@ -3,13 +3,12 @@
 import ToolPage from '@/components/hardware/tool-page';
 import WebcamTest from '@/components/hardware/webcam-test';
 import { toolMetadata, type Faq } from '@/lib/tool-schema';
+import { PAGE_COPY } from '@/lib/page-copy';
 
-const PATH = '/webcam-test';
-const TITLE = 'Webcam Test – Check Your Camera Online (Free & Private)';
-const DESCRIPTION =
-  'Check your webcam in seconds. See the live picture plus the real resolution and frame rate your camera delivers. Nothing is uploaded or recorded.';
+const PATH = '/webcam-test' as const;
+const DESCRIPTION = PAGE_COPY[PATH].description;
 
-export const metadata = toolMetadata({ title: TITLE, description: DESCRIPTION, path: PATH });
+export const metadata = toolMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
 const FAQS: Faq[] = [
   {

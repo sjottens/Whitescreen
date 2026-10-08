@@ -3,22 +3,17 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Check, Zap, Smartphone, Shield, Monitor, Gamepad2, Sparkles } from 'lucide-react';
-import { pageMetadata, faqSchema, breadcrumbSchema } from '@/lib/seo';
-import {
-  llmOptimizedWebsiteSchema,
-  llmOptimizedToolSchema,
-  schemaToJsonLd,
-} from '@/lib/seo-llm-optimization';
-import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS, SITE_URL } from '@/lib/constants';
+import { pageMetadata, breadcrumbSchema, organizationSchema, websiteSchema } from '@/lib/seo';
+import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
 import { translate } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
 import ToolCards from '@/components/hardware/tool-cards';
+import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
 
   return pageMetadata({
-    title: translate('home_title'),
-    description: translate('home_description'),
+    ...PAGE_COPY['/'],
     path: '/',
   });
 }
@@ -30,32 +25,6 @@ export default async function HomePage() {
     { name: translate('home'), path: '/' },
   ]);
 
-  // LLM-Optimized Schemas for better AI crawler indexing
-  const llmWebsiteSchema = llmOptimizedWebsiteSchema();
-  // NOTE: a llmOptimizedReviewSchema() call previously lived here, injecting
-  // a hardcoded 4.8-star / 2,500-review AggregateRating with no real
-  // review-collection feature anywhere in the product. Removed - see
-  // lib/seo-llm-optimization.ts for the full note. Re-add once real reviews
-  // exist to source it from.
-
-  // Featured tool schema for LLM context
-  const featuredToolSchema = llmOptimizedToolSchema({
-    name: 'Dead Pixel Fixer',
-    description: 'Free browser tool that flashes rapidly changing colors over a stuck pixel to try to unstick it',
-    url: `${SITE_URL}/dead-pixel-fixer`,
-    image: `${SITE_URL}/logo.svg`,
-    applicationCategory: 'UtilityApplication',
-    features: [
-      'RGB, RGB + white/black and random flashing modes',
-      'Fullscreen mode',
-      'Adjustable flashing speed',
-    ],
-    useCases: [
-      'Trying to unstick a stuck pixel before a warranty claim',
-    ],
-    // aggregateRating intentionally omitted - see note above.
-  });
-
   return (
     <>
       {/* Structured Data */}
@@ -64,15 +33,14 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
         suppressHydrationWarning
       />
-      {/* LLM Optimization Schemas */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: schemaToJsonLd(llmWebsiteSchema) }}
-        suppressHydrationWarning
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: schemaToJsonLd(featuredToolSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [organizationSchema(), websiteSchema()].map(({ '@context': _, ...node }) => node),
+          }),
+        }}
         suppressHydrationWarning
       />
 
