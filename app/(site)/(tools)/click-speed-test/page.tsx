@@ -1,5 +1,6 @@
 // app/(site)/(tools)/click-speed-test/page.tsx - Click Speed (CPS) Test
 
+import Link from 'next/link';
 import ToolPage from '@/components/hardware/tool-page';
 import ClickSpeedTest from '@/components/hardware/click-speed-test';
 import { toolMetadata, type Faq } from '@/lib/tool-schema';
@@ -115,7 +116,8 @@ export default function ClickSpeedTestPage() {
         If a single slow click sometimes counts as two, it&apos;s not you. It&apos;s your mouse. The switch under the
         button wears out over time and starts sending two signals for one press. It&apos;s one of the most common mouse
         faults, even on expensive gaming mice. Click slowly ten times and count along with the counter. If the numbers
-        don&apos;t match, the switch is going.
+        don&apos;t match, the switch is going. Keyboards get the same fault, called chattering, and the{' '}
+        <Link href="/keyboard-test">keyboard test</Link> counts every press so you can catch it.
       </p>
 
       <h2 id="fixing-a-mouse-that-double-clicks">Fixing a mouse that double clicks</h2>
@@ -128,7 +130,8 @@ export default function ClickSpeedTestPage() {
         If that doesn&apos;t help, the switch itself is worn. A short blast of compressed air under the button sometimes
         buys some time. A mouse still under warranty is usually replaced without discussion, because double clicking is
         a known fault. Out of warranty, a new switch can be soldered in if you&apos;re handy, but for most mice
-        replacing the whole mouse is quicker.
+        replacing the whole mouse is quicker. Buying a second-hand laptop? The{' '}
+        <Link href="/used-laptop-check">used laptop check</Link> covers the touchpad and keyboard along with the rest.
       </p>
     </ToolPage>
   );

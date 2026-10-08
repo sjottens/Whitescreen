@@ -1,8 +1,8 @@
 // components/layout/footer.tsx - Site footer with internal links to every tool
 
 import Link from 'next/link';
-import { SITE_NAME, COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
-import { HARDWARE_TOOLS } from '@/lib/hardware-tools';
+import { SITE_NAME } from '@/lib/constants';
+import { TOOL_GROUPS } from '@/lib/tool-directory';
 import { translate } from '@/lib/translations';
 
 export default function Footer() {
@@ -13,61 +13,23 @@ export default function Footer() {
     <footer className="bg-slate-900 text-slate-100 border-t border-slate-800">
       {/* Main Footer Content */}
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-left">
+        <div className="grid grid-cols-1 gap-8 text-left sm:grid-cols-2 lg:grid-cols-4">
 
-          {/* Color Tools Section */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">{translate('color_screens')}</h4>
-            <ul className="space-y-2 list-none pl-0 marker:hidden">
-              {COLOR_TOOLS.slice(0, 5).map((tool) => (
-                <li key={tool.id}>
-                  <Link href={tool.path} className="text-white hover:text-slate-100 transition-colors text-sm">
-                    {translate(tool.nameKey as any)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Test Tools Section */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">{translate('testing_tools')}</h4>
-            <ul className="space-y-2 list-none pl-0 marker:hidden">
-              {TEST_TOOLS.slice(0, 5).map((tool) => (
-                <li key={tool.id}>
-                  <Link href={tool.path} className="text-white hover:text-slate-100 transition-colors text-sm">
-                    {translate(tool.nameKey as any)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Hardware tests */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Hardware tests</h4>
-            <ul className="space-y-2 list-none pl-0 marker:hidden">
-              {HARDWARE_TOOLS.filter((tool) => tool.id !== 'screen-test').map((tool) => (
-                <li key={tool.id}>
-                  <Link href={tool.path} className="text-white hover:text-slate-100 transition-colors text-sm">
-                    {tool.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Monitor Tests Section */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">{translate('monitor_tests')}</h4>
-            <ul className="space-y-2 list-none pl-0 marker:hidden">
-              <li>
-                <Link href={'/monitor-test'} className="text-white hover:text-blue-400 transition-colors text-sm">
-                  {translate('monitor_tests')}
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Every tool and guide, grouped as on /tools */}
+          {TOOL_GROUPS.map((group) => (
+            <div key={group.id}>
+              <h4 className="text-white font-semibold mb-4">{group.title}</h4>
+              <ul className="space-y-2 list-none pl-0 marker:hidden">
+                {group.entries.map((tool) => (
+                  <li key={tool.path}>
+                    <Link href={tool.path} className="text-white hover:text-slate-100 transition-colors text-sm">
+                      {tool.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
           {/* Resources Section */}
           <div>

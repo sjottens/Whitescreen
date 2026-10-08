@@ -1,5 +1,6 @@
 // app/(site)/(tools)/keyboard-test/page.tsx - Keyboard Test
 
+import Link from 'next/link';
 import ToolPage from '@/components/hardware/tool-page';
 import KeyboardTest from '@/components/hardware/keyboard-test';
 import { toolMetadata, type Faq } from '@/lib/tool-schema';
@@ -92,7 +93,8 @@ export default function KeyboardTestPage() {
       <p>
         You can check it here. Tap the suspicious key slowly, ten times, and watch the counter below the keyboard. If it
         says 12 or 13, you&apos;ve found your problem. Blowing compressed air under the key sometimes helps. Otherwise
-        the switch needs replacing, or you&apos;re looking at a new keyboard.
+        the switch needs replacing, or you&apos;re looking at a new keyboard. Mouse buttons wear out the same way; the{' '}
+        <Link href="/click-speed-test">click speed test</Link> shows whether yours double clicks.
       </p>
 
       <h2 id="keys-dont-register-when-pressed-together">Keys don&apos;t register when pressed together</h2>

@@ -1,137 +1,63 @@
-// app/(site)/(website)/tools/page.tsx
+// app/(site)/(website)/tools/page.tsx - Overview of every tool and guide (lib/tool-directory.ts)
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import { Monitor, ArrowRight } from 'lucide-react';
 import { pageMetadata } from '@/lib/seo';
-import { translate } from '@/lib/translations';
-import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
-import { LinkButton } from '@/components/ui/button';
 import { PAGE_COPY } from '@/lib/page-copy';
+import { TOOL_GROUPS } from '@/lib/tool-directory';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return pageMetadata({
-    ...PAGE_COPY['/tools'],
-    path: '/tools',
-  });
-}
+export const metadata: Metadata = pageMetadata({ ...PAGE_COPY['/tools'], path: '/tools' });
 
-export default async function ToolsPage() {
+const GROUP_INTROS: Record<string, string> = {
+  'screen-tests': 'Full-screen colors and patterns for checking a monitor, laptop, TV or phone display.',
+  'hardware-tests': 'Quick checks for the microphone, keyboard, webcam and mouse, and a checklist for buying a used laptop.',
+  guides: 'Step-by-step guides for testing a monitor properly, and a calculator for comparing screens before you buy.',
+};
+
+export default function ToolsPage() {
   return (
     <>
-      {/* Sticky Back to Home Bar */}
-      <div className="sticky top-0 z-40 bg-gradient-to-r from-blue-50 to-slate-50 border-b-2 border-blue-200 backdrop-blur-sm">
-        <div className="container px-4 py-4 flex items-center justify-between">
-          <LinkButton 
-            href={'/'} 
-            variant="secondary"
-            size="sm"
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {translate('back_to_home')}
-          </LinkButton>
-        </div>
-      </div>
-
-      <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
+      <section className="pb-4 pt-8 md:pt-12">
         <div className="container max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('resources_title')}</h1>
-          <p className="text-xl text-slate-700">
-            {translate('resources_description')}
+          <h1 className="mb-4 text-4xl md:text-5xl">All Free Screen and Hardware Tests</h1>
+          <p className="text-lg text-slate-300">
+            Every test on TestaScreen runs in your browser, with nothing to install and nothing uploaded. Not sure where
+            to start with a monitor? The <Link href="/monitor-test">complete monitor test</Link> walks you through the
+            screen tests in the right order.
           </p>
-        </div>
-      </section>
-
-      {/* Color Tools */}
-      <section className="section">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('color_screens')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {COLOR_TOOLS.map((tool) => (
-              <Link
-                key={tool.id}
-                href={tool.path}
-                className="card group hover:shadow-lg transition-shadow"
-              >
-                <div
-                  className="w-full h-32 rounded-lg mb-4 border border-slate-200"
-                  style={{ backgroundColor: tool.color }}
-                />
-                <h3 className="text-xl font-bold mb-2">{translate(tool.nameKey as any)}</h3>
-                <p className="text-slate-600 text-sm">{translate(tool.descriptionKey as any)}</p>
-              </Link>
+          <nav aria-label="Tool groups" className="mt-6 flex flex-wrap gap-3">
+            {TOOL_GROUPS.map((group) => (
+              <a key={group.id} href={`#${group.id}`} className="btn btn-secondary btn-sm focus-ring">
+                {group.title}
+              </a>
             ))}
-            <Link href="/zoom-lighting" className="card group hover:shadow-lg transition-shadow">
-              <div
-                className="w-full h-32 rounded-lg mb-4 border border-slate-200"
-                style={{ background: 'linear-gradient(90deg, #FFE4C4, #FFFFFF, #DCEBFF)' }}
-              />
-              <h3 className="text-xl font-bold mb-2">{translate('zoom_lighting')}</h3>
-              <p className="text-slate-600 text-sm">{translate('zoom_lighting_desc')}</p>
-            </Link>
+          </nav>
+        </div>
+      </section>
+
+      {TOOL_GROUPS.map((group) => (
+        <section key={group.id} aria-labelledby={group.id} className="py-8 md:py-10">
+          <div className="container">
+            <h2 id={group.id} className="mb-2 scroll-mt-24 text-2xl md:text-3xl">
+              {group.title}
+            </h2>
+            <p className="mb-6 max-w-3xl text-slate-300">{GROUP_INTROS[group.id]}</p>
+            <ul className="grid list-none gap-4 pl-0 sm:grid-cols-2 lg:grid-cols-3">
+              {group.entries.map((tool) => (
+                <li key={tool.path} className="mb-0">
+                  <Link
+                    href={tool.path}
+                    className="group block h-full rounded-xl border border-slate-700 bg-slate-900/60 p-5 text-slate-100 transition-colors hover:border-[#00DC82]/60 focus-ring"
+                  >
+                    <h3 className="mb-1 text-lg font-semibold group-hover:text-[#00DC82]">{tool.name}</h3>
+                    <p className="mb-0 text-sm leading-relaxed text-slate-300">{tool.blurb}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
-
-      {/* Test Tools */}
-      <section className="section-alt">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('testing_tools')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {TEST_TOOLS.map((tool) => (
-              <Link
-                key={tool.id}
-                href={tool.path}
-                className="card group hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-xl font-bold mb-2">{translate(tool.nameKey as any)}</h3>
-                <p className="text-slate-600 text-sm mb-4">{translate(tool.descriptionKey as any)}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Monitor Tests */}
-      <section className="section">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">{translate('monitor_tests')}</h2>
-          <Link
-            href={'/monitor-test'}
-            className="card group hover:shadow-lg transition-all border-l-4 border-blue-500 flex items-center gap-4"
-          >
-            <Monitor className="w-8 h-8 text-blue-600 shrink-0" />
-            <span className="text-xl font-bold flex-1">{translate('monitor_tests')}</span>
-            <ArrowRight className="w-5 h-5 text-blue-600" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Calculator & Utility Tools */}
-      <section className="section">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">📊 {translate('resources_calculators_title')}</h2>
-          <p className="text-slate-600 text-lg mb-8">
-            {translate('resources_calculators_intro')}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link
-              href={'/tools/pixel-density-calculator'}
-              className="card group hover:shadow-lg transition-all border-l-4 border-emerald-500"
-            >
-              <div className="text-4xl mb-3">🔍</div>
-              <h3 className="text-xl font-bold mb-2">{translate('pixel_density_calculator')}</h3>
-              <p className="text-slate-600 text-sm mb-4">
-                {translate('resources_pixel_calculator_desc')}
-              </p>
-              <span className="text-emerald-600 font-semibold text-sm">{translate('resources_calculate_cta' as any)}</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
+        </section>
+      ))}
     </>
   );
 }

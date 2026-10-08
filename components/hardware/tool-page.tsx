@@ -12,7 +12,7 @@ import { AUTHOR } from '@/lib/author';
 import Link from 'next/link';
 import AdSlot from './ad-slot';
 import AffiliateBlock from './affiliate-block';
-import ToolCards from './tool-cards';
+import RelatedTests from '@/components/tools/related-tests';
 
 type ToolId = Exclude<HardwareToolId, 'screen-test'>;
 
@@ -128,12 +128,7 @@ export default function ToolPage({
 
       <AdSlot slot={slots.bottom} className="mt-12" />
 
-      <section aria-labelledby="other-tests-heading" className="container mt-16 pb-16">
-        <h2 id="other-tests-heading" className="mb-6 text-2xl md:text-3xl">
-          Other tests
-        </h2>
-        <ToolCards exclude={toolId} />
-      </section>
+      <RelatedTests path={path} />
     </>
   );
 }

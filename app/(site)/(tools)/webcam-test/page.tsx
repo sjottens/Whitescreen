@@ -1,5 +1,6 @@
 // app/(site)/(tools)/webcam-test/page.tsx - Webcam Test
 
+import Link from 'next/link';
 import ToolPage from '@/components/hardware/tool-page';
 import WebcamTest from '@/components/hardware/webcam-test';
 import { toolMetadata, type Faq } from '@/lib/tool-schema';
@@ -99,7 +100,8 @@ export default function WebcamTestPage() {
       <p>
         Light again, nine times out of ten. Webcam sensors are tiny. In a dim room the camera turns up its sensitivity to
         compensate, and that&apos;s where the grain comes from. Sit facing a window or a lamp. Light from behind you
-        turns you into a silhouette.
+        turns you into a silhouette. No good light nearby? A spare monitor or tablet works as a{' '}
+        <Link href="/zoom-lighting">video call light</Link>.
       </p>
       <p>
         Blurry or hazy? Wipe the lens. A laptop camera sits right where you grab the lid, so it collects fingerprints
@@ -108,6 +110,11 @@ export default function WebcamTestPage() {
       <p>
         Strange colours usually come from mixed lighting, like daylight on one side and a warm lamp on the other. The
         camera can&apos;t decide which one is &quot;white&quot;. Use one type of light and the colours settle down.
+      </p>
+
+      <p>
+        Getting ready for a call? Check your microphone with the <Link href="/mic-test">mic test</Link> too, since it is
+        the other half of what people notice.
       </p>
 
       <h2 id="what-happens-with-your-video">What happens with your video</h2>

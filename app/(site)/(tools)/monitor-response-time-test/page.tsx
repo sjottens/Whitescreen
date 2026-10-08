@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
 import GuideSection from '@/components/tools/guide-section';
-import RelatedTools from '@/components/tools/related-tools';
+import RelatedTests from '@/components/tools/related-tests';
 import MotionTestDisplay from '@/components/tools/motion-test-display';
 import ResponseTimeIntro from '@/components/tools/response-time-intro';
 
@@ -38,7 +38,7 @@ export default function ResponseTimeTestPage() {
       >
         <ResponseTimeIntro />
       </GuideSection>
-      <RelatedTools currentToolId="response-time-test" />
+      <RelatedTests path={PATH} />
     </>
   );
 }

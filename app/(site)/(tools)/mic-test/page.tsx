@@ -1,5 +1,6 @@
 // app/(site)/(tools)/mic-test/page.tsx - Microphone Test
 
+import Link from 'next/link';
 import ToolPage from '@/components/hardware/tool-page';
 import MicTest from '@/components/hardware/mic-test';
 import { toolMetadata, type Faq } from '@/lib/tool-schema';
@@ -103,6 +104,11 @@ export default function MicTestPage() {
         switch it to a hands-free mode that drops the audio quality to phone-call level. Your voice sounds like it&apos;s
         coming through a tin can, and music playing at the same time suddenly sounds flat. It&apos;s a limitation of how
         Bluetooth handles audio in both directions. A wired headset or a USB microphone doesn&apos;t have this problem.
+      </p>
+
+      <p>
+        Setting up for calls? The <Link href="/webcam-test">webcam test</Link> checks your camera the same way, and a
+        quiet room with good light in front of you helps both.
       </p>
 
       <h2 id="what-happens-with-your-audio">What happens with your audio</h2>

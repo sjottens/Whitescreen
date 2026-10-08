@@ -7,7 +7,7 @@ import { pageMetadata } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
 import GuideSection from '@/components/tools/guide-section';
-import RelatedTools from '@/components/tools/related-tools';
+import RelatedTests from '@/components/tools/related-tests';
 import DeadPixelTest from '@/components/tools/dead-pixel-test';
 import DeadPixelIntro from '@/components/tools/dead-pixel-intro';
 
@@ -42,7 +42,7 @@ export default function DeadPixelTestPage() {
       >
         <DeadPixelIntro />
       </GuideSection>
-      <RelatedTools currentToolId="dead-pixel-test" />
+      <RelatedTests path={PATH} />
     </>
   );
 }

@@ -7,7 +7,7 @@ import { pageMetadata } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
 import GuideSection from '@/components/tools/guide-section';
-import RelatedTools from '@/components/tools/related-tools';
+import RelatedTests from '@/components/tools/related-tests';
 import ScreenDisplay from '@/components/tools/screen-display';
 
 const PATH = '/black-screen';
@@ -31,7 +31,7 @@ export default function BlackScreenPage() {
         <ScreenDisplay strings={getClientStrings('screenDisplay')} color="#000000" title="black-screen" />
       </ToolLayout>
       <GuideSection toolId="black-screen" />
-      <RelatedTools currentToolId="black-screen" />
+      <RelatedTests path={PATH} />
     </>
   );
 }

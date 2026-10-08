@@ -3,6 +3,7 @@
 
 import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import PixelDensityCalculator from '@/components/tools/pixel-density-calculator';
 import { pageMetadata } from '@/lib/seo';
 import { translate } from '@/lib/translations';
@@ -124,6 +125,11 @@ export default async function PixelDensityCalculatorPage() {
               <li><strong>Photo editing:</strong> high density helps you judge sharpness at 100% zoom, but color accuracy matters more than PPI.</li>
               <li><strong>Large or ultrawide screens:</strong> a 34&quot; 3440 x 1440 ultrawide sits at about 110 PPI, the same density as a 27&quot; 1440p monitor, just wider.</li>
             </ul>
+            <p>
+              Pixel density is one of several specs that decide how a monitor looks. The{' '}
+              <Link href="/monitor-buying-guide">monitor buying guide</Link> covers panel types, refresh rate and HDR, and
+              once the new screen arrives, the <Link href="/dead-pixel-test">dead pixel test</Link> is the first thing to run.
+            </p>
           </div>
 
         </div>

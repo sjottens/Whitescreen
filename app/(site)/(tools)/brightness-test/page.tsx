@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
 import GuideSection from '@/components/tools/guide-section';
-import RelatedTools from '@/components/tools/related-tools';
+import RelatedTests from '@/components/tools/related-tests';
 import BrightnessTest from '@/components/tools/brightness-test';
 import BrightnessTestIntro from '@/components/tools/brightness-test-intro';
 
@@ -39,7 +39,7 @@ export default function BrightnessTestPage() {
       >
         <BrightnessTestIntro />
       </GuideSection>
-      <RelatedTools currentToolId="brightness-test" />
+      <RelatedTests path={PATH} />
     </>
   );
 }

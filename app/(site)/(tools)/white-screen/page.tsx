@@ -7,7 +7,7 @@ import { pageMetadata } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
 import GuideSection from '@/components/tools/guide-section';
-import RelatedTools from '@/components/tools/related-tools';
+import RelatedTests from '@/components/tools/related-tests';
 import ScreenDisplay from '@/components/tools/screen-display';
 
 const PATH = '/white-screen';
@@ -32,7 +32,7 @@ export default function WhiteScreenPage() {
         <ScreenDisplay strings={getClientStrings('screenDisplay')} color="#FFFFFF" title="white-screen" />
       </ToolLayout>
       <GuideSection toolId="white-screen" />
-      <RelatedTools currentToolId="white-screen" />
+      <RelatedTests path={PATH} />
     </>
   );
 }

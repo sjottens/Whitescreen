@@ -49,7 +49,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'Esc', description: 'Exit fullscreen' },
     ],
     proTip:
-      'A small amount of bleed in the corners, visible only on a black screen in a dark room, is normal on most LCD monitors and is not usually a warranty case. Bleed that is visible during regular content (dark movie scenes, game loading screens) in a normally-lit room is a much stronger case for a return or exchange - document it and check your return window before it closes.',
+      "A small amount of bleed in the corners, visible only on a black screen in a dark room, is normal on most LCD monitors and is not usually a warranty case. Bleed that is visible during regular content (dark movie scenes, game loading screens) in a normally lit room is a much stronger case for a return or exchange. Document it, and go through [what to check before returning a monitor](/how-to-test-a-monitor-before-returning) while you are at it.",
   },
 
   'response-time-test': {
@@ -85,12 +85,12 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'F', description: 'Toggle fullscreen mode' },
     ],
     proTip:
-      "If you see ghosting, check your monitor's overdrive/OD setting before assuming the panel is defective - this single setting is the most common fixable cause of visible ghosting, and it's free to change.",
+      "If you see ghosting, check your monitor's overdrive setting before assuming the panel is defective: it is the most common fixable cause, and it's free to change. Checking a new monitor from top to bottom? The [complete monitor test](/monitor-test) puts this test in order with the others.",
   },
 
   'brightness-test': {
     whatIs:
-      'A brightness test evaluates your monitor\'s ability to display different levels of brightness accurately. This tool helps you identify issues with monitor brightness uniformity, detect dead pixels, assess color accuracy, and measure contrast ratio performance. It\'s essential for professional color work, photo editing, and quality assurance.',
+      "A brightness test shows whether your monitor can display every shade between black and white. The gray ladder steps from 0 to 100 percent: if the darkest steps merge into black, shadow detail is lost; if the brightest merge into white, highlights are clipped. The gradient reveals banding, the bars put all shades side by side, and the flicker mode alternates black and white at a speed you choose. It is a visual check: measuring brightness in nits or an exact gamma value needs a colorimeter. For uneven brightness across the panel, a full [white screen](/white-screen) is easier to judge.",
     sections: [
       {
         title: 'Test Modes Explained',
@@ -125,12 +125,12 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'R', description: 'Reset to 50% gray level' },
     ],
     proTip:
-      'For the most accurate brightness test results, adjust your monitor\'s brightness control to a comfortable viewing level, then use the Display Opacity slider to fine-tune the test display without affecting monitor settings.',
+      "Set your monitor's own brightness to a comfortable level for your room first, then adjust contrast until the top steps stay distinct and the black level until the first steps above black are just visible. The Display Opacity slider dims the test pattern without changing any monitor setting. When text still looks hard to read afterwards, check it with the [contrast test](/contrast-test).",
   },
 
   'contrast-test': {
     whatIs:
-      'A contrast test evaluates your monitor\'s ability to distinguish between different brightness levels. This tool measures the contrast ratio, helps identify visibility issues, tests color accuracy, and detects problems with display uniformity. It\'s crucial for ensuring content is readable and colors are distinguishable.',
+      "Contrast here means how well text and shapes stand out from their background. The WCAG ladder and readability modes show text at decreasing contrast with the ratio for each step, the custom pair mode calculates the ratio for your own colors, and the simulator previews how colors look with protanopia, deuteranopia, tritanopia and achromatopsia. The ratio is calculated from the colors, so it is the same on every screen; how deep your monitor's own black is shows best on a [black screen](/black-screen) in a dark room.",
     sections: [
       {
         title: 'Test Modes Explained',
@@ -164,12 +164,12 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'R', description: 'Reset to default values' },
     ],
     proTip:
-      'For WCAG compliance testing, ensure at least 4.5:1 contrast ratio for text and 3:1 for graphics. Use the custom mode to test your specific color combinations and verify accessibility standards.',
+      "WCAG asks for at least 4.5:1 for normal text and 3:1 for large text and graphics. Test the exact colors from your design in custom pair mode rather than guessing. If low-contrast steps all look the same on your screen, your gamma or brightness may be off; the [brightness test](/brightness-test) helps you set them.",
   },
 
   'dead-pixel-test': {
     whatIs:
-      'A dead pixel test helps identify non-functioning pixels on your display. Dead pixels appear as dark spots, while stuck pixels appear as colored spots. This tool cycles through colors to make any defective pixels highly visible. Important for quality assurance and warranty claims.',
+      "A dead pixel test fills the screen with one solid color at a time so that a single faulty pixel has nowhere to hide. Dead pixels show as dark dots, stuck pixels as colored dots and hot pixels as white dots on black. Cycling through white, black, red, green and blue checks every subpixel in both its on and off state. To look at one color for longer, use the [color screen](/color-screen) instead.",
     sections: [
       {
         title: 'Pixel Issues Explained',
@@ -204,7 +204,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'Esc', description: 'Exit fullscreen' },
     ],
     proTip:
-      'Document any dead pixels with photos including the pixel location on screen. Most manufacturers have warranty policies that cover a small number of dead pixels (typically 0-8 depending on the brand). Keep your documentation for warranty claims.',
+      "Photograph any defect with its position on screen before you contact the seller. Manufacturers each publish a pixel policy that says how many defects they accept, so check yours along with your retailer's return window. A colored dot may still be revived with the [Dead Pixel Fixer](/dead-pixel-fixer).",
   },
 
   // Color Screen Tools
@@ -245,7 +245,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'Ctrl + S', description: 'Download a white PNG' },
     ],
     proTip:
-      'White finds dead pixels but can hide stuck ones: a pixel stuck on red, green or blue still contributes to white and blends in. Run the black screen and the red, green and blue screens as well, or use the Dead Pixel Test, which cycles through all of them for you.',
+      "White finds dead pixels but can hide stuck ones: a pixel stuck on red, green or blue still contributes to white and blends in. Run the [black screen](/black-screen) and the [red, green and blue screens](/color-screen) as well, or use the [Dead Pixel Test](/dead-pixel-test), which cycles through all of them for you.",
   },
 
   'black-screen': {
@@ -284,12 +284,12 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'Ctrl + S', description: 'Download a black PNG' },
     ],
     proTip:
-      'If you find a bright dot on black, switch to the red, green and blue screens to see which subpixel is stuck, then try the Dead Pixel Fixer on that spot. For bleed, the Backlight Bleed Test adds corner markers and a near-black mode that make it easier to judge how serious it is.',
+      "If you find a bright dot on black, switch to the [red, green and blue screens](/color-screen) to see which subpixel is stuck, then try the [Dead Pixel Fixer](/dead-pixel-fixer) on that spot. For bleed, the [Backlight Bleed Test](/backlight-bleed-test) adds corner markers and a near-black mode that make it easier to judge how serious it is.",
   },
 
   'color-screen': {
     whatIs:
-      'Every pixel on an LCD or OLED screen is made of three subpixels: one red, one green and one blue. A full-screen primary color switches on only one of those three across the whole panel, which is why it is the most reliable way to find a single faulty subpixel. On pure red, a stuck green or blue subpixel shows up as a bright green or blue dot. A dead red subpixel shows up as a dark dot, because the red light at that spot is missing. White lights all three subpixels and black lights none, so those two screens can hide a defect that only affects one color channel. This page lets you switch between the primaries, the mixed colors and any custom color without leaving the page.',
+      'Every pixel on an LCD or OLED screen is made of three subpixels: one red, one green and one blue. A full-screen primary color switches on only one of those three across the whole panel, which is why it is the most reliable way to find a single faulty subpixel. On pure red, a stuck green or blue subpixel shows up as a bright green or blue dot. A dead red subpixel shows up as a dark dot, because the red light at that spot is missing. A [white screen](/white-screen) lights all three subpixels and a [black screen](/black-screen) lights none, so those two screens can hide a defect that only affects one color channel. This page lets you switch between the primaries, the mixed colors and any custom color without leaving the page.',
     sections: [
       {
         title: 'What Each Color Reveals',
@@ -332,7 +332,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'Ctrl + S', description: 'Download the current color as PNG' },
     ],
     proTip:
-      'A stuck subpixel is lit in one color all the time, and a dead one never lights. Stuck subpixels can sometimes be freed by rapidly cycling colors over the spot with the Dead Pixel Fixer for 10 to 30 minutes. Dead pixels cannot be fixed in software, so check how many your manufacturer allows under its pixel policy before you start a warranty claim.',
+      "A stuck subpixel is lit in one color all the time, and a dead one never lights. Stuck subpixels can sometimes be freed by rapidly cycling colors over the spot with the [Dead Pixel Fixer](/dead-pixel-fixer) for 10 to 30 minutes. Dead pixels cannot be fixed in software, so check how many your manufacturer allows under its pixel policy before you start a warranty claim.",
   },
 
   'zoom-lighting': {
@@ -370,6 +370,6 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { key: 'Esc', description: 'Exit fullscreen' },
     ],
     proTip:
-      'A laptop screen alone is rarely enough in a dark room, but combined with a window or a desk lamp on the other side it removes harsh shadows. Most webcams also look noticeably sharper once your face is well lit, because they no longer have to boost gain.',
+      "A laptop screen alone is rarely enough in a dark room, but combined with a window or a desk lamp on the other side it removes harsh shadows. Check the result in the [webcam test](/webcam-test): most webcams look noticeably sharper once your face is well lit, because they no longer have to boost gain. A quick [mic test](/mic-test) catches the other common call problem.",
   },
 };

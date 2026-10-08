@@ -1,5 +1,5 @@
 // components/hardware/tool-cards.tsx - Card grid linking to the hardware tests.
-// Used by "Other tests" on each tool page, the homepage and the 404 page.
+// Used by the homepage and the 404 page.
 
 import Link from 'next/link';
 import { HARDWARE_TOOLS, type HardwareToolId } from '@/lib/hardware-tools';

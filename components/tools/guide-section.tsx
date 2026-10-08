@@ -23,6 +23,20 @@ interface GuideSectionProps {
   extraToc?: TocItem[];
 }
 
+// Guide text may contain [label](/path) links to other pages.
+function withLinks(text: string): ReactNode[] {
+  return text.split(/(\[[^\]]+\]\(\/[^)]*\))/).map((part, i) => {
+    const link = /^\[([^\]]+)\]\((\/[^)]*)\)$/.exec(part);
+    return link ? (
+      <Link key={i} href={link[2]} className="font-medium text-cyan-700 underline underline-offset-2">
+        {link[1]}
+      </Link>
+    ) : (
+      part
+    );
+  });
+}
+
 export const slugify = (text: string) =>
   text.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
@@ -67,7 +81,7 @@ export default function GuideSection({ toolId, children, extraToc = [] }: GuideS
             <h3 id="what-is-this-test" className="scroll-mt-24 text-xl font-semibold text-slate-800 mb-4">
               {translate('guide_what_is_test_title' as any)}
             </h3>
-            <p className="text-slate-700 leading-relaxed">{guide.whatIs}</p>
+            <p className="text-slate-700 leading-relaxed">{withLinks(guide.whatIs)}</p>
           </div>
 
           {/* Main sections */}
@@ -82,7 +96,7 @@ export default function GuideSection({ toolId, children, extraToc = [] }: GuideS
                     {section.items.map((item) => (
                       <li key={item}>
                         <strong>{item.split(':')[0]}:</strong>
-                        {item.includes(':') ? item.split(':').slice(1).join(':') : ''}
+                        {item.includes(':') ? withLinks(item.split(':').slice(1).join(':')) : ''}
                       </li>
                     ))}
                   </ul>
@@ -102,7 +116,7 @@ export default function GuideSection({ toolId, children, extraToc = [] }: GuideS
               {guide.tips.map((tip) => (
                 <li key={tip} className="flex items-start">
                   <span className="text-cyan-600 mr-3 font-bold">•</span>
-                  <span>{tip}</span>
+                  <span>{withLinks(tip)}</span>
                 </li>
               ))}
             </ul>
@@ -128,7 +142,7 @@ export default function GuideSection({ toolId, children, extraToc = [] }: GuideS
           {/* Pro tip section */}
           <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <p className="text-slate-700 text-sm leading-relaxed">
-              <strong className="text-cyan-700">{translate('guide_pro_tip_label' as any)}:</strong> {guide.proTip}
+              <strong className="text-cyan-700">{translate('guide_pro_tip_label' as any)}:</strong> {withLinks(guide.proTip)}
             </p>
           </div>
         </div>
