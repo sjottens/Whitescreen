@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { getConsentFromStorage } from '@/lib/consent-types';
+import { useConsent } from '@/components/providers/consent-provider';
 
 const ADSENSE_SRC =
   'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5016673566357322';
@@ -31,8 +32,10 @@ const FALLBACK_DELAY_MS = { mobile: 8000, desktop: 4000 };
  *   Lighthouse's initial-load audit
  */
 export default function AdOptimizer() {
+  // Re-runs when the visitor accepts in the banner, so ads don't wait for the next page view.
+  const { consent } = useConsent();
+
   useEffect(() => {
-    const consent = getConsentFromStorage();
     if (!consent.marketing) {
       console.debug('[AdOptimizer] No marketing consent, skipping AdSense load');
       return;
@@ -90,7 +93,7 @@ export default function AdOptimizer() {
         : setTimeout(loadAdsense, delay);
 
     return cleanup;
-  }, []);
+  }, [consent.marketing]);
 
   return null;
 }

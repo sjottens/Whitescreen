@@ -83,7 +83,7 @@ export default function DeadPixelIntro() {
               <div className="w-full h-24 bg-white rounded mb-4 flex items-center justify-center">
                 <div className="w-2 h-2 bg-black rounded-full shadow-md"></div>
               </div>
-              <h4 className="font-bold text-white mb-2">Black Dead Pixel</h4>
+              <h3 className="font-bold text-white mb-2">Black Dead Pixel</h3>
               <p className="text-sm text-slate-400">
                 Appears on colored backgrounds
               </p>
@@ -94,7 +94,7 @@ export default function DeadPixelIntro() {
               <div className="w-full h-24 bg-white rounded mb-4 flex items-center justify-center">
                 <div className="w-2 h-2 bg-red-500 rounded-full shadow-md"></div>
               </div>
-              <h4 className="font-bold text-white mb-2">Red Stuck Pixel</h4>
+              <h3 className="font-bold text-white mb-2">Red Stuck Pixel</h3>
               <p className="text-sm text-slate-400">
                 Stuck on red subpixel
               </p>
@@ -105,7 +105,7 @@ export default function DeadPixelIntro() {
               <div className="w-full h-24 bg-white rounded mb-4 flex items-center justify-center">
                 <div className="w-2 h-2 bg-green-500 rounded-full shadow-md"></div>
               </div>
-              <h4 className="font-bold text-white mb-2">Green Stuck Pixel</h4>
+              <h3 className="font-bold text-white mb-2">Green Stuck Pixel</h3>
               <p className="text-sm text-slate-400">
                 Stuck on green subpixel
               </p>
@@ -116,7 +116,7 @@ export default function DeadPixelIntro() {
               <div className="w-full h-24 bg-white rounded mb-4 flex items-center justify-center">
                 <div className="w-2 h-2 bg-blue-500 rounded-full shadow-md"></div>
               </div>
-              <h4 className="font-bold text-white mb-2">Blue Stuck Pixel</h4>
+              <h3 className="font-bold text-white mb-2">Blue Stuck Pixel</h3>
               <p className="text-sm text-slate-400">
                 Stuck on blue subpixel
               </p>
@@ -137,7 +137,7 @@ export default function DeadPixelIntro() {
                   1
                 </span>
                 <div>
-                  <h4 className="font-bold text-white mb-1">Clean Your Screen</h4>
+                  <h3 className="font-bold text-white mb-1">Clean Your Screen</h3>
                   <p className="text-slate-300">
                     Use a soft, lint-free cloth to gently clean your screen. Remove any dust or smudges.
                   </p>
@@ -148,7 +148,7 @@ export default function DeadPixelIntro() {
                   2
                 </span>
                 <div>
-                  <h4 className="font-bold text-white mb-1">Start the Test</h4>
+                  <h3 className="font-bold text-white mb-1">Start the Test</h3>
                   <p className="text-slate-300">
                     Click "Start Test" and press F11 for fullscreen mode (recommended for best results).
                   </p>
@@ -159,9 +159,9 @@ export default function DeadPixelIntro() {
                   3
                 </span>
                 <div>
-                  <h4 className="font-bold text-white mb-1">
+                  <h3 className="font-bold text-white mb-1">
                     Look Carefully
-                  </h4>
+                  </h3>
                   <p className="text-slate-300">
                     Spend 10-15 seconds on each color. Look for spots that don't match the background color.
                   </p>
@@ -172,7 +172,7 @@ export default function DeadPixelIntro() {
                   4
                 </span>
                 <div>
-                  <h4 className="font-bold text-white mb-1">Document Issues</h4>
+                  <h3 className="font-bold text-white mb-1">Document Issues</h3>
                   <p className="text-slate-300">
                     Take photos of any dead pixels found. Note their location for warranty claims.
                   </p>

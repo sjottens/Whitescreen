@@ -49,7 +49,6 @@ export const CLIENT_KEYS = {
     'screen_display_custom_color',
     'screen_display_download_btn',
     'screen_display_exit_fullscreen_hint',
-    'screen_display_fullscreen_aria',
     'screen_display_fullscreen_btn',
     'screen_display_height_label',
     'screen_display_keyboard_hint',

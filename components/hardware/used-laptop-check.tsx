@@ -155,9 +155,9 @@ export default function UsedLaptopCheck() {
           <li key={step.id} className="mb-0 rounded-lg border border-slate-700 bg-slate-950/40 p-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0 flex-1">
-                <h3 className="mb-1 text-base font-semibold text-slate-100 md:text-lg">
+                <h2 className="mb-1 text-base font-semibold text-slate-100 md:text-lg">
                   {index + 1}. {step.title}
-                </h3>
+                </h2>
                 <p className="text-sm text-slate-300">{step.hint}</p>
               </div>
               <div className="flex gap-2" role="group" aria-label={`${step.title} result`}>
@@ -243,7 +243,7 @@ export default function UsedLaptopCheck() {
 
       {system && (
         <div className="mt-4 rounded-lg border border-slate-700 bg-slate-950/40 p-4 text-sm text-slate-300">
-          <h3 className="mb-2 text-base font-semibold text-slate-100">What this browser can see</h3>
+          <h2 className="mb-2 text-base font-semibold text-slate-100 md:text-base">What this browser can see</h2>
           <ul className="list-none space-y-1 pl-0">
             <li className="mb-0">Screen resolution: {system.resolution}</li>
             {system.cores && <li className="mb-0">Processor threads: {system.cores}</li>}

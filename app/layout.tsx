@@ -5,13 +5,13 @@
 
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
-import Script from 'next/script';
 import { Manrope, Space_Grotesk } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants';
 import RouteTransition from '@/components/layout/route-transition';
 import AdOptimizer from '@/components/analytics/ad-optimizer';
+import AnalyticsLoader from '@/components/analytics/analytics-loader';
 import { ConsentProvider } from '@/components/providers/consent-provider';
 import ConsentBanner from '@/components/legal/consent-banner';
 import { getConsentStrings } from '@/lib/ui-strings';
@@ -197,32 +197,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Explicit manifest link */}
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* Google Tag Manager - Essential for analytics tracking
-            The dataLayer/gtag stub is tiny and runs afterInteractive so any
-            gtag() call queues correctly from the start. The actual gtag.js
-            library (~165KB, ~250ms of main-thread blocking on mobile) is
-            loaded with strategy="lazyOnload" so it fetches/executes during
-            browser idle time after the page is interactive, instead of
-            competing with hydration for the main thread. Queued dataLayer
-            events are processed as soon as the library arrives, so no
-            tracking data is lost - pageviews just fire a bit later. */}
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-YP3G096BGK', { send_page_view: false });
-            `,
-          }}
-        />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-YP3G096BGK"
-          strategy="lazyOnload"
-          id="gtag-script"
-        />
+        {/* Google Analytics loads only after consent: see AnalyticsLoader in <body>. */}
 
       </head>
       <body className={`${manrope.variable} ${spaceGrotesk.variable} theme-dark-premium`}>
@@ -231,9 +206,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <RouteTransition>{children}</RouteTransition>
           </div>
 
-          {/* Performance optimization: defer non-critical ads */}
-          {/* GTM is loaded via Script component with strategy="afterInteractive" for reliable tracking */}
+          {/* Ads and analytics load only after the matching consent. */}
           <AdOptimizer />
+          <AnalyticsLoader />
 
           {/* GDPR-compliant cookie consent banner */}
           <ConsentBanner strings={getConsentStrings()} />

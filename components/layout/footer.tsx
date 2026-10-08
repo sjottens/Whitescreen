@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Every tool and guide, grouped as on /tools */}
           {TOOL_GROUPS.map((group) => (
             <div key={group.id}>
-              <h4 className="text-white font-semibold mb-4">{group.title}</h4>
+              <h2 className="mb-4 text-base font-semibold text-white md:text-base">{group.title}</h2>
               <ul className="space-y-2 list-none pl-0 marker:hidden">
                 {group.entries.map((tool) => (
                   <li key={tool.path}>
@@ -33,7 +33,7 @@ export default function Footer() {
 
           {/* Resources Section */}
           <div>
-            <h4 className="text-white font-semibold mb-4">{translate('support_title')}</h4>
+            <h2 className="mb-4 text-base font-semibold text-white md:text-base">{translate('support_title')}</h2>
             <ul className="space-y-2 list-none pl-0 marker:hidden">
               <li>
                 <Link href={'/faq'} className="text-white hover:text-slate-100 transition-colors text-sm">

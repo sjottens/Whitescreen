@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useId } from 'react';
 import { Maximize2, Download, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ColorCustomizer } from '@/components/ui/color-customizer';
@@ -26,6 +26,11 @@ interface ScreenDisplayProps {
 
 export default function ScreenDisplay({ color, colorId, title, strings, swatches }: ScreenDisplayProps) {
   const [displayColor, setDisplayColor] = useState(color);
+  const inputId = useId();
+
+  // Hint text on the color panel: dark on light colors, light on dark ones.
+  const rgb = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(displayColor);
+  const isLightPanel = rgb ? 0.299 * parseInt(rgb[1], 16) + 0.587 * parseInt(rgb[2], 16) + 0.114 * parseInt(rgb[3], 16) > 150 : true;
   const [customWidth, setCustomWidth] = useState('1920');
   const [customHeight, setCustomHeight] = useState('1080');
   const [copied, setCopied] = useState(false);
@@ -156,7 +161,7 @@ export default function ScreenDisplay({ color, colorId, title, strings, swatches
         onClick={handleFullscreen}
         role="button"
         tabIndex={0}
-        aria-label={translate('screen_display_fullscreen_aria')}
+        aria-label={translate('screen_display_click_to_fullscreen')}
       >
         <div className="w-full h-full flex items-center justify-center relative">
           {/* Fullscreen exit button - only show when in fullscreen */}
@@ -180,9 +185,9 @@ export default function ScreenDisplay({ color, colorId, title, strings, swatches
 
           {/* Instructions - only show when not in fullscreen */}
           {!isFullscreenActive && (
-            <div className="text-center text-slate-400 pointer-events-none">
+            <div className="text-center pointer-events-none" style={{ color: isLightPanel ? '#334155' : '#e2e8f0' }}>
               <Maximize2 className="w-12 h-12 mx-auto mb-3 opacity-30" />
-              <p className="text-sm font-medium">{translate('screen_display_click_to_fullscreen')}</p>
+              <p className="text-sm font-medium" style={{ color: 'inherit' }}>{translate('screen_display_click_to_fullscreen')}</p>
             </div>
           )}
         </div>
@@ -252,7 +257,7 @@ export default function ScreenDisplay({ color, colorId, title, strings, swatches
 
         {/* Resolution Settings */}
         <div className="bg-white rounded-lg p-6 border border-slate-200">
-          <h3 className="font-semibold text-slate-900 mb-4">{translate('screen_display_title')}</h3>
+          <h2 className="mb-4 text-base font-semibold text-slate-900 md:text-lg">{translate('screen_display_title')}</h2>
 
           {/* Preset Buttons */}
           <div className="mb-6">
@@ -277,8 +282,9 @@ export default function ScreenDisplay({ color, colorId, title, strings, swatches
           {/* Custom Resolution */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">{translate('screen_display_width_label')}</label>
+              <label htmlFor={`${inputId}-width`} className="block text-sm font-medium text-slate-700 mb-2">{translate('screen_display_width_label')}</label>
               <input
+                id={`${inputId}-width`}
                 type="number"
                 min="320"
                 max="7680"
@@ -290,8 +296,9 @@ export default function ScreenDisplay({ color, colorId, title, strings, swatches
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">{translate('screen_display_height_label')}</label>
+              <label htmlFor={`${inputId}-height`} className="block text-sm font-medium text-slate-700 mb-2">{translate('screen_display_height_label')}</label>
               <input
+                id={`${inputId}-height`}
                 type="number"
                 min="240"
                 max="4320"
