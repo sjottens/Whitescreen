@@ -123,6 +123,13 @@ export default async function PrivacyPage() {
             We only email you again if you ticked the box for updates about new tools, and every such email lets you
             unsubscribe. You can ask us to delete your address at any time through the contact page.
           </p>
+          <p>
+            To keep spam bots out, the contact form and the email form of the used laptop check use{' '}
+            <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Turnstile</a>.
+            It only loads on pages with one of these forms, and checks your browser for signs of automation (for example
+            your IP address and browser details) without cookies for advertising. Cloudflare processes this data only to
+            tell people and bots apart.
+          </p>
 
           <h2>7. {translate('privacy_gdpr_rights')}</h2>
           <p>

@@ -8,6 +8,7 @@ import { useId, useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { STEPS, type StepStatus } from '@/lib/used-laptop-steps';
 import { useFormToken } from '@/lib/use-form-token';
+import { useTurnstile } from '@/lib/use-turnstile';
 
 interface EmailResultsFormProps {
   results: Record<string, StepStatus | undefined>;
@@ -24,6 +25,7 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
   const [error, setError] = useState('');
   // Signed token for the server's bot check (lib/form-token.ts).
   const { token, refresh: refreshToken } = useFormToken();
+  const turnstile = useTurnstile('laptop_check', 'dark');
 
   const checked = Object.values(results).filter(Boolean).length;
 
@@ -39,6 +41,15 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
       setError('The form is still loading. Please try again in a moment.');
       return;
     }
+    if (!turnstile.token) {
+      setState('error');
+      setError(
+        turnstile.failed
+          ? 'The security check could not load. Please reload the page and try again.'
+          : 'Please wait for the security check below to finish.'
+      );
+      return;
+    }
     setState('sending');
     const website = (new FormData(e.currentTarget).get('website') as string) || '';
     try {
@@ -51,6 +62,7 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
           updates,
           website,
           token,
+          turnstileToken: turnstile.token,
           system: system && {
             resolution: system.resolution,
             cores: system.cores ?? undefined,
@@ -59,8 +71,9 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
           },
         }),
       });
-      // Tokens are single-use; get a fresh one in case the visitor retries.
+      // Tokens are single-use; get fresh ones in case the visitor retries.
       refreshToken();
+      turnstile.reset();
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.message || "We couldn't send the email. Please try again later.");
@@ -68,6 +81,7 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
       setState('sent');
     } catch (err) {
       refreshToken();
+      turnstile.reset();
       setState('error');
       setError(err instanceof Error ? err.message : "We couldn't send the email. Please try again later.");
     }
@@ -120,6 +134,9 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
         />
         Also email me now and then about new TestaScreen tools. You can unsubscribe at any time.
       </label>
+
+      {/* Cloudflare Turnstile; fixed height so the form doesn't jump when it appears. */}
+      <div ref={turnstile.containerRef} className="mt-3 min-h-[65px]" />
 
       {state === 'error' && (
         <p role="alert" className="mt-3 text-sm text-red-300">

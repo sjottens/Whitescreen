@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useFormToken } from '@/lib/use-form-token';
+import { useTurnstile } from '@/lib/use-turnstile';
 
 interface ContactFormProps {
   labels: {
@@ -23,6 +24,7 @@ export default function ContactForm({ labels }: ContactFormProps) {
   // never see, and a signed token fetched when the form appears.
   const [website, setWebsite] = useState('');
   const { token, refresh: refreshToken } = useFormToken();
+  const turnstile = useTurnstile('contact');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +37,16 @@ export default function ContactForm({ labels }: ContactFormProps) {
 
     if (!token) {
       setErrorMsg('The form is still loading. Please try again in a moment.');
+      setStatus('error');
+      return;
+    }
+
+    if (!turnstile.token) {
+      setErrorMsg(
+        turnstile.failed
+          ? 'The security check could not load. Please reload the page and try again.'
+          : 'Please wait for the security check above the button to finish.'
+      );
       setStatus('error');
       return;
     }
@@ -53,10 +65,12 @@ export default function ContactForm({ labels }: ContactFormProps) {
           message,
           website,
           token,
+          turnstileToken: turnstile.token,
         }),
       });
-      // Tokens are single-use; get a fresh one for a retry or a next message.
+      // Tokens are single-use; get fresh ones for a retry or a next message.
       refreshToken();
+      turnstile.reset();
 
       if (response.ok) {
         setStatus('success');
@@ -71,6 +85,7 @@ export default function ContactForm({ labels }: ContactFormProps) {
       }
     } catch (err) {
       refreshToken();
+      turnstile.reset();
       setErrorMsg('An error occurred. Please try again.');
       setStatus('error');
       console.error('Contact form error:', err);
@@ -124,6 +139,9 @@ export default function ContactForm({ labels }: ContactFormProps) {
           onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
+
+      {/* Cloudflare Turnstile; fixed height so the form doesn't jump when it appears. */}
+      <div ref={turnstile.containerRef} className="mb-6 min-h-[65px]" />
 
       {status === 'error' && (
         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-slate-900 font-semibold">

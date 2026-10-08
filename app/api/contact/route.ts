@@ -11,9 +11,12 @@ import {
   escapeHtml,
   type BotFields,
 } from '@/lib/mail';
+import { turnstileProblem } from '@/lib/turnstile';
 
 interface ContactPayload extends BotFields {
   email: string;
+  /** Cloudflare Turnstile token from the widget in the form. */
+  turnstileToken?: string;
   message: string;
 }
 
@@ -55,6 +58,15 @@ export async function POST(request: NextRequest) {
     if (reason) {
       console.warn(`Contact form: dropped submission (${reason})`);
       return NextResponse.json({ message: 'Message sent successfully' }, { status: 200 });
+    }
+
+    const turnstile = await turnstileProblem(body.turnstileToken, 'contact', clientIp);
+    if (turnstile) {
+      console.warn(`Contact form: Turnstile check failed (${turnstile})`);
+      return NextResponse.json(
+        { message: 'We could not verify that you are human. Please try again.' },
+        { status: 403 }
+      );
     }
 
     if (rateLimit.isLimited(clientIp, now)) {

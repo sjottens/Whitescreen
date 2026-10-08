@@ -17,6 +17,7 @@ import {
   escapeHtml,
   type BotFields,
 } from '@/lib/mail';
+import { turnstileProblem } from '@/lib/turnstile';
 import { STEPS, type StepStatus } from '@/lib/used-laptop-steps';
 
 interface SystemInfo {
@@ -32,6 +33,8 @@ interface LaptopCheckPayload extends BotFields {
   system?: SystemInfo;
   /** Ticked "keep me posted about new tools" (unticked by default). */
   updates?: boolean;
+  /** Cloudflare Turnstile token from the widget in the form. */
+  turnstileToken?: string;
 }
 
 const PAGE_URL = 'https://testascreen.com/used-laptop-check';
@@ -135,6 +138,15 @@ export async function POST(request: NextRequest) {
     if (reason) {
       console.warn(`Laptop check: dropped submission (${reason})`);
       return NextResponse.json({ message: 'Sent' }, { status: 200 });
+    }
+
+    const turnstile = await turnstileProblem(body.turnstileToken, 'laptop_check', clientIp);
+    if (turnstile) {
+      console.warn(`Laptop check: Turnstile check failed (${turnstile})`);
+      return NextResponse.json(
+        { message: 'We could not verify that you are human. Please try again.' },
+        { status: 403 }
+      );
     }
 
     if (rateLimit.isLimited(clientIp, now)) {
