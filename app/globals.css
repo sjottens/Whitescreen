@@ -892,3 +892,143 @@ button, a, [role="button"] {
 .bg-green-50 * {
   color: rgb(15 23 42) !important;
 }
+
+/* ===== 404 PAGE (app/not-found.tsx) ===== */
+
+.nf-monitor {
+  width: min(100%, 420px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: float 6s ease-in-out infinite;
+}
+
+.nf-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 12px solid #1e293b;
+  border-radius: 16px;
+  background: #020617;
+  box-shadow: 0 0 0 1px rgba(0, 220, 130, 0.25), 0 0 60px rgba(0, 220, 130, 0.18);
+}
+
+.nf-bars {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  opacity: 0.55;
+  animation: nf-flicker 4s steps(1) infinite;
+}
+
+.nf-bars span {
+  flex: 1;
+}
+
+.nf-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 4px);
+  pointer-events: none;
+}
+
+.nf-dead-pixel {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #000;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.nf-code {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(4rem, 18vw, 7.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 24px rgba(0, 220, 130, 0.6);
+}
+
+.nf-code::before,
+.nf-code::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: screen;
+}
+
+.nf-code::before {
+  color: #ff0040;
+  animation: nf-glitch 2.6s infinite linear alternate-reverse;
+}
+
+.nf-code::after {
+  color: #00e0ff;
+  animation: nf-glitch 3.1s infinite linear alternate;
+}
+
+.nf-no-signal {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  padding: 2px 10px;
+  border-radius: 4px;
+  background: rgba(2, 6, 23, 0.8);
+  color: #00dc82;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  animation: nf-blink 1.2s steps(1) infinite;
+}
+
+.nf-stand {
+  width: 18%;
+  height: 34px;
+  background: linear-gradient(to bottom, #1e293b, #0f172a);
+}
+
+.nf-base {
+  width: 42%;
+  height: 10px;
+  border-radius: 999px;
+  background: #1e293b;
+}
+
+@keyframes nf-glitch {
+  0%, 82%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+  84% { clip-path: inset(10% 0 60% 0); transform: translate(-6px, 2px); opacity: 1; }
+  88% { clip-path: inset(55% 0 20% 0); transform: translate(6px, -2px); opacity: 1; }
+  92% { clip-path: inset(30% 0 45% 0); transform: translate(-4px, 0); opacity: 1; }
+  96% { clip-path: inset(70% 0 5% 0); transform: translate(4px, 1px); opacity: 1; }
+}
+
+@keyframes nf-flicker {
+  0%, 100% { opacity: 0.55; }
+  47% { opacity: 0.35; }
+  49% { opacity: 0.6; }
+}
+
+@keyframes nf-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-monitor,
+  .nf-bars,
+  .nf-code::before,
+  .nf-code::after,
+  .nf-no-signal {
+    animation: none;
+  }
+}
