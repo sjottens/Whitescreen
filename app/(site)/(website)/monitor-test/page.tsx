@@ -2,7 +2,7 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Monitor, CheckCircle2, AlertTriangle, Gamepad2, ShoppingCart, ClipboardCheck } from 'lucide-react';
+import { ArrowRight, Monitor, CheckCircle2, AlertTriangle, Gamepad2, ShoppingCart, ClipboardCheck } from 'lucide-react';
 import { LinkButton } from '@/components/ui/button';
 import { pageMetadata, faqSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
@@ -44,20 +44,14 @@ export default async function MonitorTestPage() {
     { path: responseTime.path, nameKey: responseTime.nameKey, descKey: responseTime.descriptionKey },
   ];
 
-  // FAQ schema mirrors the visible "what a browser test can/can't tell
+  // FAQ schema built from the visible "what a browser test can/can't tell
   // you" section below, so the two never drift out of sync.
-  const limitsFaq = faqSchema([
-    {
-      question: 'What can a browser-based monitor test actually detect?',
-      answer:
-        'Dead and stuck pixels, color casts, backlight uniformity and bleed, gradient or color banding, and obvious brightness or contrast problems - a solid-color or gradient screen reveals all of these clearly.',
-    },
-    {
-      question: 'What can a browser-based monitor test NOT measure?',
-      answer:
-        "Calibrated color accuracy (Delta-E), true response time in milliseconds, exact HDR peak brightness, and input lag all require a colorimeter, a high-speed camera, or dedicated test hardware. A browser test can't measure these precisely.",
-    },
-  ]);
+  const limitsFaq = faqSchema(
+    (['can', 'cant'] as const).map((kind) => ({
+      question: translate(`monitor_test_hub_limits_${kind}_title` as any),
+      answer: translate(`monitor_test_hub_limits_${kind}_text` as any),
+    }))
+  );
 
   return (
     <>
@@ -66,21 +60,6 @@ export default async function MonitorTestPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(limitsFaq) }}
         suppressHydrationWarning
       />
-
-      {/* Sticky Back to Tools Bar */}
-      <div className="sticky top-0 z-40 bg-gradient-to-r from-blue-50 to-slate-50 border-b-2 border-blue-200 backdrop-blur-sm">
-        <div className="container px-4 py-4 flex items-center justify-between">
-          <LinkButton
-            href={'/tools'}
-            variant="secondary"
-            size="sm"
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {translate('back_to_tools')}
-          </LinkButton>
-        </div>
-      </div>
 
       {/* Header Section */}
       <section className="py-12 md:py-16 bg-gradient-to-br from-slate-50 to-cyan-50">

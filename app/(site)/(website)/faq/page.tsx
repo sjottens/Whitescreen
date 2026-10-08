@@ -3,7 +3,6 @@
 import { Metadata } from 'next';
 import { pageMetadata, faqSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
-import { FAQ_ITEMS } from '@/lib/constants';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -14,8 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function FAQPage() {
-
-  const faqData = faqSchema(FAQ_ITEMS);
 
   const localizedFaqItems = [
     { question: translate('faq_item_1_q'), answer: translate('faq_item_1_a') },
@@ -32,6 +29,10 @@ export default async function FAQPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(localizedFaqItems)) }}
+      />
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('faq_title')}</h1>
