@@ -57,7 +57,7 @@ export default function WebcamTestPage() {
         { id: "what-the-numbers-mean", label: "What the numbers mean" },
         { id: "black-screen-or-no-camera-found", label: "Black screen or no camera found" },
         { id: "picture-grainy-dark-or-blurry", label: "Picture grainy, dark or blurry?" },
-        { id: "what-happens-with-your-video", label: "What happens with your video" },
+        { id: "how-this-test-works", label: "How this test works" },
       ]}
       faqs={FAQS}
     >
@@ -117,7 +117,14 @@ export default function WebcamTestPage() {
         the other half of what people notice.
       </p>
 
-      <h2 id="what-happens-with-your-video">What happens with your video</h2>
+      <h2 id="how-this-test-works">How this test works</h2>
+      <p>
+        The test asks your browser for the camera at up to 1920 pixels wide and then reports what the camera actually
+        delivers. The resolution is read from the video itself. The reported frame rate is what the camera says it is
+        doing; the measured frame rate counts the frames your browser really receives every second, in browsers that
+        support it. A measured rate well below the reported one usually means the camera is slowing down to collect more
+        light, which is another sign the room is too dark.
+      </p>
       <p>
         Nothing leaves your device. The picture is shown by your browser and goes nowhere else. Snapshots are only
         created on your own device when you click the button, and you decide whether to save them.

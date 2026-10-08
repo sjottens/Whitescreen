@@ -22,7 +22,7 @@ export default function BacklightBleedTestPage() {
         title="Backlight Bleed Test & IPS Glow Checker"
         intro={
           <p>
-            Fill your screen with near-black and check the edges and corners for light that shouldn&apos;t be
+            Fill your screen with pure black and check the edges and corners for light that shouldn&apos;t be
             there. The guide below explains how to tell backlight bleed, a hardware defect, apart from IPS glow, which
             is normal.
           </p>

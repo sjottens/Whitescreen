@@ -56,7 +56,7 @@ export default function MicTestPage() {
         { id: "how-to-read-the-result", label: "How to read the result" },
         { id: "mic-not-picked-up-at-all", label: "Mic not picked up at all?" },
         { id: "bluetooth-headset-sounds-terrible", label: "Bluetooth headset sounds terrible?" },
-        { id: "what-happens-with-your-audio", label: "What happens with your audio" },
+        { id: "how-this-test-works", label: "How this test works" },
       ]}
       faqs={FAQS}
     >
@@ -111,10 +111,16 @@ export default function MicTestPage() {
         quiet room with good light in front of you helps both.
       </p>
 
-      <h2 id="what-happens-with-your-audio">What happens with your audio</h2>
+      <h2 id="how-this-test-works">How this test works</h2>
       <p>
-        Nothing leaves your device. The meter and the recording are handled entirely by your browser, and the recording
-        is gone the moment you refresh or close the page.
+        When you click Start, your browser asks for permission and then passes the microphone signal to this page. On
+        every screen refresh the test takes the latest slice of sound, works out how loud it is in decibels and moves the
+        bar: it jumps up straight away and falls back slowly, like the meter on a mixing desk. The panel below the bar
+        draws the signal itself, so you can see it react as you speak.
+      </p>
+      <p>
+        Nothing leaves your device. <strong>Record 5 seconds</strong> keeps the clip in your browser&apos;s memory only,
+        and it is gone the moment you refresh or close the page.
       </p>
     </ToolPage>
   );

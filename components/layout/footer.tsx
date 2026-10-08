@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { SITE_NAME } from '@/lib/constants';
 import { TOOL_GROUPS } from '@/lib/tool-directory';
+import CookieSettingsButton from '@/components/legal/cookie-settings-button';
 import { translate } from '@/lib/translations';
 
 export default function Footer() {
@@ -59,6 +60,9 @@ export default function Footer() {
                 <Link href={'/cookies'} className="text-white hover:text-slate-100 transition-colors text-sm">
                   {cookiePolicyLabel}
                 </Link>
+              </li>
+              <li>
+                <CookieSettingsButton />
               </li>
               <li>
                 <Link href={'/contact'} className="text-white hover:text-slate-100 transition-colors text-sm">

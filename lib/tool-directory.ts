@@ -22,7 +22,7 @@ export const TOOL_GROUPS: Array<{ id: string; title: string; entries: DirectoryE
       entry('/white-screen', 'Pure white full screen for dead pixels, dust and brightness evenness.'),
       entry('/black-screen', 'Pure black full screen for stuck pixels, bleed and black level.'),
       entry('/color-screen', 'Red, green, blue or any custom color to check every subpixel.'),
-      entry('/backlight-bleed-test', 'Near-black screen with corner markers to judge bleed and IPS glow.'),
+      entry('/backlight-bleed-test', 'Pure black screen with corner markers to judge bleed and IPS glow.'),
       entry('/monitor-response-time-test', 'A moving pattern to spot ghosting, overshoot and motion blur.'),
       entry('/brightness-test', 'Gray ladders and gradients to set brightness, contrast and gamma.'),
       entry('/contrast-test', 'Text contrast against WCAG and a color blindness preview.'),

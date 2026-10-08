@@ -58,6 +58,7 @@ export default function KeyboardTestPage() {
         { id: "a-key-types-twice", label: "A key types twice" },
         { id: "keys-dont-register-when-pressed-together", label: "Keys don't register when pressed together" },
         { id: "keys-doing-something-strange", label: "Keys doing something strange" },
+        { id: "how-this-test-works", label: "How this test works" },
       ]}
       faqs={FAQS}
       wideTool
@@ -120,6 +121,19 @@ export default function KeyboardTestPage() {
           <strong>The numpad moves the cursor instead of typing numbers.</strong> Num Lock is off.
         </li>
       </ul>
+
+      <h2 id="how-this-test-works">How this test works</h2>
+      <p>
+        Every press is recorded by the key&apos;s physical position, not by the character it types, so the test works
+        the same on QWERTY, AZERTY and other layouts. The counter for a key goes up once per press; holding a key down
+        doesn&apos;t add repeats, which is exactly why a key that registers twice stands out. Keys you hold at the same
+        time stay highlighted, so you can see which combinations your keyboard can handle.
+      </p>
+      <p>
+        A few keys, such as Print Screen on Windows, only report being released, and the test counts those too. While
+        the test is active it catches every key, including Tab, so to get out with the keyboard alone, press Esc three
+        times quickly. Nothing you type is stored or sent anywhere.
+      </p>
     </ToolPage>
   );
 }

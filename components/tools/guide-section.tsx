@@ -49,6 +49,7 @@ export default function GuideSection({ toolId, children, extraToc = [] }: GuideS
     { id: 'what-is-this-test', label: translate('guide_what_is_test_title' as any) },
     ...guide.sections.map((section) => ({ id: slugify(section.title), label: section.title })),
     { id: 'testing-tips', label: translate('guide_testing_tips_title' as any) },
+    ...(guide.howItWorks ? [{ id: 'how-this-test-works', label: 'How this test works' }] : []),
     ...extraToc,
     ...(faqs.length ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
   ];
@@ -136,6 +137,15 @@ export default function GuideSection({ toolId, children, extraToc = [] }: GuideS
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          {guide.howItWorks && (
+            <div className="mt-8 pt-8 border-t border-slate-200">
+              <h3 id="how-this-test-works" className="scroll-mt-24 text-xl font-semibold text-slate-800 mb-4">
+                How this test works
+              </h3>
+              <p className="text-slate-700 leading-relaxed">{withLinks(guide.howItWorks)}</p>
             </div>
           )}
 

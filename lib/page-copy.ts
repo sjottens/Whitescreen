@@ -24,7 +24,7 @@ export const PAGE_COPY = {
   '/backlight-bleed-test': {
     title: 'Backlight Bleed Test – Check IPS Glow and Light Leaks',
     description:
-      'Spot backlight bleed and IPS glow on a near-black full screen, learn how to tell them apart, and decide whether your monitor is worth returning.',
+      'Spot backlight bleed and IPS glow on a pure black full screen, learn how to tell them apart, and decide whether your monitor is worth returning.',
   },
   '/black-screen': {
     title: 'Black Screen – Full Screen Black for Pixel & Bleed Tests',

@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useConsent } from '@/components/providers/consent-provider';
-import { CONSENT_STORAGE_KEY } from '@/lib/consent-types';
+import { CONSENT_STORAGE_KEY, OPEN_CONSENT_EVENT, getConsentFromStorage, type ConsentState } from '@/lib/consent-types';
 import type { ConsentKey, ConsentStrings } from '@/lib/ui-strings';
 
 /** strings come from the root layout (lib/ui-strings.ts) so the dictionary stays server-side. */
@@ -13,6 +13,9 @@ export default function ConsentBanner({ strings }: { strings: ConsentStrings }) 
   const { consent, acceptAll, rejectAll, updateConsent, isInitialized } = useConsent();
   const [showBanner, setShowBanner] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  // Consent as it was when the banner opened. The toggles save straight away,
+  // so this is what tells us whether something was withdrawn.
+  const [openedWith, setOpenedWith] = useState<ConsentState | null>(null);
   const translate = (key: ConsentKey) => strings[key];
 
   // Show banner only if user hasn't explicitly consented yet
@@ -31,7 +34,22 @@ export default function ConsentBanner({ strings }: { strings: ConsentStrings }) 
     }
   }, [isInitialized]);
 
+  useEffect(() => {
+    const open = () => {
+      setOpenedWith(getConsentFromStorage());
+      setShowBanner(true);
+    };
+    window.addEventListener(OPEN_CONSENT_EVENT, open);
+    return () => window.removeEventListener(OPEN_CONSENT_EVENT, open);
+  }, []);
+
   if (!showBanner) return null;
+
+  // Scripts that already loaded can't be unloaded, so withdrawing consent reloads the page.
+  const reloadIfWithdrawn = (next: Pick<ConsentState, 'analytics' | 'marketing'>) => {
+    if (!openedWith) return;
+    if ((openedWith.analytics && !next.analytics) || (openedWith.marketing && !next.marketing)) window.location.reload();
+  };
 
   const handleAcceptAll = () => {
     acceptAll();
@@ -41,11 +59,13 @@ export default function ConsentBanner({ strings }: { strings: ConsentStrings }) 
   const handleRejectAll = () => {
     rejectAll();
     setShowBanner(false);
+    reloadIfWithdrawn({ analytics: false, marketing: false });
   };
 
   const handleSavePreferences = () => {
     updateConsent(consent);
     setShowBanner(false);
+    reloadIfWithdrawn(consent);
   };
 
   return (

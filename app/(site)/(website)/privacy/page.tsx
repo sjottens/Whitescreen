@@ -58,16 +58,16 @@ export default async function PrivacyPage() {
           <ul>
             <li><strong>Your Choice First:</strong> We ask for your consent before loading personalized advertisement cookies. You can choose to accept all, reject all, or customize your preferences.</li>
             <li><strong>Consent Storage:</strong> Your consent choice is stored in your browser's localStorage. We do not force cookies before you consent.</li>
-            <li><strong>Necessary Cookies Only (By Default):</strong> We only set essential cookies (language preference, security) without your consent. Marketing and analytics cookies are disabled by default.</li>
-            <li><strong>Easy to Change Anytime:</strong> You can modify your consent preferences at any time by clearing your browser's localStorage or visiting the cookie banner again.</li>
+            <li><strong>Nothing Optional by Default:</strong> Until you consent, no analytics or advertising cookies are set and the Google Analytics and AdSense scripts are not loaded at all.</li>
+            <li><strong>Easy to Change Anytime:</strong> Use &quot;Cookie settings&quot; at the bottom of every page to change or withdraw your choice. Withdrawing consent reloads the page so that scripts already loaded stop running.</li>
           </ul>
           
           <h4>Types of Cookies We Use (With Your Consent):</h4>
           <ul>
-            <li><strong>Necessary Cookies:</strong> Language preference, security tokens. Always enabled for site functionality.</li>
+            <li><strong>Necessary Storage:</strong> Your consent choice, and your best scores in the click speed test, are kept in your browser&apos;s localStorage. TestaScreen sets no cookies of its own.</li>
             <li><strong>Marketing Cookies:</strong> Google AdSense uses first-party and third-party cookies to display personalized advertisements. Only loaded if you consent to marketing cookies.</li>
             <li><strong>Analytics Cookies:</strong> Google Analytics uses cookies to measure website usage and improve performance. Only loaded if you consent to analytics cookies.</li>
-            <li><strong>Preference Cookies:</strong> Remembers your selected language and theme preferences. Generally safe for all users.</li>
+            <li><strong>Preference Cookies:</strong> TestaScreen currently sets no preference cookies.</li>
           </ul>
 
           <h2>5. {translate('privacy_external_services')}</h2>

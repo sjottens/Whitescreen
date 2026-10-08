@@ -36,7 +36,7 @@ const TOOLS = [
   { href: '/dead-pixel-test', name: 'Dead Pixel Test', text: 'Cycles full-screen colors so dead, stuck and hot pixels stand out.' },
   { href: '/dead-pixel-fixer', name: 'Dead Pixel Fixer', text: 'Flashes rapidly changing colors over a stuck pixel to try to free it.' },
   { href: '/color-screen', name: 'White, Black & Color Screens', text: 'Solid full-screen colors for uniformity, tint, bleed and subpixel checks.' },
-  { href: '/backlight-bleed-test', name: 'Backlight Bleed Test', text: 'Near-black screens with corner markers to judge bleed and IPS glow.' },
+  { href: '/backlight-bleed-test', name: 'Backlight Bleed Test', text: 'A pure black screen with corner markers to judge bleed and IPS glow.' },
   { href: '/monitor-response-time-test', name: 'Response Time Test', text: 'A moving pattern to spot ghosting and overshoot by eye.' },
   { href: '/tools', name: 'Hardware Tests', text: 'Microphone, keyboard, webcam and click speed tests.' },
 ];

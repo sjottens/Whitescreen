@@ -14,6 +14,9 @@ export interface ConsentState {
 export const CONSENT_STORAGE_KEY = 'testascreen_consent';
 export const CONSENT_VERSION = 1;
 
+/** Window event that reopens the consent banner (footer "Cookie settings"). */
+export const OPEN_CONSENT_EVENT = 'testascreen:open-consent';
+
 export const DEFAULT_CONSENT: ConsentState = {
   necessary: true,
   analytics: false,
