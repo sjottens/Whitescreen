@@ -11,37 +11,16 @@ export default function ResponseTimeIntro() {
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
       <div className="container">
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 gradient-text">
-            Monitor Response Time &amp; Ghosting Test
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl leading-relaxed mb-4">
-            A striped block moves across your screen so you can watch for ghosting, motion blur, and overshoot in
-            real time. Pick a speed, pick a background, and watch what trails behind it.
-          </p>
           <p className="text-base text-slate-400 max-w-3xl leading-relaxed mb-6">
             One honest note up front: this is a visual check, not a lab measurement. A browser can&apos;t report a
             millisecond response-time figure - that needs a high-speed camera or dedicated test hardware. What it
             can do is show you, right now, whether your monitor&apos;s current settings produce visible ghosting.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-4 mb-8">
-            <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
-              <div className="text-emerald-400 font-bold text-2xl mb-1">100%</div>
-              <p className="text-slate-300 text-sm">Free to Use</p>
-            </div>
-            <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
-              <div className="text-emerald-400 font-bold text-2xl mb-1">3 Speeds</div>
-              <p className="text-slate-300 text-sm">Slow / Medium / Fast</p>
-            </div>
-            <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
-              <div className="text-emerald-400 font-bold text-2xl mb-1">Instant</div>
-              <p className="text-slate-300 text-sm">No Download Needed</p>
-            </div>
-          </div>
         </div>
 
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+          <h2 id="what-youre-actually-looking-at" className="scroll-mt-24 text-3xl font-bold text-white mb-6 flex items-center gap-3">
             <Zap className="w-8 h-8 text-emerald-400" />
             What You&apos;re Actually Looking At
           </h2>
@@ -81,7 +60,7 @@ export default function ResponseTimeIntro() {
         </div>
 
         <div className="mb-12 bg-slate-900/50 border border-cyan-500/30 rounded-lg p-6 backdrop-blur">
-          <h2 className="text-2xl font-bold text-white mb-3">Before You Blame the Monitor</h2>
+          <h2 id="before-you-blame-the-monitor" className="scroll-mt-24 text-2xl font-bold text-white mb-3">Before You Blame the Monitor</h2>
           <p className="text-slate-300">
             Open your monitor&apos;s on-screen menu and check the overdrive setting (often labeled OD, Response
             Time, or Overdrive - Off/Normal/Fast/Extreme). Try each option while this test runs and pick whichever
@@ -90,36 +69,6 @@ export default function ResponseTimeIntro() {
           </p>
         </div>
 
-        {/* FAQ Section - kept word-for-word identical to the FAQPage schema
-            on this page. */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {[
-              {
-                q: 'Can this tool tell me my monitor\'s response time in milliseconds?',
-                a: 'No. Milliseconds require a high-speed camera or dedicated test hardware. This tool is a visual check for ghosting and overshoot - useful for spotting a real problem or comparing settings, not for verifying a spec sheet number.',
-              },
-              {
-                q: 'I see ghosting - is my monitor defective?',
-                a: 'Usually not. Check the overdrive (OD) setting in your monitor\'s on-screen menu first - it\'s the most common fixable cause. If ghosting persists at every overdrive setting and is much worse than similar monitors, that\'s a stronger signal of a genuine panel issue.',
-              },
-              {
-                q: 'Why does the trail change when I change the overdrive setting?',
-                a: 'Overdrive works by overdriving the voltage sent to pixels to make them switch color faster. Too little and you get ghosting (trailing); too much and you get overshoot (a halo leading ahead of the object). The right setting depends on your specific panel.',
-              },
-              {
-                q: 'Does a higher refresh rate fix ghosting?',
-                a: 'It helps with motion blur (because each frame is shown for less time) but doesn\'t fix true ghosting, which comes from how fast the pixels themselves can change color - a panel response time issue, not a refresh rate issue.',
-              },
-            ].map((faq, idx) => (
-              <div key={idx} className="bg-slate-900/50 border border-slate-700 rounded-lg p-6 backdrop-blur">
-                <h3 className="font-bold text-white mb-3">{faq.q}</h3>
-                <p className="text-slate-300">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
         <div className="flex flex-wrap gap-4">
           <Link

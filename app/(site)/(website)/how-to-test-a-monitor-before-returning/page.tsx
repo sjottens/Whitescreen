@@ -5,15 +5,12 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { pageMetadata, breadcrumbSchema, faqSchema } from '@/lib/seo';
-import { translate } from '@/lib/translations';
+import { pageMetadata, faqSchema } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 const PAGE_PATH = '/how-to-test-a-monitor-before-returning';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/how-to-test-a-monitor-before-returning'],
     path: PAGE_PATH,
@@ -88,12 +85,6 @@ const CHECKLIST = [
 
 export default async function TestBeforeReturningPage() {
 
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: 'Resources', path: '/tools' },
-      { name: 'Test a Monitor Before Returning It', path: PAGE_PATH },
-    ]);
-
   const faqItems = [
     {
       question: 'How long do I have to return a monitor?',
@@ -123,24 +114,12 @@ export default async function TestBeforeReturningPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
         suppressHydrationWarning
       />
 
       <section className="section py-12 bg-gradient-to-br from-blue-50 to-slate-50">
         <div className="container">
-          <Breadcrumbs
-            items={[
-              { name: translate('home'), path: '/' },
-              { name: 'Resources', path: '/tools' },
-              { name: 'Test a Monitor Before Returning It' },
-            ]}
-          />
           <div className="max-w-3xl mx-auto mt-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               How to Test a New Monitor Before Returning It

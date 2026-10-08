@@ -1,13 +1,10 @@
 // app/(site)/(website)/monitor-buying-guide/page.tsx - Comprehensive monitor buying guide
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
-import { translate } from '@/lib/translations';
+import { pageMetadata } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/monitor-buying-guide'],
     path: '/monitor-buying-guide',
@@ -24,30 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function MonitorBuyingGuidePage() {
-
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: 'Resources', path: '/tools' },
-      { name: 'Monitor Buying Guide', path: '/monitor-buying-guide' },
-    ]);
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-
       <section className="section py-12 bg-gradient-to-br from-blue-50 to-slate-50">
         <div className="container">
-          <Breadcrumbs
-            items={[
-              { name: translate('home'), path: '/' },
-              { name: 'Resources', path: '/tools' },
-              { name: 'Monitor Buying Guide' },
-            ]}
-          />
           <div className="max-w-3xl mx-auto mt-8">
             <h1 className="text-4xl font-bold mb-4">Complete Monitor Buying Guide</h1>
             <p className="text-xl text-slate-600 mb-6">

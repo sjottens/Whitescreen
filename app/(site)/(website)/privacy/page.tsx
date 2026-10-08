@@ -1,13 +1,11 @@
 // app/(site)/(website)/privacy/page.tsx
 
 import { Metadata } from 'next';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
+import { pageMetadata } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/privacy'],
     path: '/privacy',
@@ -15,27 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PrivacyPage() {
-
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('privacy'), path: '/privacy' },
-    ]);
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('privacy') },
-        ]}
-      />
-
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('privacy_title')}</h1>

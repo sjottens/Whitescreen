@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { ArrowRight, Play, Pause, Maximize2, RotateCcw, Info } from 'lucide-react';
 import Link from 'next/link';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
 import type { ClientStrings } from '@/lib/client-strings';
+import type { Faq } from '@/lib/tool-schema';
 import PhotosensitivityWarning from '@/components/tools/photosensitivity-warning';
 
 type RepairMode = 'rgb' | 'rgbwb' | 'random';
@@ -29,7 +29,7 @@ const COLORS = {
 
 // Interactive part of /dead-pixel-fixer. The page (app/(site)/dead-pixel-fixer/page.tsx)
 // is a server component that passes the tool its strings.
-export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'deadPixelFixer'> }) {
+export default function DeadPixelFixer({ strings, faqs }: { strings: ClientStrings<'deadPixelFixer'>; faqs: Faq[] }) {
   const translate = (key: keyof ClientStrings<'deadPixelFixer'>) => strings[key];
   const [isRunning, setIsRunning] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -190,38 +190,6 @@ export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'de
 
   return (
     <>
-      {/* JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            name: 'Dead Pixel Fixer',
-            description: 'Free online tool to fix stuck pixels with rapidly flashing colors',
-            applicationCategory: 'UtilityApplication',
-            operatingSystem: 'Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
-            // aggregateRating intentionally omitted - there is no review-
-            // collection feature behind this tool, so a star rating here
-            // would be fabricated structured data.
-          }),
-        }}
-      />
-
-      {/* Breadcrumbs */}
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('resources'), path: '/tools' },
-          { name: translate('dead_pixel_fixer') },
-        ]}
-      />
 
       {/* Page Container */}
       <div className="container py-8 md:py-12">
@@ -383,11 +351,36 @@ export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'de
           </div>
         </div>
 
+        <nav aria-labelledby="toc-heading" className="mb-12 rounded-xl border border-slate-700 bg-slate-900/60 p-5 md:p-6">
+          <h2 id="toc-heading" className="mb-3 text-lg font-semibold text-slate-100 md:text-xl">
+            On this page
+          </h2>
+          <ol className="grid list-decimal gap-x-8 gap-y-1 pl-5 text-slate-300 md:grid-cols-2">
+            {(
+              [
+                ['how-to-attempt-pixel-repair', 'dead_pixel_fixer_how_to_title'],
+                ['how-pixel-repair-works', 'dead_pixel_fixer_why_works_title'],
+                ['what-is-a-dead-pixel', 'what_is_dead_pixel_title'],
+                ['what-is-a-stuck-pixel', 'what_is_stuck_pixel_title'],
+                ['can-stuck-pixels-be-fixed', 'can_stuck_pixels_be_fixed_title'],
+                ['lcd-vs-oled', 'lcd_vs_oled_title'],
+                ['faq', 'dead_pixel_faq_title'],
+              ] as const
+            ).map(([id, key]) => (
+              <li key={id} className="mb-0">
+                <a href={`#${id}`} className="text-cyan-300 hover:underline">
+                  {translate(key)}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+
         {/* Quick Start Guide - moved below the tool so the tool itself is
             the first thing users interact with, matching the same
             above-the-fold-tool pattern used on /dead-pixel-test. */}
         <div className="mb-16 p-8 bg-gradient-to-r from-[#00DC82]/10 to-cyan-500/10 border border-[#00DC82]/30 rounded-xl">
-          <h2 className="text-3xl font-bold mb-6 text-white">{translate('dead_pixel_fixer_how_to_title')}</h2>
+          <h2 id="how-to-attempt-pixel-repair" className="scroll-mt-24 text-3xl font-bold mb-6 text-white">{translate('dead_pixel_fixer_how_to_title')}</h2>
           <p className="text-lg text-slate-300 leading-relaxed mb-8">
             {translate('dead_pixel_fixer_how_to_intro')}
           </p>
@@ -420,13 +413,13 @@ export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'de
         <section className="prose prose-invert max-w-none mb-16">
 
           {/* Why it Works Section */}
-          <h2 className="text-3xl font-bold mt-12 mb-6 text-white">{translate('dead_pixel_fixer_why_works_title')}</h2>
+          <h2 id="how-pixel-repair-works" className="scroll-mt-24 text-3xl font-bold mt-12 mb-6 text-white">{translate('dead_pixel_fixer_why_works_title')}</h2>
           <p className="text-slate-300 leading-relaxed mb-6">
             {translate('dead_pixel_fixer_why_works_desc')}
           </p>
 
           {/* What Is a Dead Pixel */}
-          <h2 className="text-3xl font-bold mt-12 mb-6 text-white">{translate('what_is_dead_pixel_title')}</h2>
+          <h2 id="what-is-a-dead-pixel" className="scroll-mt-24 text-3xl font-bold mt-12 mb-6 text-white">{translate('what_is_dead_pixel_title')}</h2>
           <p className="text-slate-300 leading-relaxed mb-4">
             {translate('what_is_dead_pixel_p1')}
           </p>
@@ -438,7 +431,7 @@ export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'de
           </p>
 
           {/* What Is a Stuck Pixel */}
-          <h2 className="text-3xl font-bold mt-12 mb-6 text-white">{translate('what_is_stuck_pixel_title')}</h2>
+          <h2 id="what-is-a-stuck-pixel" className="scroll-mt-24 text-3xl font-bold mt-12 mb-6 text-white">{translate('what_is_stuck_pixel_title')}</h2>
           <p className="text-slate-300 leading-relaxed mb-4">
             {translate('what_is_stuck_pixel_p1')}
           </p>
@@ -450,7 +443,7 @@ export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'de
           </p>
 
           {/* Can Stuck Pixels Be Fixed */}
-          <h2 className="text-3xl font-bold mt-12 mb-6 text-white">{translate('can_stuck_pixels_be_fixed_title')}</h2>
+          <h2 id="can-stuck-pixels-be-fixed" className="scroll-mt-24 text-3xl font-bold mt-12 mb-6 text-white">{translate('can_stuck_pixels_be_fixed_title')}</h2>
           <p className="text-slate-300 leading-relaxed mb-4">
             {translate('can_stuck_pixels_be_fixed_p1')}
           </p>
@@ -462,7 +455,7 @@ export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'de
           </p>
 
           {/* LCD vs OLED */}
-          <h2 className="text-3xl font-bold mt-12 mb-6 text-white">{translate('lcd_vs_oled_title')}</h2>
+          <h2 id="lcd-vs-oled" className="scroll-mt-24 text-3xl font-bold mt-12 mb-6 text-white">{translate('lcd_vs_oled_title')}</h2>
           <p className="text-slate-300 leading-relaxed mb-4">
             {translate('lcd_vs_oled_intro')}
           </p>
@@ -482,64 +475,15 @@ export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'de
           </p>
 
           {/* FAQ Section */}
-          <h2 className="text-3xl font-bold mt-12 mb-6 text-white">{translate('dead_pixel_faq_title')}</h2>
+          <h2 id="faq" className="scroll-mt-24 text-3xl font-bold mt-12 mb-6 text-white">{translate('dead_pixel_faq_title')}</h2>
         </section>
 
         {/* FAQ Items */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {[
-            {
-              q: translate('dead_pixel_faq_q1'),
-              a: translate('dead_pixel_faq_a1'),
-            },
-            {
-              q: translate('dead_pixel_faq_q2'),
-              a: translate('dead_pixel_faq_a2'),
-            },
-            {
-              q: translate('dead_pixel_faq_q3'),
-              a: translate('dead_pixel_faq_a3'),
-            },
-            {
-              q: translate('dead_pixel_faq_q4'),
-              a: translate('dead_pixel_faq_a4'),
-            },
-            {
-              q: translate('dead_pixel_faq_q5'),
-              a: translate('dead_pixel_faq_a5'),
-            },
-            {
-              q: translate('dead_pixel_faq_q6'),
-              a: translate('dead_pixel_faq_a6'),
-            },
-            {
-              q: translate('dead_pixel_faq_q7'),
-              a: translate('dead_pixel_faq_a7'),
-            },
-            {
-              q: translate('dead_pixel_faq_q8'),
-              a: translate('dead_pixel_faq_a8'),
-            },
-            {
-              q: translate('dead_pixel_faq_q9'),
-              a: translate('dead_pixel_faq_a9'),
-            },
-            {
-              q: translate('dead_pixel_faq_q10'),
-              a: translate('dead_pixel_faq_a10'),
-            },
-            {
-              q: translate('dead_pixel_faq_q11'),
-              a: translate('dead_pixel_faq_a11'),
-            },
-            {
-              q: translate('dead_pixel_faq_q12'),
-              a: translate('dead_pixel_faq_a12'),
-            },
-          ].map((faq, idx) => (
-            <div key={idx} className="bg-slate-800/50 rounded-lg p-6 border border-slate-700/50 hover:border-slate-600/50 transition-colors">
-              <h3 className="text-lg font-semibold text-cyan-400 mb-3">{faq.q}</h3>
-              <p className="text-slate-300 text-sm leading-relaxed">{faq.a}</p>
+          {faqs.map((faq) => (
+            <div key={faq.question} className="bg-slate-800/50 rounded-lg p-6 border border-slate-700/50 hover:border-slate-600/50 transition-colors">
+              <h3 className="text-lg font-semibold text-cyan-400 mb-3">{faq.question}</h3>
+              <p className="text-slate-300 text-sm leading-relaxed">{faq.answer}</p>
             </div>
           ))}
         </div>
@@ -574,43 +518,6 @@ export default function DeadPixelFixer({ strings }: { strings: ClientStrings<'de
           </div>
         </div>
 
-        {/* JSON-LD FAQ Schema */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              mainEntity: [
-                {
-                  '@type': 'Question',
-                  name: 'Can a dead pixel be repaired?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Dead pixels cannot be repaired with software tools. Stuck pixels (showing color) sometimes respond to pixel fixer tools, though results vary by pixel and panel type and are not guaranteed.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'How long should I run a dead pixel fixer?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Run the tool for 10-30 minutes per session. Fresh stuck pixels respond best.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'Is a stuck pixel permanent?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Not necessarily. Stuck pixels can sometimes be repaired, and tend to respond best when treated soon after they appear, but a fix is not guaranteed.',
-                  },
-                },
-              ],
-            }),
-          }}
-        />
       </div>
     </>
   );

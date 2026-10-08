@@ -2,8 +2,7 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
+import { pageMetadata } from '@/lib/seo';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
 import { AUTHOR } from '@/lib/author';
 import { translate } from '@/lib/translations';
@@ -43,25 +42,13 @@ const TOOLS = [
 ];
 
 export default async function AboutPage() {
-  const breadcrumbs = breadcrumbSchema([
-    { name: translate('home'), path: '/' },
-    { name: translate('about'), path: '/about' },
-  ]);
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
         suppressHydrationWarning
       />
-
-      <Breadcrumbs items={[{ name: translate('home'), path: '/' }, { name: translate('about') }]} />
 
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">

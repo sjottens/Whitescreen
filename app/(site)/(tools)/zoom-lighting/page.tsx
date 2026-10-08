@@ -1,52 +1,36 @@
-// app/(site)/(tools)/zoom-lighting/page.tsx
+// app/(site)/(tools)/zoom-lighting/page.tsx - Video Call Light
 
-import { Metadata } from 'next';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
-import { translate } from '@/lib/translations';
-import { SPECIAL_TOOLS } from '@/lib/constants';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { pageMetadata } from '@/lib/seo';
+import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
 import GuideSection from '@/components/tools/guide-section';
+import RelatedTools from '@/components/tools/related-tools';
 import VideoCallLight from '@/components/tools/video-call-light';
-import { PAGE_COPY } from '@/lib/page-copy';
 
-const TOOL = SPECIAL_TOOLS.find((t) => t.id === 'zoom-lighting')!;
+const PATH = '/zoom-lighting';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return pageMetadata({
-    ...PAGE_COPY['/zoom-lighting'],
-    path: TOOL.path,
-    keywords: TOOL.keywords,
-  });
-}
+export const metadata: Metadata = pageMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
-export default async function ZoomLightingPage() {
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('resources'), path: '/tools' },
-      { name: translate(TOOL.nameKey as any), path: TOOL.path },
-    ]);
-
-  const translatedUseCases = (TOOL.useCases || []).map((key) => translate(key as any));
-
-  const translatedFeatures = [
-    translate('feature_fullscreen_pure'),
-    translate('feature_keyboard_shortcuts'),
-    translate('feature_all_devices'),
-    translate('feature_free_no_registration'),
-  ];
-
+export default function VideoCallLightPage() {
   return (
     <>
       <ToolLayout
-        title={translate(TOOL.nameKey as any)}
-        description={translate(TOOL.descriptionKey as any)}
-        features={translatedFeatures}
-        useCases={translatedUseCases}
-        showScreenControls
+        path={PATH}
+        title="Video Call Light – Light Your Face With Your Screen"
+        intro={
+          <p>
+            Turn a spare screen into a soft light for Zoom, Teams or Meet. Pick a color temperature, set the
+            brightness and go full screen, then check the result with the{' '}
+            <Link href="/webcam-test">webcam test</Link>.
+          </p>
+        }
       >
         <VideoCallLight />
       </ToolLayout>
       <GuideSection toolId="zoom-lighting" />
+      <RelatedTools currentToolId="zoom-lighting" />
     </>
   );
 }

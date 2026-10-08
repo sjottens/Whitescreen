@@ -1,68 +1,35 @@
-// app/(site)/(tools)/white-screen/page.tsx - White screen tool page
+// app/(site)/(tools)/white-screen/page.tsx - White Screen
 
+import type { Metadata } from 'next';
+import Link from 'next/link';
 import { getClientStrings } from '@/lib/client-strings';
-import { Metadata } from 'next';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
-import { translate } from '@/lib/translations';
-import { COLOR_TOOLS } from '@/lib/constants';
+import { pageMetadata } from '@/lib/seo';
+import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
-import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
 import RelatedTools from '@/components/tools/related-tools';
-import { PAGE_COPY } from '@/lib/page-copy';
+import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL = COLOR_TOOLS.find((t) => t.id === 'white-screen')!;
+const PATH = '/white-screen';
 
-export async function generateMetadata(): Promise<Metadata> {
+export const metadata: Metadata = pageMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
-  return pageMetadata({
-    ...PAGE_COPY['/white-screen'],
-    path: TOOL.path,
-    keywords: TOOL.keywords,
-  });
-}
-
-export default async function WhiteScreenPage() {
-
-
-  // Breadcrumb schema for structured data
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('resources'), path: '/tools' },
-      { name: translate('white_screen'), path: '/white-screen' },
-    ]);
-
-  // Translate use cases from translation keys
-  const translatedUseCases = (TOOL.useCases || []).map((key) => translate(key as any));
-
-  // Translate features using translation keys
-  const translatedFeatures = [
-    translate('feature_fullscreen_pure'),
-    translate('feature_keyboard_shortcuts'),
-    translate('feature_all_devices'),
-    translate('feature_download_png'),
-    translate('feature_free_no_registration'),
-  ];
-
-
-  const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'white-screen').slice(0, 2).map((t) => ({
-    name: translate(t.nameKey as any),
-    path: t.path,
-    color: t.color,
-  }));
-
+export default function WhiteScreenPage() {
   return (
     <>
       <ToolLayout
-        title={translate(TOOL.nameKey as any)}
-        description={translate(TOOL.descriptionKey as any)}
-        features={translatedFeatures}
-        useCases={translatedUseCases}
-        relatedTools={relatedTools}
-        showScreenControls
-        hasDownload
+        path={PATH}
+        title="White Screen Online – Full Screen White"
+        intro={
+          <p>
+            Click the white area or press F to fill your whole screen with pure white. It shows dead pixels as
+            black dots, makes dust and smudges easy to spot and reveals uneven brightness. For stuck pixels, also run
+            the <Link href="/black-screen">black screen</Link> and the{' '}
+            <Link href="/color-screen">red, green and blue screens</Link>.
+          </p>
+        }
       >
-          <ScreenDisplay strings={getClientStrings('screenDisplay')} color="#FFFFFF" title={translate(TOOL.nameKey as any)} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay')} color="#FFFFFF" title="white-screen" />
       </ToolLayout>
       <GuideSection toolId="white-screen" />
       <RelatedTools currentToolId="white-screen" />

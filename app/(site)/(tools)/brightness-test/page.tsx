@@ -1,43 +1,44 @@
-// app/(site)/(tools)/brightness-test/page.tsx
+// app/(site)/(tools)/brightness-test/page.tsx - Brightness Test
 
+import type { Metadata } from 'next';
 import { getClientStrings } from '@/lib/client-strings';
-import { Metadata } from 'next';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
-import { translate } from '@/lib/translations';
-import { TEST_TOOLS } from '@/lib/constants';
-import ToolLayout from '@/components/tools/tool-layout';
-import BrightnessTest from '@/components/tools/brightness-test';
-import GuideSection from '@/components/tools/guide-section';
-import BrightnessTestIntro from '@/components/tools/brightness-test-intro';
-import RelatedTools from '@/components/tools/related-tools';
+import { pageMetadata } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
+import ToolLayout from '@/components/tools/tool-layout';
+import GuideSection from '@/components/tools/guide-section';
+import RelatedTools from '@/components/tools/related-tools';
+import BrightnessTest from '@/components/tools/brightness-test';
+import BrightnessTestIntro from '@/components/tools/brightness-test-intro';
 
-const TOOL = TEST_TOOLS.find((t) => t.id === 'brightness-test')!;
+const PATH = '/brightness-test';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return pageMetadata({
-    ...PAGE_COPY['/brightness-test'],
-    path: TOOL.path,
-    keywords: TOOL.keywords,
-  });
-}
+export const metadata: Metadata = pageMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
-export default async function BrightnessTestPage() {
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('resources'), path: '/tools' },
-      { name: translate(TOOL.nameKey as any), path: TOOL.path },
-    ]);
+export default function BrightnessTestPage() {
   return (
     <>
-      <BrightnessTestIntro />
       <ToolLayout
-        description={translate(TOOL.descriptionKey as any)}
-        toolName={translate(TOOL.nameKey as any)}
+        path={PATH}
+        title="Monitor Brightness Test – Gamma, Black and White Levels"
+        intro={
+          <p>
+            Check that your monitor shows every step from black to white, whether its gamma looks right and
+            whether brightness is even across the panel. Adjust the monitor&apos;s brightness and contrast while you
+            watch the patterns.
+          </p>
+        }
       >
         <BrightnessTest strings={getClientStrings('brightnessTest')} />
       </ToolLayout>
-      <GuideSection toolId="brightness-test" />
+      <GuideSection
+        toolId="brightness-test"
+        extraToc={[
+          { id: "what-is-a-brightness-test", label: "What is a Brightness Test?" },
+          { id: "how-to-use-this-brightness-test", label: "How to Use This Brightness Test" },
+        ]}
+      >
+        <BrightnessTestIntro />
+      </GuideSection>
       <RelatedTools currentToolId="brightness-test" />
     </>
   );

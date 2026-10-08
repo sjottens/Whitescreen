@@ -8,7 +8,6 @@ export default function DeadPixelIntro() {
   return (
     <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
       <div className="container">
-        {/* Quick Stats */}
         <div className="grid md:grid-cols-3 gap-4 mb-12">
           <div className="bg-slate-900/50 border border-emerald-500/30 rounded-lg p-4 backdrop-blur">
             <div className="text-emerald-400 font-bold text-2xl mb-1">100%</div>
@@ -26,7 +25,7 @@ export default function DeadPixelIntro() {
 
         {/* What are Dead Pixels */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+          <h2 id="what-are-dead-pixels" className="scroll-mt-24 text-3xl font-bold text-white mb-6 flex items-center gap-3">
             <AlertCircle className="w-8 h-8 text-emerald-400" />
             What Are Dead Pixels?
           </h2>
@@ -74,7 +73,7 @@ export default function DeadPixelIntro() {
 
         {/* Pixel Types */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">
+          <h2 id="types-of-defective-pixels" className="scroll-mt-24 text-3xl font-bold text-white mb-6">
             Types of Defective Pixels
           </h2>
 
@@ -127,7 +126,7 @@ export default function DeadPixelIntro() {
 
         {/* How to Use */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">
+          <h2 id="how-to-use-this-dead-pixel-test" className="scroll-mt-24 text-3xl font-bold text-white mb-6">
             How to Use This Dead Pixel Test
           </h2>
 
@@ -183,42 +182,10 @@ export default function DeadPixelIntro() {
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-4">
-            {[
-              {
-                q: 'Can dead pixels be fixed?',
-                a: 'Dead pixels are usually permanent hardware failures and cannot be repaired. Stuck pixels are different - they sometimes respond to software fixes or physical pressure. Not sure which one you have? Our Dead Pixel Fixer tool below can help attempt a repair.'
-              },
-              {
-                q: 'How many dead pixels are acceptable?',
-                a: 'Most manufacturers allow 0-8 dead pixels depending on the warranty terms. Check your warranty for specifics.'
-              },
-              {
-                q: 'Is this test accurate?',
-                a: 'Yes, this is a comprehensive color-cycling test that makes defective pixels highly visible. It\'s the most effective method for detecting dead and stuck pixels.'
-              },
-              {
-                q: 'Why do I need fullscreen mode?',
-                a: 'Fullscreen mode ensures you\'re testing the entire display surface and eliminates distractions from the browser UI.'
-              }
-            ].map((faq, idx) => (
-              <div key={idx} className="bg-slate-900/50 border border-slate-700 rounded-lg p-6 backdrop-blur">
-                <h3 className="font-bold text-white mb-3">{faq.q}</h3>
-                <p className="text-slate-300">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Warranty Info */}
         <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/30 rounded-lg p-8 backdrop-blur">
-          <h2 className="text-2xl font-bold text-white mb-4">
+          <h2 id="warranty-information" className="scroll-mt-24 text-2xl font-bold text-white mb-4">
             💡 Warranty Information
           </h2>
           <p className="text-slate-300 mb-4">
@@ -232,7 +199,7 @@ export default function DeadPixelIntro() {
         {/* Related Tool Callout - links to the Dead Pixel Fixer for stuck-pixel repair attempts */}
         <div className="mt-8 bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/30 rounded-lg p-8 backdrop-blur flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-2">Found a stuck pixel, not a dead one?</h2>
+            <h2 id="found-a-stuck-pixel-not-a-dead-one" className="scroll-mt-24 text-2xl font-bold text-white mb-2">Found a stuck pixel, not a dead one?</h2>
             <p className="text-slate-300">
               Stuck pixels (colored dots that stay red, green, or blue) can sometimes be repaired. Our free Dead Pixel Fixer flashes rapid colors to try to unstick them.
             </p>

@@ -1,68 +1,34 @@
-// app/(site)/(tools)/black-screen/page.tsx
+// app/(site)/(tools)/black-screen/page.tsx - Black Screen
 
+import type { Metadata } from 'next';
+import Link from 'next/link';
 import { getClientStrings } from '@/lib/client-strings';
-import { Metadata } from 'next';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
-import { translate } from '@/lib/translations';
-import { COLOR_TOOLS } from '@/lib/constants';
+import { pageMetadata } from '@/lib/seo';
+import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
-import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
 import RelatedTools from '@/components/tools/related-tools';
-import { PAGE_COPY } from '@/lib/page-copy';
+import ScreenDisplay from '@/components/tools/screen-display';
 
-const TOOL = COLOR_TOOLS.find((t) => t.id === 'black-screen')!;
+const PATH = '/black-screen';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return pageMetadata({
-    ...PAGE_COPY['/black-screen'],
-    path: TOOL.path,
-    keywords: TOOL.keywords,
-  });
-}
+export const metadata: Metadata = pageMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
-export default async function BlackScreenPage() {
-
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('resources'), path: '/tools' },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      { name: translate(TOOL.nameKey as any), path: TOOL.path },
-    ]);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const translatedUseCases = (TOOL.useCases || []).map((key) => translate(key as any));
-
-  const translatedFeatures = [
-    translate('feature_fullscreen_pure'),
-    translate('feature_keyboard_shortcuts'),
-    translate('feature_all_devices'),
-    translate('feature_download_png'),
-    translate('feature_free_no_registration'),
-  ];
-
-
-  const relatedTools = COLOR_TOOLS.filter((t) => t.id !== 'black-screen').slice(0, 2).map((t) => ({
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    name: translate(t.id.replace(/-/g, '_') as any),
-    path: t.path,
-    color: t.color,
-  }));
-
+export default function BlackScreenPage() {
   return (
     <>
       <ToolLayout
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        title={translate(TOOL.nameKey as any)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        description={translate(TOOL.descriptionKey as any)}
-        features={translatedFeatures}
-        useCases={translatedUseCases}
-        relatedTools={relatedTools}
-        showScreenControls
-        hasDownload
+        path={PATH}
+        title="Black Screen Online – Full Screen Black"
+        intro={
+          <p>
+            Press F to fill your screen with pure black. Lit dots are stuck or hot pixels, and light along the
+            edges is backlight bleed or IPS glow. The <Link href="/backlight-bleed-test">backlight bleed test</Link>{' '}
+            adds corner markers if you want to look closer.
+          </p>
+        }
       >
-        <ScreenDisplay strings={getClientStrings('screenDisplay')} color="#000000" title={translate(TOOL.nameKey as any)} />
+        <ScreenDisplay strings={getClientStrings('screenDisplay')} color="#000000" title="black-screen" />
       </ToolLayout>
       <GuideSection toolId="black-screen" />
       <RelatedTools currentToolId="black-screen" />

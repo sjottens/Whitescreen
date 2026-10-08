@@ -1,14 +1,12 @@
 // app/(site)/(website)/faq/page.tsx
 
 import { Metadata } from 'next';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { pageMetadata, faqSchema, breadcrumbSchema } from '@/lib/seo';
+import { pageMetadata, faqSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { FAQ_ITEMS } from '@/lib/constants';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/faq'],
     path: '/faq',
@@ -18,10 +16,6 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function FAQPage() {
 
   const faqData = faqSchema(FAQ_ITEMS);
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('faq'), path: '/faq' },
-    ]);
 
   const localizedFaqItems = [
     { question: translate('faq_item_1_q'), answer: translate('faq_item_1_a') },
@@ -38,19 +32,6 @@ export default async function FAQPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('faq') },
-        ]}
-      />
-
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('faq_title')}</h1>

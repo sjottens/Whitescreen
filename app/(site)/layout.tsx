@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 
 import Header from '@/components/layout/header';
+import Breadcrumbs from '@/components/layout/breadcrumbs';
 import Footer from '@/components/layout/footer';
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
@@ -10,6 +11,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
       <div className="h-[72px] md:h-[76px]" aria-hidden="true" />
+      <Breadcrumbs />
       <main id="main-content" className="flex-1 w-full">
         {children}
       </main>

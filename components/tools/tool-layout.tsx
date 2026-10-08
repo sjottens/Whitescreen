@@ -1,247 +1,52 @@
-// components/tools/tool-layout.tsx - Reusable tool page layout component
+// components/tools/tool-layout.tsx - Top of every screen tool page: the H1, a
+// short intro and the tool itself, so the test is usable without scrolling.
+// The explanation below it comes from <GuideSection>.
 
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Wrench, ArrowRight } from 'lucide-react';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
-import { LinkButton } from '@/components/ui/button';
+import { Wrench, ArrowRight } from 'lucide-react';
 import { translate } from '@/lib/translations';
+import { PAGE_COPY, type CopyPath } from '@/lib/page-copy';
+import { CRUMBS } from '@/lib/breadcrumbs';
+import { webApplicationSchema } from '@/lib/tool-schema';
 
 interface ToolLayoutProps {
-  /** Page H1. Leave out when the page already renders its own H1 (e.g. an intro/hero block). */
-  title?: string;
-  description: string;
+  /** Page path; also feeds the WebApplication JSON-LD. */
+  path: CopyPath;
+  /** Page H1, leading with the search term. */
+  title: string;
+  /** One or two sentences: what the tool does and how to start. */
+  intro: ReactNode;
   children: ReactNode;
-  toolName?: string;
-  relatedTools?: Array<{ name: string; path: string; color?: string }>;
-  features?: string[];
-  useCases?: string[];
-  faqs?: Array<{ question: string; answer: string }>;
-  /** Full-screen color panel controls (F/Space fullscreen, Esc) - only true for ScreenDisplay-style tools. */
-  showScreenControls?: boolean;
-  /** Tool has PNG download (Ctrl+S). */
-  hasDownload?: boolean;
 }
 
-export default function ToolLayout({
-  title,
-  description,
-  children,
-  toolName,
-  relatedTools = [],
-  features = [],
-  useCases = [],
-  faqs = [],
-  showScreenControls = false,
-  hasDownload = false,
-}: ToolLayoutProps) {
+export default function ToolLayout({ path, title, intro, children }: ToolLayoutProps) {
+  const schema = webApplicationSchema({ name: CRUMBS[path].label, description: PAGE_COPY[path].description, path });
 
   return (
-    <>
-      {/* Breadcrumbs */}
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('resources'), path: '/tools' },
-          { name: toolName || title || '' },
-        ]}
-      />
+    <section className="pb-8 pt-6 md:pt-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <div className="container">
+        <h1 className="mb-3 animate-none text-3xl md:text-5xl lg:text-5xl">{title}</h1>
+        <div className="mb-6 max-w-3xl text-base text-slate-300 md:text-lg">{intro}</div>
 
-      {/* Sticky Back to Tools Bar */}
-      <div className="sticky top-0 z-40 bg-gradient-to-r from-blue-50 to-slate-50 border-b-2 border-blue-200 backdrop-blur-sm">
-        <div className="container px-4 py-4 flex items-center justify-between">
-          <LinkButton 
-            href={'/tools'} 
-            variant="secondary"
-            size="sm"
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {translate('back_to_tools')}
-          </LinkButton>
-        </div>
+        <div className="mb-8 overflow-hidden rounded-xl border border-slate-200 shadow-lg">{children}</div>
+
+        {/* Anyone who spots a stuck pixel while testing gets an obvious next step. */}
+        <Link
+          href={'/dead-pixel-fixer'}
+          className="group flex items-center justify-between gap-4 rounded-xl border border-cyan-200 bg-cyan-50 px-6 py-5 transition-colors hover:border-cyan-300 hover:bg-cyan-100/60"
+        >
+          <div className="flex items-center gap-3">
+            <Wrench className="h-5 w-5 flex-shrink-0 text-cyan-600" />
+            <p className="text-sm text-slate-700 md:text-base">{translate('dead_pixel_fixer')}</p>
+          </div>
+          <span className="flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-cyan-600">
+            {translate('featured_tool_cta')}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </span>
+        </Link>
       </div>
-
-      {/* Main Tool Area */}
-      <section className="section">
-        <div className="container">
-          {/* Tool Interface */}
-          <div className="mb-16">
-            <div className="rounded-xl overflow-hidden shadow-lg border border-slate-200">
-              {children}
-            </div>
-          </div>
-
-          {/* Dead Pixel Fixer cross-link - shown on every tool page so
-              anyone who spots a stuck pixel while testing has an obvious
-              next step. */}
-          <Link
-            href={'/dead-pixel-fixer'}
-            className="group mb-16 flex items-center justify-between gap-4 rounded-xl border border-cyan-200 bg-cyan-50 px-6 py-5 hover:border-cyan-300 hover:bg-cyan-100/60 transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <Wrench className="w-5 h-5 text-cyan-600 flex-shrink-0" />
-              <p className="text-sm md:text-base text-slate-700">{translate('dead_pixel_fixer')}</p>
-            </div>
-            <span className="flex items-center gap-1 text-sm font-semibold text-cyan-600 whitespace-nowrap">
-              {translate('featured_tool_cta')}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </Link>
-
-          {/* Tool Information */}
-          <div className="space-y-12">
-            {/* Title and Description */}
-            <div>
-              {title && <h1 className="text-5xl md:text-6xl font-bold mb-4">{title}</h1>}
-              <p className="text-xl text-slate-600 leading-relaxed">{description}</p>
-            </div>
-
-            {/* How to Use */}
-            {showScreenControls && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('how_to_use')}</h2>
-              <ol className="space-y-4 text-lg text-slate-700">
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
-                    1
-                  </span>
-                  <span>{translate('step_1')}</span>
-                </li>
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
-                    2
-                  </span>
-                  <span>{translate('step_2')}</span>
-                </li>
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
-                    3
-                  </span>
-                  <span>{translate('step_3')}</span>
-                </li>
-                {hasDownload && (
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
-                    4
-                  </span>
-                  <span>{translate('step_4')}</span>
-                </li>
-                )}
-              </ol>
-            </div>
-            )}
-
-            {/* Features */}
-            {features.length > 0 && (
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('features')}</h2>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mt-1">
-                        ✓
-                      </span>
-                      <span className="text-slate-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Use Cases */}
-            {useCases.length > 0 && (
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('use_cases')}</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {useCases.map((useCase, index) => (
-                    <div key={index} className="card">
-                      <p className="text-slate-700 text-lg">{useCase}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Keyboard Shortcuts */}
-            {showScreenControls && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('keyboard_shortcuts')}</h2>
-              <div className="bg-slate-50 rounded-lg p-6">
-                <div className="space-y-3 font-mono text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">{translate('fullscreen_mode')}:</span>
-                    <kbd className="bg-white border border-slate-200 rounded px-2 py-1">F</kbd>
-                    <kbd className="bg-white border border-slate-200 rounded px-2 py-1">Space</kbd>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">{translate('exit_fullscreen')}:</span>
-                    <kbd className="bg-white border border-slate-200 rounded px-2 py-1">ESC</kbd>
-                  </div>
-                  {hasDownload && (
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">{translate('download_shortcut')}:</span>
-                    <kbd className="bg-white border border-slate-200 rounded px-2 py-1">Ctrl+S</kbd>
-                  </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            )}
-
-            {/* Related Tools */}
-            {relatedTools.length > 0 && (
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('related_tools')}</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {relatedTools.map((tool, index) => (
-                    <Link
-                      key={index}
-                      href={tool.path}
-                      className="card hover:shadow-lg transition-shadow group"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="font-bold text-lg text-slate-900 group-hover:text-cyan-600 transition-colors">
-                            {tool.name}
-                          </h3>
-                        </div>
-                        {tool.color && (
-                          <div
-                            className="w-12 h-12 rounded-lg border-2 border-slate-200"
-                            style={{ backgroundColor: tool.color }}
-                          />
-                        )}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* FAQ Section */}
-            {faqs.length > 0 && (
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">{translate('faq')}</h2>
-                <div className="space-y-4">
-                  {faqs.map((faq, index) => (
-                    <details key={index} className="group card cursor-pointer">
-                      <summary className="flex items-center justify-between font-semibold">
-                        {faq.question}
-                        <span className="group-open:rotate-180 transition-transform">↓</span>
-                      </summary>
-                      <p className="mt-3 text-slate-600">
-                        {faq.answer}
-                      </p>
-                    </details>
-                  ))}
-                </div>
-              </div>
-            )}
-
-          </div>
-        </div>
-      </section>
-    </>
+    </section>
   );
 }

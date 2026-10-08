@@ -3,7 +3,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Check, Zap, Smartphone, Shield, Monitor, Gamepad2, Sparkles } from 'lucide-react';
-import { pageMetadata, breadcrumbSchema, organizationSchema, websiteSchema } from '@/lib/seo';
+import { pageMetadata, organizationSchema, websiteSchema } from '@/lib/seo';
 import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
 import { translate } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
@@ -11,7 +11,6 @@ import ToolCards from '@/components/hardware/tool-cards';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/'],
     path: '/',
@@ -21,24 +20,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
 
   // Schema data
-  const breadcrumbs = breadcrumbSchema([
-    { name: translate('home'), path: '/' },
-  ]);
 
   return (
     <>
       {/* Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@graph': [organizationSchema(), websiteSchema()].map(({ '@context': _, ...node }) => node),
+            '@graph': [organizationSchema(), websiteSchema()].map((node) => ({ ...node, '@context': undefined })),
           }),
         }}
         suppressHydrationWarning

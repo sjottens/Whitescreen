@@ -44,17 +44,24 @@ export default function KeyboardTestPage() {
       path={PATH}
       name="Keyboard Test"
       description={DESCRIPTION}
-      heading="Keyboard Test"
+      heading="Keyboard Test Online – Check Every Key"
       intro="Press every key on your keyboard. Each key lights up while you hold it and turns green once it's tested, so you can see at a glance which ones never registered."
       tool={<KeyboardTest />}
       affiliate={{
         heading: 'Time for a new keyboard?',
         text: "Keys that chatter, stick or give up entirely usually won't recover. If your keyboard is a few years old, replacing it is often less hassle than repairing it. Here are a few we'd consider.",
       }}
+      toc={[
+        { id: "what-youre-looking-at", label: "What you're looking at" },
+        { id: "a-key-doesnt-light-up", label: "A key doesn't light up" },
+        { id: "a-key-types-twice", label: "A key types twice" },
+        { id: "keys-dont-register-when-pressed-together", label: "Keys don't register when pressed together" },
+        { id: "keys-doing-something-strange", label: "Keys doing something strange" },
+      ]}
       faqs={FAQS}
       wideTool
     >
-      <h2>What you&apos;re looking at</h2>
+      <h2 id="what-youre-looking-at">What you&apos;re looking at</h2>
       <p>
         A key lights up while you hold it down and stays green once it&apos;s been tested. Below the keyboard you&apos;ll
         see the name and code of the last key you pressed, plus how many times you&apos;ve pressed it.
@@ -65,7 +72,7 @@ export default function KeyboardTestPage() {
         on your keys, but the codes will still line up with the right position.
       </p>
 
-      <h2>A key doesn&apos;t light up</h2>
+      <h2 id="a-key-doesnt-light-up">A key doesn&apos;t light up</h2>
       <p>
         First rule out software. Try the same key in a plain text editor like Notepad or TextEdit. If it&apos;s dead
         there too, the problem is the keyboard itself.
@@ -77,7 +84,7 @@ export default function KeyboardTestPage() {
         switch may also have come loose slightly. Pull it out and push it back in firmly.
       </p>
 
-      <h2>A key types twice</h2>
+      <h2 id="a-key-types-twice">A key types twice</h2>
       <p>
         This is called chattering. You press once and the computer registers two presses. It&apos;s caused by a worn or
         faulty switch and it&apos;s common on mechanical keyboards after a few years of use.
@@ -88,7 +95,7 @@ export default function KeyboardTestPage() {
         the switch needs replacing, or you&apos;re looking at a new keyboard.
       </p>
 
-      <h2>Keys don&apos;t register when pressed together</h2>
+      <h2 id="keys-dont-register-when-pressed-together">Keys don&apos;t register when pressed together</h2>
       <p>
         Hold down several keys at once and see how many light up. Cheaper keyboards often can&apos;t handle certain
         combinations of three or more keys. That&apos;s called ghosting, and it matters mostly in games where you hold
@@ -96,7 +103,7 @@ export default function KeyboardTestPage() {
         show every key you hold.
       </p>
 
-      <h2>Keys doing something strange</h2>
+      <h2 id="keys-doing-something-strange">Keys doing something strange</h2>
       <p>Before you blame the hardware, check a few settings that catch people out all the time:</p>
       <ul>
         <li>

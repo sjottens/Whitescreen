@@ -3,16 +3,14 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { Monitor, ArrowRight } from 'lucide-react';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
+import { pageMetadata } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { COLOR_TOOLS, TEST_TOOLS } from '@/lib/constants';
 import { LinkButton } from '@/components/ui/button';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/tools'],
     path: '/tools',
@@ -20,27 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ToolsPage() {
-
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('resources'), path: '/tools' },
-    ]);
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('resources') },
-        ]}
-      />
-
       {/* Sticky Back to Home Bar */}
       <div className="sticky top-0 z-40 bg-gradient-to-r from-blue-50 to-slate-50 border-b-2 border-blue-200 backdrop-blur-sm">
         <div className="container px-4 py-4 flex items-center justify-between">

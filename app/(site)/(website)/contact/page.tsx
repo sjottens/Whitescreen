@@ -2,14 +2,12 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
 import ContactForm from '@/components/ui/contact-form';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
+import { pageMetadata } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/contact'],
     path: '/contact',
@@ -30,26 +28,8 @@ export default async function ContactPage() {
     legalNotice: 'For legal or privacy requests, use this same form and start your message with "Privacy" or "Legal".',
   };
 
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('contact'), path: '/contact' },
-    ]);
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('contact') },
-        ]}
-      />
-
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('contact_title')}</h1>

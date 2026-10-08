@@ -1,52 +1,35 @@
-// app/(site)/(tools)/color-screen/page.tsx - Full-screen colors with a picker.
+// app/(site)/(tools)/color-screen/page.tsx - Color Screen
 // Replaces the old one-page-per-color screens (/red-screen, /green-screen...),
 // which redirect here with ?color=<id>.
 
+import type { Metadata } from 'next';
+import Link from 'next/link';
 import { getClientStrings } from '@/lib/client-strings';
-import { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
-import { translate } from '@/lib/translations';
-import { COLOR_TOOLS, COLOR_SWATCHES } from '@/lib/constants';
+import { PAGE_COPY } from '@/lib/page-copy';
 import ToolLayout from '@/components/tools/tool-layout';
-import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
 import RelatedTools from '@/components/tools/related-tools';
-import { PAGE_COPY } from '@/lib/page-copy';
+import ScreenDisplay from '@/components/tools/screen-display';
+import { COLOR_SWATCHES } from '@/lib/constants';
 
-const TOOL = COLOR_TOOLS.find((t) => t.id === 'color-screen')!;
+const PATH = '/color-screen';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return pageMetadata({
-    ...PAGE_COPY['/color-screen'],
-    path: TOOL.path,
-    keywords: TOOL.keywords,
-  });
-}
+export const metadata: Metadata = pageMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
-export default async function ColorScreenPage() {
-  const features = [
-    translate('feature_fullscreen_pure'),
-    translate('feature_keyboard_shortcuts'),
-    translate('feature_all_devices'),
-    translate('feature_download_png'),
-    translate('feature_free_no_registration'),
-  ];
-
-  const relatedTools = COLOR_TOOLS.filter((t) => t.id !== TOOL.id).map((t) => ({
-    name: translate(t.nameKey as any),
-    path: t.path,
-    color: t.color,
-  }));
-
+export default function ColorScreenPage() {
   return (
     <>
       <ToolLayout
-        title={translate('color_screen')}
-        description={translate('color_screen_desc')}
-        features={features}
-        relatedTools={relatedTools}
-        showScreenControls
-        hasDownload
+        path={PATH}
+        title="Color Screen – Red, Green, Blue and Custom"
+        intro={
+          <p>
+            Pick a color and press F to fill your screen with it. Red, green and blue each light a single
+            subpixel, which makes them the surest way to find a stuck or dead subpixel. Prefer an automatic run? The{' '}
+            <Link href="/dead-pixel-test">dead pixel test</Link> cycles through them for you.
+          </p>
+        }
       >
         <ScreenDisplay
           strings={getClientStrings('screenDisplay')}

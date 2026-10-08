@@ -31,6 +31,11 @@ const FAQS: Faq[] = [
       'Yes. Tapping the box counts the same as clicking. Scores on touch screens are usually a bit lower than with a mouse.',
   },
   {
+    question: 'Can I use a touchpad or the keyboard?',
+    answer:
+      'Yes. A tap or click on a touchpad counts like a mouse click, and Space or Enter work when the click box is selected. Touchpads are usually slower than a mouse, so compare scores on the same device.',
+  },
+  {
     question: 'Does my mouse affect my score?',
     answer:
       'A little. A light, responsive switch makes fast clicking easier, and for drag clicking the surface of the button matters a lot. But practice and technique make far more difference than the mouse itself.',
@@ -44,17 +49,24 @@ export default function ClickSpeedTestPage() {
       path={PATH}
       name="Click Speed Test"
       description={DESCRIPTION}
-      heading="Click Speed Test"
+      heading="Click Speed Test – How Many Clicks per Second?"
       intro="Pick a duration and start clicking in the box. The timer starts with your first click."
       tool={<ClickSpeedTest />}
       affiliate={{
         heading: 'Mouse double clicking or wearing out?',
         text: "A worn switch won't fix itself, and it only gets worse. If your mouse registers clicks you didn't make, these are solid replacements for gaming and everyday use.",
       }}
+      toc={[
+        { id: "whats-a-good-score", label: "What's a good score?" },
+        { id: "clicking-techniques", label: "Clicking techniques" },
+        { id: "how-the-test-counts-your-clicks", label: "How the test counts your clicks" },
+        { id: "score-suspiciously-high", label: "Score suspiciously high?" },
+        { id: "fixing-a-mouse-that-double-clicks", label: "Fixing a mouse that double clicks" },
+      ]}
       faqs={FAQS}
       adClearance
     >
-      <h2>What&apos;s a good score?</h2>
+      <h2 id="whats-a-good-score">What&apos;s a good score?</h2>
       <p>
         Most people clicking normally land somewhere between 6 and 8 clicks per second. Get above 10 and you&apos;re
         clearly faster than average. Beyond that, it&apos;s usually technique rather than raw finger speed.
@@ -65,7 +77,7 @@ export default function ClickSpeedTestPage() {
         keep it up, which is what counts in most games.
       </p>
 
-      <h2>Clicking techniques</h2>
+      <h2 id="clicking-techniques">Clicking techniques</h2>
       <p>
         <strong>Jitter clicking.</strong> You tense your forearm until your hand starts to vibrate and your finger taps
         along with it. Most people reach 10 to 14 CPS this way. It&apos;s tiring and puts real strain on your wrist, so
@@ -85,12 +97,38 @@ export default function ClickSpeedTestPage() {
         rules before you use these techniques there.
       </p>
 
-      <h2>Score suspiciously high?</h2>
+      <h2 id="how-the-test-counts-your-clicks">How the test counts your clicks</h2>
+      <p>
+        A click counts the moment the left mouse button goes down, not when you let go, so the counter keeps up with
+        however fast you press. Right and middle clicks are ignored. You can also use Space or Enter while the box is
+        selected; holding the key down counts once, not as a stream of repeats.
+      </p>
+      <p>
+        The timer starts on your first click and runs on the browser&apos;s high-precision clock, so a 5-second test
+        really is 5 seconds. Your score is the number of clicks divided by the length of the test. When time is up the
+        box locks for a moment, so one last frantic click doesn&apos;t start a new round by accident. Your best score
+        for each duration is kept in this browser only.
+      </p>
+
+      <h2 id="score-suspiciously-high">Score suspiciously high?</h2>
       <p>
         If a single slow click sometimes counts as two, it&apos;s not you. It&apos;s your mouse. The switch under the
         button wears out over time and starts sending two signals for one press. It&apos;s one of the most common mouse
         faults, even on expensive gaming mice. Click slowly ten times and count along with the counter. If the numbers
         don&apos;t match, the switch is going.
+      </p>
+
+      <h2 id="fixing-a-mouse-that-double-clicks">Fixing a mouse that double clicks</h2>
+      <p>
+        Start with the software. Many gaming mice have a debounce or click delay setting in their own app; raising it a
+        few milliseconds can hide a worn switch for a while. Also check that no macro or rapid-fire function is
+        assigned to the button. The double-click speed setting in Windows or macOS has nothing to do with this fault.
+      </p>
+      <p>
+        If that doesn&apos;t help, the switch itself is worn. A short blast of compressed air under the button sometimes
+        buys some time. A mouse still under warranty is usually replaced without discussion, because double clicking is
+        a known fault. Out of warranty, a new switch can be soldered in if you&apos;re handy, but for most mice
+        replacing the whole mouse is quicker.
       </p>
     </ToolPage>
   );

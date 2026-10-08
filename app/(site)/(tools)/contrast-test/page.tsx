@@ -1,43 +1,44 @@
-// app/(site)/(tools)/contrast-test/page.tsx
+// app/(site)/(tools)/contrast-test/page.tsx - Contrast Test
 
+import type { Metadata } from 'next';
 import { getClientStrings } from '@/lib/client-strings';
-import { Metadata } from 'next';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
-import { translate } from '@/lib/translations';
-import { TEST_TOOLS } from '@/lib/constants';
-import ToolLayout from '@/components/tools/tool-layout';
-import ContrastTest from '@/components/tools/contrast-test';
-import GuideSection from '@/components/tools/guide-section';
-import ContrastTestIntro from '@/components/tools/contrast-test-intro';
-import RelatedTools from '@/components/tools/related-tools';
+import { pageMetadata } from '@/lib/seo';
 import { PAGE_COPY } from '@/lib/page-copy';
+import ToolLayout from '@/components/tools/tool-layout';
+import GuideSection from '@/components/tools/guide-section';
+import RelatedTools from '@/components/tools/related-tools';
+import ContrastTest from '@/components/tools/contrast-test';
+import ContrastTestIntro from '@/components/tools/contrast-test-intro';
 
-const TOOL = TEST_TOOLS.find((t) => t.id === 'contrast-test')!;
+const PATH = '/contrast-test';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return pageMetadata({
-    ...PAGE_COPY['/contrast-test'],
-    path: TOOL.path,
-    keywords: TOOL.keywords,
-  });
-}
+export const metadata: Metadata = pageMetadata({ ...PAGE_COPY[PATH], path: PATH });
 
-export default async function ContrastTestPage() {
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('resources'), path: '/tools' },
-      { name: translate(TOOL.nameKey as any), path: TOOL.path },
-    ]);
+export default function ContrastTestPage() {
   return (
     <>
-      <ContrastTestIntro />
       <ToolLayout
-        description={translate(TOOL.descriptionKey as any)}
-        toolName={translate(TOOL.nameKey as any)}
+        path={PATH}
+        title="Contrast Test & Text Readability Checker"
+        intro={
+          <p>
+            See how readable text is at different contrast levels, check your own color pairs against the WCAG
+            guidelines, and preview how colors look with common types of color blindness.
+          </p>
+        }
       >
         <ContrastTest strings={getClientStrings('contrastTest')} />
       </ToolLayout>
-      <GuideSection toolId="contrast-test" />
+      <GuideSection
+        toolId="contrast-test"
+        extraToc={[
+          { id: "what-is-display-contrast", label: "What is Display Contrast?" },
+          { id: "how-to-test-monitor-contrast", label: "How to Test Monitor Contrast" },
+          { id: "accessibility-matters", label: "Accessibility Matters" },
+        ]}
+      >
+        <ContrastTestIntro />
+      </GuideSection>
       <RelatedTools currentToolId="contrast-test" />
     </>
   );

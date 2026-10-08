@@ -44,16 +44,22 @@ export default function MicTestPage() {
       path={PATH}
       name="Mic Test"
       description={DESCRIPTION}
-      heading="Microphone Test"
+      heading="Mic Test Online – Check Your Microphone"
       intro="Click Start, allow microphone access and say something. If the bar moves, your mic works. Everything happens in your browser, so we never hear or store a thing."
       tool={<MicTest />}
       affiliate={{
         heading: 'Is your microphone letting you down?',
         text: "If your mic is quiet, noisy or cutting out and the settings above didn't fix it, a decent USB microphone is often a cheaper fix than you'd expect. These are the ones we'd look at.",
       }}
+      toc={[
+        { id: "how-to-read-the-result", label: "How to read the result" },
+        { id: "mic-not-picked-up-at-all", label: "Mic not picked up at all?" },
+        { id: "bluetooth-headset-sounds-terrible", label: "Bluetooth headset sounds terrible?" },
+        { id: "what-happens-with-your-audio", label: "What happens with your audio" },
+      ]}
       faqs={FAQS}
     >
-      <h2>How to read the result</h2>
+      <h2 id="how-to-read-the-result">How to read the result</h2>
       <p>
         The bar shows how loud your microphone hears you. Talk at a normal volume from about an arm&apos;s length away
         and you want it bouncing around the middle. Barely moving? Your input level is too low, or the browser picked a
@@ -67,7 +73,7 @@ export default function MicTestPage() {
         pointing at your cheek.
       </p>
 
-      <h2>Mic not picked up at all?</h2>
+      <h2 id="mic-not-picked-up-at-all">Mic not picked up at all?</h2>
       <p>
         Start with the browser. If you ever clicked &quot;Block&quot; on a permission pop-up, the site stays blocked
         until you change it yourself. Look for the small lock or microphone icon in the address bar. Then check the
@@ -91,7 +97,7 @@ export default function MicTestPage() {
         allowed.
       </p>
 
-      <h2>Bluetooth headset sounds terrible?</h2>
+      <h2 id="bluetooth-headset-sounds-terrible">Bluetooth headset sounds terrible?</h2>
       <p>
         Your headset probably isn&apos;t broken. As soon as a Bluetooth headset uses its microphone, most computers
         switch it to a hands-free mode that drops the audio quality to phone-call level. Your voice sounds like it&apos;s
@@ -99,7 +105,7 @@ export default function MicTestPage() {
         Bluetooth handles audio in both directions. A wired headset or a USB microphone doesn&apos;t have this problem.
       </p>
 
-      <h2>What happens with your audio</h2>
+      <h2 id="what-happens-with-your-audio">What happens with your audio</h2>
       <p>
         Nothing leaves your device. The meter and the recording are handled entirely by your browser, and the recording
         is gone the moment you refresh or close the page.

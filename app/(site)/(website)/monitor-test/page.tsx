@@ -3,15 +3,13 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Monitor, CheckCircle2, AlertTriangle, Gamepad2, ShoppingCart, ClipboardCheck } from 'lucide-react';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { LinkButton } from '@/components/ui/button';
-import { pageMetadata, breadcrumbSchema, faqSchema } from '@/lib/seo';
+import { pageMetadata, faqSchema } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { TEST_TOOLS, COLOR_TOOLS } from '@/lib/constants';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/monitor-test'],
     path: '/monitor-test',
@@ -24,12 +22,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function MonitorTestPage() {
-
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('resources'), path: '/tools' },
-      { name: translate('monitor_test_breadcrumb_title' as any), path: '/monitor-test' },
-    ]);
 
   // The tests a full monitor check actually walks through, in the order a
   // careful buyer would run them - dead pixels first, then uniformity/
@@ -71,21 +63,8 @@ export default async function MonitorTestPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(limitsFaq) }}
         suppressHydrationWarning
-      />
-
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('resources'), path: '/tools' },
-          { name: translate('monitor_test_breadcrumb_title' as any) },
-        ]}
       />
 
       {/* Sticky Back to Tools Bar */}

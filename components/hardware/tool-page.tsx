@@ -7,6 +7,9 @@
 import type { ReactNode } from 'react';
 import { AD_SLOTS, type HardwareToolId } from '@/lib/hardware-tools';
 import { faqPageSchema, webApplicationSchema, type Faq } from '@/lib/tool-schema';
+import type { TocItem } from '@/components/tools/guide-section';
+import { AUTHOR } from '@/lib/author';
+import Link from 'next/link';
 import AdSlot from './ad-slot';
 import AffiliateBlock from './affiliate-block';
 import ToolCards from './tool-cards';
@@ -26,6 +29,8 @@ interface ToolPageProps {
   /** The explainer (H2/H3 sections). */
   children: ReactNode;
   affiliate: { heading: string; text: string };
+  /** The H2s in `children`, for the table of contents (the FAQ is added automatically). */
+  toc: TocItem[];
   faqs: Faq[];
   /** Keep ad 1 at least 150px away from the tool (Click Speed Test). */
   adClearance?: boolean;
@@ -43,6 +48,7 @@ export default function ToolPage({
   tool,
   children,
   affiliate,
+  toc,
   faqs,
   adClearance = false,
   wideTool = false,
@@ -68,13 +74,30 @@ export default function ToolPage({
 
       <AdSlot slot={slots.top} className={adClearance ? 'mt-40' : 'mt-10'} />
 
-      <article className="tool-content container-sm mt-12">{children}</article>
+      <nav aria-labelledby="toc-heading" className="container-sm mt-12">
+        <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-5">
+          <h2 id="toc-heading" className="mb-3 text-lg font-semibold text-slate-100">
+            On this page
+          </h2>
+          <ol className="list-decimal space-y-1 pl-5 text-slate-300">
+            {[...toc, { id: 'faq-heading', label: 'Frequently Asked Questions' }].map((item) => (
+              <li key={item.id} className="mb-0">
+                <a href={`#${item.id}`} className="text-cyan-300 hover:underline">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
+
+      <article className="tool-content container-sm mt-12 [&_h2]:scroll-mt-24">{children}</article>
 
       <AffiliateBlock tool={toolId} heading={affiliate.heading} text={affiliate.text} />
 
       <section aria-labelledby="faq-heading" className="container-sm mt-12">
-        <h2 id="faq-heading" className="mb-4 text-2xl md:text-3xl">
-          FAQ
+        <h2 id="faq-heading" className="mb-4 scroll-mt-24 text-2xl md:text-3xl">
+          Frequently Asked Questions
         </h2>
         <div className="space-y-3">
           {faqs.map((faq) => (
@@ -94,6 +117,14 @@ export default function ToolPage({
           ))}
         </div>
       </section>
+
+      <p className="container-sm mt-8 text-sm text-slate-400">
+        Written by{' '}
+        <Link href="/about#author" className="font-medium text-slate-200 underline-offset-2 hover:underline">
+          {AUTHOR.name}
+        </Link>
+        , {AUTHOR.jobTitle.toLowerCase()}.
+      </p>
 
       <AdSlot slot={slots.bottom} className="mt-12" />
 

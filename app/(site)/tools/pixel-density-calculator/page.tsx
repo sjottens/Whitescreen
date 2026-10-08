@@ -3,14 +3,12 @@
 
 import { getClientStrings } from '@/lib/client-strings';
 import { Metadata } from 'next';
-import Breadcrumbs from '@/components/layout/breadcrumbs';
 import PixelDensityCalculator from '@/components/tools/pixel-density-calculator';
-import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
+import { pageMetadata } from '@/lib/seo';
 import { translate } from '@/lib/translations';
 import { PAGE_COPY } from '@/lib/page-copy';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     ...PAGE_COPY['/tools/pixel-density-calculator'],
     path: '/tools/pixel-density-calculator',
@@ -24,29 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PixelDensityCalculatorPage() {
-
-  const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('resources'), path: '/tools' },
-      { name: translate('pixel_density_calculator'), path: '/tools/pixel-density-calculator' },
-    ]);
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-        suppressHydrationWarning
-      />
-
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('resources'), path: '/tools' },
-          { name: translate('pixel_density_calculator') },
-        ]}
-      />
-
       {/* Header */}
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-emerald-50">
         <div className="container max-w-4xl">
