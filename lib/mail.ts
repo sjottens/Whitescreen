@@ -7,7 +7,7 @@ import nodemailer from 'nodemailer';
 import { formTokenProblem } from './form-token';
 
 /** Where site notifications go. */
-export const OWNER_EMAIL = 'testascreen@gmail.com';
+export const OWNER_EMAIL = 'testascreen26@gmail.com';
 
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const MAX_EMAIL_LENGTH = 254;
