@@ -126,6 +126,11 @@ export const PAGE_COPY = {
     description:
       'Enter a resolution and screen size to get the PPI, see how sharp text will look from your seat, and find the display scaling that suits it.',
   },
+  '/used-laptop-check': {
+    title: 'Used Laptop Check – Test a Second-Hand Laptop',
+    description:
+      'Check a used laptop before you buy it: screen, keyboard, speakers, webcam, mic, battery and ports, step by step in the browser, plus the red flags to watch.',
+  },
   '/webcam-test': {
     title: 'Webcam Test – Check Your Camera Online (Free & Private)',
     description:

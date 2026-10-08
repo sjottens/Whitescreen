@@ -21,6 +21,7 @@ All tools run entirely in the browser (no install, no account). The site is in E
 - [Keyboard Test](https://testascreen.com/keyboard-test): Press every key on an ANSI or ISO layout to find dead keys, chattering and ghosting.
 - [Webcam Test](https://testascreen.com/webcam-test): Live preview with the resolution and frame rate the camera really delivers.
 - [Click Speed Test](https://testascreen.com/click-speed-test): Clicks per second over 1, 5, 10 or 30 seconds; also shows a mouse that double clicks.
+- [Used Laptop Check](https://testascreen.com/used-laptop-check): Step-by-step checklist for inspecting a second-hand laptop.
 
 ## Guides
 

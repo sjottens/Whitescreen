@@ -9,6 +9,7 @@ const PATHS: Record<HardwareToolId, string> = {
   'keyboard-test': 'M3 6h18v12H3zM7 10h.01M11 10h.01M15 10h.01M17 14H7',
   'webcam-test': 'M12 3a7 7 0 1 0 0 14a7 7 0 0 0 0-14zM12 7.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM8 21h8M12 17v4',
   'click-speed-test': 'M12 3a6 6 0 0 0-6 6v6a6 6 0 0 0 12 0V9a6 6 0 0 0-6-6zM12 3v7M6 10h12',
+  'used-laptop-check': 'M4 5h16v10H4zM2 19h20M9 10l2 2 4-4',
 };
 
 export default function ToolIcon({ id, className = 'w-6 h-6' }: { id: HardwareToolId; className?: string }) {

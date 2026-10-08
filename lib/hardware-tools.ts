@@ -1,4 +1,4 @@
-// lib/hardware-tools.ts - The five hardware tests, shared by the navigation,
+// lib/hardware-tools.ts - The hardware tests, shared by the navigation,
 // homepage "All tests" section, 404 page and each tool's "Other tests" block.
 
 export type HardwareToolId =
@@ -6,7 +6,8 @@ export type HardwareToolId =
   | 'mic-test'
   | 'keyboard-test'
   | 'webcam-test'
-  | 'click-speed-test';
+  | 'click-speed-test'
+  | 'used-laptop-check';
 
 export interface HardwareTool {
   id: HardwareToolId;
@@ -46,6 +47,12 @@ export const HARDWARE_TOOLS: HardwareTool[] = [
     path: '/click-speed-test',
     blurb: 'Measure your clicks per second and see if your mouse double clicks.',
   },
+  {
+    id: 'used-laptop-check',
+    name: 'Used Laptop Check',
+    path: '/used-laptop-check',
+    blurb: 'Check a second-hand laptop step by step before you hand over the money.',
+  },
 ];
 
 // AdSense ad-unit IDs for the manual slots on the tool pages. Leave a slot
@@ -57,6 +64,7 @@ export const AD_SLOTS: Record<Exclude<HardwareToolId, 'screen-test'>, { top: str
   'keyboard-test': { top: '', bottom: '' },
   'webcam-test': { top: '', bottom: '' },
   'click-speed-test': { top: '', bottom: '' },
+  'used-laptop-check': { top: '', bottom: '' },
 };
 
 export const ADSENSE_CLIENT = 'ca-pub-5016673566357322';

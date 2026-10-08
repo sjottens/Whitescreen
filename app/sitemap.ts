@@ -35,7 +35,7 @@ const SCREEN_TOOLS = [
 
 const CALCULATORS = ['/tools/pixel-density-calculator'];
 
-const HARDWARE_TESTS = ['/mic-test', '/keyboard-test', '/webcam-test', '/click-speed-test'];
+const HARDWARE_TESTS = ['/mic-test', '/keyboard-test', '/webcam-test', '/click-speed-test', '/used-laptop-check'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // No lastModified: stamping every page with the build date tells Google

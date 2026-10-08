@@ -36,6 +36,11 @@ export const AFFILIATES: Record<ToolWithAffiliates, AffiliateProduct[]> = {
     { name: '', description: '', url: '', enabled: false },
     { name: '', description: '', url: '', enabled: false },
   ],
+  'used-laptop-check': [
+    { name: '', description: '', url: '', enabled: false },
+    { name: '', description: '', url: '', enabled: false },
+    { name: '', description: '', url: '', enabled: false },
+  ],
 };
 
 export function getAffiliates(tool: ToolWithAffiliates): AffiliateProduct[] {
