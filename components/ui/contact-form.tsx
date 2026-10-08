@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import { useFormToken } from '@/lib/use-form-token';
 
 interface ContactFormProps {
   labels: {
@@ -19,19 +20,21 @@ export default function ContactForm({ labels }: ContactFormProps) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   // Spam protection (checked by /api/contact): a honeypot field real visitors
-  // never see, and the time the form was shown - bots submit instantly.
+  // never see, and a signed token fetched when the form appears.
   const [website, setWebsite] = useState('');
-  const startedAtRef = useRef(0);
-
-  useEffect(() => {
-    startedAtRef.current = Date.now();
-  }, []);
+  const { token, refresh: refreshToken } = useFormToken();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email.trim() || !message.trim()) {
       setErrorMsg('Please fill in all fields');
+      setStatus('error');
+      return;
+    }
+
+    if (!token) {
+      setErrorMsg('The form is still loading. Please try again in a moment.');
       setStatus('error');
       return;
     }
@@ -49,9 +52,11 @@ export default function ContactForm({ labels }: ContactFormProps) {
           email,
           message,
           website,
-          startedAt: startedAtRef.current,
+          token,
         }),
       });
+      // Tokens are single-use; get a fresh one for a retry or a next message.
+      refreshToken();
 
       if (response.ok) {
         setStatus('success');
@@ -65,6 +70,7 @@ export default function ContactForm({ labels }: ContactFormProps) {
         setStatus('error');
       }
     } catch (err) {
+      refreshToken();
       setErrorMsg('An error occurred. Please try again.');
       setStatus('error');
       console.error('Contact form error:', err);

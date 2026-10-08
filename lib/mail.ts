@@ -4,6 +4,7 @@
 
 import 'server-only';
 import nodemailer from 'nodemailer';
+import { formTokenProblem } from './form-token';
 
 /** Where site notifications go. */
 export const OWNER_EMAIL = 'testascreen@gmail.com';
@@ -14,24 +15,17 @@ export const MAX_EMAIL_LENGTH = 254;
 // --- Spam protection -------------------------------------------------------
 // Mail goes out through a Gmail account with a daily sending limit
 // (~500/day); bot submissions used it up and broke the contact form.
-const MIN_FILL_TIME_MS = 3_000; // people don't fill in and send a form in under 3s
-const MAX_FORM_AGE_MS = 24 * 60 * 60 * 1000;
-
 export interface BotFields {
   /** Honeypot: hidden field in the form, only bots fill it in. */
   website?: string;
-  /** Date.now() when the form was shown. */
-  startedAt?: number;
+  /** Signed token the form fetched when it appeared (lib/form-token.ts). */
+  token?: string;
 }
 
 /** Why a submission looks automated, or null if it looks like a person. */
 export function botReason(body: BotFields, now: number): string | null {
   if (body.website) return 'honeypot filled';
-  if (typeof body.startedAt !== 'number' || body.startedAt <= 0) return 'no form start time';
-  const elapsed = now - body.startedAt;
-  if (elapsed < MIN_FILL_TIME_MS) return 'submitted too fast';
-  if (elapsed > MAX_FORM_AGE_MS) return 'form start time too old';
-  return null;
+  return formTokenProblem(body.token, now);
 }
 
 /**

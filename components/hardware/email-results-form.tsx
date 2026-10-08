@@ -7,6 +7,7 @@
 import { useId, useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { STEPS, type StepStatus } from '@/lib/used-laptop-steps';
+import { useFormToken } from '@/lib/use-form-token';
 
 interface EmailResultsFormProps {
   results: Record<string, StepStatus | undefined>;
@@ -21,8 +22,8 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
   const [updates, setUpdates] = useState(false);
   const [state, setState] = useState<State>('idle');
   const [error, setError] = useState('');
-  // Shown time, for the server's "filled in too fast" bot check.
-  const [startedAt] = useState(() => Date.now());
+  // Signed token for the server's bot check (lib/form-token.ts).
+  const { token, refresh: refreshToken } = useFormToken();
 
   const checked = Object.values(results).filter(Boolean).length;
 
@@ -31,6 +32,11 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
     if (!checked) {
       setState('error');
       setError('Mark at least one step as OK or Problem first.');
+      return;
+    }
+    if (!token) {
+      setState('error');
+      setError('The form is still loading. Please try again in a moment.');
       return;
     }
     setState('sending');
@@ -44,7 +50,7 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
           results,
           updates,
           website,
-          startedAt,
+          token,
           system: system && {
             resolution: system.resolution,
             cores: system.cores ?? undefined,
@@ -53,12 +59,15 @@ export default function EmailResultsForm({ results, system }: EmailResultsFormPr
           },
         }),
       });
+      // Tokens are single-use; get a fresh one in case the visitor retries.
+      refreshToken();
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.message || "We couldn't send the email. Please try again later.");
       }
       setState('sent');
     } catch (err) {
+      refreshToken();
       setState('error');
       setError(err instanceof Error ? err.message : "We couldn't send the email. Please try again later.");
     }
