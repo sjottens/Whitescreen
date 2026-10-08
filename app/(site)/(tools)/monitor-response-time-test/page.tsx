@@ -12,7 +12,6 @@ import ToolLayout from '@/components/tools/tool-layout';
 import MotionTestDisplay from '@/components/tools/motion-test-display';
 import GuideSection from '@/components/tools/guide-section';
 import ResponseTimeIntro from '@/components/tools/response-time-intro';
-import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = TEST_TOOLS.find((tool) => tool.id === 'response-time-test')!;
@@ -131,8 +130,6 @@ export default async function ResponseTimeTestPage() {
       </ToolLayout>
 
       <GuideSection toolId="response-time-test" />
-
-      <RelatedReading strings={getClientStrings('relatedReading')} toolId="response-time-test" />
 
       <RelatedTools currentToolId="response-time-test" />
     </>

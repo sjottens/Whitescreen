@@ -8,7 +8,6 @@
 import { translate } from './translations';
 
 export interface HeaderLabels {
-  blog: string;
   about: string;
   contact: string;
   menuAria: string;
@@ -16,7 +15,6 @@ export interface HeaderLabels {
 
 export function getHeaderLabels(): HeaderLabels {
   return {
-    blog: translate('blog'),
     about: translate('about'),
     contact: translate('contact'),
     menuAria: translate('navigation_toggle_menu_aria' as never),

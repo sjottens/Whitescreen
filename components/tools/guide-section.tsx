@@ -1,5 +1,7 @@
 // components/tools/guide-section.tsx - Reusable guide section component for all tools
 
+import Link from 'next/link';
+import { AUTHOR } from '@/lib/author';
 import { TOOL_GUIDES } from '@/lib/tool-guides';
 import { translate } from '@/lib/translations';
 
@@ -83,6 +85,13 @@ export default function GuideSection({ toolId }: GuideSectionProps) {
           </p>
         </div>
 
+        <p className="mt-6 text-sm text-slate-500">
+          Written by{' '}
+          <Link href="/about#author" className="font-medium text-slate-700 underline-offset-2 hover:underline">
+            {AUTHOR.name}
+          </Link>
+          , {AUTHOR.jobTitle.toLowerCase()}.
+        </p>
       </div>
     </div>
   );

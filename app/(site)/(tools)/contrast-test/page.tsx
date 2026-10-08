@@ -9,7 +9,6 @@ import ToolLayout from '@/components/tools/tool-layout';
 import ContrastTest from '@/components/tools/contrast-test';
 import GuideSection from '@/components/tools/guide-section';
 import ContrastTestIntro from '@/components/tools/contrast-test-intro';
-import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'contrast-test')!;
@@ -39,7 +38,6 @@ export default async function ContrastTestPage() {
         <ContrastTest strings={getClientStrings('contrastTest')} />
       </ToolLayout>
       <GuideSection toolId="contrast-test" />
-      <RelatedReading strings={getClientStrings('relatedReading')} toolId="contrast-test" />
       <RelatedTools currentToolId="contrast-test" />
     </>
   );

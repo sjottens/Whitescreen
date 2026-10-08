@@ -9,7 +9,6 @@ import ToolLayout from '@/components/tools/tool-layout';
 import BrightnessTest from '@/components/tools/brightness-test';
 import GuideSection from '@/components/tools/guide-section';
 import BrightnessTestIntro from '@/components/tools/brightness-test-intro';
-import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = TEST_TOOLS.find((t) => t.id === 'brightness-test')!;
@@ -39,7 +38,6 @@ export default async function BrightnessTestPage() {
         <BrightnessTest strings={getClientStrings('brightnessTest')} />
       </ToolLayout>
       <GuideSection toolId="brightness-test" />
-      <RelatedReading strings={getClientStrings('relatedReading')} toolId="brightness-test" />
       <RelatedTools currentToolId="brightness-test" />
     </>
   );

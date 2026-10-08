@@ -12,7 +12,6 @@ import ToolLayout from '@/components/tools/tool-layout';
 import BacklightBleedDisplay from '@/components/tools/backlight-bleed-display';
 import GuideSection from '@/components/tools/guide-section';
 import BacklightBleedIntro from '@/components/tools/backlight-bleed-intro';
-import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = TEST_TOOLS.find((tool) => tool.id === 'backlight-bleed-test')!;
@@ -139,7 +138,6 @@ export default async function BacklightBleedTestPage() {
       <GuideSection toolId="backlight-bleed-test" />
 
       {/* Related Reading - Blog Articles & Guides */}
-      <RelatedReading strings={getClientStrings('relatedReading')} toolId="backlight-bleed-test" />
 
       {/* Related Tools for Internal Linking & Engagement */}
       <RelatedTools currentToolId="backlight-bleed-test" />

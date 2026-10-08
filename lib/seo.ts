@@ -133,11 +133,6 @@ export function websiteSchema(): SchemaConfig {
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     inLanguage: 'en',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${SITE_URL}/blog?query={search_term_string}`,
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -200,51 +195,6 @@ export function breadcrumbSchema(
       name: item.name,
       item: `${SITE_URL}${item.path}`,
     })),
-  };
-}
-
-/**
- * Generate BlogPosting Schema
- */
-export function blogPostingSchema(params: {
-  title: string;
-  description: string;
-  image: string;
-  datePublished: string;
-  dateModified?: string;
-  author: string;
-  slug: string;
-}): SchemaConfig {
-  const { title, description, image, datePublished, dateModified, author, slug } = params;
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: title,
-    description,
-    image: {
-      '@type': 'ImageObject',
-      url: image,
-      width: 1200,
-      height: 630,
-    },
-    datePublished,
-    dateModified: dateModified || datePublished,
-    author: {
-      '@type': 'Person',
-      name: author,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.svg`,
-        width: 64,
-        height: 64,
-      },
-    },
-    url: `${SITE_URL}/blog/${slug}`,
   };
 }
 

@@ -37,8 +37,8 @@ export default function Navigation({ labels }: NavigationProps) {
         <Link href="/dead-pixel-fixer" className="nav-link-premium focus-ring">
           Pixel Fixer
         </Link>
-        <Link href="/blog" className="nav-link-premium focus-ring">
-          {labels.blog}
+        <Link href="/about" className="nav-link-premium focus-ring">
+          {labels.about}
         </Link>
       </nav>
 
@@ -77,11 +77,6 @@ export default function Navigation({ labels }: NavigationProps) {
               <li className="mb-0">
                 <Link href="/dead-pixel-fixer" className={mobileLink} onClick={() => setIsOpen(false)}>
                   Dead Pixel Fixer
-                </Link>
-              </li>
-              <li className="mb-0">
-                <Link href="/blog" className={mobileLink} onClick={() => setIsOpen(false)}>
-                  {labels.blog}
                 </Link>
               </li>
               <li className="mb-0">

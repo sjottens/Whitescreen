@@ -8,7 +8,6 @@ import { COLOR_TOOLS } from '@/lib/constants';
 import ToolLayout from '@/components/tools/tool-layout';
 import ScreenDisplay from '@/components/tools/screen-display';
 import GuideSection from '@/components/tools/guide-section';
-import RelatedReading from '@/components/tools/related-reading';
 import RelatedTools from '@/components/tools/related-tools';
 
 const TOOL = COLOR_TOOLS.find((t) => t.id === 'black-screen')!;
@@ -66,7 +65,6 @@ export default async function BlackScreenPage() {
         <ScreenDisplay strings={getClientStrings('screenDisplay')} color="#000000" title={translate(TOOL.nameKey as any)} />
       </ToolLayout>
       <GuideSection toolId="black-screen" />
-      <RelatedReading strings={getClientStrings('relatedReading')} toolId="black-screen" />
       <RelatedTools currentToolId="black-screen" />
     </>
   );

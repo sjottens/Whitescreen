@@ -1,14 +1,14 @@
-// app/(site)/(website)/about/page.tsx - About page
+// app/(site)/(website)/about/page.tsx - About page: who builds the site and how the tests work
 
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/breadcrumbs';
 import { pageMetadata, breadcrumbSchema } from '@/lib/seo';
-import { llmOptimizedAboutPageSchema, schemaToJsonLd } from '@/lib/seo-llm-optimization';
+import { SITE_NAME, SITE_URL } from '@/lib/constants';
+import { AUTHOR } from '@/lib/author';
 import { translate } from '@/lib/translations';
 
 export async function generateMetadata(): Promise<Metadata> {
-
   return pageMetadata({
     title: translate('about_title'),
     description: translate('about_description'),
@@ -16,27 +16,37 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  '@id': `${SITE_URL}/about`,
+  url: `${SITE_URL}/about`,
+  name: `About ${SITE_NAME}`,
+  mainEntity: {
+    '@type': 'Person',
+    '@id': `${SITE_URL}/about#author`,
+    name: AUTHOR.name,
+    jobTitle: AUTHOR.jobTitle,
+    description: AUTHOR.shortBio,
+    knowsAbout: AUTHOR.knowsAbout,
+    url: `${SITE_URL}/about#author`,
+  },
+};
+
+const TOOLS = [
+  { href: '/dead-pixel-test', name: 'Dead Pixel Test', text: 'Cycles full-screen colors so dead, stuck and hot pixels stand out.' },
+  { href: '/dead-pixel-fixer', name: 'Dead Pixel Fixer', text: 'Flashes rapidly changing colors over a stuck pixel to try to free it.' },
+  { href: '/color-screen', name: 'White, Black & Color Screens', text: 'Solid full-screen colors for uniformity, tint, bleed and subpixel checks.' },
+  { href: '/backlight-bleed-test', name: 'Backlight Bleed Test', text: 'Near-black screens with corner markers to judge bleed and IPS glow.' },
+  { href: '/monitor-response-time-test', name: 'Response Time Test', text: 'A moving pattern to spot ghosting and overshoot by eye.' },
+  { href: '/tools', name: 'Hardware Tests', text: 'Microphone, keyboard, webcam and click speed tests.' },
+];
+
 export default async function AboutPage() {
-
   const breadcrumbs = breadcrumbSchema([
-      { name: translate('home'), path: '/' },
-      { name: translate('about'), path: '/about' },
-    ]);
-
-  const values = [
-    {
-      title: translate('about_values_accessible'),
-      description: translate('about_values_accessible_text'),
-    },
-    {
-      title: translate('about_values_honest'),
-      description: translate('about_values_honest_text'),
-    },
-    {
-      title: translate('about_values_fast'),
-      description: translate('about_values_fast_text'),
-    },
-  ];
+    { name: translate('home'), path: '/' },
+    { name: translate('about'), path: '/about' },
+  ]);
 
   return (
     <>
@@ -45,104 +55,101 @@ export default async function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
         suppressHydrationWarning
       />
-      {/* LLM Optimization Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: schemaToJsonLd(llmOptimizedAboutPageSchema()) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
         suppressHydrationWarning
       />
 
-      <Breadcrumbs
-        items={[
-          { name: translate('home'), path: '/' },
-          { name: translate('about') },
-        ]}
-      />
+      <Breadcrumbs items={[{ name: translate('home'), path: '/' }, { name: translate('about') }]} />
 
-      {/* Hero Section */}
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
-        <div className="container">
+        <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('about_title')}</h1>
-          <p className="text-xl text-slate-700 mb-8">
-            {translate('about_description')}
+          <p className="text-xl text-slate-700">
+            TestaScreen is a free set of browser-based tests for checking a screen the way a professional would: pixel
+            by pixel, color by color, before a defect has a chance to become a problem.
           </p>
         </div>
       </section>
 
-      {/* Content Sections */}
       <section className="section">
-        <div className="container">
-          <div className="prose prose-lg max-w-none">
-            <h2>{translate('about_mission_title')}</h2>
-            <p>{translate('about_mission_text')}</p>
-
-            <h2>{translate('about_why_title')}</h2>
-            <p>{translate('about_why_text')}</p>
-
-            <h2>{translate('about_offer_title')}</h2>
-            <ul>
-              <li>{translate('about_offer_1')}</li>
-              <li>{translate('about_offer_2')}</li>
-              <li>{translate('about_offer_3')}</li>
-              <li>{translate('about_offer_4')}</li>
-            </ul>
-
-            <h2>{translate('about_team_title')}</h2>
-            <p>{translate('about_team_text')}</p>
-
-            <h2>{translate('about_values_title')}</h2>
-            <div className="not-prose grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-              {values.map((value) => (
-                <div key={value.title} className="card">
-                  <h3 className="text-lg font-semibold mb-3">{value.title}</h3>
-                  <p className="text-slate-600">{value.description}</p>
-                </div>
-              ))}
+        <div className="container max-w-4xl">
+          <div id="author" className="not-prose mb-12 flex scroll-mt-28 flex-col gap-6 rounded-2xl border border-slate-700 bg-slate-900/60 p-6 md:flex-row md:p-8">
+            <div
+              className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-2xl bg-[#00DC82]/15 text-2xl font-bold text-[#00DC82]"
+              aria-hidden="true"
+            >
+              {AUTHOR.initials}
             </div>
-
-            <h2>{translate('about_expertise_title')}</h2>
-            <p>{translate('about_expertise_text')}</p>
-            <p>
-              The tools cover the{' '}
-              <Link href={'/dead-pixel-test'} className="text-blue-600 hover:underline">dead pixel test</Link>,{' '}
-              <Link href={'/dead-pixel-fixer'} className="text-blue-600 hover:underline">stuck pixel repair</Link> and{' '}
-              <Link href={'/tools'} className="text-blue-600 hover:underline">the other screen and hardware tests</Link>; the{' '}
-              <Link href={'/blog'} className="text-blue-600 hover:underline">blog</Link> explains the display technology behind them.
-            </p>
-
-            <h2>{translate('about_research_title')}</h2>
-            <p>{translate('about_research_text')}</p>
-
-            <h2>{translate('about_sources_title')}</h2>
-            <p>{translate('about_sources_text')}</p>
-
-            <h2>{translate('about_updates_title')}</h2>
-            <p>{translate('about_updates_text')}</p>
-
-            <h2>{translate('about_for_users_title')}</h2>
-            <p>{translate('about_for_users_text')}</p>
-
-            <div className="bg-slate-100 p-8 rounded-lg my-8 not-prose">
-              <h3 className="text-xl font-bold mb-4">Where to Start</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link href={'/dead-pixel-test'} className="p-4 bg-white rounded hover:shadow-lg transition-shadow">
-                  <p className="font-semibold text-slate-900">Dead Pixel Test</p>
-                  <p className="text-sm text-slate-600">Cycle full-screen colors to find dead, stuck and hot pixels.</p>
-                </Link>
-                <Link href={'/dead-pixel-fixer'} className="p-4 bg-white rounded hover:shadow-lg transition-shadow">
-                  <p className="font-semibold text-slate-900">Dead Pixel Fixer</p>
-                  <p className="text-sm text-slate-600">Flash a stuck pixel with rapidly changing colors to try to revive it.</p>
-                </Link>
-                <Link href={'/tools'} className="p-4 bg-white rounded hover:shadow-lg transition-shadow">
-                  <p className="font-semibold text-slate-900">All Tools</p>
-                  <p className="text-sm text-slate-600">Every screen test, hardware test and calculator on the site.</p>
-                </Link>
-                <Link href={'/faq'} className="p-4 bg-white rounded hover:shadow-lg transition-shadow">
-                  <p className="font-semibold text-slate-900">Frequently Asked Questions</p>
-                  <p className="text-sm text-slate-600">Short answers to common questions about pixels and displays.</p>
-                </Link>
+            <div>
+              <h2 className="mb-1 text-2xl md:text-3xl">Who builds TestaScreen</h2>
+              <p className="mb-5 text-sm font-medium uppercase tracking-wide text-[#00DC82]">
+                {AUTHOR.name} &middot; {AUTHOR.jobTitle}
+              </p>
+              <div className="space-y-4 text-lg leading-relaxed text-slate-300">
+                <p>
+                  I&apos;m {AUTHOR.name}, and I build and run TestaScreen. I&apos;ve worked as a front-end developer for
+                  24 years. That work is about screens more than most people realize: making layouts land on exactly
+                  the right pixel, checking the same design on monitors, laptops, tablets and phones, and learning to
+                  tell when the display, not the code, is the reason something looks wrong.
+                </p>
+                <p>
+                  For 15 years I&apos;ve also worked as a graphic specialist in image editing, retouching and preparing
+                  images where color and detail have to be exactly right. That work only goes well on a screen you can
+                  trust, and it taught me how much a slightly tinted white, a darker corner or one stuck subpixel can
+                  matter.
+                </p>
+                <p>
+                  TestaScreen is the toolkit I wanted for that work: quick, honest tests that run in any browser, with
+                  a clear explanation of what you are looking at and what counts as a real defect.
+                </p>
               </div>
             </div>
+          </div>
+
+          <div className="prose prose-lg max-w-none">
+            <h2>What you can test here</h2>
+          </div>
+          <ul className="not-prose my-6 grid list-none grid-cols-1 gap-4 pl-0 md:grid-cols-2">
+            {TOOLS.map((tool) => (
+              <li key={tool.href} className="mb-0">
+                <Link
+                  href={tool.href}
+                  className="block h-full rounded-xl border border-slate-700 bg-slate-900/60 p-5 transition-colors hover:border-[#00DC82]/60"
+                >
+                  <span className="mb-1 block font-semibold text-slate-100">{tool.name}</span>
+                  <span className="block text-sm text-slate-300">{tool.text}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="prose prose-lg max-w-none">
+            <h2>How the tests work, and their limits</h2>
+            <p>
+              Every tool is built to do one specific thing you can check with your own eyes: fill the screen with a
+              color, draw a pattern, move an object or flash a pixel. Everything runs in your browser and nothing is
+              uploaded.
+            </p>
+            <p>
+              A browser test is very good at finding dead and stuck pixels, backlight bleed, uneven brightness, color
+              tints and visible ghosting. It cannot measure what needs dedicated hardware: calibrated color accuracy
+              needs a colorimeter, and exact response times in milliseconds need a high-speed camera or a lab setup.
+              Where that matters, the tool page says so.
+            </p>
+
+            <h2>Independent</h2>
+            <p>
+              TestaScreen has no manufacturer sponsors and no paid placements. Ads, where they are shown, are placed by
+              Google and never decide what a page recommends.
+            </p>
+
+            <h2>Found a mistake?</h2>
+            <p>
+              If a test behaves oddly on your screen or something on the site is wrong or unclear, please let me know
+              through the <Link href="/contact">contact page</Link>.
+            </p>
           </div>
         </div>
       </section>

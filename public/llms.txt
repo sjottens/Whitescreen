@@ -27,7 +27,6 @@ All tools run entirely in the browser (no install, no account). The site is in E
 - [Monitor Test](https://testascreen.com/monitor-test): Step-by-step order for checking a monitor.
 - [How to Test a Monitor Before Returning It](https://testascreen.com/how-to-test-a-monitor-before-returning)
 - [Monitor Buying Guide](https://testascreen.com/monitor-buying-guide)
-- [Blog](https://testascreen.com/blog): Articles on dead pixels, display technology and troubleshooting.
 
 ## Calculators
 

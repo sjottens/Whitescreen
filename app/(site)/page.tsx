@@ -12,7 +12,6 @@ import {
 import { COLOR_TOOLS, TEST_TOOLS, FAQ_ITEMS, SITE_URL } from '@/lib/constants';
 import { translate } from '@/lib/translations';
 import { LinkButton } from '@/components/ui/button';
-import { LatestBlogBanner } from '@/components/blog/latest-blog-banner';
 import ToolCards from '@/components/hardware/tool-cards';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -157,9 +156,6 @@ export default async function HomePage() {
           <ToolCards />
         </div>
       </section>
-
-      {/* Latest Blog Article Banner - Compact Top Section */}
-      <LatestBlogBanner />
 
       {/* Featured Tools Grid - Modern Cards */}
       <section className="section bg-gradient-to-b from-slate-950 to-slate-900 content-auto">

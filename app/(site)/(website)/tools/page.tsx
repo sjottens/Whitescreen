@@ -84,6 +84,14 @@ export default async function ToolsPage() {
                 <p className="text-slate-600 text-sm">{translate(tool.descriptionKey as any)}</p>
               </Link>
             ))}
+            <Link href="/zoom-lighting" className="card group hover:shadow-lg transition-shadow">
+              <div
+                className="w-full h-32 rounded-lg mb-4 border border-slate-200"
+                style={{ background: 'linear-gradient(90deg, #FFE4C4, #FFFFFF, #DCEBFF)' }}
+              />
+              <h3 className="text-xl font-bold mb-2">{translate('zoom_lighting')}</h3>
+              <p className="text-slate-600 text-sm">{translate('zoom_lighting_desc')}</p>
+            </Link>
           </div>
         </div>
       </section>

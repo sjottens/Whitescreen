@@ -71,13 +71,19 @@ const nextConfig = {
             ['/monitor-test/:brand+', '/monitor-test'],
             // Calculators with made-up precision (refresh rate from GPU/CPU
             // alone) or wrong specs (a 5-monitor comparison table).
-            ['/tools/refresh-rate-calculator', '/blog/gaming-monitor-buying-guide-2026'],
+            ['/tools/refresh-rate-calculator', '/monitor-buying-guide'],
             ['/tools/monitor-comparison', '/monitor-buying-guide'],
-            // Short (<400 word) dead-pixel posts that overlapped longer ones.
-            ['/blog/how-dead-pixels-happen', '/blog/what-are-dead-pixels'],
-            ['/blog/dead-pixels-on-monitors-laptops-phones-and-tvs', '/blog/what-are-dead-pixels'],
-            ['/blog/broken-pixel-diagnosis-test-and-repair-methods', '/blog/can-dead-pixels-be-fixed'],
+            // The blog was removed: general articles without first-hand
+            // testing added little next to the tool pages. Each post goes to
+            // the page that now covers its subject.
+            ['/blog/:slug(what-are-dead-pixels|how-to-test-your-screen-for-dead-pixels|dead-pixel-vs-stuck-pixel|how-dead-pixels-happen|dead-pixels-on-monitors-laptops-phones-and-tvs)', '/dead-pixel-test'],
+            ['/blog/:slug(can-dead-pixels-be-fixed|how-to-use-dead-pixel-fixer|broken-pixel-diagnosis-test-and-repair-methods)', '/dead-pixel-fixer'],
             ['/blog/dead-pixel-warranty-guide', '/how-to-test-a-monitor-before-returning'],
+            ['/blog/:slug(best-ways-to-test-a-new-monitor|monitor-flickering-causes-and-fixes|monitor-no-signal-troubleshooting-guide|can-screen-flickering-cause-epileptic-seizures|screen-protection-why-it-matters)', '/monitor-test'],
+            ['/blog/:slug(what-is-screen-uniformity-test|monitor-calibration-why-matters)', '/brightness-test'],
+            ['/blog/:slug(understanding-screen-ratio-why-aspect-ratio-matters|monitor-resolution-explained-1080p-1440p-4k)', '/tools/pixel-density-calculator'],
+            ['/blog/:path+', '/monitor-buying-guide'],
+            ['/blog', '/tools'],
         ];
         const oldLocale = '/:oldLocale(nl|es|de|en)';
         return [
