@@ -54,7 +54,7 @@ export default function RelatedTools({ currentToolId }: RelatedToolsProps) {
                   {translate(tool.descriptionKey as any)}
                 </p>
                 <div className="flex items-center text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity text-sm font-semibold">
-                  {translate('btn_start_testing')}
+                  {translate('open_tool')}
                   <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>

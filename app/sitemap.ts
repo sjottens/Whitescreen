@@ -25,13 +25,7 @@ const PAGES: Array<[path: string, changeFrequency: Frequency, priority: number]>
 const SCREEN_TOOLS = [
   '/white-screen',
   '/black-screen',
-  '/red-screen',
-  '/blue-screen',
-  '/green-screen',
-  '/pink-screen',
-  '/purple-screen',
-  '/orange-screen',
-  '/yellow-screen',
+  '/color-screen',
   '/dead-pixel-test',
   '/dead-pixel-fixer',
   '/backlight-bleed-test',
@@ -41,15 +35,16 @@ const SCREEN_TOOLS = [
   '/zoom-lighting',
 ];
 
-const CALCULATORS = ['/tools/refresh-rate-calculator', '/tools/pixel-density-calculator', '/tools/monitor-comparison'];
+const CALCULATORS = ['/tools/pixel-density-calculator'];
 
 const HARDWARE_TESTS = ['/mic-test', '/keyboard-test', '/webcam-test', '/click-speed-test'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-  const entry = (path: string, changeFrequency: Frequency, priority: number, lastModified = now) => ({
+  // lastModified only where we know the real date (blog articles). Stamping
+  // every page with the build date tells Google nothing and gets ignored.
+  const entry = (path: string, changeFrequency: Frequency, priority: number, lastModified?: string) => ({
     url: `${SITE_URL}${path}`,
-    lastModified,
+    ...(lastModified && { lastModified }),
     changeFrequency,
     priority,
   });
@@ -64,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `/blog/${article.slug}`,
         'monthly',
         article.featured ? 0.75 : 0.65,
-        article.updatedAt || article.publishedAt || now
+        article.updatedAt || article.publishedAt
       )
     ),
   ];

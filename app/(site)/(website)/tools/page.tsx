@@ -131,18 +131,6 @@ export default async function ToolsPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
-              href={'/tools/refresh-rate-calculator'}
-              className="card group hover:shadow-lg transition-all border-l-4 border-purple-500"
-            >
-              <div className="text-4xl mb-3">⚡</div>
-              <h3 className="text-xl font-bold mb-2">{translate('refresh_rate_calculator')}</h3>
-              <p className="text-slate-600 text-sm mb-4">
-                {translate('resources_refresh_calculator_desc')}
-              </p>
-              <span className="text-purple-600 font-semibold text-sm">{translate('resources_explore_cta' as any)}</span>
-            </Link>
-
-            <Link
               href={'/tools/pixel-density-calculator'}
               className="card group hover:shadow-lg transition-all border-l-4 border-emerald-500"
             >
@@ -152,18 +140,6 @@ export default async function ToolsPage() {
                 {translate('resources_pixel_calculator_desc')}
               </p>
               <span className="text-emerald-600 font-semibold text-sm">{translate('resources_calculate_cta' as any)}</span>
-            </Link>
-
-            <Link
-              href={'/tools/monitor-comparison'}
-              className="card group hover:shadow-lg transition-all border-l-4 border-orange-500"
-            >
-              <div className="text-4xl mb-3">⚖️</div>
-              <h3 className="text-xl font-bold mb-2">{translate('monitor_comparison_tool')}</h3>
-              <p className="text-slate-600 text-sm mb-4">
-                {translate('resources_monitor_comparison_desc')}
-              </p>
-              <span className="text-orange-600 font-semibold text-sm">{translate('resources_compare_cta' as any)}</span>
             </Link>
           </div>
         </div>

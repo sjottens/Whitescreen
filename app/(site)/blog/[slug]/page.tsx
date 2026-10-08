@@ -34,8 +34,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const { seo, translations, publishedAt, updatedAt } = article;
-  const enSeo = seo;
+  const { translations, publishedAt, updatedAt } = article;
   const enTranslations = translations.en;
 
   return {
@@ -44,13 +43,13 @@ export async function generateMetadata({
     keywords: [enTranslations.keyword, 'screen testing', 'monitor testing', 'display testing'],
     authors: [{ name: 'TestaScreen Team' }],
     alternates: {
-      canonical: `${SITE_URL}${enSeo.canonicalPath}`,
+      canonical: `${SITE_URL}/blog/${article.slug}`,
     },
     openGraph: {
       title: fullTitle(enTranslations.metaTitle),
       description: enTranslations.metaDescription,
       type: 'article',
-      url: `${SITE_URL}${enSeo.canonicalPath}`,
+      url: `${SITE_URL}/blog/${article.slug}`,
       authors: ['TestaScreen'],
       publishedTime: new Date(publishedAt).toISOString(),
       modifiedTime: new Date(updatedAt).toISOString(),
@@ -74,7 +73,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
     notFound();
   }
 
-  const { seo, translations, content, toolCTAs, schemaType, faqItems: enFaqItems } = article;
+  const { translations, content, toolCTAs, schemaType, faqItems: enFaqItems } = article;
   const enTranslations = translations.en;
   
   // Use English translations' content if available, otherwise fallback to article.content
@@ -88,7 +87,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
   
   const relatedArticles = getRelatedArticles(article.id, 3);
 
-  const canonicalUrl = `${SITE_URL}${seo.canonicalPath}`;
+  const canonicalUrl = `${SITE_URL}/blog/${article.slug}`;
 
   // Generate Article Schema with proper canonical URL and all required fields
   const articleSchema = {
@@ -168,7 +167,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
   const breadcrumbs = [
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
-    { label: enTranslations.title, href: seo.canonicalPath },
+    { label: enTranslations.title, href: `/blog/${article.slug}` },
   ];
 
   const sectionLabels = {

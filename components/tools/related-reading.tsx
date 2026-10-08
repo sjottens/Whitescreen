@@ -45,29 +45,29 @@ const toolBlogMapping: Record<string, RelatedReadingItem[]> = {
   ],
   'brightness-test': [
     {
-      title: 'Monitor Brightness Explained: Complete Guide',
-      slug: 'monitor-brightness-explained',
-      description: 'Learn how monitor brightness works, nits explained, and how to optimize for your use case.',
+      title: 'Why Monitor Calibration Matters',
+      slug: 'monitor-calibration-why-matters',
+      description: 'How brightness, gamma and white point drift over time, and when calibrating your monitor is worth it.',
       intent: 'informational',
     },
     {
-      title: 'Backlight Uniformity Testing: Complete Guide',
-      slug: 'backlight-uniformity-explained',
-      description: 'Detect and understand backlight bleeding and uniformity issues on LCD monitors.',
+      title: 'What Is a Screen Uniformity Test? Complete Guide',
+      slug: 'what-is-screen-uniformity-test',
+      description: 'Detect and understand uneven brightness and backlight bleed on LCD monitors.',
       intent: 'guide',
     },
   ],
   'contrast-test': [
     {
-      title: 'Color Accuracy in Monitors: Complete Guide',
-      slug: 'color-accuracy-explained',
+      title: 'Monitor Color Accuracy for Professionals: A Practical Guide',
+      slug: 'monitor-color-accuracy-for-professionals',
       description: 'Understand color accuracy, contrast ratios, and how to test your monitor for color critical work.',
       intent: 'informational',
     },
     {
-      title: 'Monitor Contrast Ratio Explained: Impact on Display Quality',
-      slug: 'contrast-ratio-explained',
-      description: 'Learn what contrast ratio means and why it matters for gaming, video, and daily use.',
+      title: 'IPS vs VA Panels: Complete Technical Comparison',
+      slug: 'ips-vs-va-panel-comparison-comprehensive',
+      description: 'Why VA panels reach much higher contrast ratios than IPS, and what you give up for it.',
       intent: 'guide',
     },
   ],
@@ -79,9 +79,9 @@ const toolBlogMapping: Record<string, RelatedReadingItem[]> = {
       intent: 'guide',
     },
     {
-      title: 'How to Test Your Monitor: Step-by-Step Guide',
-      slug: 'how-to-test-your-monitor',
-      description: 'Complete testing methodology using multiple color screens and diagnostic tools.',
+      title: 'Best Ways to Test a New Monitor: A Professional Checklist',
+      slug: 'best-ways-to-test-a-new-monitor',
+      description: 'A complete testing checklist using white, black and color screens plus the other diagnostic tools.',
       intent: 'guide',
     },
   ],
@@ -93,8 +93,8 @@ const toolBlogMapping: Record<string, RelatedReadingItem[]> = {
       intent: 'guide',
     },
     {
-      title: 'Screen Uniformity Testing: Detect Brightness and Color Variations',
-      slug: 'screen-uniformity-testing',
+      title: 'What Is a Screen Uniformity Test? Complete Guide',
+      slug: 'what-is-screen-uniformity-test',
       description: 'Test screen uniformity with color screens to find brightness and color inconsistencies.',
       intent: 'guide',
     },
@@ -115,9 +115,9 @@ const toolBlogMapping: Record<string, RelatedReadingItem[]> = {
   ],
   'response-time-test': [
     {
-      title: 'Gaming Monitor Optimization: Settings for Competitive Advantage',
-      slug: 'gaming-monitor-optimization-guide',
-      description: 'Covers overdrive settings, refresh rate, and response time - the settings that actually affect ghosting.',
+      title: 'Gaming Monitor Buying Guide 2026: What Actually Matters',
+      slug: 'gaming-monitor-buying-guide-2026',
+      description: 'Refresh rate, response time and overdrive explained - the specs that actually affect ghosting.',
       intent: 'guide',
     },
     {

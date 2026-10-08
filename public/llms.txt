@@ -31,9 +31,7 @@ All tools run entirely in the browser (no install, no account). The site is in E
 
 ## Calculators
 
-- [Refresh Rate Calculator](https://testascreen.com/tools/refresh-rate-calculator)
 - [Pixel Density Calculator](https://testascreen.com/tools/pixel-density-calculator)
-- [Monitor Comparison Tool](https://testascreen.com/tools/monitor-comparison)
 
 ## More
 

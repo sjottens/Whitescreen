@@ -59,12 +59,20 @@ const nextConfig = {
             ['/gaming-monitor-test', '/monitor-response-time-test'],
             // ~250-word brand-vs-brand / spec comparison stubs.
             ['/compare/:path*', '/monitor-buying-guide'],
-            ['/screen/:color(white-screen|black-screen|red-screen|blue-screen|green-screen|pink-screen|purple-screen|orange-screen|yellow-screen|zoom-lighting)/:variant*', '/:color'],
+            // One page per colour (only the colour name changed) - folded into
+            // a single /color-screen page with a colour picker.
+            ['/:color(red|green|blue|yellow|orange|pink|purple)-screen', '/color-screen?color=:color'],
+            ['/screen/:color(red|green|blue|yellow|orange|pink|purple)-screen/:variant*', '/color-screen?color=:color'],
+            ['/screen/:color(white-screen|black-screen|zoom-lighting)/:variant*', '/:color'],
             ['/screen/:path*', '/tools'],
             // 41 per-brand/per-variant landing pages (lg_4k, gaming_240hz...)
             // that all funnelled into the same tests - flagged by Google as
             // doorway pages. The /monitor-test pillar covers them all.
             ['/monitor-test/:brand+', '/monitor-test'],
+            // Calculators with made-up precision (refresh rate from GPU/CPU
+            // alone) or wrong specs (a 5-monitor comparison table).
+            ['/tools/refresh-rate-calculator', '/blog/gaming-monitor-buying-guide-2026'],
+            ['/tools/monitor-comparison', '/monitor-buying-guide'],
             // Short (<400 word) dead-pixel posts that overlapped longer ones.
             ['/blog/how-dead-pixels-happen', '/blog/what-are-dead-pixels'],
             ['/blog/dead-pixels-on-monitors-laptops-phones-and-tvs', '/blog/what-are-dead-pixels'],

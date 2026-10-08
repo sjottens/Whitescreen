@@ -8,16 +8,24 @@ import { Button } from '@/components/ui/button';
 import { ColorCustomizer } from '@/components/ui/color-customizer';
 import type { ClientStrings } from '@/lib/client-strings';
 
+export interface ScreenSwatch {
+  /** Used in the ?color= query string, e.g. "red". */
+  id: string;
+  name: string;
+  hex: string;
+}
+
 interface ScreenDisplayProps {
   color: string;
   colorId?: string;
   title?: string;
   strings: ClientStrings<'screenDisplay'>;
+  /** Preset colors to switch between. A ?color=<id> query picks the starting one. */
+  swatches?: ScreenSwatch[];
 }
 
-export default function ScreenDisplay({ color, colorId, title, strings }: ScreenDisplayProps) {
+export default function ScreenDisplay({ color, colorId, title, strings, swatches }: ScreenDisplayProps) {
   const [displayColor, setDisplayColor] = useState(color);
-  const [resolution, setResolution] = useState<'native' | 'custom'>('native');
   const [customWidth, setCustomWidth] = useState('1920');
   const [customHeight, setCustomHeight] = useState('1080');
   const [copied, setCopied] = useState(false);
@@ -48,8 +56,8 @@ export default function ScreenDisplay({ color, colorId, title, strings }: Screen
 
   // Download as PNG
   const handleDownload = useCallback(async () => {
-    const width = resolution === 'custom' ? parseInt(customWidth) : 1920;
-    const height = resolution === 'custom' ? parseInt(customHeight) : 1080;
+    const width = Math.min(7680, Math.max(1, parseInt(customWidth) || 1920));
+    const height = Math.min(4320, Math.max(1, parseInt(customHeight) || 1080));
 
     // Create canvas
     const canvas = document.createElement('canvas');
@@ -67,7 +75,15 @@ export default function ScreenDisplay({ color, colorId, title, strings }: Screen
       link.download = `${title || 'screen'}-${width}x${height}.png`;
       link.click();
     }
-  }, [resolution, customWidth, customHeight, displayColor, title]);
+  }, [customWidth, customHeight, displayColor, title]);
+
+  // Start on the swatch named in ?color= (old /red-screen style URLs redirect here with it).
+  useEffect(() => {
+    if (!swatches) return;
+    const requested = new URLSearchParams(window.location.search).get('color');
+    const swatch = swatches.find((s) => s.id === requested);
+    if (swatch) setDisplayColor(swatch.hex);
+  }, [swatches]);
 
   // Handle fullscreen exit
   useEffect(() => {
@@ -174,6 +190,40 @@ export default function ScreenDisplay({ color, colorId, title, strings }: Screen
 
       {/* Controls */}
       <div className="space-y-6">
+        {swatches && (
+          <div role="group" aria-label={translate('screen_display_pick_color')}>
+            <p className="mb-3 text-sm font-medium text-slate-300">{translate('screen_display_pick_color')}</p>
+            <div className="flex flex-wrap items-center gap-2">
+              {swatches.map((swatch) => {
+                const active = displayColor.toUpperCase() === swatch.hex.toUpperCase();
+                return (
+                  <button
+                    key={swatch.id}
+                    type="button"
+                    onClick={() => setDisplayColor(swatch.hex)}
+                    aria-pressed={active}
+                    className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium text-slate-100 transition-colors focus-ring ${
+                      active ? 'border-[#00DC82] bg-slate-900' : 'border-slate-600 bg-slate-800 hover:border-slate-400'
+                    }`}
+                  >
+                    <span className="h-5 w-5 rounded-full border border-slate-500" style={{ backgroundColor: swatch.hex }} aria-hidden="true" />
+                    {swatch.name}
+                  </button>
+                );
+              })}
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm font-medium text-slate-100 hover:border-slate-400">
+                <input
+                  type="color"
+                  value={/^#[0-9a-f]{6}$/i.test(displayColor) ? displayColor : '#000000'}
+                  onChange={(e) => setDisplayColor(e.target.value.toUpperCase())}
+                  className="h-5 w-5 cursor-pointer rounded border-0 bg-transparent p-0"
+                />
+                {translate('screen_display_custom_color')}
+              </label>
+            </div>
+          </div>
+        )}
+
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-3">
           <Button onClick={handleFullscreen} variant="primary" size="lg">
@@ -211,10 +261,9 @@ export default function ScreenDisplay({ color, colorId, title, strings }: Screen
               {resolutionPresets.map((preset) => (
                 <Button
                   key={preset.label}
-                  variant={resolution === 'native' ? 'secondary' : 'outline'}
+                  variant={customWidth === String(preset.width) && customHeight === String(preset.height) ? 'secondary' : 'outline'}
                   size="sm"
                   onClick={() => {
-                    setResolution('native');
                     setCustomWidth(preset.width.toString());
                     setCustomHeight(preset.height.toString());
                   }}
@@ -236,7 +285,6 @@ export default function ScreenDisplay({ color, colorId, title, strings }: Screen
                 value={customWidth}
                 onChange={(e) => {
                   setCustomWidth(e.target.value);
-                  setResolution('custom');
                 }}
                 className="w-full px-3 py-2 bg-white text-black border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />
@@ -250,7 +298,6 @@ export default function ScreenDisplay({ color, colorId, title, strings }: Screen
                 value={customHeight}
                 onChange={(e) => {
                   setCustomHeight(e.target.value);
-                  setResolution('custom');
                 }}
                 className="w-full px-3 py-2 bg-white text-black border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />

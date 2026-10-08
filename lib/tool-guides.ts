@@ -210,299 +210,129 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
   // Color Screen Tools
   'white-screen': {
     whatIs:
-      'A white screen test displays pure white (#FFFFFF) to test your monitor\'s brightness, color accuracy, and detect display issues. It\'s commonly used to check for backlight problems, dust on the screen, and overall display uniformity.',
+      'A full white screen (#FFFFFF) drives every red, green and blue subpixel at full power, so the whole panel is as bright as it can get. That makes it the best background for three checks: dead pixels, which show up as black or dark dots because none of their subpixels light; dust, smudges and scratches on the surface, which catch the light; and brightness uniformity, because a white field shows every darker corner, warmer patch or vertical band. It is also the easiest way to see whether your white point looks neutral, bluish or yellowish.',
     sections: [
       {
-        title: 'Test Aspects',
+        title: 'What a White Screen Reveals',
         items: [
-          'Brightness: Maximum brightness capability of your display',
-          'Uniformity: Even brightness across the entire screen',
-          'Dead Pixels: Colored spots on the white background',
-          'Dust & Debris: Any particles visible on the screen',
+          'Dead pixels: a pixel with no working subpixels stays black. On white it is the most visible defect there is, even when it is only a fraction of a millimetre.',
+          'Dust and debris: specks on top of the glass move or disappear when you wipe them. A speck that stays put after cleaning, and looks sharp at any viewing angle, is inside the panel.',
+          'Brightness uniformity: edges or corners that are noticeably darker than the centre, or a gradient from one side to the other. Some fall-off of 10 to 20 percent is normal on LCD monitors and hard to see in daily use.',
+          'Dirty screen effect and banding: faint vertical or horizontal stripes, or a blotchy texture, most visible when you move a white window slowly across the screen. Common on large TVs and VA panels.',
+          'Color tint: one half of the screen looking slightly pink and the other slightly green is a uniformity problem in the backlight or panel, not a setting.',
         ],
       },
       {
-        title: 'What to Look For',
+        title: 'Cleaning Your Screen With It',
         items: [
-          'Bright spots or dark areas - backlight problems',
-          'Colored tints or casts - white balance issues',
-          'Grid patterns or mura effect - uneven backlighting',
-          'Any spots or marks - dust or dead pixels',
+          'Switch to white and full screen: every fingerprint and streak shows clearly against the bright background.',
+          'Wipe gently: use a dry microfibre cloth first, then one lightly dampened with distilled water. Never spray liquid directly onto the screen.',
+          'Avoid alcohol and glass cleaner: on matte and anti-glare coatings they can leave permanent marks. Check your manufacturer before using anything stronger than water.',
+          'Check again on black: white shows dust and fingerprints, black shows streaks left behind by the cloth.',
         ],
       },
     ],
     tips: [
-      'Dim your room lights to see any brightness issues more clearly',
-      'Look at the screen from different angles',
-      'Check all four corners and the center specifically',
-      'Use this as a baseline before other color tests',
+      'Set brightness to the level you normally use. At maximum, uniformity problems look worse than they are in practice; at minimum they hide.',
+      'Let the monitor warm up for 15 to 20 minutes before judging uniformity or tint. The backlight changes slightly as it reaches working temperature.',
+      'Sit straight in front of the screen at your normal distance. On IPS and VA panels the edges look darker from an angle even when the panel is fine.',
+      'If you are unsure whether a dot is a dead pixel or dust, take a close-up photo, wipe the screen, and take another photo from the same spot.',
+      'Avoid staring at a full white screen in a dark room for long. It is very bright and tiring for your eyes.',
+    ],
+    shortcuts: [
+      { key: 'F / Space', description: 'Enter fullscreen' },
+      { key: 'Esc', description: 'Exit fullscreen' },
+      { key: 'Ctrl + S', description: 'Download a white PNG' },
     ],
     proTip:
-      'White screen test is ideal for initial quality checks. If you see significant uniformity issues on white, there may be underlying backlight or panel problems that warrant service.',
+      'White finds dead pixels but can hide stuck ones: a pixel stuck on red, green or blue still contributes to white and blends in. Run the black screen and the red, green and blue screens as well, or use the Dead Pixel Test, which cycles through all of them for you.',
   },
 
   'black-screen': {
     whatIs:
-      'A black screen test displays pure black (#000000) to check your monitor\'s ability to produce true blacks, detect light leakage, and identify backlight problems. Essential for evaluating display contrast and black level performance.',
+      'A full black screen (#000000) switches every subpixel off, so anything you still see is light the panel should not be producing. On an LCD monitor the backlight is always on behind the liquid crystals, which can never block it completely. That is why black is the test for backlight bleed, IPS glow, clouding and black level. It is also the best background for stuck and hot pixels: a subpixel that is permanently lit shows up as a bright red, green, blue or white dot on black. On an OLED screen, pixels really switch off, so black should look perfectly black and any lit pixel is a defect.',
     sections: [
       {
-        title: 'Test Aspects',
+        title: 'What a Black Screen Reveals',
         items: [
-          'Black Level: Depth of black color (how dark true black appears)',
-          'Light Leakage: Unwanted brightness from backlight in dark areas',
-          'Uniformity: Even black color across the screen',
-          'Glow: Halo effect around the edges (common in IPS panels)',
+          'Stuck and hot pixels: bright colored or white dots. These are the defects white screens miss, and the ones the Dead Pixel Fixer can sometimes repair.',
+          'Backlight bleed: bright patches along the edges or in the corners that stay in the same place when you move your head. Caused by pressure or gaps in the panel assembly.',
+          'IPS glow: a silvery or warm haze in the corners that changes with your viewing angle. A normal property of IPS panels, not a defect.',
+          'Clouding: uneven, cloudy patches across the middle of the screen. Most common on large edge-lit LCD TVs.',
+          'Black level: how grey black looks in a dark room. IPS panels typically reach a contrast of about 1000:1, VA panels 3000:1 or more, and OLED is effectively infinite.',
         ],
       },
       {
-        title: 'What to Look For',
+        title: 'Black Screens on OLED and Mini-LED',
         items: [
-          'Gray appearance - poor black level or backlight bleed',
-          'Brighter edges - light leakage from backlight',
-          'Uneven darkness - backlight uniformity issues',
-          'Glow or halo around corners - typical of IPS technology',
+          'OLED: black should be completely dark, with no glow or bleed. Any dot of light is a stuck subpixel. A faint vertical line or tinted band can be an early sign of panel damage.',
+          'Mini-LED and full-array local dimming: the backlight dims zone by zone, so a black screen may look perfect while a small bright object on black shows a halo (blooming). Test with a small white cursor on the black screen.',
+          'Idle use: a black screen does not protect an OLED panel from burn-in better than turning the display off. Use the built-in pixel refresh and screen-off features for that.',
         ],
       },
     ],
     tips: [
-      'Perform this test in complete darkness for best results',
-      'Let your eyes adjust to the darkness for 1-2 minutes',
-      'Check all corners and edges carefully',
-      'Compare with other monitors if available',
+      'Test in a dark room, but not with brightness at 100 percent. Maximum brightness exaggerates bleed far beyond what you will see in films or games.',
+      'Give your eyes a minute to adapt to the dark before you judge glow and bleed.',
+      'Move your head from side to side: light that changes shape is IPS glow, light that stays fixed is bleed.',
+      'Phone cameras greatly exaggerate bleed and glow. Use photos to document a problem, not to decide whether it is one.',
+      'Check the whole screen for small bright dots, including the edges hidden behind taskbars in normal use.',
+    ],
+    shortcuts: [
+      { key: 'F / Space', description: 'Enter fullscreen' },
+      { key: 'Esc', description: 'Exit fullscreen' },
+      { key: 'Ctrl + S', description: 'Download a black PNG' },
     ],
     proTip:
-      'Some light leakage is normal on most displays. OLED and VA panels typically show better black levels than IPS, but have their own trade-offs. Use this test to understand your display\'s characteristics.',
+      'If you find a bright dot on black, switch to the red, green and blue screens to see which subpixel is stuck, then try the Dead Pixel Fixer on that spot. For bleed, the Backlight Bleed Test adds corner markers and a near-black mode that make it easier to judge how serious it is.',
   },
 
-  'blue-screen': {
+  'color-screen': {
     whatIs:
-      'A blue screen test displays pure blue to check color accuracy and detect color channel issues. Useful for identifying problems with the blue color reproduction and testing for monitor color balance.',
+      'Every pixel on an LCD or OLED screen is made of three subpixels: one red, one green and one blue. A full-screen primary color switches on only one of those three across the whole panel, which is why it is the most reliable way to find a single faulty subpixel. On pure red, a stuck green or blue subpixel shows up as a bright green or blue dot. A dead red subpixel shows up as a dark dot, because the red light at that spot is missing. White lights all three subpixels and black lights none, so those two screens can hide a defect that only affects one color channel. This page lets you switch between the primaries, the mixed colors and any custom color without leaving the page.',
     sections: [
       {
-        title: 'Test Aspects',
+        title: 'What Each Color Reveals',
         items: [
-          'Color Purity: True blue without tints from other colors',
-          'Uniformity: Even blue color distribution',
-          'Color Channel: Blue channel functionality',
-          'Dead Pixels: Spots visible on solid blue background',
+          'Red, green and blue: each lights a single subpixel channel. Cycle through all three to check every subpixel on the panel. A dot that stays visible in all three is usually a dead pixel. A dot that only appears on one or two colors is a stuck subpixel, which can sometimes be revived.',
+          'Yellow (red + green): useful for spotting a dead blue subpixel inside an otherwise bright area, and for checking yellow-green tint on cheaper panels.',
+          'Pink, purple and orange: mixed colors that make tint and uniformity problems easier to see than pure primaries. A patch that looks more salmon than pink, or a purple that drifts toward blue at the edges, points to uneven color across the panel.',
+          'Custom color: enter any hex value to match a brand color, a chroma-key shade or a color you are calibrating against.',
         ],
       },
       {
-        title: 'What to Look For',
+        title: 'Reading the Results',
         items: [
-          'Purple or reddish tint - red channel bleeding into blue',
-          'Greenish tint - cyan shift indicating color balance issue',
-          'Uneven color - color uniformity problem',
-          'Spots or streaks - dead pixels or damage',
+          'Color shifts toward the edges: common on IPS and VA panels viewed from an angle. Sit straight in front of the screen before judging uniformity.',
+          'Clouding or blotches: visible as darker or lighter patches on green and blue especially. A mild amount is normal on large LCD panels, strong patches visible in normal content are worth a return.',
+          'Oversaturated primaries: wide-gamut monitors show #FF0000 as a deeper red than an sRGB monitor does. That is the panel, not a defect. Switch the monitor to its sRGB mode if colors look neon in everyday use.',
+          'Banding in mixed colors: steps in what should be a flat color usually mean a 6-bit panel with dithering, or a color profile that clips values.',
+        ],
+      },
+      {
+        title: 'Using the Screen as a Backdrop',
+        items: [
+          'Chroma key: a green or blue screen behind a small object or a hand can be keyed out in OBS, Premiere or DaVinci Resolve. A monitor is too small and too reflective to replace a fabric green screen behind a person.',
+          'Fill light: a bright color on a large monitor adds a colored rim or fill light for photos and video calls. It is weak compared with a real light, so keep the screen close to the subject.',
+          'Product photos and mockups: download the color as a PNG at the exact resolution you need, for example 3840 x 2160 for a 4K background.',
         ],
       },
     ],
     tips: [
-      'Compare the blue tone with reference images',
-      'Check if blue appears natural or artificially saturated',
-      'Verify no other colors are mixing into the blue',
-      'Use in combination with red and green tests for full color analysis',
+      'Clean the screen first. Dust looks exactly like a dead pixel on a bright color, but it moves when you wipe it.',
+      'Run through red, green, blue, then white and black. Together they check every subpixel in both its on and off state.',
+      'Use full screen (F or Space) so browser bars and taskbar do not hide the edges of the panel.',
+      'Look from about 30 to 50 cm, then lean in to check any spot you noticed. Use your phone camera zoom to confirm whether a dot is one subpixel or a whole pixel.',
+      'Write down the position of any defect (for example "15 cm from the left, 4 cm from the top") before you exit full screen, so you can find it again or show it to support.',
+      'If you are sensitive to flashing light, avoid switching rapidly between bright colors in a dark room.',
+    ],
+    shortcuts: [
+      { key: 'F / Space', description: 'Enter fullscreen' },
+      { key: 'Esc', description: 'Exit fullscreen' },
+      { key: 'Ctrl + S', description: 'Download the current color as PNG' },
     ],
     proTip:
-      'Color issues on individual channels often indicate problems that would affect overall image quality in content. If blue appears wrong, your colors in photos and videos will likely be inaccurate.',
-  },
-
-  'red-screen': {
-    whatIs:
-      'A red screen test displays pure red to verify red color channel performance and detect color balance issues. Essential for color-critical work and identifying display problems.',
-    sections: [
-      {
-        title: 'Test Aspects',
-        items: [
-          'Color Accuracy: Pure red without tints',
-          'Channel Performance: Red channel functionality',
-          'Uniformity: Even color distribution',
-          'Saturation: Correct red saturation level',
-        ],
-      },
-      {
-        title: 'What to Look For',
-        items: [
-          'Orange or yellow tint - red mixed with yellow',
-          'Pink or magenta tint - blue channel interference',
-          'Dull or brownish - desaturation issues',
-          'Uneven brightness - uniformity problems',
-        ],
-      },
-    ],
-    tips: [
-      'Perform all three primary color tests (red, green, blue)',
-      'Note the saturation level - too bright or dull?',
-      'Check for any secondary colors mixing in',
-      'Document results for color profiling needs',
-    ],
-    proTip:
-      'Red is the most common color to have issues with on displays. Problems with red reproduction often indicate the display needs color calibration or has underlying hardware issues.',
-  },
-
-  'green-screen': {
-    whatIs:
-      'A green screen test displays pure green to evaluate green color channel performance. Helps identify color balance problems and ensure accurate color reproduction for professionals.',
-    sections: [
-      {
-        title: 'Test Aspects',
-        items: [
-          'Color Purity: True green without mixed colors',
-          'Channel Integrity: Green channel functionality',
-          'Uniformity: Consistent green across display',
-          'Saturation Level: Proper green intensity',
-        ],
-      },
-      {
-        title: 'What to Look For',
-        items: [
-          'Yellow tint - red channel mixing with green',
-          'Cyan tint - blue channel mixing with green',
-          'Gray appearance - insufficient saturation',
-          'Uneven patches - uniformity or backlight issues',
-        ],
-      },
-    ],
-    tips: [
-      'Use alongside red and blue for comprehensive color analysis',
-      'Green is often the most balanced channel',
-      'Check if green appears natural or artificial',
-      'Useful for diagnosing color cast issues',
-    ],
-    proTip:
-      'If red and blue look off but green appears correct, the issue is likely with those specific channels rather than overall monitor health. Consider professional calibration if doing color work.',
-  },
-
-  'yellow-screen': {
-    whatIs:
-      'A yellow screen test displays pure yellow to check color mixing and overall color balance. Yellow is composed of red and green, making it useful for testing multiple channels simultaneously.',
-    sections: [
-      {
-        title: 'Test Aspects',
-        items: [
-          'Color Mixing: Red and green channel interaction',
-          'Overall Balance: Combined channel performance',
-          'Uniformity: Even yellow across the screen',
-          'Saturation: Proper yellow intensity and vibrancy',
-        ],
-      },
-      {
-        title: 'What to Look For',
-        items: [
-          'Greenish yellow - red channel insufficient',
-          'Orange-ish yellow - too much red',
-          'Gray yellow - desaturation or backlight issue',
-          'Uneven distribution - panel or backlight problems',
-        ],
-      },
-    ],
-    tips: [
-      'Yellow issues often reveal red channel problems',
-      'Compare warmth with white screen test',
-      'Check uniformity carefully across all areas',
-      'Use for quick color balance check',
-    ],
-    proTip:
-      'Yellow is a good indicator of overall color balance. If yellow looks off, your display likely has color accuracy issues that will affect skin tones and natural colors in photos.',
-  },
-
-  'orange-screen': {
-    whatIs:
-      'An orange screen test displays pure orange to evaluate warm color rendering and detect color balance issues. Orange is useful for testing how well displays handle warm tones.',
-    sections: [
-      {
-        title: 'Test Aspects',
-        items: [
-          'Warm Color Balance: Red and yellow tones',
-          'Saturation: Orange intensity and vibrancy',
-          'Uniformity: Even orange distribution',
-          'Natural Appearance: Orange looks natural vs artificial',
-        ],
-      },
-      {
-        title: 'What to Look For',
-        items: [
-          'Red-heavy orange - insufficient yellow channel',
-          'Yellow-heavy orange - excessive red channel',
-          'Brown or muddy orange - saturation issues',
-          'Uneven patches - backlight or panel problems',
-        ],
-      },
-    ],
-    tips: [
-      'Orange is great for testing warm color accuracy',
-      'Important for photography and video editing',
-      'Check consistency with red and yellow screens',
-      'Notice if orange looks natural or artificial',
-    ],
-    proTip:
-      'How your monitor displays orange directly affects skin tone accuracy. If orange looks wrong, portrait photography and video will likely suffer from color casts.',
-  },
-
-  'pink-screen': {
-    whatIs:
-      'A pink screen test displays pure pink to evaluate color accuracy and detect color balance problems. Pink (composed of red and blue) helps identify issues with cool-warm color balance.',
-    sections: [
-      {
-        title: 'Test Aspects',
-        items: [
-          'Red-Blue Balance: Interaction between warm and cool channels',
-          'Saturation: Pink intensity and vibrancy',
-          'Uniformity: Even pink distribution',
-          'Hue Accuracy: Pink appears natural',
-        ],
-      },
-      {
-        title: 'What to Look For',
-        items: [
-          'Reddish pink - blue channel insufficient',
-          'Purple-ish pink - too much blue',
-          'Pale pink - saturation issues',
-          'Uneven appearance - panel uniformity problems',
-        ],
-      },
-    ],
-    tips: [
-      'Pink reveals red-blue balance issues',
-      'Important for media that uses vibrant colors',
-      'Compare with red and blue tests',
-      'Check all screen areas carefully',
-    ],
-    proTip:
-      'Pink colors are sensitive indicators of color balance. Problems with pink reproduction usually indicate the display needs calibration for professional color work.',
-  },
-
-  'purple-screen': {
-    whatIs:
-      'A purple screen test displays pure purple to check color mixing and cool-tone accuracy. Purple (composed of red and blue) is useful for testing how displays handle saturated colors.',
-    sections: [
-      {
-        title: 'Test Aspects',
-        items: [
-          'Color Mixing: Red and blue channel balance',
-          'Saturation: Purple vibrancy and depth',
-          'Uniformity: Consistent purple across display',
-          'Hue Accuracy: Purple appears true to specification',
-        ],
-      },
-      {
-        title: 'What to Look For',
-        items: [
-          'Blue-heavy purple - red channel weak',
-          'Red-heavy purple (magenta) - blue channel insufficient',
-          'Gray-purple - desaturation or backlight bleed',
-          'Uneven coloring - backlight or panel defects',
-        ],
-      },
-    ],
-    tips: [
-      'Purple is a key color for identifying balance issues',
-      'Test in a well-lit room to see true colors',
-      'Compare with reference purple images',
-      'Part of comprehensive color testing routine',
-    ],
-    proTip:
-      'Purple represents one of the most challenging colors for monitors to display accurately. Issues with purple often indicate the display needs professional color profiling.',
+      'A stuck subpixel is lit in one color all the time, and a dead one never lights. Stuck subpixels can sometimes be freed by rapidly cycling colors over the spot with the Dead Pixel Fixer for 10 to 30 minutes. Dead pixels cannot be fixed in software, so check how many your manufacturer allows under its pixel policy before you start a warranty claim.',
   },
 
   'zoom-lighting': {

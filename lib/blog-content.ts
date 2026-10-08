@@ -2107,7 +2107,7 @@ for (const article of allBlogArticles) {
 
 // Blog CTAs name a tool by slug; a few older slugs have no page of their own.
 export function getBlogToolPath(toolSlug?: string): string {
-  if (!toolSlug || toolSlug === 'color-screen' || toolSlug === 'screen-test') return '/tools';
+  if (!toolSlug || toolSlug === 'screen-test') return '/tools';
   return `/${toolSlug}`;
 }
 

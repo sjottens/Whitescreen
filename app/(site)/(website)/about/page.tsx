@@ -103,19 +103,11 @@ export default async function AboutPage() {
             <h2>{translate('about_expertise_title')}</h2>
             <p>{translate('about_expertise_text')}</p>
             <p>
-              {translate('about_research_title').toLowerCase() === 'accuracy & research' && 'Our guides cover '}
-              <Link href={'/dead-pixel-fixer'} className="text-blue-600 hover:underline">
-                stuck pixel repair techniques
-              </Link>
-              {', '}
-              <Link href={'/tools'} className="text-blue-600 hover:underline">
-                monitor testing concepts
-              </Link>
-              {', and '}
-              <Link href={'/tools'} className="text-blue-600 hover:underline">
-                display specifications
-              </Link>
-              {' with technical depth.'}
+              The tools cover the{' '}
+              <Link href={'/dead-pixel-test'} className="text-blue-600 hover:underline">dead pixel test</Link>,{' '}
+              <Link href={'/dead-pixel-fixer'} className="text-blue-600 hover:underline">stuck pixel repair</Link> and{' '}
+              <Link href={'/tools'} className="text-blue-600 hover:underline">the other screen and hardware tests</Link>; the{' '}
+              <Link href={'/blog'} className="text-blue-600 hover:underline">blog</Link> explains the display technology behind them.
             </p>
 
             <h2>{translate('about_research_title')}</h2>
@@ -131,35 +123,23 @@ export default async function AboutPage() {
             <p>{translate('about_for_users_text')}</p>
 
             <div className="bg-slate-100 p-8 rounded-lg my-8 not-prose">
-              <h3 className="text-xl font-bold mb-4">Explore Our Guides</h3>
+              <h3 className="text-xl font-bold mb-4">Where to Start</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link 
-                  href={'/white-screen'} 
-                  className="p-4 bg-white rounded hover:shadow-lg transition-shadow"
-                >
-                  <p className="font-semibold text-slate-900">{translate('white_screen')}</p>
-                  <p className="text-sm text-slate-600">{translate('display_testing_desc')}</p>
+                <Link href={'/dead-pixel-test'} className="p-4 bg-white rounded hover:shadow-lg transition-shadow">
+                  <p className="font-semibold text-slate-900">Dead Pixel Test</p>
+                  <p className="text-sm text-slate-600">Cycle full-screen colors to find dead, stuck and hot pixels.</p>
                 </Link>
-                <Link 
-                  href={'/dead-pixel-fixer'} 
-                  className="p-4 bg-white rounded hover:shadow-lg transition-shadow"
-                >
-                  <p className="font-semibold text-slate-900">{translate('dead_pixel_fixer')}</p>
-                  <p className="text-sm text-slate-600">Comprehensive guide to stuck pixels and repair techniques</p>
+                <Link href={'/dead-pixel-fixer'} className="p-4 bg-white rounded hover:shadow-lg transition-shadow">
+                  <p className="font-semibold text-slate-900">Dead Pixel Fixer</p>
+                  <p className="text-sm text-slate-600">Flash a stuck pixel with rapidly changing colors to try to revive it.</p>
                 </Link>
-                <Link 
-                  href={'/tools'} 
-                  className="p-4 bg-white rounded hover:shadow-lg transition-shadow"
-                >
-                  <p className="font-semibold text-slate-900">{translate('resources_title')}</p>
-                  <p className="text-sm text-slate-600">Browse all guides and resources</p>
+                <Link href={'/tools'} className="p-4 bg-white rounded hover:shadow-lg transition-shadow">
+                  <p className="font-semibold text-slate-900">All Tools</p>
+                  <p className="text-sm text-slate-600">Every screen test, hardware test and calculator on the site.</p>
                 </Link>
-                <Link 
-                  href={'/faq'} 
-                  className="p-4 bg-white rounded hover:shadow-lg transition-shadow"
-                >
-                  <p className="font-semibold text-slate-900">{translate('faq_title')}</p>
-                  <p className="text-sm text-slate-600">Answers to common questions about display technology</p>
+                <Link href={'/faq'} className="p-4 bg-white rounded hover:shadow-lg transition-shadow">
+                  <p className="font-semibold text-slate-900">Frequently Asked Questions</p>
+                  <p className="text-sm text-slate-600">Short answers to common questions about pixels and displays.</p>
                 </Link>
               </div>
             </div>

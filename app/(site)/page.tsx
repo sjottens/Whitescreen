@@ -173,8 +173,8 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {COLOR_TOOLS.slice(0, 4).map((tool, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {COLOR_TOOLS.map((tool, idx) => (
               <Link
                 key={tool.id}
                 href={tool.path}
@@ -196,7 +196,7 @@ export default async function HomePage() {
                     {translate(tool.descriptionKey as any)}
                   </p>
                   <div className="mt-4 flex items-center text-[#00DC82] opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-sm font-semibold mr-2">Explore</span>
+                    <span className="text-sm font-semibold mr-2">{translate('open_tool')}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -421,19 +421,17 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Refresh Rate Calculator */}
+            {/* Monitor Buying Guide */}
             <Link
-              href={'/tools/refresh-rate-calculator'}
+              href={'/monitor-buying-guide'}
               className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-purple-500"
             >
-              <div className="text-5xl mb-4">⚡</div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">{translate('refresh_rate_calculator')}</h3>
+              <div className="text-5xl mb-4">🛒</div>
+              <h3 className="text-2xl font-bold mb-3 text-slate-900">Monitor Buying Guide</h3>
               <p className="text-slate-600 mb-4">
-                {translate('resources_refresh_calculator_desc')}
+                Panel types, resolution, refresh rate and HDR explained, so you know which specs matter for how you use your screen.
               </p>
-              <span className="text-purple-600 font-semibold inline-flex items-center">
-                {translate('resources_calculate_cta' as any)}
-              </span>
+              <span className="text-purple-600 font-semibold inline-flex items-center">Read the guide -&gt;</span>
             </Link>
 
             {/* Pixel Density Calculator */}
@@ -451,19 +449,17 @@ export default async function HomePage() {
               </span>
             </Link>
 
-            {/* Monitor Comparisons */}
+            {/* Test before returning */}
             <Link
-              href={'/tools/monitor-comparison'}
+              href={'/how-to-test-a-monitor-before-returning'}
               className="group card hover:shadow-xl transition-all duration-300 border-t-4 border-orange-700"
             >
-              <div className="text-5xl mb-4">⚖️</div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">{translate('monitor_comparison_tool')}</h3>
+              <div className="text-5xl mb-4">📦</div>
+              <h3 className="text-2xl font-bold mb-3 text-slate-900">Test a Monitor Before Returning It</h3>
               <p className="text-slate-600 mb-4">
-                {translate('resources_monitor_comparison_desc')}
+                A checklist for the return window: which defects count, how to document them and what manufacturers accept.
               </p>
-              <span className="text-orange-700 font-semibold inline-flex items-center">
-                {translate('resources_compare_cta' as any)}
-              </span>
+              <span className="text-orange-700 font-semibold inline-flex items-center">Read the checklist -&gt;</span>
             </Link>
           </div>
 
