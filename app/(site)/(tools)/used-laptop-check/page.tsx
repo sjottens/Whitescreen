@@ -52,7 +52,7 @@ export default function UsedLaptopCheckPage() {
       name="Used Laptop Check"
       description={DESCRIPTION}
       heading="Used Laptop Check – Test a Second-Hand Laptop Before You Buy"
-      intro="Open this page on the laptop you're thinking of buying and work through the list. Mark each part OK or Problem as you go, then copy the summary to keep it."
+      intro="Open this page on the laptop you're thinking of buying and work through the list. Mark each part OK or Problem as you go, then email the results to yourself to keep them."
       tool={<UsedLaptopCheck />}
       affiliate={{
         heading: 'Found a problem?',
@@ -136,7 +136,8 @@ export default function UsedLaptopCheckPage() {
 
       <h2 id="how-this-check-works">How this check works</h2>
       <p>
-        Everything runs in your browser and nothing is sent anywhere. The screen step shows five full-screen colors that
+        Everything runs in your browser, and nothing is sent anywhere unless you ask for your results by email. The
+        screen step shows five full-screen colors that
         together reveal dead pixels (on white), stuck pixels (on black) and faulty subpixels (on red, green and blue).
         The speaker step plays a short 440 Hz tone on the left channel, the right channel or both. The battery step reads
         the charge level where the browser allows it, and the box at the end shows the screen resolution, processor

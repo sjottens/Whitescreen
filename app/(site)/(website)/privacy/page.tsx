@@ -113,6 +113,17 @@ export default async function PrivacyPage() {
             The Click Speed Test stores your best score in your browser's local storage, on your device only. You can remove it by clearing your browser data.
           </p>
 
+          <h2 id="laptop-check-email">6a. Used laptop check results by email</h2>
+          <p>
+            When you ask for your used laptop check results by email, we receive your email address, the OK and Problem
+            marks you made, and the rounded hardware details shown on the page. We use them to send you that one email,
+            and a copy reaches our own mailbox so we can see how the check is used.
+          </p>
+          <p>
+            We only email you again if you ticked the box for updates about new tools, and every such email lets you
+            unsubscribe. You can ask us to delete your address at any time through the contact page.
+          </p>
+
           <h2>7. {translate('privacy_gdpr_rights')}</h2>
           <p>
             {translate('privacy_gdpr_rights_text')}

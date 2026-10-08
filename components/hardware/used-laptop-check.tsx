@@ -1,34 +1,15 @@
 // components/hardware/used-laptop-check.tsx - Step-by-step checklist for
 // inspecting a second-hand laptop. A few checks run right here (screen colors,
 // left/right speakers, battery, what the browser can tell about the hardware);
-// keyboard, webcam and mic link to their full tests.
+// keyboard, webcam and mic link to their full tests. The results can be
+// emailed to the visitor from above or below the list.
 
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-
-type Status = 'ok' | 'problem';
-
-interface Step {
-  id: string;
-  title: string;
-  hint: string;
-  link?: { href: string; label: string };
-}
-
-const STEPS: Step[] = [
-  { id: 'screen', title: 'Screen', hint: 'Cycle through the colors below in full screen. Look for dead or stuck pixels, bright patches at the edges and uneven color.' },
-  { id: 'keyboard', title: 'Keyboard', hint: 'Press every key once, including Fn, the arrows and the number row.', link: { href: '/keyboard-test', label: 'Open the keyboard test' } },
-  { id: 'touchpad', title: 'Touchpad', hint: 'Move the pointer into every corner, click both buttons, and scroll with two fingers.' },
-  { id: 'speakers', title: 'Speakers', hint: 'Play the left and right tone. Listen for crackling, buzzing or a side that stays silent.' },
-  { id: 'webcam', title: 'Webcam', hint: 'Check that the picture appears, is sharp and that the camera light turns on.', link: { href: '/webcam-test', label: 'Open the webcam test' } },
-  { id: 'mic', title: 'Microphone', hint: 'Record a few seconds and play it back.', link: { href: '/mic-test', label: 'Open the mic test' } },
-  { id: 'battery', title: 'Battery & charger', hint: 'Unplug the charger: the laptop must keep running and the level should not drop fast. Plug it back in and check that it charges.' },
-  { id: 'ports', title: 'Ports & wireless', hint: 'Try a USB stick or phone cable in every port, connect to Wi-Fi, and pair a Bluetooth device if you can.' },
-  { id: 'body', title: 'Body & hinges', hint: 'Open and close the lid: the hinge should hold the screen at any angle without creaking. Look for cracks, a bulging case and missing screws.' },
-  { id: 'locks', title: 'Accounts & locks', hint: 'Make sure the seller has signed out of their account, the laptop is not managed by a company or school, and there is no firmware or BIOS password.' },
-];
+import { STEPS, type StepStatus as Status } from '@/lib/used-laptop-steps';
+import EmailResultsForm from './email-results-form';
 
 const SCREEN_COLORS = ['#FFFFFF', '#000000', '#FF0000', '#00FF00', '#0000FF'];
 
@@ -49,7 +30,8 @@ export default function UsedLaptopCheck() {
   const [colorIndex, setColorIndex] = useState<number | null>(null);
   const [battery, setBattery] = useState<BatteryInfo | null | 'unsupported'>(null);
   const [system, setSystem] = useState<SystemInfo | null>(null);
-  const [copied, setCopied] = useState(false);
+  // Which "Email me the results" button opened the form, so it appears next to it.
+  const [emailFormAt, setEmailFormAt] = useState<'top' | 'bottom' | null>(null);
   const screenRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<AudioContext | null>(null);
 
@@ -130,13 +112,16 @@ export default function UsedLaptopCheck() {
   const done = STEPS.filter((s) => status[s.id]).length;
   const problems = STEPS.filter((s) => status[s.id] === 'problem');
 
-  const copySummary = () => {
-    const lines = STEPS.map((s) => `${status[s.id] === 'ok' ? 'OK     ' : status[s.id] === 'problem' ? 'PROBLEM' : 'not checked'}  ${s.title}`);
-    navigator.clipboard.writeText(`Used laptop check (testascreen.com)\n${lines.join('\n')}`).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
+  const emailButton = (at: 'top' | 'bottom') => (
+    <button
+      type="button"
+      aria-expanded={emailFormAt === at}
+      onClick={() => setEmailFormAt(emailFormAt === at ? null : at)}
+      className="btn btn-primary btn-sm focus-ring"
+    >
+      Email me the results
+    </button>
+  );
 
   return (
     <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-4 md:p-6">
@@ -145,10 +130,13 @@ export default function UsedLaptopCheck() {
           {done} of {STEPS.length} checked
           {problems.length > 0 && <span className="text-red-300"> · {problems.length} problem{problems.length > 1 ? 's' : ''}</span>}
         </p>
-        <button type="button" onClick={copySummary} className="btn btn-secondary btn-sm focus-ring">
-          {copied ? 'Copied!' : 'Copy summary'}
-        </button>
+        {emailButton('top')}
       </div>
+      {emailFormAt === 'top' && (
+        <div className="mb-4">
+          <EmailResultsForm results={status} system={system} />
+        </div>
+      )}
 
       <ol className="list-none space-y-3 pl-0">
         {STEPS.map((step, index) => (
@@ -240,6 +228,16 @@ export default function UsedLaptopCheck() {
           </li>
         ))}
       </ol>
+
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-slate-300">Done? Get the results in your inbox to keep or send to the seller.</p>
+        {emailButton('bottom')}
+      </div>
+      {emailFormAt === 'bottom' && (
+        <div className="mt-4">
+          <EmailResultsForm results={status} system={system} />
+        </div>
+      )}
 
       {system && (
         <div className="mt-4 rounded-lg border border-slate-700 bg-slate-950/40 p-4 text-sm text-slate-300">
