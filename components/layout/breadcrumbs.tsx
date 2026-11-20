@@ -9,11 +9,13 @@ import { usePathname } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
 import { breadcrumbTrail } from '@/lib/breadcrumbs';
 import { SITE_URL } from '@/lib/constants';
+import { PAGE_UPDATED, formatPageDate } from '@/lib/page-dates';
 
 export default function Breadcrumbs() {
   const pathname = usePathname();
   const trail = breadcrumbTrail(pathname);
   if (!trail.length) return null;
+  const updated = PAGE_UPDATED[pathname];
 
   const schema = {
     '@context': 'https://schema.org',
@@ -29,8 +31,8 @@ export default function Breadcrumbs() {
   return (
     <nav aria-label="Breadcrumb" className="border-b border-slate-800 bg-slate-950/60">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <div className="container">
-        <ol className="flex list-none flex-wrap items-center gap-2 py-3 pl-0 text-sm">
+      <div className="container flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-3 text-sm">
+        <ol className="mb-0 flex list-none flex-wrap items-center gap-2 pl-0">
           {trail.map((crumb, index) => {
             const last = index === trail.length - 1;
             return (
@@ -49,6 +51,11 @@ export default function Breadcrumbs() {
             );
           })}
         </ol>
+        {updated && (
+          <p className="mb-0 text-slate-400">
+            Last updated <time dateTime={updated}>{formatPageDate(updated)}</time>
+          </p>
+        )}
       </div>
     </nav>
   );

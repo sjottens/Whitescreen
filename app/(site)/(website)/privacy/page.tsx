@@ -18,7 +18,6 @@ export default async function PrivacyPage() {
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('privacy_title')}</h1>
-          <p className="text-slate-600">Last updated: September 29, 2026</p>
         </div>
       </section>
 

@@ -3,6 +3,7 @@
 
 import type { Metadata } from 'next';
 import { SITE_NAME, SITE_URL } from './constants';
+import { PAGE_UPDATED } from './page-dates';
 
 export interface Faq {
   question: string;
@@ -14,6 +15,9 @@ interface ToolMeta {
   description: string;
   path: string;
 }
+
+// Pages with their own openGraph lose the file-based app/opengraph-image.
+const OG_IMAGE = `${SITE_URL}/opengraph-image`;
 
 export function toolMetadata({ title, description, path }: ToolMeta): Metadata {
   const url = `${SITE_URL}${path}`;
@@ -29,11 +33,13 @@ export function toolMetadata({ title, description, path }: ToolMeta): Metadata {
       type: 'website',
       siteName: SITE_NAME,
       locale: 'en_US',
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: title, type: 'image/png' }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: [OG_IMAGE],
     },
   };
 }
@@ -45,6 +51,7 @@ export function webApplicationSchema({ name, description, path }: { name: string
     name,
     description,
     url: `${SITE_URL}${path}`,
+    ...(PAGE_UPDATED[path] && { dateModified: PAGE_UPDATED[path] }),
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Any',
     browserRequirements: 'Requires JavaScript',

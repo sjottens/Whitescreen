@@ -19,7 +19,6 @@ export default async function TermsPage() {
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="container max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900">{translate('terms_title')}</h1>
-          <p className="text-slate-600">Last updated: September 23, 2026</p>
         </div>
       </section>
 
