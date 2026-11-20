@@ -38,6 +38,11 @@ const FAQS: Faq[] = [
       'Yes. Check in the system settings that the capacity matches the advert. On Windows, a free tool such as CrystalDiskInfo shows the drive health; on a Mac, Disk Utility can run First Aid. A drive that reports warnings is a reason to walk away or renegotiate.',
   },
   {
+    question: 'How do I know a used MacBook is not locked?',
+    answer:
+      'Hold Option, click the Apple menu and open System Information. On recent models the Hardware overview shows Activation Lock Status, which must say Disabled. If it is enabled, the seller has to sign out of their Apple Account and turn off Find My in front of you. Nobody else can remove it later.',
+  },
+  {
     question: "What if the seller won't let me test the laptop?",
     answer:
       "Treat that as a red flag. A seller with a working laptop has no reason to refuse a 15-minute check. If you buy anyway, use a payment method that offers buyer protection, and don't pay before you have seen the laptop start up.",
@@ -62,6 +67,9 @@ export default function UsedLaptopCheckPage() {
         { id: 'how-to-use-this-checklist', label: 'How to use this checklist' },
         { id: 'check-the-battery-health', label: 'Check the battery health' },
         { id: 'red-flags-that-should-stop-the-sale', label: 'Red flags that should stop the sale' },
+        { id: 'extra-checks-for-a-macbook', label: 'Extra checks for a MacBook' },
+        { id: 'extra-checks-for-a-windows-laptop', label: 'Extra checks for a Windows laptop' },
+        { id: 'what-a-problem-means-for-the-price', label: 'What a problem means for the price' },
         { id: 'questions-to-ask-the-seller', label: 'Questions to ask the seller' },
         { id: 'how-this-check-works', label: 'How this check works' },
       ]}
@@ -71,7 +79,7 @@ export default function UsedLaptopCheckPage() {
       <h2 id="how-to-use-this-checklist">How to use this checklist</h2>
       <p>
         Ask the seller to have the laptop charged, switched on and signed in, and bring a USB stick, your phone and a
-        pair of headphones. Open this page on the laptop itself, so the screen, speakers and keyboard you test are the
+        pair of headphones. You can read this page on your phone beforehand, so you know what to look for. Open this page on the laptop itself, so the screen, speakers and keyboard you test are the
         ones you&apos;re buying. Work from top to bottom: the order puts the quick, visible checks first, so you can stop
         early if the screen or keyboard already disappoints.
       </p>
@@ -126,6 +134,63 @@ export default function UsedLaptopCheckPage() {
           <strong>A charger that isn&apos;t original</strong> and a laptop that only runs while plugged in.
         </li>
       </ul>
+
+      <h2 id="extra-checks-for-a-macbook">Extra checks for a MacBook</h2>
+      <p>
+        The biggest risk with a used Mac is a lock you can&apos;t remove. Hold Option, click the Apple menu and choose
+        System Information: on recent models the Hardware overview shows <strong>Activation Lock Status</strong>. It
+        must say Disabled before you pay. If it says Enabled, the seller has to sign out of their Apple Account and turn
+        off Find My while you watch. Nobody else can remove it later.
+      </p>
+      <p>
+        On the same screen, note the serial number and enter it on Apple&apos;s Check Coverage page. It confirms the
+        model and year, and shows whether any warranty or AppleCare is left. If the model there doesn&apos;t match the
+        advert, ask why. On a MacBook, also press each key firmly: keyboards on some 2016 to 2019 models are known to
+        stick or repeat letters, and a keyboard repair on those means replacing a large part of the case.
+      </p>
+
+      <h2 id="extra-checks-for-a-windows-laptop">Extra checks for a Windows laptop</h2>
+      <p>
+        Open Settings &gt; System &gt; Activation (on Windows 10, Update &amp; Security &gt; Activation) and check
+        that Windows is activated. A laptop that came with Windows normally activates on its own after a reset, but an
+        unactivated copy can mean the original licence is gone.
+      </p>
+      <p>
+        Open Device Manager by right-clicking the Start button. A yellow warning sign next to an entry points to a part
+        without a working driver, or one that has failed. Then look up the serial number, usually on a sticker under
+        the laptop, on the manufacturer&apos;s support site: Dell, HP, Lenovo, Asus and Acer all show the model and any
+        remaining warranty. A business laptop that shows up as owned by a company is worth a question to the seller.
+      </p>
+
+      <h2 id="what-a-problem-means-for-the-price">What a problem means for the price</h2>
+      <p>
+        Not every problem is a reason to walk away. Some are cheap to fix and simply give you room to negotiate; others
+        cost so much that the laptop is only worth it for parts. As a rough guide:
+      </p>
+      <ul>
+        <li>
+          <strong>Usually cheap:</strong> a missing keycap, a worn or non-original charger, a dirty or noisy fan that
+          needs cleaning, and on many models a worn battery. Batteries that are screwed in rather than glued are often
+          a simple swap.
+        </li>
+        <li>
+          <strong>Worth checking first:</strong> a single dead key or a faulty port. On some laptops the keyboard
+          comes as one part with the top of the case, which makes even a small keyboard fault an expensive repair.
+          Search for the model and &quot;keyboard replacement&quot; before you agree a price.
+        </li>
+        <li>
+          <strong>Usually expensive:</strong> a cracked or faulty screen, a hinge that has broken out of its mount, and
+          anything to do with the motherboard. On an older laptop these repairs can cost more than it is worth.
+        </li>
+        <li>
+          <strong>Walk away:</strong> a swollen battery, signs of liquid damage, or a lock the seller can&apos;t remove,
+          whatever the price.
+        </li>
+      </ul>
+      <p>
+        If the check finds something, email yourself the results and show the seller the problem list. A clear,
+        specific fault is a much better starting point for a lower price than a general feeling that something is off.
+      </p>
 
       <h2 id="questions-to-ask-the-seller">Questions to ask the seller</h2>
       <p>

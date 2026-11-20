@@ -14,7 +14,7 @@ export interface Step {
 
 export const STEPS: Step[] = [
   { id: 'screen', title: 'Screen', hint: 'Cycle through the colors below in full screen. Look for dead or stuck pixels, bright patches at the edges and uneven color.' },
-  { id: 'keyboard', title: 'Keyboard', hint: 'Press every key once, including Fn, the arrows and the number row.', link: { href: '/keyboard-test', label: 'Open the keyboard test' } },
+  { id: 'keyboard', title: 'Keyboard', hint: 'Press every key once, including the arrows and the number row. A website can\'t see the Fn key itself, so hold Fn and press a brightness or volume key to check it.', link: { href: '/keyboard-test', label: 'Open the keyboard test' } },
   { id: 'touchpad', title: 'Touchpad', hint: 'Move the pointer into every corner, click both buttons, and scroll with two fingers.' },
   { id: 'speakers', title: 'Speakers', hint: 'Play the left and right tone. Listen for crackling, buzzing or a side that stays silent.' },
   { id: 'webcam', title: 'Webcam', hint: 'Check that the picture appears, is sharp and that the camera light turns on.', link: { href: '/webcam-test', label: 'Open the webcam test' } },
@@ -22,5 +22,6 @@ export const STEPS: Step[] = [
   { id: 'battery', title: 'Battery & charger', hint: 'Unplug the charger: the laptop must keep running and the level should not drop fast. Plug it back in and check that it charges.' },
   { id: 'ports', title: 'Ports & wireless', hint: 'Try a USB stick or phone cable in every port, connect to Wi-Fi, and pair a Bluetooth device if you can.' },
   { id: 'body', title: 'Body & hinges', hint: 'Open and close the lid: the hinge should hold the screen at any angle without creaking. Look for cracks, a bulging case and missing screws.' },
+  { id: 'specs', title: 'Specs & storage', hint: 'Compare the processor, memory and storage in the system settings with the advert, and check that the drive reports no health warnings.' },
   { id: 'locks', title: 'Accounts & locks', hint: 'Make sure the seller has signed out of their account, the laptop is not managed by a company or school, and there is no firmware or BIOS password.' },
 ];
